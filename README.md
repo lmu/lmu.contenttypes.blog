@@ -1,2 +1,0 @@
-lmu.contenttypes.blog
-=====================
