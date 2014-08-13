@@ -8,4 +8,6 @@
   -->
 <object name="portal_types" meta_type="Plone Types Tool">
   <!-- -*- extra stuff goes here -*- -->
+  <object meta_type="Dexterity FTI" name="Blog Folder" />
+  <object meta_type="Dexterity FTI" name="Blog Entry" />
 </object>
