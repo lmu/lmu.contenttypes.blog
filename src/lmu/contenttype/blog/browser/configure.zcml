@@ -1,0 +1,31 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="lmu.blog">
+
+    <browser:page
+        name="listing_view"
+        for="lmu.contenttype.blog.interfaces.IBlogFolder"
+        permission="zope.View"
+        template="template/listing.pt"
+        layer="..interfaces.ITestCtLayer"
+        />
+
+    <browser:page
+        name="frontpage_view"
+        for="lmu.contenttype.blog.interfaces.IBlogFolder"
+        permission="zope.View"
+        template="template/listing.pt"
+        layer="..interfaces.ITestCtLayer"
+        />
+
+    <browser:page
+        name="entry_view"
+        for="lmu.contenttype.blog.interfaces.IBlogEntry"
+        permission="zope.View"
+        class=".entry_view.EntryView"
+        layer="..interfaces.ITestCtLayer"
+        />
+
+
+</configure>

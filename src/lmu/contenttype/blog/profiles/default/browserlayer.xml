@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layers>
+    <!-- -*- extra stuff goes here -*- -->
+
+    <layer name="BlogLayer"
+        interface="lmu.contenttype.blog.interfaces.IBlogLayer"
+    />
+</layers>

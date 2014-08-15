@@ -8,19 +8,25 @@
   <property name="description"
     i18n:translate="">Blog Entry with folder support for files and images</property>
   <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
-  <property name="factory">lmu.contenttype.blog.blogentry</property>
+  <property name="factory">lmu.contenttype.blog.content.blogentry</property>
   <property name="global_allow">False</property>
   <property name="filter_content_types">False</property>
   <property name="allowed_content_types" />
   <property name="allow_discussion">True</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">lmu.contenttype.blog.blog_entry.IBlogEntry</property>
-  <property name="klass">lmu.contenttype.blog.blog_entry.BlogEntry</property>
+  <property name="schema">lmu.contenttype.blog.interfaces.IBlogEntry</property>
+  <property name="klass">lmu.contenttype.blog.content.BlogEntry</property>
 
   <property name="behaviors">
      <element value="plone.app.content.interfaces.INameFromTitle" />
-     <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
+
+     <element value="plone.app.dexterity.behaviors.metadata.IDublinCore" />
+     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
+     <element value="plone.app.contenttypes.behaviors.tableofcontents.ITableOfContents" />
+     <element value="plone.app.versioningbehavior.behaviors.IVersionable" />
+     
+     <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion" />
    </property>
 
   <!-- View information -->

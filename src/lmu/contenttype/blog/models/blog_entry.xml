@@ -1,11 +1,12 @@
 <?xml version="1.0" ?>
 <model xmlns="http://namespaces.plone.org/supermodel/schema"
-       xmlns:form="http://namespaces.plone.org/supermodel/form">
-    
-    <schema>
-
-        <!-- field definitions -->
-        
-    </schema>
-    
+       xmlns:form="http://namespaces.plone.org/supermodel/form" 
+       xmlns:security="http://namespaces.plone.org/supermodel/security" 
+       xmlns:marshal="http://namespaces.plone.org/supermodel/marshal">
+  <schema>
+    <field name="text" type="plone.app.textfield.RichText">
+      <title>Text</title>
+      <description>Content Text</description>
+    </field>
+  </schema>
 </model>
