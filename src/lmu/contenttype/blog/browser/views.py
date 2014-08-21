@@ -6,17 +6,41 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
-class ListingView(BrowserView):
 
-    template = ViewPageTemplateFile('templates/listing_view.pt')
+
+
+
+
+#class ListingView(BrowserView):
+
+    #template = ViewPageTemplateFile('templates/listing_view.pt')
 
 
 
 class FrontPageView(BrowserView):
 
-    template = ViewPageTemplateFile('templates/frontpage_view.pt')
+    index = ViewPageTemplateFile('templates/frontpage_view.pt')
 
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
 
-class EntryView(BrowserView):
+    #def __call__(self):
+    #    return render(self.template)
 
-    template = ViewPageTemplateFile('templates/entry_view.pt')
+    def update(self):
+        """
+        """
+        # Hide the editable-object border
+        context = self.context
+        request = self.request
+        request.set('disable_border', True)
+        
+    def render(self):
+        return self.index()
+
+    def __call__(self):
+        return self.render()
+#class EntryView(BrowserView):
+
+    #template = ViewPageTemplateFile('templates/entry_view.pt')

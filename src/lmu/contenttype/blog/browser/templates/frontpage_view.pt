@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="lmu.blog" >
+
+<head>
+  <title tal:content="context/Title"></title>
+
+  <link rel="stylesheet" type="text/css" href="++resource++collective.js.foundation/css/normalize.css" >
+  <link rel="stylesheet" type="text/css" href="++resource++collective.js.foundation/css/foundation.min.css" >
+
+  <script type="text/javascript" src="++resource++collective.js.foundation/js/foundation.min.js" ></script>
+
+  <style type="text/css">
+  #blog-block { 
+    background-color: #d2d2d2;
+  }
+
+  .comment-sign {
+    background-image: url('http://localhost:8080/Plone/folder_icon.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 16px 16px;
+    padding-left: 20px;
+  }
+
+  </style>
+
+</head>
+
+<body>
+<div id="blog-section"
+    tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
+
+  <div class="row">
+    <div class="columns small-12 large-12">
+      <h1>
+        <a tal:attributes="href context/absolute_url;">
+        <span tal:replace="context/Title">Title</span>
+        <small tal:content="context/subtitle">Subtitle</small>
+        </a>
+      </h1>
+    </div>
+  </div>
+  
+<div id="blog-block">
+  <div class="row">
+    <div class="columns small-12" 
+         tal:define="item python:context.values()[0]">
+      <img src="" alt="">
+      <h2 tal:content="item/Title">Blog Entry 1 Title</h2>
+      <p><span tal:replace="item/id">Author</span>, <span tal:replace="python: toLocalizedTime(item.CreationDate())">Date</span></p>
+      <p tal:content="item/Description">Blog Entry 1 Description</p>
+      <p class="comment-sign">2 Kommentare</p>
+    </div>
+  </div>  
+
+  <div class="row">
+    <div class="columns small-12 show-for-medium-up">
+      <hr />
+    </div>
+  </div>
+
+  <div class="row">
+    <tal:block tal:define="entries python:context.values()[1:3]"
+               tal:repeat="entry entries">
+    <div class="columns small-12" tal:define="item repeat/entry" tal:on-error="item">
+      <img src="" alt="">
+      <h2 tal:content="item/title">Blog Entry 1 Title</h2>
+      <p tal:content="item/description">Blog Entry 1 Description</p>
+      <p class="comment-sign">2 Kommentare</p>
+    </div>
+    </tal:block>
+  </div>
+
+  <div class="row">
+    <div class="columns small-12 medium-4">
+      <h2 i18n:translate="">Und was denken Sie?</h2>
+    </div>
+    <div class="columns small-12 medium-4 medium-centered">
+      <a class="button"
+         tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
+         tal:attributes="href add_url;
+                         class string:button;"
+         i18n:translate=""
+         >Jetzt einen Blog-Beitrag verfassen</a>
+    </div>
+  </div>
+
+  </div>
+</div>
+</body>
+</html>
