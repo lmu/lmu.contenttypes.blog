@@ -31,7 +31,7 @@
 
 <body>
 <div id="blog-section"
-    tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
+     tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
 
   <div class="row">
     <div class="columns small-12 large-12">

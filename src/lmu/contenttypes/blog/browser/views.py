@@ -5,7 +5,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
-
+from lmu.contenttypes.blog
 
 
 
@@ -19,7 +19,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 class FrontPageView(BrowserView):
 
-    index = ViewPageTemplateFile('templates/frontpage_view.pt')
+    template = ViewPageTemplateFile('templates/frontpage_view.pt')
 
     def __init__(self, context, request):
         self.context = context
@@ -35,12 +35,18 @@ class FrontPageView(BrowserView):
         context = self.context
         request = self.request
         request.set('disable_border', True)
-        
-    def render(self):
-        return self.index()
 
     def __call__(self):
-        return self.render()
+        return self.template()
+
+    def entries(self):
+    	import ipdb; ipdb.set_trace()
+    	if not self.context:
+    		pass
+    	entries = context.
+    	return []
+
+
 #class EntryView(BrowserView):
 
     #template = ViewPageTemplateFile('templates/entry_view.pt')
