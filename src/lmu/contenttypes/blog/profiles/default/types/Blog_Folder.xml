@@ -8,7 +8,7 @@
   <property name="description"
     i18n:translate="">Folder for Blog Entries with special views and restrictions</property>
   <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
-  <property name="factory">lmu.contenttype.blog.content.blogfolder</property>
+  <property name="factory">lmu.contenttypes.blog.content.blogfolder</property>
   <property name="global_allow">True</property>
   <property name="filter_content_types">False</property>
   <property name="allowed_content_types" >
@@ -17,18 +17,11 @@
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">lmu.contenttype.blog.interfaces.IBlogFolder</property>
-  <property name="klass">lmu.contenttype.blog.content.BlogFolder</property>
+  <property name="schema">lmu.contenttypes.blog.interfaces.IBlogFolder</property>
+  <property name="klass">lmu.contenttypes.blog.content.BlogFolder</property>
 
   <property name="behaviors">
      <element value="plone.app.content.interfaces.INameFromTitle" />
-
-     <element value="plone.app.dexterity.behaviors.metadata.IDublinCore" />
-     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
-     <element value="plone.app.contenttypes.behaviors.tableofcontents.ITableOfContents" />
-     <element value="plone.app.versioningbehavior.behaviors.IVersionable" />
-     
-     <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion" />
    </property>
 
   <!-- View information -->

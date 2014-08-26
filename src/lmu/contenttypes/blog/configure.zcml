@@ -13,7 +13,7 @@
   <!-- Register a resource directory from which we can deploy static
    resource files. -->
   <browser:resourceDirectory
-    name="lmu.contenttype.blog"
+    name="lmu.contenttypes.blog"
     directory="resources" />
 
   <i18n:registerTranslations directory="locales" />

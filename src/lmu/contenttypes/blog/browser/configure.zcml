@@ -14,19 +14,10 @@
         layer="..interfaces.IBlogLayer"
         />
 -->
-<!--
+
     <browser:page
         name="frontpage_view"
         for="lmu.contenttypes.blog.interfaces.IBlogFolder"
-        permission="zope2.View"
-        class=".views.FrontPageView"
-        />
-        -->
-        <!-- 
-        layer="..interfaces.IBlogLayer" -->
-    <browser:page
-        name="frontpage_view"
-        for="*"
         permission="zope2.View"
         class=".views.FrontPageView"
         />

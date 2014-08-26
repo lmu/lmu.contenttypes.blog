@@ -12,7 +12,7 @@ from plone.theme.interfaces import IDefaultPloneLayer
 #from zope.interface import Attribute
 #from zope.interface import Interface
 
-from lmu.contenttype.blog import MessageFactory as _
+from lmu.contenttypes.blog import MessageFactory as _
 
 class IBlogFolder(form.Schema, IImageScaleTraversable):
     """
@@ -30,4 +30,3 @@ class IBlogLayer(IDefaultPloneLayer):
     """ A layer specific to this product. 
         Is registered using browserlayer.xml
     """
-

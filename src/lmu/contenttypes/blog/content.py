@@ -8,8 +8,8 @@ from plone.app.discussion.interfaces import IConversation
 
 from zope.interface import implements
 
-from lmu.contenttype.blog.interfaces import IBlogFolder
-from lmu.contenttype.blog.interfaces import IBlogEntry
+from lmu.contenttypes.blog.interfaces import IBlogFolder
+from lmu.contenttypes.blog.interfaces import IBlogEntry
 
 class BlogFolder(Container):
     implements(IBlogFolder, ISyndicatable)

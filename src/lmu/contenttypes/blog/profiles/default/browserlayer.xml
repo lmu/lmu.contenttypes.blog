@@ -3,6 +3,6 @@
     <!-- -*- extra stuff goes here -*- -->
 
     <layer name="BlogLayer"
-        interface="lmu.contenttype.blog.interfaces.IBlogLayer"
+        interface="lmu.contenttypes.blog.interfaces.IBlogLayer"
     />
 </layers>

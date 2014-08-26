@@ -26,7 +26,7 @@ setup(name='lmu.contenttypes.blog',
       license='GPLv2',
       packages=find_packages('src',exclude=['ez_setup']),
       package_dir={'': 'src'},
-      namespace_packages=['lmu', 'lmu.contenttype'],
+      namespace_packages=['lmu', 'lmu.contenttypes'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
