@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="lmu.blog"
+      metal:use-macro="context/main_template/macros/master"
+      >
+<body>
+
+<tal:comment tal:condition="nothing">
+    This is a sample view template. It will not be used for rendering the
+    content unless activated by creation of a view class with a matching name.
+</tal:comment>
+
+<metal:main fill-slot="content">
+  <metal:content define-macro="content" 
+                 tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+                            ">
+    <h1 tal:content="context/Title">Title</h1>
+    <div class="documentByLine">
+      <span tal:replace="context/Creator">Author</span>, 
+      <span tal:replace="python: toLocalizedTime(context.ModificationDate(),long_format=1)">Date</span>
+      <tal:span tal:condition="view/canSeeHistory">&mdash; <a href="" i18n:translate="" class="link-overlay" tal:define="url context/absolute_url;"
+      tal:attributes="href string:${url}/edit;">History</a></tal:span>
+    </div>
+    <div class="content-core">
+      <figure tal:condition="context/image" tal:define="scales context/@@images">
+        <img tal:replace="structure python: scales.tag('image', scale='large', alt=context.image_caption, title=context.image_caption)" />
+        <figcaption tal:content="context/image_caption" tal:condition="context/image_caption">Caption</figcaption>
+      </figure>
+      <div tal:replace="structure context/text/output">Content</div>
+    </div>
+    <a id="comments" name="comments"></a>
+
+  </metal:content>
+</metal:main>
+
+</body>
+</html>

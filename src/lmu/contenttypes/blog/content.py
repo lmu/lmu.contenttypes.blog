@@ -4,6 +4,7 @@ from Products.CMFPlone.interfaces.syndication import ISyndicatable
 #from plone.dexterity.content import Item
 from plone.dexterity.content import Container
 
+from plone.app.contenttypes.behaviors.leadimage import ILeadImage
 from plone.app.discussion.interfaces import IConversation
 
 from zope.interface import implements
@@ -26,5 +27,5 @@ class BlogEntry(Container):
             conversation = IConversation(self)
         except:
             return 0
-
         return conversation.total_comments
+

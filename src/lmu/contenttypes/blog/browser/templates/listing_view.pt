@@ -1,0 +1,102 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="lmu.blog">
+
+<body>
+
+    <metal:content fill-slot="content">
+    <div id="content">
+        <h1><span tal:replace="context/title">Blog Titel</span> <small tal:content="context/subtitle" tal:condition="context/subtitle">Blog Sub-Title</small></h1>
+        <a class="button"
+           tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
+           tal:attributes="href add_url;
+                         class string:button;"
+           i18n:translate="">
+        Jetzt einen Blog-Beitrag verfassen
+      </a>
+        <metal:block define-macro="listing" extend-macro="context/folder_listing/macros/content-core">
+            <!-- we don't want the dl -->
+
+
+            <metal:entries fill-slot="entries">
+                <metal:block use-macro="context/folder_listing/macros/entries">
+                    <metal:entry fill-slot="entry">
+                <div class="tileItem visualIEFloatFix"
+                     tal:define="item_object item/getObject;">
+                    <div class="tileCommentSign">
+                      <a class="comment-sign" 
+                         tal:content="item_object/getDiscussionCount"
+                         tal:attributes="href python:str(item.absolute_url())+'#commenting';">Anzahl</a>
+                    </div>
+                    <h2 class="tileHeadline"
+                        metal:define-macro="listitem">
+
+                        <a href="#"
+                           class="summary url"
+                           tal:attributes="href python: item_type in use_view_action and item_url+'/view' or item_url;"
+                           tal:content="item_title_or_id">
+                            Item Title
+                        </a>
+
+                    </h2>
+
+                    <div class="tileDocumentByLine documentByLine" 
+                         tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon"
+                         tal:define="author python:pas_member.info(item_creator);">
+
+                      <a href="#"
+                         tal:attributes="href string:${navigation_root_url}/author/${item_creator}"
+                         tal:content="author/name_or_id"
+                         tal:omit-tag="not:author">
+                        Bob Dobalina
+                      </a>, 
+                      <span tal:replace="python: toLocalizedTime(item_modified,long_format=0)">Date</span>
+
+                    </div>
+                    <div class="tileBody">
+                                        <a href="#"
+                       tal:define="real_object python:item_object.aq_explicit"
+                       tal:condition="python:getattr(real_object, 'image', None)"
+                       tal:attributes="href python: item_type in use_view_action and item_url+'/view' or item_url">
+                      <figure tal:define="images item_object/@@images;"
+                              tal:condition="images/image" >
+                        <img tal:replace="structure python: images.tag('image', scale='large',css_class='tileImage', alt=item_object.image_caption, title=item_object.image_caption)" />
+                        <figcaption tal:content="item_object/image_caption" tal:condition="item_object/image_caption">Caption</figcaption>
+                      </figure>
+                    </a>
+                        <tal:tileBody tal:replace="structure item_object/text/output">
+                            Content Body
+                        </tal:tileBody>
+                    </div>
+
+                    <div class="tileFooter">
+                        <a href=""
+                           tal:define="url python: item_type in use_view_action and item_url+'/view#commenting' or item_url;"
+                           tal:attributes="href string:${url}#commenting;"
+                           i18n:translate="read_more">
+                        Read Comments&hellip;
+                        </a>
+                    </div>
+
+                    <div class="visualClear"><!-- --></div>
+
+                </div>
+                    </metal:entry>
+                </metal:block>
+            </metal:entries>
+        </metal:block>
+      <a class="button"
+         tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
+         tal:attributes="href add_url;
+                         class string:button;"
+         i18n:translate="">
+        Jetzt einen Blog-Beitrag verfassen
+      </a>
+    </div>
+    </metal:content>
+
+</body>
+</html>

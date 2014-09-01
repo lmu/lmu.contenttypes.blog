@@ -5,15 +5,12 @@
 
     <include package="Products.CMFCore" file="permissions.zcml" />
 
-<!--
     <browser:page
         name="listing_view"
         for="lmu.contenttypes.blog.interfaces.IBlogFolder"
         permission="zope2.View"
         class=".views.ListingView"
-        layer="..interfaces.IBlogLayer"
         />
--->
 
     <browser:page
         name="frontpage_view"
@@ -22,14 +19,11 @@
         class=".views.FrontPageView"
         />
 
-<!--
     <browser:page
         name="entry_view"
         for="lmu.contenttypes.blog.interfaces.IBlogEntry"
         permission="zope2.View"
-        class=".viewa.EntryView"
-        layer="..interfaces.IBlogLayer"
+        class=".views.EntryView"
         />
--->
 
 </configure>

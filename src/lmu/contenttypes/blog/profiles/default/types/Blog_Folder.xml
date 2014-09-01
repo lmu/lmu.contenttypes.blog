@@ -10,7 +10,7 @@
   <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
   <property name="factory">lmu.contenttypes.blog.content.blogfolder</property>
   <property name="global_allow">True</property>
-  <property name="filter_content_types">False</property>
+  <property name="filter_content_types">True</property>
   <property name="allowed_content_types" >
     <element value="Blog Entry" />
   </property>

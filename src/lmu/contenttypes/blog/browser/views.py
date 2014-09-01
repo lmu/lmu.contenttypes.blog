@@ -6,6 +6,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+from plone.app.textfield.interfaces import ITransformer
 from zope.component import getMultiAdapter
 
 from lmu.contenttypes.blog.interfaces import IBlogFolder
@@ -13,25 +14,38 @@ from lmu.contenttypes.blog.interfaces import IBlogFolder
 
 
 def str2bool(v):
-    return not (v != None and v.lower not in ['True', '1'])
+    return v != None and v.lower() in ['true', '1']
 
-
-#class ListingView(BrowserView):
-
-    #template = ViewPageTemplateFile('templates/listing_view.pt')
-
-
-
-class FrontPageView(BrowserView):
-
-    template = ViewPageTemplateFile('templates/frontpage_view.pt')
+class _AbstractBlogView(BrowserView):
 
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        
-        omit = self.request.get('omit')
-        self.omit = str2bool(omit)
+
+    def get_memberdata(self, item):
+        pm = getToolByName(self.context, 'portal_membership')
+        member_id = item.Creator()
+        member = pm.getMemberById(member_id)
+        return member
+
+    def strip_text(self, item, length=500):
+        transformer = ITransformer(item)
+        transformedValue = transformer(item.text, 'text/plain')
+        striped_length = transformedValue.rfind(' ',0,length)
+        return transformedValue[:striped_length]
+
+class ListingView(_AbstractBlogView):
+
+    template = ViewPageTemplateFile('templates/listing_view.pt')
+
+    def __call__(self):
+        return self.template()
+
+
+class FrontPageView(_AbstractBlogView):
+
+    template = ViewPageTemplateFile('templates/frontpage_view.pt')
+
 
     def update(self):
         """
@@ -41,41 +55,50 @@ class FrontPageView(BrowserView):
         request = self.request
         request.set('disable_border', True)
 
+
     def __call__(self):
+
+        omit = self.request.get('omit')
+        self.omit = str2bool(omit)
         return self.template()
 
     def entries(self):
-        #import ipdb; ipdb.set_trace()
         entries = []
         if IBlogFolder.providedBy(self.context):
             content_filter={
                 'portal_type' : 'Blog Entry',
+                'review_state' : 'published',
                 }
             if self.request.get('author'):
                 content_filter['Creator'] = self.request.get('author')
 
-
-
-
-            entries = self.context.listFolderContents(
-                contentFilter=content_filter
+            pcatalog = self.context.portal_catalog
+            entries = pcatalog.searchResults(
+                content_filter, 
+                sort_on='modified', sort_order='reverse',
+                b_size=int(self.request.get('num', '100')),
+                b_start=int(self.request.get('start', '0'))
                 )
         
         #import ipdb; ipdb.set_trace()
         return entries
 
-    def get_item_image(self, item, scale='mini'):
-        #import ipdb; ipdb.set_trace()
-        scales = getMultiAdapter((item, self.request), name='images')
-        scale = scales.scale('image', scale=scale)
-        imageTag = None
-        if scale is not None:
-           imageTag = scale.tag()
-        return imageTag
 
     def omit(self):
         return self.omit
 
-#class EntryView(BrowserView):
+class EntryView(_AbstractBlogView):
 
-    #template = ViewPageTemplateFile('templates/entry_view.pt')
+    template = ViewPageTemplateFile('templates/entry_view.pt')
+
+    def __call__(self):
+        return self.template()
+
+    def canSeeHistory(self):
+        return True
+
+    def canEdit(self):
+        return True
+
+    def canRemove(self):
+        return True

@@ -51,6 +51,12 @@
     border-bottom-width: 1px;
   }
 
+  #blog-main div.row:last-of-type {
+    padding-top: 15px;
+    padding-bottom: 10px;
+    border-bottom: none;
+  }
+
   #blog-footer {
     padding-top: 10px;
     padding-bottom: 10px; 
@@ -74,7 +80,8 @@
 
 <body tal:omit-tag="omit">
 <div id="blog-section"
-     tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
+     tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+                 navigation_root_url nocall:context/@@plone/navigationRootUrl;"
      tal:omit-tag="omit">
 
 <div class="blog-header" tal:condition="not:omit">
@@ -89,31 +96,44 @@
     </div>
   </div>
 </div>
-
-<div id="blog-main">
+<div id="blog-main" >
   <tal:block tal:repeat="entry view/entries">
-  <div class="row">
-    <div class="columns small-12 blog-entry" tal:define="item_image python:view.get_item_image(entry, 'thumb');">
+  <div class="row" tal:define="item entry/getObject" tal:on-error="entry">
+    <div class="columns small-12 blog-entry" 
+         tal:define="member python:view.get_memberdata(item);
+                     text python:view.strip_text(item);
+                    ">
       <a class="comment-sign" 
-         tal:content="entry/getDiscussionCount"
-         tal:attributes="href python:str(entry.absolute_url())+'#comment';">Anzahl</a>
-      <a tal:attributes="href entry/absolute_url; 
-                         title entry/title;"
-         tal:condition="item_image"
+         btal:content="item/getDiscussionCount"
+         tal:attributes="href python:str(item.absolute_url())+'#commenting';">Anzahl</a>
+      <a tal:attributes="href item/absolute_url; 
+                         title item/title;"
+         tal:define="images item/@@images;"
+         tal:condition="item/image"
          class="blog-lead-image" >
-        <img tal:replace="structure item_image" />
+        <figure >
+          <img tal:replace="structure python: images.tag('image', scale='mini', alt=item.image_caption, title=item.image_caption)" />
+          <figcaption tal:content="item/image_caption" tal:condition="item/image_caption">Caption</figcaption>
+        </figure>
       </a>
       <h2>
-        <a tal:attributes="href entry/absolute_url; 
-                           title entry/title;"
-          tal:content="entry/title">Blog Entry Title</a>
+        <a tal:attributes="href item/absolute_url; 
+                           title item/title;"
+          tal:content="item/title">Blog Entry Title</a>
       </h2>
-      <div tal:replace="structure provider:plone.belowcontenttitle" >DocumentByLine</div>
-      <p tal:content="entry/description">Blog Entry Description</p>
-      <p class="documentByLine">
-        <span tal:replace="entry/Creator">Author</span>, 
-        <span tal:replace="python: toLocalizedTime(entry.CreationDate(),long_format=1)">Date</span>
+      <div tal:replace="structure provider:plone.belowcontenttitle" tal:condition="python:False">DocumentByLine</div>
+      <p tal:content="item/description">Blog Entry Description</p>
+      <p>
+        <a tal:attributes="href item/absolute_url; 
+                           title item/title;">
+          <span tal:replace="text">Blog Entry Text</span>...
+        </a>
       </p>
+      <div class="documentByLine" tal:on-error="member" > 
+        <a tal:content="member/fullname"
+           tal:attributes="href string:${navigation_root_url}/author/${member/id};" >Author</a>, 
+        <span tal:replace="python: toLocalizedTime(item.ModificationDate(),long_format=0)">Date</span>
+      </div>
     </div>
   </div>
   </tal:block>

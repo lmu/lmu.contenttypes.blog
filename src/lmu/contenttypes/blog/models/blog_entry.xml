@@ -4,9 +4,16 @@
        xmlns:security="http://namespaces.plone.org/supermodel/security" 
        xmlns:marshal="http://namespaces.plone.org/supermodel/marshal">
   <schema>
+  	<!-- field definitions -->
+    <field name="title" type="zope.schema.TextLine">
+      <title>Title</title>
+      <description>Name of the Blog Entry</description>
+      <required>True</required>
+    </field>
     <field name="text" type="plone.app.textfield.RichText">
       <title>Text</title>
       <description>Content Text</description>
+      <required>True</required>
     </field>
   </schema>
 </model>
