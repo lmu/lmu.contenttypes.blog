@@ -34,33 +34,9 @@ class _AbstractBlogView(BrowserView):
         striped_length = transformedValue.rfind(' ',0,length)
         return transformedValue[:striped_length]
 
-class ListingView(_AbstractBlogView):
 
-    template = ViewPageTemplateFile('templates/listing_view.pt')
+class _AbstractBlogListingView(_AbstractBlogView):
 
-    def __call__(self):
-        return self.template()
-
-
-class FrontPageView(_AbstractBlogView):
-
-    template = ViewPageTemplateFile('templates/frontpage_view.pt')
-
-
-    def update(self):
-        """
-        """
-        # Hide the editable-object border
-        context = self.context
-        request = self.request
-        request.set('disable_border', True)
-
-
-    def __call__(self):
-
-        omit = self.request.get('omit')
-        self.omit = str2bool(omit)
-        return self.template()
 
     def entries(self):
         entries = []
@@ -82,6 +58,35 @@ class FrontPageView(_AbstractBlogView):
         
         #import ipdb; ipdb.set_trace()
         return entries
+
+class ListingView(_AbstractBlogListingView):
+
+    template = ViewPageTemplateFile('templates/listing_view.pt')
+
+    def __call__(self):
+        return self.template()
+
+
+class FrontPageView(_AbstractBlogListingView):
+
+    template = ViewPageTemplateFile('templates/frontpage_view.pt')
+
+
+    def update(self):
+        """
+        """
+        # Hide the editable-object border
+        context = self.context
+        request = self.request
+        request.set('disable_border', True)
+
+
+    def __call__(self):
+
+        omit = self.request.get('omit')
+        self.omit = str2bool(omit)
+        return self.template()
+
 
 
     def omit(self):
