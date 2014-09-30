@@ -9,18 +9,24 @@
 
     <metal:content fill-slot="content">
     <div id="content">
-        <h1>
-          <span tal:replace="context/title">Blog Titel</span> 
-          <small tal:content="context/subtitle" tal:condition="context/subtitle">Blog Sub-Title</small>
-        </h1>
-        <a class="button"
-           tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
-           tal:attributes="href add_url;
-                         class string:button;"
-           i18n:translate="">
-          Jetzt einen Blog-Beitrag verfassen
-        </a>
-        
+      <header id="blog-header">
+        <div class="row">
+          <div class="columns small-12">
+            <h1>
+              <span tal:replace="context/title">Blog Titel</span> 
+              <small tal:content="context/subtitle" tal:condition="context/subtitle">Blog Sub-Title</small>
+            </h1>
+            <a class="button"
+               tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
+               tal:attributes="href add_url;
+                             class string:button;"
+               i18n:translate="">
+              Jetzt einen Blog-Beitrag verfassen
+            </a>
+          </div>
+        </div>
+      </header>
+      <main id="blog-main">
         <tal:block tal:repeat="entry view/entries"
                    tal:define="isAnon context/@@plone_portal_state/anonymous;
                                normalizeString nocall: context/plone_utils/normalizeString;
@@ -37,13 +43,10 @@
                            item_type entry/portal_type;
                            item_modified entry/ModificationDate;
                            item_url item/getURL|item/absolute_url;">
-            <div class="columns small-12 blog-entry" 
+            <section class="columns small-12 blog-entry" 
                  tal:define="member python:view.get_memberdata(item);
                              text python:view.strip_text(item);
                             ">
-
-
-
 
               <div class="tileItem visualIEFloatFix">
                   <div class="tileCommentSign">
@@ -102,17 +105,24 @@
 
                   <div class="visualClear"><!-- --></div>
 
-            </div>            
-          </div>
+            </div>
+          </section>
         </div>
       </tal:block>
-      <a class="button"
-         tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
-         tal:attributes="href add_url;
-                         class string:button;"
-         i18n:translate="">
-        Jetzt einen Blog-Beitrag verfassen
-      </a>
+    </main>
+    <footer id="blog-footer">
+      <div class="row">
+        <div class="columns small-12">
+          <a class="button"
+             tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
+             tal:attributes="href add_url;
+                             class string:button;"
+             i18n:translate="">
+            Jetzt einen Blog-Beitrag verfassen
+          </a>
+        </div>
+      </div>
+    </footer>
     </div>
     </metal:content>
 

@@ -15,96 +15,41 @@
 
   <script type="text/javascript" src="++resource++collective.js.foundation/js/foundation.min.js" ></script>
 
-  <style type="text/css">
-  #blog-main,
-  #blog-footer { 
-    background-color: #d2d2d2;
-  }
-
-  .comment-sign {
-    background-image: url('http://localhost:8080/Plone/folder_icon.png');
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: 16px 16px;
-    background-color: #d9d9d9;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    margin-bottom: 3px;
-    float: right;
-    text-align: right;
-
-  }
-
-  #blog-main img {
-    float: left;
-    margin-right: 10px;
-    margin-bottom: 10px;
-  }
-
-  #blog-main div.row {
-    padding-top: 15px;
-    padding-bottom: 10px;
-    border-bottom-style: solid;
-    border-bottom-color: #000;
-    border-bottom-width: 1px;
-  }
-
-  #blog-main div.row:last-of-type {
-    padding-top: 15px;
-    padding-bottom: 10px;
-    border-bottom: none;
-  }
-
-  #blog-footer {
-    padding-top: 10px;
-    padding-bottom: 10px; 
-
-  }
-
-  #blog-footer * {
-    font-size: 12px;
-  }
-
-  #blog-footer a.button {
-    display: block;
-    width: 100%;
-  }
-
-
-
-  </style>
+  <link rel="stylesheet" href="++theme++lmu.theme.intranet/static/main.css">
 
 </head>
 
-<body tal:omit-tag="omit">
-<div id="blog-section"
+<body tal:omit-tag="omit" class="blog-frontpage">
+<section id="blog-section"
      tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
                  navigation_root_url nocall:context/@@plone/navigationRootUrl;"
      tal:omit-tag="omit">
 
-<div class="blog-header" tal:condition="not:omit">
+<header id="blog-header" tal:condition="not:omit">
   <div class="row">
     <div class="columns small-12 large-12">
-      <h1>
+      <a class="right" 
+         tal:attributes="href context/absolute_url;" 
+         i18n:translate="">Zum Blog</a>
+      <h2>
         <a tal:attributes="href context/absolute_url;">
         <span tal:replace="context/Title">Title</span>
         <small tal:content="context/subtitle">Subtitle</small>
         </a>
-      </h1>
+      </h2>
     </div>
   </div>
-</div>
-<div id="blog-main" >
+</header>
+<main id="blog-main" >
   <tal:block tal:repeat="entry view/entries">
   <div class="row" tal:define="item entry/getObject" tal:on-error="entry">
-    <div class="columns small-12 blog-entry" 
+    <section class="columns small-12 blog-entry" 
          tal:define="member python:view.get_memberdata(item);
                      text python:view.strip_text(item);
                     ">
+    <div class="tileItem visualIEFloatFix">
       <a class="comment-sign" 
-         btal:content="item/getDiscussionCount"
+         tal:content="item/getDiscussionCount"
          tal:attributes="href python:str(item.absolute_url())+'#commenting';">Anzahl</a>
       <a tal:attributes="href item/absolute_url; 
                          title item/title;"
@@ -116,33 +61,36 @@
           <figcaption tal:content="item/image_caption" tal:condition="item/image_caption">Caption</figcaption>
         </figure>
       </a>
-      <h2>
+      <h3 class="tileHeadline">
         <a tal:attributes="href item/absolute_url; 
                            title item/title;"
           tal:content="item/title">Blog Entry Title</a>
-      </h2>
+      </h3>
       <div tal:replace="structure provider:plone.belowcontenttitle" tal:condition="python:False">DocumentByLine</div>
-      <p tal:content="item/description">Blog Entry Description</p>
+      <p tal:content="item/description" tal:condition="python: False">Blog Entry Description</p>
       <p>
         <a tal:attributes="href item/absolute_url; 
-                           title item/title;">
+                           title item/title;"
+           tal:omit-tag="">
           <span tal:replace="text">Blog Entry Text</span>...
         </a>
       </p>
-      <div class="documentByLine" tal:on-error="member" > 
+      <div class="tileDocumentByLine documentByLine" tal:on-error="member" > 
         <a tal:content="member/fullname"
            tal:attributes="href string:${navigation_root_url}/author/${member/id};" >Author</a>, 
         <span tal:replace="python: toLocalizedTime(item.ModificationDate(),long_format=0)">Date</span>
       </div>
+      <div class="visualClear"><!-- --></div>
     </div>
+    </section>
   </div>
   </tal:block>
-</div>
+</main>
 
-<div id="blog-footer" tal:condition="not:omit">
+<footer id="blog-footer" tal:condition="not:omit">
   <div class="row">
     <div class="columns small-12">
-      <a class="button"
+      <a class="button link-overlay"
          tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
          tal:attributes="href add_url;
                          class string:button;"
@@ -151,8 +99,8 @@
       </a>
     </div>
   </div>
-</div>
+</footer>
 
-</div>
+</section>
 </body>
 </html>
