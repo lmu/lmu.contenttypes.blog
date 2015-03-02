@@ -31,8 +31,11 @@ class _AbstractBlogView(BrowserView):
     def strip_text(self, item, length=500):
         transformer = ITransformer(item)
         transformedValue = transformer(item.text, 'text/plain')
-        striped_length = transformedValue.rfind(' ',0,length)
-        return transformedValue[:striped_length]
+        striped_length = len(transformedValue)
+        if striped_length > length:
+            striped_length = transformedValue.rfind(' ',0,length)
+            transformedValue = transformedValue[:striped_length] + '...'
+        return transformedValue
 
 
 class _AbstractBlogListingView(_AbstractBlogView):
@@ -49,14 +52,14 @@ class _AbstractBlogListingView(_AbstractBlogView):
                 content_filter['Creator'] = self.request.get('author')
 
             pcatalog = self.context.portal_catalog
+
             entries = pcatalog.searchResults(
                 content_filter, 
                 sort_on='modified', sort_order='reverse',
-                b_size=int(self.request.get('num', '100')),
-                b_start=int(self.request.get('start', '0'))
+                b_size=int(self.request.get('b_size', '20')),
+                b_start=int(self.request.get('b_start', '0'))
                 )
         
-        #import ipdb; ipdb.set_trace()
         return entries
 
 class ListingView(_AbstractBlogListingView):
@@ -92,18 +95,23 @@ class FrontPageView(_AbstractBlogListingView):
     def omit(self):
         return self.omit
 
+
 class EntryView(_AbstractBlogView):
 
     template = ViewPageTemplateFile('templates/entry_view.pt')
 
+
     def __call__(self):
         return self.template()
+
 
     def canSeeHistory(self):
         return True
 
+
     def canEdit(self):
         return True
+
 
     def canRemove(self):
         return True

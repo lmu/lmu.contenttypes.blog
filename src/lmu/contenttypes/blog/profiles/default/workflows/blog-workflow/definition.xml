@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<dc-workflow 
+    workflow_id="blog-workflow" 
+    title="Blog Workflow" 
+    description=" - An intranet workflow where content is only accessible if you are logged in. - Basic states are: Internal Draft, Pending Review, Internally Published and Private. - Also has an Externally Published state, so you can make selected content available to people outside the intranet." 
+    state_variable="review_state" 
+    initial_state="private" 
+    manager_bypass="False">
+    <permission>Access contents information</permission>
+    <permission>Change portal events</permission>
+    <permission>Modify portal content</permission>
+    <permission>View</permission>
+    <state state_id="banned" title="Banned">
+        <description>Bei Verstoß gegen die Blog-Regeln, kann der Intranet-Redakteur einen Blog Eintrag sperren. Dieser ist dann für niemanden außer den Redakteuren und Admins sichtbar, nichtmal für den Besitzer. Dieser Status wird genutzt um einen Blog-Eintrag, inklusive Historie ggf. für arbeitsrechtliche Schritte zu speichern.</description>
+        <exit-transition transition_id="wieder-freigeben"/>
+        <permission-map name="Access contents information" acquired="False">
+            <permission-role>Site Administrator</permission-role>
+        </permission-map>
+        <permission-map name="Change portal events" acquired="False">
+            <permission-role>Site Administrator</permission-role>
+        </permission-map>
+        <permission-map name="Modify portal content" acquired="False">
+            <permission-role>Site Administrator</permission-role>
+        </permission-map>
+        <permission-map name="View" acquired="False">
+            <permission-role>Site Administrator</permission-role>
+        </permission-map>
+    </state>
+    <state state_id="internally_published" title="Internally published">
+        <description>Published and visible to intranet users, not editable by the owner.</description>
+        <exit-transition transition_id="reject"/>
+        <exit-transition transition_id="ban"/>
+        <permission-map name="Access contents information" acquired="False">
+            <permission-role>Manager</permission-role>
+            <permission-role>Owner</permission-role>
+            <permission-role>Editor</permission-role>
+            <permission-role>Reader</permission-role>
+            <permission-role>Contributor</permission-role>
+            <permission-role>Member</permission-role>
+            <permission-role>Site Administrator</permission-role>
+        </permission-map>
+        <permission-map name="Change portal events" acquired="False">
+            <permission-role>Manager</permission-role>
+            <permission-role>Site Administrator</permission-role>
+        </permission-map>
+        <permission-map name="Modify portal content" acquired="False">
+            <permission-role>Manager</permission-role>
+            <permission-role>Site Administrator</permission-role>
+        </permission-map>
+        <permission-map name="View" acquired="False">
+            <permission-role>Manager</permission-role>
+            <permission-role>Owner</permission-role>
+            <permission-role>Editor</permission-role>
+            <permission-role>Reader</permission-role>
+            <permission-role>Contributor</permission-role>
+            <permission-role>Member</permission-role>
+            <permission-role>Site Administrator</permission-role>
+        </permission-map>
+    </state>
+    <state state_id="private" title="Privat">
+        <description>Kann nur vom Besitzer gesehen und bearbeitet werden.</description>
+        <exit-transition transition_id="publish_internally"/>
+        <permission-map name="Access contents information" acquired="False">
+            <permission-role>Contributor</permission-role>
+            <permission-role>Editor</permission-role>
+            <permission-role>Manager</permission-role>
+            <permission-role>Owner</permission-role>
+            <permission-role>Reader</permission-role>
+            <permission-role>Site Administrator</permission-role>
+        </permission-map>
+        <permission-map name="Change portal events" acquired="False">
+            <permission-role>Editor</permission-role>
+            <permission-role>Manager</permission-role>
+            <permission-role>Owner</permission-role>
+            <permission-role>Site Administrator</permission-role>
+        </permission-map>
+        <permission-map name="Modify portal content" acquired="False">
+            <permission-role>Editor</permission-role>
+            <permission-role>Manager</permission-role>
+            <permission-role>Owner</permission-role>
+            <permission-role>Site Administrator</permission-role>
+        </permission-map>
+        <permission-map name="View" acquired="False">
+            <permission-role>Contributor</permission-role>
+            <permission-role>Editor</permission-role>
+            <permission-role>Manager</permission-role>
+            <permission-role>Owner</permission-role>
+            <permission-role>Reader</permission-role>
+            <permission-role>Site Administrator</permission-role>
+        </permission-map>
+    </state>
+    <transition 
+        transition_id="publish_internally" 
+        title="Der Besitzer macht den Inhalt intern zugänglich." 
+        new_state="internally_published" 
+        trigger="USER" 
+        before_script="" 
+        after_script="">
+        <description>Durch die Veröffentlichung eines Artikels wird dieser für andere Benutzer sichtbar.</description>
+        <action 
+            url="%(content_url)s/content_status_modify?workflow_action=publish_internally" 
+            category="workflow" 
+            icon="">Intern veröffentlichen</action>
+        <guard>
+        </guard>
+    </transition>
+    <transition 
+        transition_id="reject" 
+        title="Send back" 
+        new_state="private" 
+        trigger="USER" 
+        before_script="" 
+        after_script="">
+        <description>Sending the item back will return the item to the original author instead of publishing it. You should preferably include a reason for why it was not published.</description>
+        <action 
+          url="%(content_url)s/content_status_modify?workflow_action=reject"
+          category="workflow"
+          icon="">Send back</action>
+        <guard>
+            <guard-permission>Review portal content</guard-permission>
+        </guard>
+    </transition>
+    <transition 
+        transition_id="ban" 
+        title="Sperren" 
+        new_state="banned" 
+        trigger="USER" 
+        before_script="" 
+        after_script="">
+        <description>A Reviewer could ban a Blog Entry if this violates the Bloging Rules. In state Banned the Blog Entry is not visible to any user in the Portal. A Reviewer should comment why he ban a Blog Entry.</description>
+        <action 
+          url="%(content_url)s/content_status_modify?workflow_action=ban" 
+          category="workflow" 
+          icon="">Sperren</action>
+    <guard>
+    </guard>
+    </transition>
+    <transition 
+        transition_id="republish" 
+        title="Republish" 
+        new_state="internally_published" 
+        trigger="USER" 
+        before_script=""
+        after_script="">
+        <description>As a Reviewer could republish a banned Blog Entry to make them visible again.</description>
+        <action 
+          url="%(content_url)s/content_status_modify?workflow_action=republish" 
+          category="workflow" 
+          icon="">Republish</action>
+        <guard>
+        </guard>
+    </transition>
+    <worklist worklist_id="reviewer_queue" title="">
+        <description>Reviewer tasks</description>
+        <action 
+          url="%(portal_url)s/search?review_state=pending" 
+          category="global" 
+          icon="">Pending (%(count)d)</action>
+        <guard>
+            <guard-permission>Review portal content</guard-permission>
+        </guard>
+        <match name="review_state" values="pending"/>
+    </worklist>
+    <worklist worklist_id="banned_queue" title="">
+        <description>Banned Blog Entries</description>
+        <action 
+          url="%(portal_url)s/search?review_state=banned" 
+          category="global" 
+          icon="">Banned (%(count)d)</action>
+        <guard>
+            <guard-permission>Review portal content</guard-permission>
+        </guard>
+        <match name="review_state" values="pending"/>
+    </worklist>
+    <variable 
+      variable_id="action" 
+      for_catalog="False" 
+      for_status="True" 
+      update_always="True">
+        <description>Previous transition</description>
+        <default>
+            <expression>transition/getId|nothing</expression>
+        </default>
+        <guard>
+        </guard>
+    </variable>
+    <variable 
+      variable_id="actor" 
+      for_catalog="False" 
+      for_status="True" 
+      update_always="True">
+        <description>The ID of the user who performed the last transition</description>
+        <default>
+            <expression>user/getId</expression>
+        </default>
+        <guard>
+        </guard>
+    </variable>
+    <variable 
+      variable_id="comments" 
+      for_catalog="False" 
+      for_status="True" 
+      update_always="True">
+        <description>Comment about the last transition</description>
+        <default>
+
+        <expression>python:state_change.kwargs.get('comment', '')</expression>
+        </default>
+        <guard>
+        </guard>
+    </variable>
+    <variable 
+      variable_id="review_history" 
+      for_catalog="False" 
+      for_status="False" 
+      update_always="False">
+        <description>Provides access to workflow history</description>
+        <default>
+            <expression>state_change/getHistory</expression>
+        </default>
+        <guard>
+            <guard-permission>Request review</guard-permission>
+            <guard-permission>Review portal content</guard-permission>
+        </guard>
+    </variable>
+    <variable 
+      variable_id="time" 
+      for_catalog="False" 
+      for_status="True" 
+      update_always="True">
+        <description>When the previous transition was performed</description>
+        <default>
+            <expression>state_change/getDateTime</expression>
+        </default>
+        <guard>
+        </guard>
+    </variable>
+</dc-workflow>
