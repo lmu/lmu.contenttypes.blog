@@ -15,7 +15,7 @@
 <metal:main fill-slot="content">
   <metal:content define-macro="content" 
                  tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
-                             real_object python:context.aq_explicit
+                             real_object python:context.aq_explicit;
                              isAnon context/@@plone_portal_state/anonymous;
                              normalizeString nocall: context/plone_utils/normalizeString;
                              site_properties context/portal_properties/site_properties;
