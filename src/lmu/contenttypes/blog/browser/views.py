@@ -42,7 +42,7 @@ class _AbstractBlogListingView(_AbstractBlogView):
         if IBlogFolder.providedBy(self.context):
             content_filter = {
                 'portal_type': 'Blog Entry',
-                'review_state': ['published', 'internal-published'],
+                'review_state': ['published', 'internal-published', 'internally_published'],
             }
             if self.request.get('author'):
                 content_filter['Creator'] = self.request.get('author')
