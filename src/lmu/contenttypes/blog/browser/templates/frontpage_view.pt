@@ -73,11 +73,18 @@
                        dklass string:${row};"
            tal:attributes="class dklass"
            tal:omit-tag="not:row">
-        <figure class="blog-lead-image columns small-12 large-4" tal:condition="item/image" >
-          <a tal:attributes="href item/absolute_url; 
-                             title item/title;"
-             tal:define="images item/@@images;" >
-            <img tal:replace="structure python: images.tag('image', scale='fmini', alt=item.image_caption, title=item.image_caption)" />
+        <figure tal:define="scales item/@@images;"
+                tal:condition="item/image" 
+                class="blog-lead-image columns small-12 large-4" >
+          <a href="#"
+             tal:attributes="href python: item_type in use_view_action and item_url+'/view' or item_url">
+             <picture>
+              <source media="(min-width: 64em)" tal:attributes="src python: scales.scale('image', scale='large');" />
+              <source media="(min-width: 42em)" tal:attributes="src python: scales.scale('image', scale='preview');" />
+              <source media="(min-width: 36em)" tal:attributes="src python: scales.scale('image', scale='mini');" />
+              <source media="(min-width: 24em)" tal:attributes="src python: scales.scale('image', scale='thumb');" />
+              <img tal:replace="structure python: scales.tag('image', scale='large', alt=item.image_caption)" />
+            </picture>
             <figcaption tal:content="item/image_caption" tal:condition="item/image_caption">Caption</figcaption>
           </a>
         </figure>

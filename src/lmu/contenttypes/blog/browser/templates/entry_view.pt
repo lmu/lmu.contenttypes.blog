@@ -58,7 +58,13 @@
         <div class="content-core row">
           <div class="columns small-12" >
             <figure tal:condition="context/image" tal:define="scales context/@@images" >
-              <img tal:replace="structure python: scales.tag('image', scale='fmini', alt=context.image_caption, title=context.image_caption)" />
+              <picture>
+                <source media="(min-width: 64em)" tal:attributes="src python: scales.scale('image', scale='large');" />
+                <source media="(min-width: 42em)" tal:attributes="src python: scales.scale('image', scale='preview');" />
+                <source media="(min-width: 36em)" tal:attributes="src python: scales.scale('image', scale='mini');" />
+                <source media="(min-width: 24em)" tal:attributes="src python: scales.scale('image', scale='thumb');" />
+                <img tal:replace="structure python: scales.tag('image', scale='large', alt=context.image_caption, title=context.image_caption)" />
+              </picture>
               <figcaption tal:content="context/image_caption" tal:condition="context/image_caption">Caption</figcaption>
             </figure>
             <div tal:replace="structure context/text/output">Content</div>
