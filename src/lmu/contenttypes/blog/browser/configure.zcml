@@ -20,6 +20,13 @@
         />
 
     <browser:page
+        name="frontpage_view.include"
+        for="lmu.contenttypes.blog.interfaces.IBlogFolder"
+        permission="zope2.View"
+        class=".views.FrontPageIncludeView"
+        />
+
+    <browser:page
         name="entry_view"
         for="lmu.contenttypes.blog.interfaces.IBlogEntry"
         permission="zope2.View"

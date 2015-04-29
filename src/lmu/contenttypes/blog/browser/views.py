@@ -88,6 +88,24 @@ class FrontPageView(_AbstractBlogListingView):
         return self.omit
 
 
+class FrontPageIncludeView(_AbstractBlogListingView):
+
+    template = ViewPageTemplateFile('templates/frontpage_view.pt')
+
+    def update(self):
+        """
+        """
+        # Hide the editable-object border
+        request = self.request
+        request.set('disable_border', True)
+
+    def __call__(self):
+        return self.template()
+
+    def omit(self):
+        return False
+
+
 class EntryView(_AbstractBlogView):
 
     template = ViewPageTemplateFile('templates/entry_view.pt')
