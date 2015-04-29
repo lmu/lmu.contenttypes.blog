@@ -21,7 +21,8 @@
 </head>
 
 <body tal:omit-tag="omit" class="blog-frontpage template-blog_folder-frontpage_view" >
-  <section id="blog-section"
+
+  <section id="blog-section" class="helper-margin-top-xl"
            tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
                        navigation_root_url nocall:context/@@plone/navigationRootUrl;
                        isAnon context/@@plone_portal_state/anonymous;
@@ -31,10 +32,9 @@
                        use_view_action site_properties/typesUseViewActionInListings|python:();
                        show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
                        navigation_root_url context/@@plone_portal_state/navigation_root_url;
-                       pas_member context/@@pas_member;"
-           tal:omit-tag="omit" >
+                       pas_member context/@@pas_member;" >
 
-<header id="blog-header" tal:condition="not:omit">
+<header id="blog-header" class="overview-header">
   <div class="row">
     <div class="columns small-10 large-8 large-offset-1">
       <h2 class="header-category">
@@ -51,7 +51,7 @@
     </div>
   </div>
 </header>
-<main id="blog-main" class="overview-light" >
+<div id="blog-main" class="overview-light" >
   <tal:block tal:repeat="entry view/entries">
   <div class="row" tal:define="item entry/getObject;
                                item_creator entry/Creator;
@@ -128,9 +128,9 @@
     </section>
   </div>
   </tal:block>
-</main>
+</div>
 
-<footer id="blog-footer" class="overview-light" tal:condition="not:omit">
+<footer id="blog-footer" class="overview-light">
   <div class="row">
     <div class="columns small-12 large-10 large-centered">
       <a class="button link-overlay"
