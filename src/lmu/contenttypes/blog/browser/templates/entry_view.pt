@@ -95,7 +95,7 @@
              title="Set Private" 
              i18n:translate="" >Set Private</a> 
           <a tal:attributes="href string:${context/absolute_url}/report_blog_entry" 
-             tal:condition="python:False"
+             tal:condition="view/canRemove"
              class="button"
              title="Report Blog Entry" 
              i18n:translate="" >Sperren</a> 

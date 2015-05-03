@@ -31,9 +31,10 @@ setup(name='lmu.contenttypes.blog',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          # -*- Extra requirements: -*-
           'plone.app.dexterity',
           'plone.namedfile [blobs]',
-          # -*- Extra requirements: -*-
+          'plone.app.dicussion',
       ],
       entry_points="""
       # -*- Entry points: -*-

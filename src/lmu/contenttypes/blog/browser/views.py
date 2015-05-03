@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from Products.CMFCore.utils import getToolByName
+from Products.CMFCore import permissions
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+from plone import api
 from plone.app.textfield.interfaces import ITransformer
 
 from lmu.contenttypes.blog.interfaces import IBlogFolder
@@ -20,9 +22,9 @@ class _AbstractBlogView(BrowserView):
         self.request = request
 
     def get_memberdata(self, item):
-        pm = getToolByName(self.context, 'portal_membership')
+        pmt = api.portal.get_tool(name='portal_membership')
         member_id = item.Creator()
-        member = pm.getMemberById(member_id)
+        member = pmt.getMemberById(member_id)
         return member
 
     def strip_text(self, item, length=500):
@@ -34,6 +36,9 @@ class _AbstractBlogView(BrowserView):
             transformedValue = transformedValue[:striped_length] + '...'
         return transformedValue
 
+    def _check_permission(self, permission, item):
+        pmt = api.portal.get_tool(name='portal_membership')
+        return pmt.checkPermission(permission, item)
 
 class _AbstractBlogListingView(_AbstractBlogView):
 
@@ -100,10 +105,15 @@ class FrontPageIncludeView(_AbstractBlogListingView):
         request.set('disable_border', True)
 
     def __call__(self):
+        omit = self.request.get('full')
+        self.omit = not str2bool(omit)
         return self.template()
 
     def omit(self):
-        return False
+        return self.omit
+
+    def author(self):
+        return bool(self.request.get('author'))
 
 
 class EntryView(_AbstractBlogView):
@@ -117,7 +127,11 @@ class EntryView(_AbstractBlogView):
         return True
 
     def canEdit(self):
-        return True
+        current_user = api.user.get_current()
+        #pmt = api.portal.get_tool(name='portal_membership')
+        return api.user.has_permission(permissions.EditObjects, user=current_user, obj=self.context)
 
     def canRemove(self):
-        return True
+        current_user = api.user.get_current()
+        #pmt = api.portal.get_tool(name='portal_membership')
+        return api.user.has_permission(permissions.DeleteObjects, user=current_user, obj=self.context)
