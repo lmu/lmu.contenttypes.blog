@@ -40,7 +40,7 @@
       <div class="columns small-8">
         <h2 class="header-category">
           <a tal:attributes="href context/absolute_url;">
-          <span tal:condition="view/author" i18n:translate="" >Meine Blogbeiträge - </span>
+          <tal:title tal:condition="view/author" i18n:translate="" >Meine Blogbeiträge - </tal:title>
           <span tal:replace="context/Title">Title</span>
           <small tal:content="context/subtitle">Subtitle</small>
           </a>
@@ -57,21 +57,21 @@
 <div id="blog-main" class="row overview-light" >
   <div class="columns small-12 large-10 large-centered overview-column" >
     <div class="row helper-margin-bottom-l" >
-      <div class="columns large-12 helper-margin-top-xl blog" >
+      <div class="columns large-12 helper-margin-top-l blog" >
         <tal:block tal:repeat="entry view/entries">
         <tal:entry tal:define="item entry/getObject;
                                item_creator entry/Creator;
                                item_type entry/portal_type;
                                item_modified entry/ModificationDate;
                                item_url item/getURL|item/absolute_url;">
-        <article class="blog-entry blog-preview" 
+        <article class="blog-entry blog-preview clearfix" 
                  tal:define="text python:view.strip_text(item);
                              imageTile python: 'imageTileItem' if item.image else '';
                              sklass string:columns small-12 large-10 large-centered ${imageTile} blog-entry;
                              islast repeat/entry/end;
                              last python: 'lastTileItem' if islast else '';
                              rclass string: tileItem ${last} visualIEFloatFix"
-                 tal:attributes="class sklass;">
+                 >
           <div class="blog-preview-counter" >
             <a tal:attributes="href python:str(item.absolute_url())+'#commenting';
                                title string:'Jump to Comments';"
@@ -81,7 +81,7 @@
 
           <figure tal:define="scales item/@@images;"
                   tal:condition="item/image" 
-                  class="blog-lead-image columns small-12 large-4" >
+                  class="blog-lead-image left helper-margin-right-m helper-margin-bottom-m small-3" >
             <a href="#"
                tal:attributes="href python: item_type in use_view_action and item_url+'/view' or item_url">
                <picture>
@@ -94,7 +94,7 @@
               <figcaption tal:content="item/image_caption" tal:condition="item/image_caption">Caption</figcaption>
             </a>
           </figure>
-          <hgroup>
+          <hgroup class="helper-margin-bottom-m">
             <h3>
               <a tal:attributes="href item/absolute_url; 
                                  title item/title;"
@@ -123,17 +123,12 @@
 
 <footer id="blog-footer" class="row overview-light">
   <div class="columns  small-12 large-10 large-centered">
-    <div class="row">
-      <div class="columns small-12">
-        <a class="button link-overlay"
-           tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
-           tal:attributes="href add_url;
-                           class string:button;"
-           i18n:translate="">
-          Jetzt einen Blog-Beitrag verfassen
-        </a>
-      </div>
-    </div>
+    <a class="button link-overlay small-12"
+       tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
+       tal:attributes="href add_url;"
+       i18n:translate="">
+      Jetzt einen Blog-Beitrag verfassen
+    </a>
   </div>
 </footer>
 
