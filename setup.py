@@ -34,7 +34,7 @@ setup(name='lmu.contenttypes.blog',
           # -*- Extra requirements: -*-
           'plone.app.dexterity',
           'plone.namedfile [blobs]',
-          'plone.app.dicussion',
+          'plone.app.discussion',
       ],
       entry_points="""
       # -*- Entry points: -*-
