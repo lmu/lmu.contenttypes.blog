@@ -60,7 +60,8 @@
                              style string:max-width: ${scaled_fallback_image/width}px;;"
                  tal:attributes="style style">
           <picture>
-            <source media="(min-width: 64em)" tal:define="scaled_image python: scales.scale('image', scale='large');" tal:attributes="srcset scaled_image/url;"/>
+            <source media="(min-width: 64em)" tal:define="scaled_image python: scales.scale('image', scale='xlarge');" tal:attributes="srcset scaled_image/url;"/>
+            <source media="(min-width: 52em)" tal:define="scaled_image python: scales.scale('image', scale='large');" tal:attributes="srcset scaled_image/url;"/>
             <source media="(min-width: 42em)" tal:define="scaled_image python: scales.scale('image', scale='preview');" tal:attributes="srcset scaled_image/url;" />
             <source media="(min-width: 36em)" tal:define="scaled_image python: scales.scale('image', scale='mini');" tal:attributes="srcset scaled_image/url;" />
             <source media="(min-width: 24em)" tal:define="scaled_image python: scales.scale('image', scale='thumb');" tal:attributes="srcset scaled_image/url;" />

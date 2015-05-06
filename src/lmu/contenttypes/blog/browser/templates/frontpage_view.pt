@@ -45,7 +45,7 @@
           <a tal:attributes="href context/absolute_url;">
           <tal:title tal:condition="view/author" i18n:translate="" >Meine Blogbeiträge - </tal:title>
           <span tal:replace="context/Title">Title</span>
-          <small tal:content="context/subtitle">Subtitle</small>
+          <small tal:content="context/description" tal:condition="context/description">Subtitle</small>
           </a>
         </h2>
       </div>
@@ -88,11 +88,12 @@
             <a href="#"
                tal:attributes="href python: item_type in use_view_action and item_url+'/view' or item_url">
                <picture>
-                <source media="(min-width: 64em)" tal:define="scaled_image python: scales.scale('image', scale='large');" tal:attributes="src scaled_image/url;"/>
+                <source media="(min-width: 64em)" tal:define="scaled_image python: scales.scale('image', scale='xlarge');" tal:attributes="srcset scaled_image/url;"/>
+                <source media="(min-width: 52em)" tal:define="scaled_image python: scales.scale('image', scale='large');" tal:attributes="srcset scaled_image/url;"/>
                 <source media="(min-width: 42em)" tal:define="scaled_image python: scales.scale('image', scale='preview');" tal:attributes="src scaled_image/url;" />
                 <source media="(min-width: 36em)" tal:define="scaled_image python: scales.scale('image', scale='mini');" tal:attributes="src scaled_image/url;" />
                 <source media="(min-width: 24em)" tal:define="scaled_image python: scales.scale('image', scale='thumb');" tal:attributes="src scaled_image/url;" />
-                <img tal:replace="structure python: scales.tag('image', scale='large', alt=item.image_caption)" />
+                <img tal:replace="structure python: scales.tag('image', scale='preview', alt=item.image_caption)" />
               </picture>
               <figcaption tal:content="item/image_caption" tal:condition="item/image_caption">Caption</figcaption>
             </a>
