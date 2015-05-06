@@ -11,20 +11,20 @@ setup(name='lmu.contenttypes.blog',
       # Get more strings from
       # http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
-        'Framework :: Plone',
-        'License :: OSI Approved :: GPL',
-        'Programming Language :: Python',
-        'Natural Language :: English',
-        'Natural Language :: German',
-        'Operating System :: OS Independent',
-        'Topic :: Software Development :: Quality Assurance',
-        ],
+          'Framework :: Plone',
+          'License :: OSI Approved :: GPL',
+          'Programming Language :: Python',
+          'Natural Language :: English',
+          'Natural Language :: German',
+          'Operating System :: OS Independent',
+          'Topic :: Software Development :: Quality Assurance',
+      ],
       keywords='Plone LMU Dexterity Content Type Blog',
       author='Alexander Loechel',
       author_email='Alexander.Loechel@lmu.de',
       url='https://github.com/loechel/lmu.contenttypes.blog',
       license='GPLv2',
-      packages=find_packages('src',exclude=['ez_setup']),
+      packages=find_packages('src', exclude=['ez_setup']),
       package_dir={'': 'src'},
       namespace_packages=['lmu', 'lmu.contenttypes'],
       include_package_data=True,
@@ -45,6 +45,5 @@ setup(name='lmu.contenttypes.blog',
       # addcontent support from paster and before you distribute
       # your package.
       setup_requires=["PasteScript"],
-      paster_plugins = ["ZopeSkel"],
-
+      paster_plugins=["ZopeSkel"],
       )
