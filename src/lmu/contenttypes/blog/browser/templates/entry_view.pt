@@ -29,7 +29,7 @@
                              item_url context/getURL|context/absolute_url;">
   <main id="content" class="blog">
     <div class="row">
-      <article class="blog blog-preview columns small-12 large-10 large-centered helper-margin-top-m">
+      <article class="blog columns small-12 large-10 large-centered helper-margin-top-m">
         <div class="blog-preview-counter" >
           <a class="comment-sign"
              tal:attributes="href python:str(context.absolute_url())+'#commenting';
