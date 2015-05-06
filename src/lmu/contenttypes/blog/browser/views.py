@@ -138,11 +138,7 @@ class EntryView(_AbstractBlogView):
         return True
 
     def canEdit(self):
-        current_user = api.user.get_current()
-        #pmt = api.portal.get_tool(name='portal_membership')
-        return api.user.has_permission(permissions.EditObjects, user=current_user, obj=self.context)
+        return api.user.has_permission(permissions.EditObjects, obj=self.context)
 
     def canRemove(self):
-        current_user = api.user.get_current()
-        #pmt = api.portal.get_tool(name='portal_membership')
-        return api.user.has_permission(permissions.DeleteObjects, user=current_user, obj=self.context)
+        return api.user.has_permission(permissions.DeleteObjects, obj=self.context)

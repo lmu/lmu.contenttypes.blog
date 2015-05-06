@@ -27,79 +27,76 @@
                              item_type context/portal_type;
                              item_modified context/ModificationDate;
                              item_url context/getURL|context/absolute_url;">
-  <div id="content" class="" style="margin-top: 2em;">
-    <div class="row helper-margin-top-m">
-      <div tal:replace="structure provider:plone.globalstatusmessage" tal:condition=="python: False" >Statusmessages</div>
-      <article class="columns small-12 large-10 large-centered">
-
-        <div class="row">
-          <hgroup class="columns small-8 large-10">
-            <h1 tal:content="context/title">Blog Entry Title</h1>
-            <div class="tileDocumentByLine documentByLine helper-font-serif" 
-                 tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon"
-                 tal:define="author python:pas_member.info(item_creator);">
-              <a href="#"
-                 tal:attributes="href string:${navigation_root_url}/author/${item_creator}"
-                 tal:content="author/name_or_id">
-                    Bob Dobalina
-              </a> 
-              <date tal:content="python: toLocalizedTime(item_modified,long_format=1)">Date</date>
-            </div>
-          </hgroup>
-          <div class="columns small-4 large-2" >
-            <a class="comment-sign"
-               tal:attributes="href python:str(context.absolute_url())+'#commenting';
-                               title string:'Jump to Comments';"
-               i18n:translate="">
-              <span tal:content="context/getDiscussionCount" >Anzahl</span>
-            </a>
-          </div>
+  <main id="content" class="blog">
+    <div class="row">
+      <article class="blog blog-preview columns small-12 large-10 large-centered helper-margin-top-m">
+        <div class="blog-preview-counter" >
+          <a class="comment-sign"
+             tal:attributes="href python:str(context.absolute_url())+'#commenting';
+                             title string:'Jump to Comments';"
+             i18n:translate="">
+            <span tal:content="context/getDiscussionCount" >Anzahl</span>
+          </a>
         </div>
-        <div class="content-core row">
-          <div class="columns small-12" >
-            <figure tal:condition="context/image" tal:define="scales context/@@images" >
-              <picture>
-                <source media="(min-width: 64em)" tal:attributes="src python: scales.scale('image', scale='large');" />
-                <source media="(min-width: 42em)" tal:attributes="src python: scales.scale('image', scale='preview');" />
-                <source media="(min-width: 36em)" tal:attributes="src python: scales.scale('image', scale='mini');" />
-                <source media="(min-width: 24em)" tal:attributes="src python: scales.scale('image', scale='thumb');" />
-                <img tal:replace="structure python: scales.tag('image', scale='large', alt=context.image_caption, title=context.image_caption)" />
-              </picture>
-              <figcaption tal:content="context/image_caption" tal:condition="context/image_caption">Caption</figcaption>
-            </figure>
-            <div tal:replace="structure context/text/output">Content</div>
+        <hgroup>
+          <h1 tal:content="context/title">Blog Entry Title</h1>
+          <div class="tileDocumentByLine documentByLine helper-font-serif" 
+               tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon"
+               tal:define="author python:pas_member.info(item_creator);">
+            <a href="#"
+               tal:attributes="href string:${navigation_root_url}/author/${item_creator}"
+               tal:content="author/name_or_id">
+                  Bob Dobalina
+            </a> 
+            <date tal:content="python: toLocalizedTime(item_modified,long_format=1)">Date</date>
           </div>
-        </div>
+        </hgroup>
 
-        <div class="document-actions row">
-          <div class="columns small-12">
-          
+
+        <figure  class="blog-lead-image helper-margin-bottom-m helper-margin-top-m text-center centered"
+                 tal:condition="context/image"
+                 tal:define="scales context/@@images;
+                             scaled_fallback_image  python: scales.scale('image', scale='large');
+                             style string:max-width: ${scaled_fallback_image/width}px;;"
+                 tal:attributes="style style">
+          <picture>
+            <source media="(min-width: 64em)" tal:define="scaled_image python: scales.scale('image', scale='large');" tal:attributes="srcset scaled_image/url;"/>
+            <source media="(min-width: 42em)" tal:define="scaled_image python: scales.scale('image', scale='preview');" tal:attributes="srcset scaled_image/url;" />
+            <source media="(min-width: 36em)" tal:define="scaled_image python: scales.scale('image', scale='mini');" tal:attributes="srcset scaled_image/url;" />
+            <source media="(min-width: 24em)" tal:define="scaled_image python: scales.scale('image', scale='thumb');" tal:attributes="srcset scaled_image/url;" />
+            <img tal:replace="structure python: scales.tag('image', scale='large', alt=context.image_caption, title=context.image_caption)" />
+          </picture>
+          <figcaption tal:content="context/image_caption" tal:condition="context/image_caption">Caption</figcaption>
+        </figure>
+
+        <div tal:replace="structure context/text/output">Content</div>
+
+        <div class="document-actions">
           <a tal:attributes="href string:${context/absolute_url}/report_blog_entry" 
              tal:condition="python:False"
-             class="button link-overlay" 
+             class="button link-overlay small" 
              id="report-button"
              title="Report Blog Entry" 
              i18n:translate="" >Report Blog Entry</a> 
           <a tal:attributes="href string:${context/absolute_url}/edit" 
              tal:condition="python:False"
-             class="button"
+             class="button link-overlay small"
              title="Edit Blog Entry" 
              i18n:translate="" >Edit Blog Entry</a> 
           <a tal:attributes="href string:${context/absolute_url}/delete" 
-             class="button small"
+             class="button link-overlay small"
              title="Delete Blog Entry" 
              i18n:translate="" >Delete Blog Entry</a> 
           <a tal:attributes="href string:${context/absolute_url}/report_blog_entry" 
              tal:condition="python:False"
-             class="button"
+             class="button link-overlay small"
              title="Set Private" 
              i18n:translate="" >Set Private</a> 
           <a tal:attributes="href string:${context/absolute_url}/report_blog_entry" 
              tal:condition="view/canRemove"
-             class="button"
+             class="button link-overlay small"
              title="Report Blog Entry" 
              i18n:translate="" >Sperren</a> 
-          </div>
         </div>
 
         <section>
@@ -108,7 +105,7 @@
       </article>
 
     </div>
-  </div>
+  </main>
   </metal:content>
 </metal:main>
 
