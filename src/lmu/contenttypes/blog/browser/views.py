@@ -108,9 +108,10 @@ class FrontPageIncludeView(_AbstractBlogListingView):
     def __call__(self):
         omit = self.request.get('full')
         self.omit = not str2bool(omit)
-        REQUEST = self.context.REQUEST
-        RESPONSE = REQUEST.RESPONSE
-        RESPONSE.setHeader('Content-Type', 'text/xml;charset=utf-8')
+        if self.omit:
+            REQUEST = self.context.REQUEST
+            RESPONSE = REQUEST.RESPONSE
+            RESPONSE.setHeader('Content-Type', 'text/xml;charset=utf-8')
         return self.template()
 
     def omit(self):
