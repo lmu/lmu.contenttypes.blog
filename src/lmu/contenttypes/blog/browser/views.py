@@ -64,6 +64,12 @@ class _AbstractBlogListingView(_AbstractBlogView):
 
         return entries
 
+    def canAdd(self):
+        #current_user = api.user.get_current()
+        #import ipdb; ipdb.set_trace()
+        #return api.user.has_permission(permissions.AddPortalContent, user=current_user, obj=self.context)
+        return api.user.has_permission(permissions.AddPortalContent, obj=self.context)
+
 
 class ListingView(_AbstractBlogListingView):
 
