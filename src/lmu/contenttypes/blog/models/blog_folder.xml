@@ -12,11 +12,13 @@
       	<default>Blog</default>
       	<required>True</required>
       </field>
+      <!--
       <field name="subtitle" type="zope.schema.TextLine">
       	<title>Sub Title</title>
       	<description>Sub Title / Headline that describes the Blog more in detail</description>
       	<required>False</required>
       </field>
+      -->
       <field name="description" type="zope.schema.TextLine">
       	<title>Description</title>
       	<description>Used in item listings and search results.</description>
