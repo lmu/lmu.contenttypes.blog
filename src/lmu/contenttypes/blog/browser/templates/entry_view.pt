@@ -80,7 +80,7 @@
              title="Report Blog Entry" 
              i18n:translate="" >Report Blog Entry</a> 
           <a tal:attributes="href string:${context/absolute_url}/edit" 
-             tal:condition="python:False"
+             tal:condition="view/canEdit"
              class="button link-overlay small"
              title="Edit Blog Entry" 
              i18n:translate="" >Edit Blog Entry</a> 
