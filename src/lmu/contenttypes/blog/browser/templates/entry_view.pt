@@ -2,7 +2,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="lmu.blog"
+      i18n:domain="lmu.contenttypes.blog"
       metal:use-macro="context/main_template/macros/master"
       >
 <body>
@@ -84,7 +84,7 @@
              class="button link-overlay small"
              title="Edit Blog Entry" 
              i18n:translate="" >Edit Blog Entry</a> 
-          <a tal:attributes="href string:${context/absolute_url}/delete" 
+          <a tal:attributes="href string:${context/absolute_url}/delete_confirmation" 
              class="button link-overlay small"
              title="Delete Blog Entry" 
              i18n:translate="" >Delete Blog Entry</a> 

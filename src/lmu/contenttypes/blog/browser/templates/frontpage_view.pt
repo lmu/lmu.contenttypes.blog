@@ -5,21 +5,31 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="lmu.blog" 
+      i18n:domain="lmu.contenttypes.blog 
       tal:define="omit view/omit"
       tal:omit-tag="omit" >
 
 <head tal:condition="not:omit">
   <title tal:content="context/Title"></title>
 
-  <link rel="stylesheet" type="text/css" href="++resource++collective.js.foundation/css/normalize.css" />
-  <link rel="stylesheet" type="text/css" href="++resource++collective.js.foundation/css/foundation.min.css" />
+    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_regular/stylesheet.css" type="text/css" >
+    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_italic/stylesheet.css" type="text/css" >
+    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_bold/stylesheet.css" type="text/css" >
+    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_bolditalic/stylesheet.css" type="text/css" >
+    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_semibold/stylesheet.css" type="text/css" >
+    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_semibolditalic/stylesheet.css" type="text/css" >
+    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/foundation-icons/foundation-icons.css" type="text/css" >
+    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/noto-serif/noto-serif.css" type="text/css" >
+    <!-- If you are using the gem version, you need this only -->
+    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/css/foundation/app.css">
 
-  <link rel="stylesheet" href="++theme++lmu.theme.intranet/static/foundation/stylesheets/app.css" />
-  <link rel="stylesheet" href="++theme++lmu.theme.intranet/static/main.css" />
-
-  <script type="text/javascript" src="++resource++plone.app.jquery.js" ></script>
-  <script type="text/javascript" src="++resource++collective.js.foundation/js/foundation.min.js" ></script>
+    <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/modernizr.js"></script>
+    <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/jquery_min.js"></script>
+    <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/foundation_min.js"></script>
+    <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/foundation_equalizer.js"></script>
+    <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/foundation_reveal.js"></script>
+    <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/foundation_orbit.js"></script>
+    <script id="lmujs" src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/app.js"></script>
 
 </head>
 
@@ -43,7 +53,7 @@
       <div class="columns small-8">
         <h2 class="header-category">
           <a tal:attributes="href context/absolute_url;">
-          <tal:title tal:condition="view/author" i18n:translate="" >Meine Blogbeiträge - </tal:title>
+          <tal:title tal:condition="view/author" i18n:translate="" >Meine Blogbeitr&auml;ge - </tal:title>
           <span tal:replace="context/Title">Title</span>
           <small tal:content="context/description" tal:condition="context/description">Subtitle</small>
           </a>
