@@ -33,8 +33,7 @@
         <div class="blog-preview-counter" >
           <a class="comment-sign"
              tal:attributes="href python:str(context.absolute_url())+'#commenting';
-                             title string:'Jump to Comments';"
-             i18n:translate="">
+                             title string:'Jump to Comments';">
             <span tal:content="context/getDiscussionCount" >Anzahl</span>
           </a>
         </div>
@@ -73,28 +72,40 @@
         <div tal:replace="structure context/text/output">Content</div>
 
         <div class="document-actions">
+
           <a tal:attributes="href string:${context/absolute_url}/report_blog_entry" 
              tal:condition="python:False"
              class="button link-overlay small" 
              id="report-button"
              title="Report Blog Entry" 
              i18n:translate="" >Report Blog Entry</a> 
+
           <a tal:attributes="href string:${context/absolute_url}/edit" 
              tal:condition="view/canEdit"
              class="button link-overlay small"
              title="Edit Blog Entry" 
              i18n:translate="" >Edit Blog Entry</a> 
+
           <a tal:attributes="href string:${context/absolute_url}/delete_confirmation" 
+             tal:condition="view/canEdit"
              class="button link-overlay small"
              title="Delete Blog Entry" 
              i18n:translate="" >Delete Blog Entry</a> 
-          <a tal:attributes="href string:${context/absolute_url}/report_blog_entry" 
-             tal:condition="python:False"
+
+          <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=publish_internally" 
+             tal:condition="view/canPublish"
+             class="button link-overlay small"
+             title="Publish" 
+             i18n:translate="" >Publish</a> 
+
+          <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=reject" 
+             tal:condition="view/canSetPrivate"
              class="button link-overlay small"
              title="Set Private" 
              i18n:translate="" >Set Private</a> 
-          <a tal:attributes="href string:${context/absolute_url}/report_blog_entry" 
-             tal:condition="view/canRemove"
+
+          <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=banned" 
+             tal:condition="view/canLock"
              class="button link-overlay small"
              title="Report Blog Entry" 
              i18n:translate="" >Sperren</a> 

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-05-07 22:22+0000\n"
+"POT-Creation-Date: 2015-05-08 12:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,6 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: manual\n"
 
-#: ./browser/templates/entry_view.pt:38
 #: ./browser/templates/listing_view.pt:57
 msgid "<span>${DYNAMIC_CONTENT}</span>"
 msgstr ""
@@ -34,11 +33,11 @@ msgstr ""
 msgid "Blog Folder"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:87
+#: ./browser/templates/entry_view.pt:89
 msgid "Delete Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:82
+#: ./browser/templates/entry_view.pt:83
 msgid "Edit Blog Entry"
 msgstr ""
 
@@ -63,6 +62,10 @@ msgstr ""
 msgid "Please describe why you report this Blog Entry"
 msgstr ""
 
+#: ./browser/templates/entry_view.pt:95
+msgid "Publish"
+msgstr ""
+
 #: ./browser/templates/entry_view.pt:76
 #: ./content.py:51
 msgid "Report Blog Entry"
@@ -84,11 +87,11 @@ msgstr ""
 msgid "Reported URL"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:91
+#: ./browser/templates/entry_view.pt:101
 msgid "Set Private"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:96
+#: ./browser/templates/entry_view.pt:107
 msgid "Sperren"
 msgstr ""
 

@@ -142,5 +142,12 @@ class EntryView(_AbstractBlogView):
     def canRemove(self):
         return api.user.has_permission(permissions.DeleteObjects, obj=self.context)
 
-    def canLook(self):
+    def canPublish(self):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
+
+    def canSetPrivate(self):
+        return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
+
+    def canLock(self):
+        return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
+

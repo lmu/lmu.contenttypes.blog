@@ -14,30 +14,29 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./browser/templates/entry_view.pt:38
 #: ./browser/templates/listing_view.pt:57
 msgid "<span>${DYNAMIC_CONTENT}</span>"
 msgstr ""
 
 #: ./profiles/default/types/Blog_Entry.xml
 msgid "Blog Entry"
-msgstr ""
+msgstr "Blog Eintrag"
 
 #: ./profiles/default/types/Blog_Entry.xml
 msgid "Blog Entry with folder support for files and images"
-msgstr ""
+msgstr "Blog Eintrag mit der Option Bilder und Dateien anzufügen."
 
 #: ./profiles/default/types/Blog_Folder.xml
 msgid "Blog Folder"
-msgstr ""
+msgstr "Blog"
 
-#: ./browser/templates/entry_view.pt:87
+#: ./browser/templates/entry_view.pt:89
 msgid "Delete Blog Entry"
-msgstr ""
+msgstr "Lösche Blog Eintrag"
 
-#: ./browser/templates/entry_view.pt:82
+#: ./browser/templates/entry_view.pt:83
 msgid "Edit Blog Entry"
-msgstr ""
+msgstr "Bearbeite Blog Eintrag"
 
 #: ./profiles/default/types/Blog_Folder.xml
 msgid "Folder for Blog Entries with special views and restrictions"
@@ -54,6 +53,10 @@ msgstr ""
 #: ./interfaces.py:55
 msgid "Please describe why you report this Blog Entry"
 msgstr ""
+
+#: ./browser/templates/entry_view.pt:95
+msgid "Publish"
+msgstr "Veröffentlichen"
 
 #: ./browser/templates/entry_view.pt:76
 #: ./content.py:51
@@ -76,11 +79,11 @@ msgstr ""
 msgid "Reported URL"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:91
+#: ./browser/templates/entry_view.pt:101
 msgid "Set Private"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:96
+#: ./browser/templates/entry_view.pt:107
 msgid "Sperren"
 msgstr ""
 

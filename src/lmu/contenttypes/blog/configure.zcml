@@ -5,34 +5,32 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="lmu.blog">
+    i18n_domain="lmu.contenttypes.blog">
 
-  <!-- Include configuration for dependencies listed in setup.py -->
-  <includeDependencies package="." />
+    <!-- Include configuration for dependencies listed in setup.py -->
+    <includeDependencies package="." />
 
-  <!-- Register a resource directory from which we can deploy static
-   resource files. -->
-  <browser:resourceDirectory
-    name="lmu.contenttypes.blog"
-    directory="resources" />
+    <!-- Register a resource directory from which we can deploy static resource files. -->
+    <browser:resourceDirectory
+        name="lmu.contenttypes.blog"
+        directory="resources" />
 
-  <i18n:registerTranslations directory="locales" />
+    <i18n:registerTranslations directory="locales" />
 
-  <!-- Register an extension profile to make the product installable
-       in Plone -->
-  <genericsetup:registerProfile
-      name="default"
-      title="LMU Content Types for Blogs"
-      directory="profiles/default"
-      description="Extension profile for LMU Content Types for Blogs"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
+    <!-- Register an extension profile to make the product installable in Plone -->
+    <genericsetup:registerProfile
+        name="default"
+        title="LMU Content Types for Blogs"
+        directory="profiles/default"
+        description="Extension profile for LMU Content Types for Blogs"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
 
-  <!-- -*- extra stuff goes here -*- -->
+    <!-- -*- extra stuff goes here -*- -->
 
-  <include package=".browser" />
+    <include package=".browser" />
 
-  <adapter name="SearchableText" factory="lmu.contenttypes.blog.utils.SearchableText_blogfolder" />
-  <adapter name="SearchableText" factory="lmu.contenttypes.blog.utils.SearchableText_blogentry" />
-  
+    <adapter name="SearchableText" factory="lmu.contenttypes.blog.utils.SearchableText_blogfolder" />
+    <adapter name="SearchableText" factory="lmu.contenttypes.blog.utils.SearchableText_blogentry" />
+    
 </configure>
