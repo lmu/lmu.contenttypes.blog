@@ -52,8 +52,7 @@
             <div class="blog-preview-counter" >
               <a class="comment-sign"
                  tal:attributes="href python:str(item.absolute_url())+'#commenting';
-                                 title string:'Jump to Comments';"
-                 i18n:translate="">
+                                 title string:'Jump to Comments';">
                 <span tal:content="item/getDiscussionCount" >Anzahl</span>
               </a>
             </div>

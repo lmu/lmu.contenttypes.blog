@@ -17,3 +17,21 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone\n"
 
+msgid "Lead Image"
+msgstr "Bild"
+
+msgid "Lead Image Caption"
+msgstr "Bild Unterschrift"
+
+msgid "lable_text_description"
+msgstr ""
+
+msgid "lable_text_title"
+msgstr ""
+
+msgid "lable_title_description"
+msgstr "Die Blog Überschrift"
+
+msgid "lable_title_title"
+msgstr "Überschrift"
+

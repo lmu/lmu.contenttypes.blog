@@ -16,3 +16,6 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: manual\n"
+
+msgid "lable_text_description"
+msgstr ""

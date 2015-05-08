@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-05-08 12:08+0000\n"
+"POT-Creation-Date: 2015-05-08 13:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,10 +16,6 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: manual\n"
-
-#: ./browser/templates/listing_view.pt:57
-msgid "<span>${DYNAMIC_CONTENT}</span>"
-msgstr ""
 
 #: ./profiles/default/types/Blog_Entry.xml
 msgid "Blog Entry"
@@ -101,5 +97,8 @@ msgstr ""
 
 #: ./interfaces.py:50
 msgid "The Reported URL of the Blog Entry."
+msgstr ""
+
+msgid "lable_text_description"
 msgstr ""
 

@@ -1,14 +1,16 @@
 <?xml version="1.0" ?>
 <model xmlns="http://namespaces.plone.org/supermodel/schema"
        xmlns:form="http://namespaces.plone.org/supermodel/form"
-       xmlns:security="http://namespaces.plone.org/supermodel/security">
-    
+       xmlns:security="http://namespaces.plone.org/supermodel/security"
+       xmlns:i18n="http://namespaces.zope.org/i18n"
+       i18n_domain="lmu.contenttypes.blog">
+
     <schema>
 
         <!-- field definitions -->
       <field name="title" type="zope.schema.TextLine">
-      	<title>Title</title>
-      	<description>Name of the Blog Folder</description>
+      	<title i18n:translate="">Title</title>
+      	<description i18n:translate="">Name of the Blog Folder</description>
       	<default>Blog</default>
       	<required>True</required>
       </field>
@@ -20,10 +22,10 @@
       </field>
       -->
       <field name="description" type="zope.schema.TextLine">
-      	<title>Description</title>
-      	<description>Used in item listings and search results.</description>
+      	<title i18n:translate="">Description</title>
+      	<description i18n:translate="">Used in item listings and search results.</description>
       	<required>False</required>
       </field>
     </schema>
-    
+
 </model>

@@ -16,3 +16,21 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone\n"
+
+msgid "Lead Image"
+msgstr ""
+
+msgid "Lead Image Caption"
+msgstr ""
+
+msgid "lable_title_title"
+msgstr ""
+
+msgid "lable_title_description"
+msgstr ""
+
+msgid "lable_text_title"
+msgstr ""
+
+msgid "lable_text_description"
+msgstr ""
