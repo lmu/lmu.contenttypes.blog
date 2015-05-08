@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-05-08 13:05+0000\n"
+"POT-Creation-Date: 2015-05-08 13:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,16 +45,16 @@ msgstr ""
 msgid "Jetzt einen Blog-Beitrag verfassen"
 msgstr ""
 
-#: ./interfaces.py:43
+#: ./interfaces.py:41
 msgid "Name of Reporter"
 msgstr ""
 
-#: ./interfaces.py:44
+#: ./interfaces.py:42
 msgid "Name of the Person reporting this issue,
 will be filled by System."
 msgstr ""
 
-#: ./interfaces.py:55
+#: ./interfaces.py:53
 msgid "Please describe why you report this Blog Entry"
 msgstr ""
 
@@ -67,7 +67,7 @@ msgstr ""
 msgid "Report Blog Entry"
 msgstr ""
 
-#: ./interfaces.py:54
+#: ./interfaces.py:52
 msgid "Report Message"
 msgstr ""
 
@@ -79,7 +79,7 @@ msgstr ""
 msgid "Report a Blog Entry that violates the Blog rules."
 msgstr ""
 
-#: ./interfaces.py:49
+#: ./interfaces.py:47
 msgid "Reported URL"
 msgstr ""
 
@@ -95,10 +95,19 @@ msgstr ""
 msgid "Thank you for your Report. E-Mail send to Webmaster."
 msgstr ""
 
-#: ./interfaces.py:50
+#: ./interfaces.py:48
 msgid "The Reported URL of the Blog Entry."
 msgstr ""
 
 msgid "lable_text_description"
+msgstr ""
+
+msgid "lable_text_title"
+msgstr ""
+
+msgid "lable_title_description"
+msgstr ""
+
+msgid "lable_title_title"
 msgstr ""
 

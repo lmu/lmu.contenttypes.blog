@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import zope
-
 #from plone.directives import dexterity
 from plone.directives import form
 from plone.namedfile.interfaces import IImageScaleTraversable
@@ -28,7 +26,7 @@ class IBlogEntry(form.Schema, IImageScaleTraversable):
     """
     Blog Entry with folder support for files and images
     """
-    form.model("models/blog_entry.xml")
+    #form.model("models/blog_entry.xml")
 
 
 class IBlogLayer(IDefaultPloneLayer):

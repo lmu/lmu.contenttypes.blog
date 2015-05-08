@@ -17,5 +17,15 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: manual\n"
 
+
 msgid "lable_text_description"
+msgstr ""
+
+msgid "lable_text_title"
+msgstr ""
+
+msgid "lable_title_description"
+msgstr ""
+
+msgid "lable_title_title"
 msgstr ""
