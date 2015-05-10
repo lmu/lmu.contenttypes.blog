@@ -36,19 +36,19 @@ msgstr "Bearbeite Blog Eintrag"
 
 #: ./profiles/default/types/Blog_Folder.xml
 msgid "Folder for Blog Entries with special views and restrictions"
-msgstr ""
+msgstr "Blog Ordner für Blog einträge mit einer speziellen Ansicht und Einschränkungen"
 
 #: ./browser/templates/listing_view.pt:19
 msgid "Jetzt einen Blog-Beitrag verfassen"
-msgstr ""
+msgstr "Jetzt einen Blog-Beitrag verfassen"
 
 #: ./interfaces.py:41
 msgid "Name of Reporter"
-msgstr ""
+msgstr "Name des Meldenden"
 
 #: ./interfaces.py:53
 msgid "Please describe why you report this Blog Entry"
-msgstr ""
+msgstr "Bitte Beschrieben Sie, warum Sie diesen Blog-Eintrag melden wollen"
 
 #: ./browser/templates/entry_view.pt:95
 msgid "Publish"
@@ -57,23 +57,23 @@ msgstr "Veröffentlichen"
 #: ./browser/templates/entry_view.pt:76
 #: ./content.py:51
 msgid "Report Blog Entry"
-msgstr ""
+msgstr "Blog Eintrag melden"
 
 #: ./interfaces.py:52
 msgid "Report Message"
-msgstr ""
+msgstr "Nachricht der Meldung"
 
 #: ./content.py:48
 msgid "Report a Blog Entry"
-msgstr ""
+msgstr "Melden eines Blog Eintrags"
 
 #: ./content.py:49
 msgid "Report a Blog Entry that violates the Blog rules."
-msgstr ""
+msgstr "Melden Sie einen Blog EIntrag der gegen die Blog Regeln verstößt."
 
 #: ./interfaces.py:47
 msgid "Reported URL"
-msgstr ""
+msgstr "Gemeldetet URL"
 
 #: ./browser/templates/entry_view.pt:101
 msgid "Set Private"
@@ -81,15 +81,15 @@ msgstr "Zurückweisen / Zurückziehen"
 
 #: ./browser/templates/entry_view.pt:107
 msgid "Sperren"
-msgstr ""
+msgstr "Sperren"
 
 #: ./content.py:63
 msgid "Thank you for your Report. E-Mail send to Webmaster."
-msgstr ""
+msgstr "Danke für Ihre Meldung. Email an den Webmaster gesendet."
 
 #: ./interfaces.py:48
 msgid "The Reported URL of the Blog Entry."
-msgstr ""
+msgstr "Die gemeldete URL des Blog-Eintrags."
 
 msgid "lable_text_description"
 msgstr "Text des Blog, Sie können HTML-Formatierungen benutzten."
