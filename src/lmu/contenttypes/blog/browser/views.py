@@ -103,12 +103,6 @@ class FrontPageIncludeView(_AbstractBlogListingView):
         #import ipdb; ipdb.set_trace()
         return self.template()
 
-#    def omit(self):
-#        return self.omit
-
-#    def author(self):
-#        return bool(self.request.get('author'))
-
 
 class EntryView(_AbstractBlogView):
 
@@ -134,4 +128,3 @@ class EntryView(_AbstractBlogView):
 
     def canLock(self):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
-
