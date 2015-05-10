@@ -5,7 +5,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="lmu.contenttypes.blog 
+      i18n:domain="lmu.contenttypes.blog"
       tal:define="omit view/omit"
       tal:omit-tag="omit" >
 
@@ -53,7 +53,7 @@
       <div class="columns small-8">
         <h2 class="header-category">
           <a tal:attributes="href context/absolute_url;">
-          <tal:title tal:condition="view/author" i18n:translate="" >Meine Blogbeitr&auml;ge - </tal:title>
+          <tal:title tal:condition="view/author" i18n:translate="" >Meine Blogbeitraege - </tal:title>
           <span tal:replace="context/Title">Title</span>
           <small tal:content="context/description" tal:condition="context/description">Subtitle</small>
           </a>
@@ -86,10 +86,11 @@
                              rclass string: tileItem ${last} visualIEFloatFix"
                  >
           <div class="blog-preview-counter" >
-            <a tal:attributes="href python:str(item.absolute_url())+'#commenting';
-                               title string:'Jump to Comments';"
-                tal:content="item/getDiscussionCount"
-                i18n:translate="">Anzahl</a>
+            <a title="Jump to Comments"
+               tal:attributes="href python:str(item.absolute_url())+'#commenting';"
+               tal:content="item/getDiscussionCount"
+               i18n:attributes="title lable_jump_to_comments"
+               i18n:translate="">Anzahl</a>
           </div>
 
           <figure tal:define="scales item/@@images;"
@@ -135,7 +136,7 @@
   </div>
 </div>
 
-<footer id="blog-footer" class="row overview-light">
+<footer id="blog-footer" class="row overview-light" tal:condition="not: view/author | view/canAdd">
   <div class="columns  small-12 large-10 large-centered">
     <a class="button link-overlay small-12"
        tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"

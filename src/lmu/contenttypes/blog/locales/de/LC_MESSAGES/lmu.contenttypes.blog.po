@@ -38,9 +38,14 @@ msgstr "Bearbeite Blog Eintrag"
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr "Blog Ordner für Blog einträge mit einer speziellen Ansicht und Einschränkungen"
 
+#: ./browser/templates/frontpage_view.pt:141
 #: ./browser/templates/listing_view.pt:19
 msgid "Jetzt einen Blog-Beitrag verfassen"
 msgstr "Jetzt einen Blog-Beitrag verfassen"
+
+#: ./browser/templates/frontpage_view.pt:56
+msgid "Meine Blogbeitraege -"
+msgstr "Meine Blogbeiträge - "
 
 #: ./interfaces.py:41
 msgid "Name of Reporter"
@@ -90,6 +95,15 @@ msgstr "Danke für Ihre Meldung. Email an den Webmaster gesendet."
 #: ./interfaces.py:48
 msgid "The Reported URL of the Blog Entry."
 msgstr "Die gemeldete URL des Blog-Eintrags."
+
+#: ./browser/templates/frontpage_view.pt:63
+msgid "Zum Blog"
+msgstr "Zum Blog"
+
+#. Default: "Jump to Comments"
+#: ./browser/templates/frontpage_view.pt:89
+msgid "lable_jump_to_comments"
+msgstr "Zu den Kommentaren springen"
 
 msgid "lable_text_description"
 msgstr "Text des Blog, Sie können HTML-Formatierungen benutzten."

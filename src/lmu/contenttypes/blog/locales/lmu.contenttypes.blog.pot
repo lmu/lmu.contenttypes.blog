@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-05-08 13:46+0000\n"
+"POT-Creation-Date: 2015-05-10 22:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,8 +41,13 @@ msgstr ""
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr ""
 
+#: ./browser/templates/frontpage_view.pt:141
 #: ./browser/templates/listing_view.pt:19
 msgid "Jetzt einen Blog-Beitrag verfassen"
+msgstr ""
+
+#: ./browser/templates/frontpage_view.pt:56
+msgid "Meine Blogbeitraege -"
 msgstr ""
 
 #: ./interfaces.py:41
@@ -97,6 +102,15 @@ msgstr ""
 
 #: ./interfaces.py:48
 msgid "The Reported URL of the Blog Entry."
+msgstr ""
+
+#: ./browser/templates/frontpage_view.pt:63
+msgid "Zum Blog"
+msgstr ""
+
+#. Default: "Jump to Comments"
+#: ./browser/templates/frontpage_view.pt:89
+msgid "lable_jump_to_comments"
 msgstr ""
 
 msgid "lable_text_description"

@@ -13,13 +13,6 @@
         />
 
     <browser:page
-        name="frontpage_view"
-        for="lmu.contenttypes.blog.interfaces.IBlogFolder"
-        permission="zope2.View"
-        class=".views.FrontPageView"
-        />
-
-    <browser:page
         name="frontpage_view.include"
         for="lmu.contenttypes.blog.interfaces.IBlogFolder"
         permission="zope2.View"
