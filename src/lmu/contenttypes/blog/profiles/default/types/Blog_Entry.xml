@@ -19,7 +19,7 @@
   <!--<property name="schema">lmu.contenttypes.blog.interfaces.IBlogEntry</property>-->
   <property name="schema"></property>
   <property name="model_source"></property>
-  <property name="model_file">lmu.contenttypes.blog.models:Blog_Entry.xml</property>
+  <property name="model_file">lmu.contenttypes.blog.models:blog_entry.xml</property>
   <property name="klass">lmu.contenttypes.blog.content.BlogEntry</property>
 
   <property name="behaviors">
