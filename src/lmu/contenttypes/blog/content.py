@@ -19,7 +19,7 @@ from lmu.contenttypes.blog.interfaces import IBlogFolder
 from lmu.contenttypes.blog.interfaces import IBlogEntry
 from lmu.contenttypes.blog.interfaces import IBlogReportForm
 
-from lmu.contenttypes.blog import MessageFactory as _
+from lmu.contenttypes.blog import MESSAGE_FACTORY as _
 
 
 class BlogFolder(Container):
@@ -29,14 +29,15 @@ class BlogFolder(Container):
 class BlogEntry(Container):
     implements(IBlogEntry)
 
-    def getDiscussionCount(self):
+    def get_discussion_count(self):
         try:
             # plone.app.discussion.conversation object
             # fetched via IConversation adapter
             conversation = IConversation(self)
-        except:
+        except Exception:
             return 0
-        return conversation.total_comments
+        else:
+            return conversation.total_comments
 
 
 class BlogReportForm(form.SchemaForm):
@@ -79,8 +80,8 @@ class BlogReportForm(form.SchemaForm):
 
     def updateActions(self):
         super(BlogReportForm, self).updateActions()
-        self.actions['cancel'].addClass("button")
-        self.actions['report'].addClass("button")
+        self.actions['cancel'].addClass("button small")
+        self.actions['report'].addClass("button small")
 
 #    def updateFields(self):
 #        super(BlogReportForm, self).updateFields()

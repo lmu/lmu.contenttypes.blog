@@ -12,7 +12,7 @@ from zope import schema
 #from zope.interface import Attribute
 #from zope.interface import Interface
 
-from lmu.contenttypes.blog import MessageFactory as _
+from lmu.contenttypes.blog import MESSAGE_FACTORY as _
 
 
 class IBlogFolder(form.Schema, IImageScaleTraversable):

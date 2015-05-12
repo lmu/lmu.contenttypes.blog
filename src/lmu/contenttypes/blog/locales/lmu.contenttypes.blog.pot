@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-05-10 22:15+0000\n"
+"POT-Creation-Date: 2015-05-12 21:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,11 +29,11 @@ msgstr ""
 msgid "Blog Folder"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:89
+#: ./browser/templates/entry_view.pt:86
 msgid "Delete Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:83
+#: ./browser/templates/entry_view.pt:79
 msgid "Edit Blog Entry"
 msgstr ""
 
@@ -41,12 +41,12 @@ msgstr ""
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr ""
 
-#: ./browser/templates/frontpage_view.pt:141
-#: ./browser/templates/listing_view.pt:19
+#: ./browser/templates/frontpage_view.pt:143
+#: ./browser/templates/listing_view.pt:22
 msgid "Jetzt einen Blog-Beitrag verfassen"
 msgstr ""
 
-#: ./browser/templates/frontpage_view.pt:56
+#: ./browser/templates/frontpage_view.pt:58
 msgid "Meine Blogbeitraege -"
 msgstr ""
 
@@ -63,12 +63,16 @@ msgstr ""
 msgid "Please describe why you report this Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:95
+#: ./browser/templates/entry_view.pt:93
 msgid "Publish"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:76
-#: ./content.py:51
+#: ./browser/templates/listing_view.pt:105
+msgid "Read Comments for ${DYNAMIC_CONTENT} / Write a comment"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:71
+#: ./content.py:52
 msgid "Report Blog Entry"
 msgstr ""
 
@@ -76,11 +80,11 @@ msgstr ""
 msgid "Report Message"
 msgstr ""
 
-#: ./content.py:48
+#: ./content.py:49
 msgid "Report a Blog Entry"
 msgstr ""
 
-#: ./content.py:49
+#: ./content.py:50
 msgid "Report a Blog Entry that violates the Blog rules."
 msgstr ""
 
@@ -88,7 +92,7 @@ msgstr ""
 msgid "Reported URL"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:101
+#: ./browser/templates/entry_view.pt:100
 msgid "Set Private"
 msgstr ""
 
@@ -96,7 +100,7 @@ msgstr ""
 msgid "Sperren"
 msgstr ""
 
-#: ./content.py:63
+#: ./content.py:64
 msgid "Thank you for your Report. E-Mail send to Webmaster."
 msgstr ""
 
@@ -104,12 +108,14 @@ msgstr ""
 msgid "The Reported URL of the Blog Entry."
 msgstr ""
 
-#: ./browser/templates/frontpage_view.pt:63
+#: ./browser/templates/frontpage_view.pt:65
 msgid "Zum Blog"
 msgstr ""
 
 #. Default: "Jump to Comments"
-#: ./browser/templates/frontpage_view.pt:89
+#: ./browser/templates/entry_view.pt:28
+#: ./browser/templates/frontpage_view.pt:91
+#: ./browser/templates/listing_view.pt:56
 msgid "lable_jump_to_comments"
 msgstr ""
 

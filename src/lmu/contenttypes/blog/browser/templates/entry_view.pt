@@ -2,15 +2,9 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="lmu.contenttypes.blog"
       metal:use-macro="context/main_template/macros/master"
-      >
+      i18n:domain="lmu.contenttypes.blog" >
 <body>
-
-<tal:comment tal:condition="nothing">
-    This is a sample view template. It will not be used for rendering the
-    content unless activated by creation of a view class with a matching name.
-</tal:comment>
 
 <metal:main fill-slot="content">
   <metal:content define-macro="content" 
@@ -32,9 +26,10 @@
       <article class="blog columns small-12 large-10 large-centered helper-margin-top-m">
         <div class="blog-preview-counter" >
           <a class="comment-sign"
-             tal:attributes="href python:str(context.absolute_url())+'#commenting';
-                             title string:'Jump to Comments';">
-            <span tal:content="context/getDiscussionCount" >Anzahl</span>
+             title="Jump to Comments"
+             tal:attributes="href python:str(context.absolute_url())+'#commenting';"
+             i18n:attributes="title lable_jump_to_comments">
+            <span tal:content="context/get_discussion_count" >Anzahl</span>
           </a>
         </div>
         <hgroup>
@@ -74,41 +69,47 @@
         <div class="document-actions">
 
           <a tal:attributes="href string:${context/absolute_url}/report_blog_entry" 
-             tal:condition="python:False"
+             tal:condition="nothing"
              class="button link-overlay small" 
              id="report-button"
-             title="Report Blog Entry" 
+             title="Report Blog Entry"
+             i18n:attributes="title"
              i18n:translate="" >Report Blog Entry</a> 
 
           <a tal:attributes="href string:${context/absolute_url}/edit" 
-             tal:condition="view/canEdit"
+             tal:condition="view/can_edit"
              class="button link-overlay small"
-             title="Edit Blog Entry" 
+             title="Edit Blog Entry"
+             i18n:attributes="title"
              i18n:translate="" >Edit Blog Entry</a> 
 
           <a tal:attributes="href string:${context/absolute_url}/delete_confirmation" 
-             tal:condition="view/canEdit"
+             tal:condition="view/can_remove"
              class="button link-overlay small"
-             title="Delete Blog Entry" 
+             title="Delete Blog Entry"
+             i18n:attributes="title"
              i18n:translate="" >Delete Blog Entry</a> 
 
           <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=publish_internally" 
-             tal:condition="view/canPublish"
+             tal:condition="view/can_publish"
              class="button link-overlay small"
-             title="Publish" 
+             title="Publish"
+             i18n:attributes="title"
              i18n:translate="" >Publish</a> 
 
           <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=reject" 
-             tal:condition="view/canSetPrivate"
+             tal:condition="view/can_set_private"
              class="button link-overlay small"
-             title="Set Private" 
+             title="Set Private"
+             i18n:attributes="title"
              i18n:translate="" >Set Private</a> 
 
           <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=banned" 
-             tal:condition="view/canLock"
+             tal:condition="view/can_lock"
              class="button link-overlay small"
              title="Report Blog Entry" 
-             i18n:translate="" >Sperren</a> 
+             i18n:translate=""
+             i18n:attributes="title" >Sperren</a> 
         </div>
 
         <section>

@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 from Products.CMFPlone.utils import safe_unicode
 #from plone.app.contenttypes.indexer import _unicode_save_string_concat(*args)
 from plone.indexer.decorator import indexer
 
-from lmu.contenttypes.blog.interfaces import IBlogFolder
 from lmu.contenttypes.blog.interfaces import IBlogEntry
+from lmu.contenttypes.blog.interfaces import IBlogFolder
 
 
 @indexer(IBlogFolder)

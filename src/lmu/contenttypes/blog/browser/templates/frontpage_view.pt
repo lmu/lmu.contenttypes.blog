@@ -1,13 +1,15 @@
-<tal:doctype xmlns:tal="http://xml.zope.org/namespaces/tal" tal:define="omit view/omit" tal:omit-tag="omit" >
+<tal:doctype xmlns:tal="http://xml.zope.org/namespaces/tal"
+             tal:define="omit view/omit"
+             tal:omit-tag="omit" >
 <!DOCTYPE html >
 </tal:doctype>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="lmu.contenttypes.blog"
       tal:define="omit view/omit"
-      tal:omit-tag="omit" >
+      tal:omit-tag="omit"
+      i18n:domain="lmu.contenttypes.blog" >
 
 <head tal:condition="not:omit">
   <title tal:content="context/Title"></title>
@@ -88,7 +90,7 @@
           <div class="blog-preview-counter" >
             <a title="Jump to Comments"
                tal:attributes="href python:str(item.absolute_url())+'#commenting';"
-               tal:content="item/getDiscussionCount"
+               tal:content="item/get_discussion_count"
                i18n:attributes="title lable_jump_to_comments"
                i18n:translate="">Anzahl</a>
           </div>
@@ -136,7 +138,7 @@
   </div>
 </div>
 
-<footer id="blog-footer" class="row overview-light" tal:condition="not: view/author | view/canAdd">
+<footer id="blog-footer" class="row overview-light" tal:condition="not: view/author | view/can_add">
   <div class="columns  small-12 large-10 large-centered">
     <a class="button link-overlay small-12"
        tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"

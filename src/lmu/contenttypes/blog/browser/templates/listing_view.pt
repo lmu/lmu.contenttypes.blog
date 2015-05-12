@@ -14,12 +14,15 @@
         <div class="columns small-12 large-10 large-centered helper-margin-top-l">
           <h1>
             <span tal:replace="context/title">Blog Titel</span> 
-            <small tal:content="context/description" tal:condition="context/description">Blog Sub-Title</small>
+            <small tal:content="context/description"
+                   tal:condition="context/description">
+                Blog Sub-Title
+            </small>
           </h1>
           <a class="button small-12"
              tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
              tal:attributes="href add_url;"
-             tal:condition="view/canAdd"
+             tal:condition="view/can_add"
              i18n:translate="">
             Jetzt einen Blog-Beitrag verfassen
           </a>
@@ -51,9 +54,10 @@
 
             <div class="blog-preview-counter" >
               <a class="comment-sign"
-                 tal:attributes="href python:str(item.absolute_url())+'#commenting';
-                                 title string:'Jump to Comments';">
-                <span tal:content="item/getDiscussionCount" >Anzahl</span>
+                 title="Jump to Comments"
+                 tal:attributes="href python:str(item.absolute_url())+'#commenting';"
+                 i18n:attributes="title lable_jump_to_comments">
+                <span tal:content="item/get_discussion_count" >Anzahl</span>
               </a>
             </div>
             <figure tal:define="scales item/@@images;"
@@ -75,8 +79,7 @@
 
             <hgroup >
               <h2 class="tileHeadline">
-                <a tal:attributes="href item/absolute_url; 
-                                   title item/title;"
+                <a tal:attributes="href item/absolute_url;"
                    tal:content="item/title">Blog Entry Title</a>
               </h2>
               <div class="tileDocumentByLine documentByLine helper-font-serif" 
@@ -97,11 +100,9 @@
                 Content Body
               </tal:tileBody>
               <p class="visualClear">
-                <a tal:define='content string:Read Comments for "${item/title}" / Write a comment;'
-                   tal:attributes="href python:str(item.absolute_url())+'#commenting';
-                                   title content;"
-                   tal:content="content"
-                   i18n:translate="" >Rede Comments for</a>
+                <a tal:attributes="href python:str(item.absolute_url())+'#commenting';"
+                   i18n:translate="" >
+                   Read Comments for <tal:title tal:replace="item/title" /> / Write a comment</a>
               </p>
               <div class="visualClear clearfix" ></div>
             </div>
@@ -110,7 +111,7 @@
         </div>
       </div>
       <footer id="blog-footer" class="row"
-              tal:condition="view/canAdd">
+              tal:condition="view/can_add">
         <div class="columns small-12 large-10 large-centered">
           <a class="button small-12"
              tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
