@@ -16,7 +16,7 @@
             <span tal:replace="context/title">Blog Titel</span> 
             <small tal:content="context/description" tal:condition="context/description">Blog Sub-Title</small>
           </h1>
-          <a class="button small-12"
+          <a class="button small-12 helper-margin-top-m helper-margin-bottom-m"
              tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
              tal:attributes="href add_url;"
              tal:condition="view/canAdd"
@@ -112,7 +112,7 @@
       <footer id="blog-footer" class="row"
               tal:condition="view/canAdd">
         <div class="columns small-12 large-10 large-centered">
-          <a class="button small-12"
+          <a class="button small-12 helper-margin-top-l"
              tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
              tal:attributes="href add_url;"
              i18n:translate="">
