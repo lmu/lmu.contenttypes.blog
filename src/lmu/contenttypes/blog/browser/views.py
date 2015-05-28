@@ -63,7 +63,7 @@ class _AbstractBlogListingView(_AbstractBlogView):
 
         return entries
 
-    def canAdd(self):
+    def can_add(self):
         #current_user = api.user.get_current()
         #import ipdb; ipdb.set_trace()
         #return api.user.has_permission(permissions.AddPortalContent, user=current_user, obj=self.context)
@@ -111,20 +111,20 @@ class EntryView(_AbstractBlogView):
     def __call__(self):
         return self.template()
 
-    def canSeeHistory(self):
+    def can_see_history(self):
         return True
 
-    def canEdit(self):
+    def can_edit(self):
         return api.user.has_permission(permissions.ModifyPortalContent, obj=self.context)
 
-    def canRemove(self):
+    def can_remove(self):
         return api.user.has_permission(permissions.DeleteObjects, obj=self.context)
 
-    def canPublish(self):
+    def can_publish(self):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
 
-    def canSetPrivate(self):
+    def can_set_private(self):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
 
-    def canLock(self):
+    def can_lock(self):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)

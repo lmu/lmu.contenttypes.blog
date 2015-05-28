@@ -26,11 +26,11 @@ msgstr "Blog Eintrag mit der Option Bilder und Dateien anzufügen."
 msgid "Blog Folder"
 msgstr "Blog"
 
-#: ./browser/templates/entry_view.pt:89
+#: ./browser/templates/entry_view.pt:86
 msgid "Delete Blog Entry"
 msgstr "Lösche Blog Eintrag"
 
-#: ./browser/templates/entry_view.pt:83
+#: ./browser/templates/entry_view.pt:79
 msgid "Edit Blog Entry"
 msgstr "Bearbeite Blog Eintrag"
 
@@ -38,12 +38,12 @@ msgstr "Bearbeite Blog Eintrag"
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr "Blog Ordner für Blog einträge mit einer speziellen Ansicht und Einschränkungen"
 
-#: ./browser/templates/frontpage_view.pt:141
-#: ./browser/templates/listing_view.pt:19
+#: ./browser/templates/frontpage_view.pt:143
+#: ./browser/templates/listing_view.pt:22
 msgid "Jetzt einen Blog-Beitrag verfassen"
 msgstr "Jetzt einen Blog-Beitrag verfassen"
 
-#: ./browser/templates/frontpage_view.pt:56
+#: ./browser/templates/frontpage_view.pt:58
 msgid "Meine Blogbeitraege -"
 msgstr "Meine Blogbeiträge - "
 
@@ -55,12 +55,16 @@ msgstr "Name des Meldenden"
 msgid "Please describe why you report this Blog Entry"
 msgstr "Bitte Beschrieben Sie, warum Sie diesen Blog-Eintrag melden wollen"
 
-#: ./browser/templates/entry_view.pt:95
+#: ./browser/templates/entry_view.pt:93
 msgid "Publish"
 msgstr "Veröffentlichen"
 
-#: ./browser/templates/entry_view.pt:76
-#: ./content.py:51
+#: ./browser/templates/listing_view.pt:105
+msgid "Read Comments for ${DYNAMIC_CONTENT} / Write a comment"
+msgstr "Lese Kommentare für ${DYNAMIC_CONTENT} / Schreibe ein Kommentar"
+
+#: ./browser/templates/entry_view.pt:71
+#: ./content.py:52
 msgid "Report Blog Entry"
 msgstr "Blog Eintrag melden"
 
@@ -68,11 +72,11 @@ msgstr "Blog Eintrag melden"
 msgid "Report Message"
 msgstr "Nachricht der Meldung"
 
-#: ./content.py:48
+#: ./content.py:49
 msgid "Report a Blog Entry"
 msgstr "Melden eines Blog Eintrags"
 
-#: ./content.py:49
+#: ./content.py:50
 msgid "Report a Blog Entry that violates the Blog rules."
 msgstr "Melden Sie einen Blog EIntrag der gegen die Blog Regeln verstößt."
 
@@ -80,7 +84,7 @@ msgstr "Melden Sie einen Blog EIntrag der gegen die Blog Regeln verstößt."
 msgid "Reported URL"
 msgstr "Gemeldetet URL"
 
-#: ./browser/templates/entry_view.pt:101
+#: ./browser/templates/entry_view.pt:100
 msgid "Set Private"
 msgstr "Zurückweisen / Zurückziehen"
 
@@ -88,7 +92,7 @@ msgstr "Zurückweisen / Zurückziehen"
 msgid "Sperren"
 msgstr "Sperren"
 
-#: ./content.py:63
+#: ./content.py:64
 msgid "Thank you for your Report. E-Mail send to Webmaster."
 msgstr "Danke für Ihre Meldung. Email an den Webmaster gesendet."
 
@@ -96,12 +100,14 @@ msgstr "Danke für Ihre Meldung. Email an den Webmaster gesendet."
 msgid "The Reported URL of the Blog Entry."
 msgstr "Die gemeldete URL des Blog-Eintrags."
 
-#: ./browser/templates/frontpage_view.pt:63
+#: ./browser/templates/frontpage_view.pt:65
 msgid "Zum Blog"
 msgstr "Zum Blog"
 
 #. Default: "Jump to Comments"
-#: ./browser/templates/frontpage_view.pt:89
+#: ./browser/templates/entry_view.pt:28
+#: ./browser/templates/frontpage_view.pt:91
+#: ./browser/templates/listing_view.pt:56
 msgid "lable_jump_to_comments"
 msgstr "Zu den Kommentaren springen"
 
