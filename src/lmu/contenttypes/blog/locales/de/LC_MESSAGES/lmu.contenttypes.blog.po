@@ -53,7 +53,7 @@ msgstr "Name des Meldenden"
 
 #: ./interfaces.py:53
 msgid "Please describe why you report this Blog Entry"
-msgstr "Bitte Beschrieben Sie, warum Sie diesen Blog-Eintrag melden wollen"
+msgstr "Bitte Beschreiben Sie, warum Sie diesen Blog-Eintrag melden wollen"
 
 #: ./browser/templates/entry_view.pt:93
 msgid "Publish"
