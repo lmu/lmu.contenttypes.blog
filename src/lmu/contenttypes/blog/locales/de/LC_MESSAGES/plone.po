@@ -21,7 +21,7 @@ msgid "Lead Image"
 msgstr "Bild"
 
 msgid "Lead Image Caption"
-msgstr "Bild Unterschrift"
+msgstr "Bildunterschrift"
 
 msgid "lable_text_description"
 msgstr ""

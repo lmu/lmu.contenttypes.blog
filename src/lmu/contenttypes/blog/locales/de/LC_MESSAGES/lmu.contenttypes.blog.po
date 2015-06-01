@@ -16,7 +16,7 @@ msgstr ""
 
 #: ./profiles/default/types/Blog_Entry.xml
 msgid "Blog Entry"
-msgstr "Blog Eintrag"
+msgstr "Blog-Eintrag"
 
 #: ./profiles/default/types/Blog_Entry.xml
 msgid "Blog Entry with folder support for files and images"
@@ -115,7 +115,7 @@ msgid "lable_text_description"
 msgstr "Text des Blog, Sie können HTML-Formatierungen benutzten."
 
 msgid "lable_text_title"
-msgstr "Der Blog Text"
+msgstr "Der Blog-Text"
 
 msgid "lable_title_description"
 msgstr "Die Blog Überschrift"
