@@ -20,8 +20,18 @@
                              item_creator context/Creator;
                              item_type context/portal_type;
                              item_modified context/ModificationDate;
-                             item_url context/getURL|context/absolute_url;">
-  <main id="content" class="blog">
+                             item_url context/getURL|context/absolute_url;
+                             show_border context/@@plone/showEditableBorder;
+                             show_border python:show_border and not ajax_load">
+  <main id="content" class="blog"
+        tal:attributes="class python:show_border and 'blog documentEditable' or 'blog'">
+    <div id="edit-bar"
+         tal:condition="show_border"
+         tal:content="structure provider:plone.contentviews" />
+
+    <div metal:use-macro="context/global_statusmessage/macros/portal_message">
+        Status message
+    </div>
     <div class="row">
       <article class="blog columns small-12 large-10 large-centered helper-margin-top-m">
         <div class="blog-preview-counter" >
@@ -32,13 +42,16 @@
             <span tal:content="context/get_discussion_count" >Anzahl</span>
           </a>
         </div>
-        <hgroup>
+        <hgroup class="helper-margin-top-m helper-margin-bottom-m">
           <h1 tal:content="context/title">Blog Entry Title</h1>
           <div class="tileDocumentByLine documentByLine helper-font-serif" 
                tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon"
                tal:define="author python:pas_member.info(item_creator);">
             <a href="#"
-               tal:attributes="href string:${navigation_root_url}/author/${item_creator}"
+               tal:define="external_url author/home_page;
+                           default_url string:${navigation_root_url}/author/${item_creator};
+                           href_url python: external_url if external_url else default_url;"
+               tal:attributes="href href_url;"
                tal:content="author/name_or_id">
                   Bob Dobalina
             </a> 

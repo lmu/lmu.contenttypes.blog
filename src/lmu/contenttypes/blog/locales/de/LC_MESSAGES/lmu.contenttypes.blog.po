@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"POT-Creation-Date: 2015-06-02 23:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,19 +20,19 @@ msgstr "Blog-Eintrag"
 
 #: ./profiles/default/types/Blog_Entry.xml
 msgid "Blog Entry with folder support for files and images"
-msgstr "Blog Eintrag mit der Option Bilder und Dateien anzufügen."
+msgstr "Blog-Eintrag mit der Option Bilder und Dateien anzufügen."
 
 #: ./profiles/default/types/Blog_Folder.xml
 msgid "Blog Folder"
 msgstr "Blog"
 
-#: ./browser/templates/entry_view.pt:86
+#: ./browser/templates/entry_view.pt:97
 msgid "Delete Blog Entry"
-msgstr "Lösche Blog Eintrag"
+msgstr "Lösche Blog-Eintrag"
 
-#: ./browser/templates/entry_view.pt:79
+#: ./browser/templates/entry_view.pt:90
 msgid "Edit Blog Entry"
-msgstr "Bearbeite Blog Eintrag"
+msgstr "Bearbeite Blog-Eintrag"
 
 #: ./profiles/default/types/Blog_Folder.xml
 msgid "Folder for Blog Entries with special views and restrictions"
@@ -47,65 +47,32 @@ msgstr "Jetzt einen Blog-Beitrag verfassen"
 msgid "Meine Blogbeitraege -"
 msgstr "Meine Blogbeiträge - "
 
-#: ./interfaces.py:41
-msgid "Name of Reporter"
-msgstr "Name des Meldenden"
-
-#: ./interfaces.py:53
-msgid "Please describe why you report this Blog Entry"
-msgstr "Bitte Beschreiben Sie, warum Sie diesen Blog-Eintrag melden wollen"
-
-#: ./browser/templates/entry_view.pt:93
+#: ./browser/templates/entry_view.pt:104
 msgid "Publish"
 msgstr "Veröffentlichen"
 
-#: ./browser/templates/listing_view.pt:105
-msgid "Read Comments for ${DYNAMIC_CONTENT} / Write a comment"
-msgstr "Lese Kommentare für ${DYNAMIC_CONTENT} / Schreibe ein Kommentar"
+#: ./browser/templates/listing_view.pt:106
+msgid "Read Comments / Write a comment"
+msgstr "Komentare lesen / ein Kommentar verfassen"
 
-#: ./browser/templates/entry_view.pt:71
-#: ./content.py:52
+#: ./browser/templates/entry_view.pt:82
 msgid "Report Blog Entry"
-msgstr "Blog Eintrag melden"
+msgstr "Blog-Eintrag melden"
 
-#: ./interfaces.py:52
-msgid "Report Message"
-msgstr "Nachricht der Meldung"
-
-#: ./content.py:49
-msgid "Report a Blog Entry"
-msgstr "Melden eines Blog Eintrags"
-
-#: ./content.py:50
-msgid "Report a Blog Entry that violates the Blog rules."
-msgstr "Melden Sie einen Blog EIntrag der gegen die Blog Regeln verstößt."
-
-#: ./interfaces.py:47
-msgid "Reported URL"
-msgstr "Gemeldetet URL"
-
-#: ./browser/templates/entry_view.pt:100
+#: ./browser/templates/entry_view.pt:111
 msgid "Set Private"
 msgstr "Zurückweisen / Zurückziehen"
 
-#: ./browser/templates/entry_view.pt:107
+#: ./browser/templates/entry_view.pt:118
 msgid "Sperren"
 msgstr "Sperren"
-
-#: ./content.py:64
-msgid "Thank you for your Report. E-Mail send to Webmaster."
-msgstr "Danke für Ihre Meldung. Email an den Webmaster gesendet."
-
-#: ./interfaces.py:48
-msgid "The Reported URL of the Blog Entry."
-msgstr "Die gemeldete URL des Blog-Eintrags."
 
 #: ./browser/templates/frontpage_view.pt:65
 msgid "Zum Blog"
 msgstr "Zum Blog"
 
 #. Default: "Jump to Comments"
-#: ./browser/templates/entry_view.pt:28
+#: ./browser/templates/entry_view.pt:38
 #: ./browser/templates/frontpage_view.pt:91
 #: ./browser/templates/listing_view.pt:56
 msgid "lable_jump_to_comments"
@@ -118,7 +85,7 @@ msgid "lable_text_title"
 msgstr "Der Blog-Text"
 
 msgid "lable_title_description"
-msgstr "Die Blog Überschrift"
+msgstr "Die Blog-Überschrift"
 
 msgid "lable_title_title"
 msgstr "Überschrift"

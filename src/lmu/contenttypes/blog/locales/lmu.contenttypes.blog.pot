@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-06-01 17:07+0000\n"
+"POT-Creation-Date: 2015-06-02 23:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,11 +29,11 @@ msgstr ""
 msgid "Blog Folder"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:86
+#: ./browser/templates/entry_view.pt:97
 msgid "Delete Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:79
+#: ./browser/templates/entry_view.pt:90
 msgid "Edit Blog Entry"
 msgstr ""
 
@@ -50,62 +50,24 @@ msgstr ""
 msgid "Meine Blogbeitraege -"
 msgstr ""
 
-#: ./interfaces.py:41
-msgid "Name of Reporter"
-msgstr ""
-
-#: ./interfaces.py:42
-msgid "Name of the Person reporting this issue,
-will be filled by System."
-msgstr ""
-
-#: ./interfaces.py:53
-msgid "Please describe why you report this Blog Entry"
-msgstr ""
-
-#: ./browser/templates/entry_view.pt:93
+#: ./browser/templates/entry_view.pt:104
 msgid "Publish"
 msgstr ""
 
-#: ./browser/templates/listing_view.pt:105
-msgid "Read Comments for ${DYNAMIC_CONTENT} / Write a comment"
+#: ./browser/templates/listing_view.pt:106
+msgid "Read Comments / Write a comment"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:71
-#: ./content.py:52
+#: ./browser/templates/entry_view.pt:82
 msgid "Report Blog Entry"
 msgstr ""
 
-#: ./interfaces.py:52
-msgid "Report Message"
-msgstr ""
-
-#: ./content.py:49
-msgid "Report a Blog Entry"
-msgstr ""
-
-#: ./content.py:50
-msgid "Report a Blog Entry that violates the Blog rules."
-msgstr ""
-
-#: ./interfaces.py:47
-msgid "Reported URL"
-msgstr ""
-
-#: ./browser/templates/entry_view.pt:100
+#: ./browser/templates/entry_view.pt:111
 msgid "Set Private"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:107
+#: ./browser/templates/entry_view.pt:118
 msgid "Sperren"
-msgstr ""
-
-#: ./content.py:64
-msgid "Thank you for your Report. E-Mail send to Webmaster."
-msgstr ""
-
-#: ./interfaces.py:48
-msgid "The Reported URL of the Blog Entry."
 msgstr ""
 
 #: ./browser/templates/frontpage_view.pt:65
@@ -113,7 +75,7 @@ msgid "Zum Blog"
 msgstr ""
 
 #. Default: "Jump to Comments"
-#: ./browser/templates/entry_view.pt:28
+#: ./browser/templates/entry_view.pt:38
 #: ./browser/templates/frontpage_view.pt:91
 #: ./browser/templates/listing_view.pt:56
 msgid "lable_jump_to_comments"

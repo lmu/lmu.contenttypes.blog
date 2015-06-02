@@ -2,10 +2,10 @@
 
 from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.theme.interfaces import IDefaultPloneLayer
-from zope import schema
+#from zope import schema
 from zope.interface import Interface
 
-from lmu.contenttypes.blog import MESSAGE_FACTORY as _
+#from lmu.contenttypes.blog import MESSAGE_FACTORY as _
 
 
 class IBlogFolder(Interface, IImageScaleTraversable):
@@ -28,19 +28,19 @@ class IBlogLayer(IDefaultPloneLayer):
     """
 
 
-class IBlogReportForm(Interface):
+# class IBlogReportForm(Interface):
 
-    name = schema.TextLine(
-        title=_(u"Name of Reporter"),
-        description=_(u"Name of the Person reporting this issue, will be filled by System.")
-    )
+#     name = schema.TextLine(
+#         title=_(u"Name of Reporter"),
+#         description=_(u"Name of the Person reporting this issue, will be filled by System.")
+#     )
 
-    url = schema.URI(
-        title=_(u"Reported URL"),
-        description=_(u"The Reported URL of the Blog Entry.")
-    )
+#     url = schema.URI(
+#         title=_(u"Reported URL"),
+#         description=_(u"The Reported URL of the Blog Entry.")
+#     )
 
-    message = schema.Text(
-        title=_(u"Report Message"),
-        description=_(u"Please describe why you report this Blog Entry")
-    )
+#     message = schema.Text(
+#         title=_(u"Report Message"),
+#         description=_(u"Please describe why you report this Blog Entry")
+#     )
