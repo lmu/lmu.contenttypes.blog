@@ -7,12 +7,15 @@
   <!-- Basic metadata -->
   <property name="title" i18n:translate="">Blog Entry</property>
   <property name="description"
-    i18n:translate="">Blog Entry with folder support for files and images</property>
+            i18n:translate="">Blog Entry with folder support for files and images</property>
   <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
   <property name="factory">lmu.contenttypes.blog.content.blogentry</property>
   <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>
-  <property name="allowed_content_types" />
+  <property name="allowed_content_types" >
+    <element value="Image" />
+    <element value="File" />
+  </property>
   <property name="allow_discussion">True</property>
 
   <!-- schema and class used for content items -->
@@ -48,12 +51,20 @@
   <alias from="sharing" to="@@sharing" />
 
   <!-- Actions -->
-  <action title="View" action_id="view" category="object" condition_expr=""
-    url_expr="string:${object_url}/" visible="True">
+  <action title="View"
+         action_id="view"
+         category="object"
+         condition_expr=""
+         url_expr="string:${object_url}/"
+         visible="True">
     <permission value="View" />
   </action>
-  <action title="Edit" action_id="edit" category="object" condition_expr=""
-    url_expr="string:${object_url}/edit" visible="True">
+  <action title="Edit"
+          action_id="edit"
+          category="object"
+          condition_expr=""
+          url_expr="string:${object_url}/edit"
+          visible="True">
     <permission value="Modify portal content" />
   </action>
 </object>

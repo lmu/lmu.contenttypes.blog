@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <object name="Blog Folder"
-   meta_type="Dexterity FTI"
-   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-   i18n:domain="lmu.contenttypes.blog" >
+        meta_type="Dexterity FTI"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="lmu.contenttypes.blog" >
 
   <!-- Basic metadata -->
   <property name="title" i18n:translate="">Blog Folder</property>
   <property name="description"
-    i18n:translate="">Folder for Blog Entries with special views and restrictions</property>
+            i18n:translate="">Folder for Blog Entries with special views and restrictions</property>
   <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
   <property name="factory">lmu.contenttypes.blog.content.blogfolder</property>
   <property name="global_allow">True</property>
@@ -18,7 +18,9 @@
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">lmu.contenttypes.blog.interfaces.IBlogFolder</property>
+  <property name="schema"></property>
+  <property name="model_source"></property>
+  <property name="model_file">lmu.contenttypes.blog.models:blog_folder.xml</property>
   <property name="klass">lmu.contenttypes.blog.content.BlogFolder</property>
 
   <property name="behaviors">
@@ -43,12 +45,20 @@
   <alias from="sharing" to="@@sharing" />
 
   <!-- Actions -->
-  <action title="View" action_id="view" category="object" condition_expr=""
-    url_expr="string:${object_url}/" visible="True">
+  <action title="View"
+          action_id="view"
+          category="object"
+          condition_expr=""
+          url_expr="string:${object_url}/"
+          visible="True">
     <permission value="View" />
   </action>
-  <action title="Edit" action_id="edit" category="object" condition_expr=""
-    url_expr="string:${object_url}/edit" visible="True">
+  <action title="Edit"
+          action_id="edit"
+          category="object"
+          condition_expr="" 
+          url_expr="string:${object_url}/edit"
+          visible="True">
     <permission value="Modify portal content" />
   </action>
 </object>

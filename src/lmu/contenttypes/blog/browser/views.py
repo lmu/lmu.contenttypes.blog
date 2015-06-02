@@ -109,12 +109,14 @@ class EntryView(_AbstractBlogView):
     template = ViewPageTemplateFile('templates/entry_view.pt')
 
     def __call__(self):
+        #import ipdb; ipdb.set_trace()
         return self.template()
 
     def can_see_history(self):
         return True
 
     def can_edit(self):
+        #import ipdb; ipdb.set_trace()
         return api.user.has_permission(permissions.ModifyPortalContent, obj=self.context)
 
     def can_remove(self):
@@ -128,3 +130,16 @@ class EntryView(_AbstractBlogView):
 
     def can_lock(self):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
+
+    def isOwner(self):
+        user = api.user.get_current()
+        return 'Owner' in user.getRolesInContext(self.context)
+
+    def isReviewer(self):
+        user = api.user.get_current()
+        return 'Reviewer' in user.getRolesInContext(self.context)
+
+    def isManager(self):
+        user = api.user.get_current()
+        #import ipdb; ipdb.set_trace()
+        return any(role in user.getRolesInContext(self.context) for role in ['Manager', 'SiteAdmin'])

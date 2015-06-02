@@ -66,7 +66,8 @@
 
         <div tal:replace="structure context/text/output">Content</div>
 
-        <div class="document-actions">
+        <div class="document-actions"
+             tal:condition="python: view.isOwner() or view.isReviewer() or view.isManager()">
 
           <a tal:attributes="href string:${context/absolute_url}/report_blog_entry" 
              tal:condition="nothing"
