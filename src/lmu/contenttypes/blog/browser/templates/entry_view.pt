@@ -25,10 +25,11 @@
                              show_border python:show_border and not ajax_load">
   <main id="content" class="blog"
         tal:attributes="class python:show_border and 'blog documentEditable' or 'blog'">
+    <!--
     <div id="edit-bar"
          tal:condition="show_border"
          tal:content="structure provider:plone.contentviews" />
-
+-->
     <div metal:use-macro="context/global_statusmessage/macros/portal_message">
         Status message
     </div>
