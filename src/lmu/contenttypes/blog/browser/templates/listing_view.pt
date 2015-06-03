@@ -12,6 +12,7 @@
     <main id="content" class="blog">
       <header id="blog-header" class="row">
         <div class="columns small-12 large-10 large-centered helper-margin-top-l">
+          <a class="toogle button small right" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a>
           <h1>
             <span tal:replace="context/title">Blog Titel</span> 
             <small tal:content="context/description"
@@ -19,6 +20,12 @@
                 Blog Sub-Title
             </small>
           </h1>
+          <div id="rules" class="blog_info reveal-modal xlarge" data-reveal aria-labelledby="" aria-hidden="true" role="dialog" style="top: -8em;">
+            <tal:rules tal:content="structure context/text/output">
+              Content Body
+            </tal:rules>
+            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+          </div>
           <a class="button small-12 helper-margin-top-m helper-margin-bottom-m"
              tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
              tal:attributes="href add_url;"

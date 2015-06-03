@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-06-02 23:26+0000\n"
+"POT-Creation-Date: 2015-06-03 15:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,11 +29,11 @@ msgstr ""
 msgid "Blog Folder"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:97
+#: ./browser/templates/entry_view.pt:100
 msgid "Delete Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:90
+#: ./browser/templates/entry_view.pt:93
 msgid "Edit Blog Entry"
 msgstr ""
 
@@ -41,8 +41,8 @@ msgstr ""
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr ""
 
-#: ./browser/templates/frontpage_view.pt:143
-#: ./browser/templates/listing_view.pt:22
+#: ./browser/templates/frontpage_view.pt:146
+#: ./browser/templates/listing_view.pt:29
 msgid "Jetzt einen Blog-Beitrag verfassen"
 msgstr ""
 
@@ -50,23 +50,27 @@ msgstr ""
 msgid "Meine Blogbeitraege -"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:104
+#: ./browser/templates/entry_view.pt:107
 msgid "Publish"
 msgstr ""
 
-#: ./browser/templates/listing_view.pt:106
+#: ./browser/templates/listing_view.pt:113
 msgid "Read Comments / Write a comment"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:82
+#: ./browser/templates/entry_view.pt:85
 msgid "Report Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:111
+#: ./browser/templates/entry_view.pt:114
 msgid "Set Private"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:118
+#: ./browser/templates/listing_view.pt:15
+msgid "Show Blog Rules"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:121
 msgid "Sperren"
 msgstr ""
 
@@ -77,7 +81,7 @@ msgstr ""
 #. Default: "Jump to Comments"
 #: ./browser/templates/entry_view.pt:38
 #: ./browser/templates/frontpage_view.pt:91
-#: ./browser/templates/listing_view.pt:56
+#: ./browser/templates/listing_view.pt:63
 msgid "lable_jump_to_comments"
 msgstr ""
 
