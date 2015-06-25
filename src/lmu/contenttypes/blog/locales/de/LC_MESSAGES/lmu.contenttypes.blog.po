@@ -53,7 +53,7 @@ msgstr "Veröffentlichen"
 
 #: ./browser/templates/listing_view.pt:113
 msgid "Read Comments / Write a comment"
-msgstr "Kommentare lesen / ein Kommentar verfassen"
+msgstr "Kommentare lesen / Kommentar verfassen"
 
 #: ./browser/templates/entry_view.pt:85
 msgid "Report Blog Entry"
@@ -65,7 +65,7 @@ msgstr "Zurückweisen / Zurückziehen"
 
 #: ./browser/templates/listing_view.pt:15
 msgid "Show Blog Rules"
-msgstr "Zeige Blog-Regeln"
+msgstr "Zu den Blog-Regeln"
 
 #: ./browser/templates/entry_view.pt:121
 msgid "Sperren"
