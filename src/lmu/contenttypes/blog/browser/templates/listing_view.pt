@@ -69,6 +69,7 @@
             </div>
             <figure tal:define="scales item/@@images;"
                     tal:condition="item/image" 
+                    style="max-height: 200px; overflow: hidden;"
                     class="blog-lead-image tileImage small-4 left helper-margin-right-m helper-margin-bottom-m " tal:on-error="string: kein Bild vorhanden">
               <a href="#"
                  tal:attributes="href python: item_type in use_view_action and item_url+'/view' or item_url">
@@ -78,7 +79,7 @@
                   <source media="(min-width: 42em)" tal:define="scaled_image python: scales.scale('image', scale='preview');" tal:attributes="srcset scaled_image/url;" />
                   <source media="(min-width: 36em)" tal:define="scaled_image python: scales.scale('image', scale='mini');" tal:attributes="srcset scaled_image/url;" />
                   <source media="(min-width: 24em)" tal:define="scaled_image python: scales.scale('image', scale='thumb');" tal:attributes="srcset scaled_image/url;" />
-                  <img tal:replace="structure python: scales.tag('image', scale='preview', alt=item.image_caption)" />
+                  <img tal:replace="structure python: scales.tag('image', scale='large', alt=item.image_caption)" />
                 </picture>
                 <figcaption tal:content="item/image_caption" tal:condition="item/image_caption">Caption</figcaption>
               </a>
