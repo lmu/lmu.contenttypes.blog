@@ -12,7 +12,10 @@
   <property name="factory">lmu.contenttypes.blog.content.blogentry</property>
   <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>
-  <property name="allowed_content_types" />
+  <property name="allowed_content_types">
+    <element value="File" />
+    <element value="Image" />
+  </property>
   <property name="allow_discussion">True</property>
 
   <!-- schema and class used for content items -->
@@ -28,6 +31,7 @@
      <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage" />
      <element value="plone.app.dexterity.behaviors.nextprevious.INextPreviousEnabled" />
      <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
+     <element value="plone.app.imagecropping.behaviors.IImageCroppingBehavior" />
    </property>
 
   <!-- View information -->

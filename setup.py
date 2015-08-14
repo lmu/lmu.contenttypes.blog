@@ -32,9 +32,11 @@ setup(name='lmu.contenttypes.blog',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'collective.quickupload',
           'plone.app.dexterity',
           'plone.namedfile [blobs]',
           'plone.app.discussion',
+          'plone.app.imagecropping',
       ],
       entry_points="""
       # -*- Entry points: -*-

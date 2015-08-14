@@ -27,6 +27,13 @@
         />
 
     <browser:page
+        for="lmu.contenttypes.blog.interfaces.IBlogEntry"
+        name="edit"
+        permission="cmf.ModifyPortalContent"
+        class=".views.EditForm"
+        />
+
+    <browser:page
         name="report_blog_entry"
         for="lmu.contenttypes.blog.interfaces.IBlogEntry"
         permission="zope2.View"

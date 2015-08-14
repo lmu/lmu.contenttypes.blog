@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmln:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone"
+      metal:use-macro="context/main_template/macros/master">
+
+    <metal:block fill-slot="main">
+
+        <h1 class="documentFirstHeading" tal:content="view/label | nothing" />
+
+        <div id="content-core">
+            <metal:block use-macro="context/@@ploneform-macros/titlelessform">
+                <metal:block fill-slot="fields">
+                    <metal:block use-macro="context/@@ploneform-macros/fields" />
+
+                    <style>
+#content ul.image-previews li {
+    display: inline;
+}
+.qq-uploader {
+    outline: dotted 1px;
+}
+.content-items {
+    outline: solid 1px;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    width: 49.5%;
+    height: 100%;
+    float: left;
+}
+#images {
+    margin-right: 1%;
+}
+.formControls {
+    clear: both;
+}
+                    </style>
+                    <a href="#" tal:attributes="href string:${context/absolute_url}/@@croppingeditor">Teaserbild zuschneiden</a>
+
+                    <div id="contents">
+                        <div id="images" class="content-items">
+                            <ul class="image-previews">
+                                <li tal:repeat="img view/images">
+                                    <a href="#" tal:attributes="href string:${img/url}/@@croppingeditor">
+                                        <img src="${img/url}/@@images/image/thumb" tal:attributes="src string:${img/url}/@@images/image/thumb">
+                                    </a>
+                                </li>
+                            </ul>
+                            <div tal:replace="structure view/render_quickupload_images"></div>
+                        </div>
+                        <div id="files" class="content-items">
+                            <ul class="file-previews">
+                                <li tal:repeat="obj view/files">
+                                    <img src="file_icon.png"><span tal:content="obj/title">Title</span>
+                                </li>
+                            </ul>
+                            <div tal:replace="structure view/render_quickupload_files"></div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+(function($) {
+    $(function() {
+        $("a[href$='@@croppingeditor']").prepOverlay({
+            subtype:'ajax',
+            formselector:'#coords',
+            closeselector:"input[name='form.button.Cancel']"
+        })
+
+        $(document).bind("formOverlayLoadSuccess", function() {
+            imagecropping = new ImageCropping();
+            imagecropping.init_editor();
+        })
+    })
+})(jQuery);
+                    </script>
+                
+                </metal:block>
+            </metal:block>
+        </div>
+
+    </metal:block>
+
+</html>

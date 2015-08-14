@@ -4,8 +4,12 @@ from Products.CMFCore import permissions
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+from collective.quickupload.portlet.quickuploadportlet import Assignment
+from collective.quickupload.portlet.quickuploadportlet import Renderer
 from plone import api
 from plone.app.textfield.interfaces import ITransformer
+from plone.dexterity.browser import edit
+from zope.component import getMultiAdapter
 
 from lmu.contenttypes.blog.interfaces import IBlogFolder
 
@@ -128,3 +132,82 @@ class EntryView(_AbstractBlogView):
 
     def can_lock(self):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
+
+
+JAVASCRIPT = """
+  // workaround this MSIE bug :
+  // https://dev.plone.org/plone/ticket/10894
+  if (jQuery.browser.msie) jQuery("#settings").remove();
+  var Browser = {};
+  Browser.onUploadComplete = function() {
+    jQuery.ajax().done(
+        function(html) {
+            $(".image-previews").replaceWith(jQuery(html).find(".image-previews"));
+            $(".file-previews").replaceWith(jQuery(html).find(".file-previews"));
+        }
+    );
+  }
+  loadUploader = function() {
+      var ulContainer = jQuery('.QuickUploadPortlet .uploaderContainer');
+      ulContainer.each(function(){
+          var uploadUrl =  jQuery('.uploadUrl', this).val();
+          var uploadData =  jQuery('.uploadData', this).val();
+          var UlDiv = jQuery(this);
+          jQuery.ajax({
+                     type: 'GET',
+                     url: uploadUrl,
+                     data: uploadData,
+                     dataType: 'html',
+                     contentType: 'text/html; charset=utf-8',
+                     success: function(html) {
+                        if (html.indexOf('quick-uploader') != -1) {
+                            UlDiv.html(html);
+                        }
+                     } });
+      });
+  }
+  jQuery(document).ready(loadUploader);
+"""
+
+
+class CustomUploadRenderer(Renderer):
+    def javascript(self):
+        return JAVASCRIPT
+
+
+class EditForm(edit.DefaultEditForm):
+    template = ViewPageTemplateFile('templates/edit.pt')
+
+    def images(self):
+        for obj in self.context.objectValues():
+            if obj.portal_type == 'Image':
+                yield {'url': obj.absolute_url()}
+
+    def files(self):
+        plone_layout = getMultiAdapter((self.context, self.request),
+                                       name=u'plone_layout')
+        for obj in self.context.objectValues():
+            if obj.portal_type != 'Image':
+                yield {'tag': plone_layout.getIcon(obj).html_tag(),
+                       'title': obj.Title()}
+
+    def render_quickupload_images(self):
+        ass = Assignment(header='Bilder hoch laden',
+                         upload_portal_type='Image',
+                         upload_media_type='image')
+        renderer = CustomUploadRenderer(
+            self.context, self.request, self, None, ass)
+        renderer.update()
+        return renderer.render()
+
+    def render_quickupload_files(self):
+        ass = Assignment(header='Dateien hoch laden',
+                         upload_portal_type='File',
+                         upload_media_type='')
+        renderer = CustomUploadRenderer(
+            self.context, self.request, self, None, ass)
+        renderer.update()
+        return renderer.render()
+
+    def update(self):
+        return super(EditForm, self).update()
