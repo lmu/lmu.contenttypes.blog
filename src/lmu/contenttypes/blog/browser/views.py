@@ -134,45 +134,9 @@ class EntryView(_AbstractBlogView):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
 
 
-JAVASCRIPT = """
-  // workaround this MSIE bug :
-  // https://dev.plone.org/plone/ticket/10894
-  if (jQuery.browser.msie) jQuery("#settings").remove();
-  var Browser = {};
-  Browser.onUploadComplete = function() {
-    jQuery.ajax().done(
-        function(html) {
-            $(".image-previews").replaceWith(jQuery(html).find(".image-previews"));
-            $(".file-previews").replaceWith(jQuery(html).find(".file-previews"));
-        }
-    );
-  }
-  loadUploader = function() {
-      var ulContainer = jQuery('.QuickUploadPortlet .uploaderContainer');
-      ulContainer.each(function(){
-          var uploadUrl =  jQuery('.uploadUrl', this).val();
-          var uploadData =  jQuery('.uploadData', this).val();
-          var UlDiv = jQuery(this);
-          jQuery.ajax({
-                     type: 'GET',
-                     url: uploadUrl,
-                     data: uploadData,
-                     dataType: 'html',
-                     contentType: 'text/html; charset=utf-8',
-                     success: function(html) {
-                        if (html.indexOf('quick-uploader') != -1) {
-                            UlDiv.html(html);
-                        }
-                     } });
-      });
-  }
-  jQuery(document).ready(loadUploader);
-"""
-
-
 class CustomUploadRenderer(Renderer):
     def javascript(self):
-        return JAVASCRIPT
+        return ''
 
 
 class EditForm(edit.DefaultEditForm):
@@ -208,6 +172,3 @@ class EditForm(edit.DefaultEditForm):
             self.context, self.request, self, None, ass)
         renderer.update()
         return renderer.render()
-
-    def update(self):
-        return super(EditForm, self).update()
