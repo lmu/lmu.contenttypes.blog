@@ -36,8 +36,32 @@
 .formControls {
     clear: both;
 }
+
+/* widgets */
+div.field {
+    clear: both;
+}
+.template-edit form label {
+    float: left;
+    width: 33%;
+}
+.template-edit form .formHelp {
+    position: relative;
+    left: 33%;
+}
+.template-edit form .fieldErrorBox {
+    float: left;
+    padding-left: .75em;
+}
+.template-edit form .textline-field,
+.template-edit form .richtext-field,
+.template-edit form .namedblobimage-field {
+    float: right;
+    width: 66%;
+    margin-bottom: 2em;
+}
                     </style>
-                    <a href="#" tal:attributes="href string:${context/absolute_url}/@@croppingeditor">Teaserbild zuschneiden</a>
+                    <a href="#" tal:attributes="href string:${context/absolute_url}/@@croppingeditor">Bild zuschneiden</a>
 
                     <div id="contents">
                         <div id="images" class="content-items">
