@@ -62,58 +62,6 @@
                 <metal:block fill-slot="fields">
                     <metal:block use-macro="context/@@ploneform-macros/fields" />
 
-                    <style>
-#content ul.image-previews li {
-    display: inline;
-}
-.qq-uploader {
-    outline: dotted 1px;
-}
-.content-items {
-    outline: solid 1px;
-    padding: 0.5em;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    width: 49.5%;
-    height: 100%;
-    float: left;
-}
-#images {
-    margin-right: 1%;
-}
-.formControls {
-    clear: both;
-}
-
-/* overlays */
-.overlay {
-    background-color: white;
-}
-
-/* widgets */
-div.field {
-    clear: both;
-}
-.template-edit form label {
-    float: left;
-    width: 33%;
-}
-.template-edit form .formHelp {
-    position: relative;
-    left: 33%;
-}
-.template-edit form .fieldErrorBox {
-    float: left;
-    padding-left: .75em;
-}
-.template-edit form .textline-field,
-.template-edit form .richtext-field,
-.template-edit form .namedblobimage-field {
-    float: right;
-    width: 66%;
-    margin-bottom: 2em;
-}
-                    </style>
                     <a href="#" tal:attributes="href string:${context/absolute_url}/@@croppingeditor">Bild zuschneiden</a>
 
                     <div id="contents">
