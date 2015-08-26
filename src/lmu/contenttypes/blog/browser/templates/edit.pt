@@ -2,8 +2,8 @@
      xmln:metal="http://xml.zope.org/namespaces/metal"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="plone"
-      metal:use-macro="context/main_template/macros/master">
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
 
     <metal:block fill-slot="javascript_head_slot">
       <script type="text/javascript">
@@ -55,8 +55,16 @@
 
     <metal:block fill-slot="main">
 
+        <a class="toogle button small right" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a>
         <h1 class="documentFirstHeading" tal:content="view/label | nothing" />
-
+        <div id="rules" class="blog_info reveal-modal xlarge" data-reveal aria-labelledby="" aria-hidden="true" role="dialog" style="top: -8em;">
+            <tal:rules tal:define="parent context/getParentNode;
+                                   output parent/text/output"
+                tal:content="structure output">
+                Content Body
+            </tal:rules>
+            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
         <div id="content-core">
             <metal:block use-macro="context/@@ploneform-macros/titlelessform">
                 <metal:block fill-slot="fields">

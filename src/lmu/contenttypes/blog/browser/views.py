@@ -13,6 +13,8 @@ from zope.component import getMultiAdapter
 
 from lmu.contenttypes.blog.interfaces import IBlogFolder
 
+from lmu.contenttypes.blog import MESSAGE_FACTORY as _
+
 
 def str2bool(v):
     return v is not None and v.lower() in ['true', '1']
@@ -164,14 +166,14 @@ class EditForm(edit.DefaultEditForm):
 
     def files(self):
         plone_layout = getMultiAdapter((self.context, self.request),
-                                       name=u'plone_layout')
+                                       name='plone_layout')
         for obj in self.context.objectValues():
             if obj.portal_type != 'Image':
                 yield {'tag': plone_layout.getIcon(obj).html_tag(),
                        'title': obj.Title()}
 
     def render_quickupload_images(self):
-        ass = Assignment(header='Bilder hoch laden',
+        ass = Assignment(header=_('Upload Images'),
                          upload_portal_type='Image',
                          upload_media_type='image')
         renderer = CustomUploadRenderer(
@@ -180,7 +182,7 @@ class EditForm(edit.DefaultEditForm):
         return renderer.render()
 
     def render_quickupload_files(self):
-        ass = Assignment(header='Dateien hoch laden',
+        ass = Assignment(header=_('Upload Files'),
                          upload_portal_type='File',
                          upload_media_type='')
         renderer = CustomUploadRenderer(

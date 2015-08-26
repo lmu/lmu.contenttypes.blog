@@ -26,7 +26,6 @@
         class=".views.EntryView"
         />
 
-<!--
     <browser:page
         for="lmu.contenttypes.blog.interfaces.IBlogEntry"
         name="edit"
@@ -34,6 +33,7 @@
         class=".views.EditForm"
         />
 
+<!--
     <browser:page
         name="report_blog_entry"
         for="lmu.contenttypes.blog.interfaces.IBlogEntry"

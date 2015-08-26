@@ -86,11 +86,11 @@
             </figure>
 
             <hgroup >
-              <h2 class="tileHeadline">
+              <h2 class="tileHeadline helper-margin-bottom-m">
                 <a tal:attributes="href item/absolute_url;"
                    tal:content="item/title">Blog Entry Title</a>
               </h2>
-              <div class="tileDocumentByLine documentByLine helper-font-serif" 
+              <div class="tileDocumentByLine documentByLine helper-font-serif helper-margin-bottom-m" 
                    tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon"
                    tal:define="author python:pas_member.info(item_creator);">
                 <a href="#"
@@ -122,7 +122,7 @@
         </div>
       </div>
       <footer id="blog-footer" class="row"
-              tal:condition="view/can_add">
+              tal:condition="python: False" test="view/can_add">
         <div class="columns small-12 large-10 large-centered">
           <a class="button small-12 helper-margin-top-l"
              tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"

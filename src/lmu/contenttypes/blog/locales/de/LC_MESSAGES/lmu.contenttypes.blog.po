@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-06-03 15:02+0000\n"
+"POT-Creation-Date: 2015-08-26 13:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,11 +26,11 @@ msgstr "Blog-Eintrag mit der Option Bilder und Dateien anzufügen."
 msgid "Blog Folder"
 msgstr "Blog"
 
-#: ./browser/templates/entry_view.pt:100
+#: ./browser/templates/entry_view.pt:106
 msgid "Delete Blog Entry"
 msgstr "Lösche Blog-Eintrag"
 
-#: ./browser/templates/entry_view.pt:93
+#: ./browser/templates/entry_view.pt:99
 msgid "Edit Blog Entry"
 msgstr "Bearbeite Blog-Eintrag"
 
@@ -47,19 +47,19 @@ msgstr "Jetzt einen Blog-Beitrag verfassen"
 msgid "Meine Blogbeitraege -"
 msgstr "Meine Blogbeiträge - "
 
-#: ./browser/templates/entry_view.pt:107
+#: ./browser/templates/entry_view.pt:113
 msgid "Publish"
 msgstr "Veröffentlichen"
 
-#: ./browser/templates/listing_view.pt:113
+#: ./browser/templates/listing_view.pt:114
 msgid "Read Comments / Write a comment"
 msgstr "Kommentare lesen / Kommentar verfassen"
 
-#: ./browser/templates/entry_view.pt:85
+#: ./browser/templates/entry_view.pt:91
 msgid "Report Blog Entry"
 msgstr "Blog-Eintrag melden"
 
-#: ./browser/templates/entry_view.pt:114
+#: ./browser/templates/entry_view.pt:120
 msgid "Set Private"
 msgstr "Zurückweisen / Zurückziehen"
 
@@ -67,16 +67,24 @@ msgstr "Zurückweisen / Zurückziehen"
 msgid "Show Blog Rules"
 msgstr "Zu den Blog-Regeln"
 
-#: ./browser/templates/entry_view.pt:121
+#: ./browser/templates/entry_view.pt:127
 msgid "Sperren"
 msgstr "Sperren"
+
+#: ./browser/views.py:185
+msgid "Upload Files"
+msgstr ""
+
+#: ./browser/views.py:176
+msgid "Upload Images"
+msgstr ""
 
 #: ./browser/templates/frontpage_view.pt:65
 msgid "Zum Blog"
 msgstr "Zum Blog"
 
 #. Default: "Jump to Comments"
-#: ./browser/templates/entry_view.pt:38
+#: ./browser/templates/entry_view.pt:44
 #: ./browser/templates/frontpage_view.pt:91
 #: ./browser/templates/listing_view.pt:63
 msgid "lable_jump_to_comments"
