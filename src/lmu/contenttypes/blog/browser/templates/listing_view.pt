@@ -12,6 +12,7 @@
     <main id="content" class="blog">
       <header id="blog-header" class="row">
         <div class="columns small-12 large-10 large-centered helper-margin-top-l">
+          <a class="toogle button small right" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a>
           <h1>
             <span tal:replace="context/title">Blog Titel</span> 
             <small tal:content="context/description"
@@ -19,7 +20,13 @@
                 Blog Sub-Title
             </small>
           </h1>
-          <a class="button small-12"
+          <div id="rules" class="blog_info reveal-modal xlarge" data-reveal aria-labelledby="" aria-hidden="true" role="dialog" style="top: -8em;">
+            <tal:rules tal:content="structure context/text/output">
+              Content Body
+            </tal:rules>
+            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+          </div>
+          <a class="button small-12 helper-margin-top-m helper-margin-bottom-m"
              tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
              tal:attributes="href add_url;"
              tal:condition="view/can_add"
@@ -62,7 +69,8 @@
             </div>
             <figure tal:define="scales item/@@images;"
                     tal:condition="item/image" 
-                    class="blog-lead-image tileImage small-4 left helper-margin-right-m helper-margin-bottom-m ">
+                    style="max-height: 200px; overflow: hidden;"
+                    class="blog-lead-image tileImage small-4 left helper-margin-right-m helper-margin-bottom-m " tal:on-error="string: kein Bild vorhanden">
               <a href="#"
                  tal:attributes="href python: item_type in use_view_action and item_url+'/view' or item_url">
                 <picture>
@@ -71,7 +79,7 @@
                   <source media="(min-width: 42em)" tal:define="scaled_image python: scales.scale('image', scale='preview');" tal:attributes="srcset scaled_image/url;" />
                   <source media="(min-width: 36em)" tal:define="scaled_image python: scales.scale('image', scale='mini');" tal:attributes="srcset scaled_image/url;" />
                   <source media="(min-width: 24em)" tal:define="scaled_image python: scales.scale('image', scale='thumb');" tal:attributes="srcset scaled_image/url;" />
-                  <img tal:replace="structure python: scales.tag('image', scale='preview', alt=item.image_caption)" />
+                  <img tal:replace="structure python: scales.tag('image', scale='large', alt=item.image_caption)" />
                 </picture>
                 <figcaption tal:content="item/image_caption" tal:condition="item/image_caption">Caption</figcaption>
               </a>
@@ -86,7 +94,10 @@
                    tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon"
                    tal:define="author python:pas_member.info(item_creator);">
                 <a href="#"
-                   tal:attributes="href string:${navigation_root_url}/author/${item_creator}"
+                  tal:define="external_url author/home_page;
+                              default_url string:${navigation_root_url}/author/${item_creator};
+                              href_url python: external_url if external_url else default_url;"
+                   tal:attributes="href href_url;"
                    tal:content="author/name_or_id"
                    tal:omit-tag="not:author">
                   Bob Dobalina
@@ -102,7 +113,7 @@
               <p class="visualClear">
                 <a tal:attributes="href python:str(item.absolute_url())+'#commenting';"
                    i18n:translate="" >
-                   Read Comments for <tal:title tal:replace="item/title" /> / Write a comment</a>
+                   Read Comments / Write a comment</a>
               </p>
               <div class="visualClear clearfix" ></div>
             </div>
@@ -113,7 +124,7 @@
       <footer id="blog-footer" class="row"
               tal:condition="view/can_add">
         <div class="columns small-12 large-10 large-centered">
-          <a class="button small-12"
+          <a class="button small-12 helper-margin-top-l"
              tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
              tal:attributes="href add_url;"
              i18n:translate="">

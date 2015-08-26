@@ -9,22 +9,28 @@
 
         <!-- field definitions -->
       <field name="title" type="zope.schema.TextLine">
-      	<title i18n:translate="">Title</title>
-      	<description i18n:translate="">Name of the Blog Folder</description>
-      	<default>Blog</default>
-      	<required>True</required>
+        <title i18n:translate="">Title</title>
+        <description i18n:translate="">Name of the Blog Folder</description>
+        <default>Blog</default>
+        <required>True</required>
       </field>
       <!--
       <field name="subtitle" type="zope.schema.TextLine">
-      	<title>Sub Title</title>
-      	<description>Sub Title / Headline that describes the Blog more in detail</description>
-      	<required>False</required>
+        <title>Sub Title</title>
+        <description>Sub Title / Headline that describes the Blog more in detail</description>
+        <required>False</required>
       </field>
       -->
       <field name="description" type="zope.schema.TextLine">
-      	<title i18n:translate="">Description</title>
-      	<description i18n:translate="">Used in item listings and search results.</description>
-      	<required>False</required>
+        <title i18n:translate="">Description</title>
+        <description i18n:translate="">Used in item listings and search results.</description>
+        <required>False</required>
+      </field>
+
+      <field name="text" type="plone.app.textfield.RichText">
+        <title i18n:translate="lable_text_title">Blog Rules</title>
+        <description i18n:translate="lable_text_description">A Description text of Blog Rules which should be showable on every subsequent Element of a Blog Folder</description>
+        <required>False</required>
       </field>
     </schema>
 

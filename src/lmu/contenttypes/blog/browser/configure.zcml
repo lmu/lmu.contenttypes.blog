@@ -26,6 +26,7 @@
         class=".views.EntryView"
         />
 
+<!--
     <browser:page
         for="lmu.contenttypes.blog.interfaces.IBlogEntry"
         name="edit"
@@ -39,5 +40,6 @@
         permission="zope2.View"
         class="..content.BlogReportForm"
         />
+-->
 
 </configure>
