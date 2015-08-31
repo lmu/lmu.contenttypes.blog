@@ -118,6 +118,19 @@ class EntryView(_AbstractBlogView):
         #import ipdb; ipdb.set_trace()
         return self.template()
 
+    def images(self):
+        #image_brains = api.content.find(context=self.context, depth=1, portal_type='Image')
+        #images = [item.getObject() for item in image_brains]
+        #import ipdb; ipdb.set_trace()
+        images = [item if item.portal_type == 'Image' else None for item in self.context.values()]
+        images.remove(None)
+        return images
+
+    def files(self):
+        files = [item if item.portal_type == 'Image' else None for item in self.context.values()]
+        files.remove(None)
+        return files
+
     def can_see_history(self):
         return True
 
@@ -184,6 +197,15 @@ class EditForm(edit.DefaultEditForm):
     def render_quickupload_files(self):
         ass = Assignment(header=_('Upload Files'),
                          upload_portal_type='File',
+                         upload_media_type='')
+        renderer = CustomUploadRenderer(
+            self.context, self.request, self, None, ass)
+        renderer.update()
+        return renderer.render()
+
+    def render_quickupload(self):
+        ass = Assignment(header=None,
+                         upload_portal_type='',
                          upload_media_type='')
         renderer = CustomUploadRenderer(
             self.context, self.request, self, None, ass)

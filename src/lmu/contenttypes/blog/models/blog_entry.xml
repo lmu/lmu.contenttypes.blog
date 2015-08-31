@@ -4,7 +4,7 @@
        xmlns:security="http://namespaces.plone.org/supermodel/security" 
        xmlns:marshal="http://namespaces.plone.org/supermodel/marshal"
        xmlns:i18n="http://namespaces.zope.org/i18n"
-       i18n_domain="lmu.contenttypes.blog">
+       i18n:domain="lmu.contenttypes.blog">
   <schema>
   	<!-- field definitions -->
     <field name="title" type="zope.schema.TextLine">

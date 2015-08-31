@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-08-26 13:56+0000\n"
+"POT-Creation-Date: 2015-08-31 20:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,11 +29,11 @@ msgstr ""
 msgid "Blog Folder"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:106
+#: ./browser/templates/entry_view.pt:128
 msgid "Delete Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:99
+#: ./browser/templates/entry_view.pt:121
 msgid "Edit Blog Entry"
 msgstr ""
 
@@ -42,7 +42,7 @@ msgid "Folder for Blog Entries with special views and restrictions"
 msgstr ""
 
 #: ./browser/templates/frontpage_view.pt:146
-#: ./browser/templates/listing_view.pt:29
+#: ./browser/templates/listing_view.pt:45
 msgid "Jetzt einen Blog-Beitrag verfassen"
 msgstr ""
 
@@ -50,35 +50,35 @@ msgstr ""
 msgid "Meine Blogbeitraege -"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:113
+#: ./browser/templates/entry_view.pt:135
 msgid "Publish"
 msgstr ""
 
-#: ./browser/templates/listing_view.pt:114
+#: ./browser/templates/listing_view.pt:130
 msgid "Read Comments / Write a comment"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:91
+#: ./browser/templates/entry_view.pt:113
 msgid "Report Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:120
+#: ./browser/templates/entry_view.pt:142
 msgid "Set Private"
 msgstr ""
 
-#: ./browser/templates/listing_view.pt:15
+#: ./browser/templates/listing_view.pt:31
 msgid "Show Blog Rules"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:127
+#: ./browser/templates/entry_view.pt:149
 msgid "Sperren"
 msgstr ""
 
-#: ./browser/views.py:185
+#: ./browser/views.py:198
 msgid "Upload Files"
 msgstr ""
 
-#: ./browser/views.py:176
+#: ./browser/views.py:189
 msgid "Upload Images"
 msgstr ""
 
@@ -87,9 +87,9 @@ msgid "Zum Blog"
 msgstr ""
 
 #. Default: "Jump to Comments"
-#: ./browser/templates/entry_view.pt:44
+#: ./browser/templates/entry_view.pt:48
 #: ./browser/templates/frontpage_view.pt:91
-#: ./browser/templates/listing_view.pt:63
+#: ./browser/templates/listing_view.pt:79
 msgid "lable_jump_to_comments"
 msgstr ""
 
