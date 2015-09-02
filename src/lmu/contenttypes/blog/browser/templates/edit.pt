@@ -11,13 +11,26 @@
     $(function() {
         $("a[href$='@@croppingeditor']").prepOverlay({
             subtype:'ajax',
-            formselector:'#coords',
+            selector:'#content',
+            closeselector:"input[name='form.button.Cancel']",
+            width:'80%'
+        });
+        $("a[href$='@@edit'].popup").prepOverlay({
+            subtype:'ajax',
+            selector:'#content-core',
+            closeselector:"input[name='form.buttons.cancel']"
+        });
+        $("a[href$='@@view'].popup").prepOverlay({
+            subtype:'ajax',
+            selector:'#content-core'
+        });
+        $("a[href$='delete_confirmation'].popup").prepOverlay({
+            subtype:'ajax',
+            selector:'#content',
             closeselector:"input[name='form.button.Cancel']"
         });
-        $("a.popup").prepOverlay({
-            subtype:'ajax',
-            formselector:'#content-core',
-            closeselector:"input[name='form.button.Cancel']"
+        $("a.popup.image").prepOverlay({
+            subtype:'image'
         });
 
         // workaround this MSIE bug :
@@ -122,7 +135,7 @@
                                             </li>
                                             </metal:macro>
                                             <li>
-                                                <a href="#" class="popup" tal:attributes="href string:${url}/image_view_fullscreen">
+                                                <a href="#" class="popup image" tal:attributes="href string:${url}">
                                                     <img src="image_icon.png" alt="View" title="View">
                                                 </a>
                                             </li>
@@ -145,8 +158,8 @@
                                         <ul class="functions column small-12" tal:define="url obj/url">
                                             <metal:macro use-macro="template/macros/common-functions" />
                                             <li>
-                                                <a href="#" class="popup" tal:attributes="href string:${url}/@@view">
-                                                    <img src="file_icon.png" alt="View" title="View">
+                                                <a href="#" tal:attributes="href string:${url}/@@download">
+                                                    <img src="file_icon.png" alt="Download" title="Download">
                                                 </a>
                                             </li>
                                         </ul>
