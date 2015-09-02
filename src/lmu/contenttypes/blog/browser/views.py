@@ -160,31 +160,21 @@ class EditForm(edit.DefaultEditForm):
     template = ViewPageTemplateFile('templates/edit.pt')
 
     def images(self):
-        for obj in self.context.objectValues():
+        for obj in reversed(self.context.objectValues()):
             if obj.portal_type == 'Image':
                 yield {'url': obj.absolute_url()}
 
     def files(self):
         plone_layout = getMultiAdapter((self.context, self.request),
                                        name='plone_layout')
-        for obj in self.context.objectValues():
+        for obj in reversed(self.context.objectValues()):
             if obj.portal_type != 'Image':
-                yield {'tag': plone_layout.getIcon(obj).html_tag(),
+                yield {'url': obj.absolute_url(),
+                       'tag': plone_layout.getIcon(obj).html_tag(),
                        'title': obj.Title()}
 
-    def render_quickupload_images(self):
-        ass = Assignment(header=_('Upload Images'),
-                         upload_portal_type='Image',
-                         upload_media_type='image')
-        renderer = CustomUploadRenderer(
-            self.context, self.request, self, None, ass)
-        renderer.update()
-        return renderer.render()
-
-    def render_quickupload_files(self):
-        ass = Assignment(header=_('Upload Files'),
-                         upload_portal_type='File',
-                         upload_media_type='')
+    def render_quickupload(self):
+        ass = Assignment(header=_('Upload Files'))
         renderer = CustomUploadRenderer(
             self.context, self.request, self, None, ass)
         renderer.update()
