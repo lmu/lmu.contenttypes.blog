@@ -126,14 +126,14 @@
                                 <i class="fi-info"></i>
                                 <span class="show-for-sr" i18n:translate="">Help</span>
                             </a>
-                            <div class="column small-12 medium-6">
+                            <div class="column small-12">
                                 <div tal:replace="structure view/render_quickupload"></div>
                             </div>
-                            <div id="files" class="column small-12 medium-6 content-items">
-                                <ul class="image previews column small-6">
-                                    <li class="row" tal:repeat="img view/images">
-                                        <img class="column small-12 large-10" src="${img/url}/@@images/image/thumb?_=${view/timestamp}" tal:attributes="src string:${img/url}/@@images/image/thumb?_=${view/timestamp}">
-                                        <ul class="functions column small-12 large-2" tal:define="url img/url">
+                            <div id="files" class="column small-12 content-items">
+                                <ul class="image previews column small-6 large-8 small-block-grid-1 large-block-grid-3">
+                                    <li tal:repeat="img view/images">
+                                        <img class="column small-12" src="${img/url}/@@images/image/thumb?_=${view/timestamp}" tal:attributes="src string:${img/url}/@@images/image/thumb?_=${view/timestamp}">
+                                        <ul class="functions column small-12" tal:define="url img/url">
                                             <metal:macro define-macro="common-functions">
                                             <li>
                                                 <a href="#">
@@ -174,7 +174,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                                <ul class="file previews column small-6">
+                                <ul class="file previews column small-6 large-4">
                                     <li class="row" tal:repeat="obj view/files">
                                         <div class="column small-12"><img src="file_icon.png"><span tal:content="obj/title">Title</span></div>
                                         <ul class="functions column small-12" tal:define="url obj/url">
