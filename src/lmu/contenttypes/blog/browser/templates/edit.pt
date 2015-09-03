@@ -132,7 +132,6 @@
                             <div id="files" class="column small-12 content-items">
                                 <ul class="image previews column small-6 large-8 small-block-grid-1 large-block-grid-3">
                                     <li tal:repeat="img view/images">
-                                        <img class="column small-12" src="${img/url}/@@images/image/thumb?_=${view/timestamp}" tal:attributes="src string:${img/url}/@@images/image/thumb?_=${view/timestamp}">
                                         <ul class="functions column small-12" tal:define="url img/url">
                                             <metal:macro define-macro="common-functions">
                                             <li>
@@ -172,11 +171,12 @@
                                             </li>
                                             -->
                                         </ul>
+                                        <img class="column small-12" src="${img/url}/@@images/image/thumb?_=${view/timestamp}" tal:attributes="src string:${img/url}/@@images/image/thumb?_=${view/timestamp}">
+                                        <span class="column small-12" tal:content="img/title">Bildtitel</span>
                                     </li>
                                 </ul>
                                 <ul class="file previews column small-6 large-4">
                                     <li class="row" tal:repeat="obj view/files">
-                                        <div class="column small-12"><img src="file_icon.png"><span tal:content="obj/title">Title</span></div>
                                         <ul class="functions column small-12" tal:define="url obj/url">
                                             <metal:macro use-macro="template/macros/common-functions" />
                                             <li>
@@ -185,6 +185,7 @@
                                                 </a>
                                             </li>
                                         </ul>
+                                        <div class="column small-12"><img src="file_icon.png"><span tal:content="obj/title">Title</span></div>
                                     </li>
                                 </ul>
                             </div>

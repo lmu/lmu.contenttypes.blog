@@ -163,7 +163,8 @@ class EditForm(edit.DefaultEditForm):
     def images(self):
         for obj in reversed(self.context.objectValues()):
             if obj.portal_type == 'Image':
-                yield {'url': obj.absolute_url()}
+                yield {'url': obj.absolute_url(),
+                       'title': obj.Title()}
 
     def files(self):
         plone_layout = getMultiAdapter((self.context, self.request),
