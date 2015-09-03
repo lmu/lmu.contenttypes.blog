@@ -6,6 +6,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from collective.quickupload.portlet.quickuploadportlet import Assignment
 from collective.quickupload.portlet.quickuploadportlet import Renderer
+from datetime import datetime
 from plone import api
 from plone.app.textfield.interfaces import ITransformer
 from plone.dexterity.browser import edit
@@ -179,3 +180,6 @@ class EditForm(edit.DefaultEditForm):
             self.context, self.request, self, None, ass)
         renderer.update()
         return renderer.render()
+
+    def timestamp(self):
+        return datetime.now().isoformat()

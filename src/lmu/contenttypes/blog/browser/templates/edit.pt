@@ -6,33 +6,55 @@
       i18n:domain="plone">
 
     <metal:block fill-slot="javascript_head_slot">
+      <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
+      <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/cropping.js"></script>
       <script type="text/javascript">
 (function($) {
-    $(function() {
+    var ajaxify_overlay_form = function() {
+        $('.overlay form').ajaxForm({
+            success: function () {
+                $('.close a').click();
+                $.ajax().done(
+                    function(html) {
+                        $(".previews").replaceWith($(html).find(".previews"));
+                        set_up_function_overlays();
+                    }
+                );
+            }
+        });
+    };
+    function set_up_function_overlays() {
         $("a[href$='@@croppingeditor']").prepOverlay({
             subtype:'ajax',
             selector:'#content',
             closeselector:"input[name='form.button.Cancel']",
-            width:'80%'
+            width:'80%',
+            config: {
+                onLoad: ajaxify_overlay_form
+            }
         });
         $("a[href$='@@edit'].popup").prepOverlay({
             subtype:'ajax',
             selector:'#content-core',
-            closeselector:"input[name='form.buttons.cancel']"
-        });
-        $("a[href$='@@view'].popup").prepOverlay({
-            subtype:'ajax',
-            selector:'#content-core'
+            closeselector:"input[name='form.buttons.cancel']",
+            config: {
+                onLoad: ajaxify_overlay_form
+            }
         });
         $("a[href$='delete_confirmation'].popup").prepOverlay({
             subtype:'ajax',
             selector:'#content',
-            closeselector:"input[name='form.button.Cancel']"
+            closeselector:"input[name='form.button.Cancel']",
+            config: {
+                onLoad: ajaxify_overlay_form
+            }
         });
         $("a.popup.image").prepOverlay({
             subtype:'image'
         });
-
+    }
+    $(function() {
+        set_up_function_overlays();
         // workaround this MSIE bug :
         // https://dev.plone.org/plone/ticket/10894
         if ($.browser.msie) $("#settings").remove();
@@ -40,8 +62,8 @@
         Browser.onUploadComplete = function() {
             $.ajax().done(
                 function(html) {
-                    $(".image-previews").replaceWith($(html).find(".image-previews"));
-                    $(".file-previews").replaceWith($(html).find(".file-previews"));
+                    $(".previews").replaceWith($(html).find(".previews"));
+                    set_up_function_overlays();
                 }
             );
         }
@@ -110,7 +132,7 @@
                             <div id="files" class="column small-12 medium-6 content-items">
                                 <ul class="image previews column small-6">
                                     <li class="row" tal:repeat="img view/images">
-                                        <img class="column small-12 large-10" src="${img/url}/@@images/image/thumb" tal:attributes="src string:${img/url}/@@images/image/thumb">
+                                        <img class="column small-12 large-10" src="${img/url}/@@images/image/thumb?_=${view/timestamp}" tal:attributes="src string:${img/url}/@@images/image/thumb?_=${view/timestamp}">
                                         <ul class="functions column small-12 large-2" tal:define="url img/url">
                                             <metal:macro define-macro="common-functions">
                                             <li>
