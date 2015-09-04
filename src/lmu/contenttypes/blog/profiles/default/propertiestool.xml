@@ -6,6 +6,7 @@
             <element value="xlarge 2000:2000"/>
             <element value="large 768:768"/>
             <element value="preview 400:400"/>
+            <element value="teaser 320:240"/>
             <element value="mini 200:200"/>
             <element value="thumb 128:128"/>
             <element value="tile 64:64"/>
