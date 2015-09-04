@@ -190,7 +190,7 @@
                                         -->
                                     </ul>
                                 </form>
-                                <img class="column small-12" src="${item/url}/@@images/image/thumb?_=${view/timestamp}" tal:attributes="src string:${item/url}/@@images/image/thumb?_=${view/timestamp}">
+                                <img class="column small-12" src="${item/url}/@@images/image/teaser?_=${view/timestamp}" tal:attributes="src string:${item/url}/@@images/image/teaser?_=${view/timestamp}">
                                 <span class="column small-12" tal:content="item/title">Bildtitel</span>
                             </li>
                         </ul>
