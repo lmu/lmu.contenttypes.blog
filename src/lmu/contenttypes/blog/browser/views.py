@@ -4,8 +4,10 @@ from Products.CMFCore import permissions
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+import json
 from collective.quickupload.portlet.quickuploadportlet import Assignment
 from collective.quickupload.portlet.quickuploadportlet import Renderer
+from datetime import datetime
 from plone import api
 from plone.app.textfield.interfaces import ITransformer
 from plone.dexterity.browser import edit
@@ -172,42 +174,51 @@ class CustomUploadRenderer(Renderer):
 class EditForm(edit.DefaultEditForm):
     template = ViewPageTemplateFile('templates/edit.pt')
 
+    def content(self, mode='files'):
+        if mode == 'images':
+            type_test = lambda typ: typ == 'Image'
+        else:
+            plone_layout = getMultiAdapter((self.context, self.request),
+                                           name='plone_layout')
+            type_test = lambda typ: typ != 'Image'
+        items = []
+        previous = -1
+        for current, obj in enumerate(reversed(self.context.objectValues())):
+            if type_test(obj.portal_type):
+                item = {'url': obj.absolute_url(),
+                        'id': obj.getId(),
+                        'title': obj.Title()}
+                if mode == 'files':
+                    item['tag'] = plone_layout.getIcon(obj).html_tag()
+                if previous > -1:
+                    item['delta_up'] = current - previous
+                items.append(item)
+                previous = current
+            else:
+                items.append({})
+        previous = -1
+        for current, obj in enumerate(self.context.objectValues()):
+            if type_test(obj.portal_type):
+                if previous > -1:
+                    items[-1 - current]['delta_down'] = previous - current
+                previous = current
+        return [i for i in items if i]
+
     def images(self):
-        for obj in self.context.objectValues():
-            if obj.portal_type == 'Image':
-                yield {'url': obj.absolute_url()}
+        return self.content(mode='images')
 
     def files(self):
-        plone_layout = getMultiAdapter((self.context, self.request),
-                                       name='plone_layout')
-        for obj in self.context.objectValues():
-            if obj.portal_type != 'Image':
-                yield {'tag': plone_layout.getIcon(obj).html_tag(),
-                       'title': obj.Title()}
-
-    def render_quickupload_images(self):
-        ass = Assignment(header=_('Upload Images'),
-                         upload_portal_type='Image',
-                         upload_media_type='image')
-        renderer = CustomUploadRenderer(
-            self.context, self.request, self, None, ass)
-        renderer.update()
-        return renderer.render()
-
-    def render_quickupload_files(self):
-        ass = Assignment(header=_('Upload Files'),
-                         upload_portal_type='File',
-                         upload_media_type='')
-        renderer = CustomUploadRenderer(
-            self.context, self.request, self, None, ass)
-        renderer.update()
-        return renderer.render()
+        return self.content(mode='files')
 
     def render_quickupload(self):
-        ass = Assignment(header=None,
-                         upload_portal_type='',
-                         upload_media_type='')
+        ass = Assignment(header=_('Upload Files'))
         renderer = CustomUploadRenderer(
             self.context, self.request, self, None, ass)
         renderer.update()
         return renderer.render()
+
+    def timestamp(self):
+        return datetime.now().isoformat()
+
+    def subset_ids(self):
+        return json.dumps(self.context.objectIds())
