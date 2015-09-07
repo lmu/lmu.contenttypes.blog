@@ -13,6 +13,7 @@ from plone.app.textfield.interfaces import ITransformer
 from plone.dexterity.browser import edit
 from zope.component import getMultiAdapter
 
+#from lmu.contenttypes.blog.interfaces import IBlogEntry
 from lmu.contenttypes.blog.interfaces import IBlogFolder
 
 from lmu.contenttypes.blog import MESSAGE_FACTORY as _
@@ -171,8 +172,30 @@ class CustomUploadRenderer(Renderer):
         return ''
 
 
+class RichTextWidgetConfig(object):
+    allow_buttons = ('style',
+                     'bold',
+                     'italic',
+                     'numlist',
+                     'bullist',
+                     'link',
+                     'unlink',
+                     )
+    redefine_parastyles = True
+    parastyles = (_('Heading') + '|h2|',
+                  _('Subheading') + '|h3|',
+                  )
+
+
 class EditForm(edit.DefaultEditForm):
     template = ViewPageTemplateFile('templates/edit.pt')
+
+    def __call__(self):
+        self.portal_type = self.context.portal_type
+        text = self.schema.get('text')
+        text.widget = RichTextWidgetConfig()
+        self.updateWidgets()
+        return super(EditForm, self).__call__()
 
     def content(self, mode='files'):
         if mode == 'images':

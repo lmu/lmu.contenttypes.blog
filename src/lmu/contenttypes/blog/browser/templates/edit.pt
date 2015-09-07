@@ -122,7 +122,6 @@
 
                     <a href="#" tal:attributes="href string:${context/absolute_url}/@@croppingeditor">Bild zuschneiden</a>
 
-<<<<<<< HEAD
                     <div id="form-widgets-quickupload-help"
                          class="formHelp reveal-modal xlarge"
                          data-reveal
@@ -169,8 +168,6 @@
                             </div>
                         </div>
                     </div>
-=======
->>>>>>> 2e44706f3ce8913a6c2fa506a921a88a8c3b52f4
                 </metal:block>
             </metal:block>
 
