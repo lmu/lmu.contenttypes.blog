@@ -126,12 +126,14 @@ class EntryView(_AbstractBlogView):
         #images = [item.getObject() for item in image_brains]
         #import ipdb; ipdb.set_trace()
         images = [item if item.portal_type == 'Image' else None for item in self.context.values()]
-        images.remove(None)
+        if None in images:
+            images.remove(None)
         return images
 
     def files(self):
         files = [item if item.portal_type == 'Image' else None for item in self.context.values()]
-        files.remove(None)
+        if None in files:
+            files.remove(None)
         return files
 
     def can_see_history(self):
