@@ -11,6 +11,7 @@ from datetime import datetime
 from plone import api
 from plone.app.textfield.interfaces import ITransformer
 from plone.dexterity.browser import edit
+from plone.dexterity.browser import add
 from zope.component import getMultiAdapter
 
 #from lmu.contenttypes.blog.interfaces import IBlogEntry
@@ -125,16 +126,32 @@ class EntryView(_AbstractBlogView):
         #image_brains = api.content.find(context=self.context, depth=1, portal_type='Image')
         #images = [item.getObject() for item in image_brains]
         #import ipdb; ipdb.set_trace()
-        images = [item if item.portal_type == 'Image' else None for item in self.context.values()]
+        images = [item for item in self.context.values()if item.portal_type == 'Image']
         if None in images:
             images.remove(None)
         return images
 
     def files(self):
-        files = [item if item.portal_type == 'Image' else None for item in self.context.values()]
+        files = [item for item in self.context.values() if item.portal_type == 'File']
         if None in files:
             files.remove(None)
+        #import ipdb; ipdb.set_trace()
         return files
+
+    def getFileSize(self, fileobj):
+        size = fileobj.file.getSize()
+        if size < 1000:
+            size = str(size) + ' Byte'
+        elif size > 1024 and size/1024 < 1000:
+            size = str(fileobj.file.getSize() / 1024) + ' KB'
+        else:
+            size = str(fileobj.file.getSize() / 1024 / 1024) + ' MB'
+        return size
+
+    def getFileType(self, fileobj):
+        ctype = fileobj.file.contentType
+        ctype = ctype.split('/')
+        return str.upper(ctype[1])
 
     def can_see_history(self):
         return True
@@ -169,35 +186,12 @@ class EntryView(_AbstractBlogView):
         return any(role in user.getRolesInContext(self.context) for role in ['Manager', 'SiteAdmin'])
 
 
-class CustomUploadRenderer(Renderer):
-    def javascript(self):
-        return ''
+class EntryContentView(_AbstractBlogView):
 
-
-class RichTextWidgetConfig(object):
-    allow_buttons = ('style',
-                     'bold',
-                     'italic',
-                     'numlist',
-                     'bullist',
-                     'link',
-                     'unlink',
-                     )
-    redefine_parastyles = True
-    parastyles = (_('Heading') + '|h2|',
-                  _('Subheading') + '|h3|',
-                  )
-
-
-class EditForm(edit.DefaultEditForm):
-    template = ViewPageTemplateFile('templates/edit.pt')
+    template = ViewPageTemplateFile('templates/entry_content_view.pt')
 
     def __call__(self):
-        self.portal_type = self.context.portal_type
-        text = self.schema.get('text')
-        text.widget = RichTextWidgetConfig()
-        self.updateWidgets()
-        return super(EditForm, self).__call__()
+        return self.template()
 
     def content(self, mode='files'):
         if mode == 'images':
@@ -247,3 +241,87 @@ class EditForm(edit.DefaultEditForm):
 
     def subset_ids(self):
         return json.dumps(self.context.objectIds())
+
+
+class EntrySortFilesView(_AbstractBlogView):
+
+    template = ViewPageTemplateFile('templates/entry_content_view.pt')
+
+    def __call__(self):
+        return self.template()
+
+
+class EntrySortImagesView(_AbstractBlogView):
+
+    template = ViewPageTemplateFile('templates/entry_content_view.pt')
+
+    def __call__(self):
+        return self.template()
+
+
+class CustomUploadRenderer(Renderer):
+    def javascript(self):
+        return ''
+
+
+class RichTextWidgetConfig(object):
+    allow_buttons = ('style',
+                     'bold',
+                     'italic',
+                     'numlist',
+                     'bullist',
+                     'link',
+                     'unlink',
+                     )
+    redefine_parastyles = True
+    parastyles = (_('Heading') + '|h2|',
+                  _('Subheading') + '|h3|',
+                  )
+
+
+class BlogEntryEditForm(edit.DefaultEditForm):
+    template = ViewPageTemplateFile('templates/blog_entry_edit.pt')
+
+    def __call__(self):
+        self.portal_type = self.context.portal_type
+        text = self.schema.get('text')
+        text.widget = RichTextWidgetConfig()
+        self.updateWidgets()
+        return super(BlogEntryEditForm, self).__call__()
+
+    def content_view(self):
+        return EntryContentView(self.context, self.request)
+
+
+class BlogFileEditForm(edit.DefaultEditForm):
+
+    def __call__(self):
+        self.portal_type = self.context.portal_type
+        text = self.schema.get('text')
+        import ipdb; ipdb.set_trace()
+        text.widget = RichTextWidgetConfig()
+        self.updateWidgets()
+        return super(BlogFileEditForm, self).__call__()
+
+
+class BlogImageEditForm(edit.DefaultEditForm):
+
+    def __call__(self):
+        self.portal_type = self.context.portal_type
+        text = self.schema.get('text')
+        text.widget = RichTextWidgetConfig()
+        self.updateWidgets()
+        return super(BlogImageEditForm, self).__call__()
+
+
+class BlogCommentAddForm(add.DefaultAddForm):
+
+    template = ViewPageTemplateFile('templates/blog_entry_edit.pt')
+
+    def __call__(self):
+        self.portal_type = self.context.portal_type
+        text = self.schema.get('text')
+        import ipdb; ipdb.set_trace()
+        text.widget = RichTextWidgetConfig()
+        self.updateWidgets()
+        return super(BlogFileEditForm, self).__call__()

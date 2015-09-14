@@ -4,7 +4,7 @@ from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.theme.interfaces import IDefaultPloneLayer
 from zope.interface import Interface
 
-from lmu.contenttypes.blog import MESSAGE_FACTORY as _
+#from lmu.contenttypes.blog import MESSAGE_FACTORY as _
 
 
 class IBlogFolder(Interface, IImageScaleTraversable):
@@ -12,7 +12,6 @@ class IBlogFolder(Interface, IImageScaleTraversable):
     Folder for Blog Entries with special views and restrictions
     """
     #form.model("models/blog_folder.xml")
-
 
 
 class IBlogEntry(Interface, IImageScaleTraversable):

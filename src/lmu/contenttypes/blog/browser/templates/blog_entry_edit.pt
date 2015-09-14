@@ -1,0 +1,132 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmln:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+    <metal:block fill-slot="javascript_head_slot">
+      <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
+      <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/cropping.js"></script>
+      <script type="text/javascript">
+(function($) {
+    var ajaxify_overlay_form = function() {
+        $('.overlay form').ajaxForm({
+            success: function () {
+                $('.close a').click();
+                $.ajax().done(
+                    function(html) {
+                        $(".previews").replaceWith($(html).find(".previews"));
+                        set_up_functions();
+                    }
+                );
+            }
+        });
+    };
+    function set_up_functions() {
+        $("a[href$='@@croppingeditor']").prepOverlay({
+            subtype:'ajax',
+            selector:'#content',
+            closeselector:"input[name='form.button.Cancel']",
+            width:'80%',
+            config: {
+                onLoad: ajaxify_overlay_form
+            }
+        });
+        $("a[href$='@@edit'].popup").prepOverlay({
+            subtype:'ajax',
+            selector:'#content-core',
+            closeselector:"input[name='form.buttons.cancel']",
+            config: {
+                onLoad: ajaxify_overlay_form
+            }
+        });
+        $("a[href$='delete_confirmation'].popup").prepOverlay({
+            subtype:'ajax',
+            selector:'#content',
+            closeselector:"input[name='form.button.Cancel']",
+            config: {
+                onLoad: ajaxify_overlay_form
+            }
+        });
+        $("a.popup.image").prepOverlay({
+            subtype:'image'
+        });
+        $('.itemorder').ajaxForm({
+            success: function () {
+                $.ajax().done(
+                    function(html) {
+                        $(".previews").replaceWith($(html).find(".previews"));
+                        set_up_functions();
+                    }
+                );
+            }
+        });
+    }
+    $(function() {
+        set_up_functions();
+        // workaround this MSIE bug :
+        // https://dev.plone.org/plone/ticket/10894
+        if ($.browser.msie) $("#settings").remove();
+        var Browser = {};
+        Browser.onUploadComplete = function() {
+            $.ajax().done(
+                function(html) {
+                    $(".previews").replaceWith($(html).find(".previews"));
+                    set_up_functions();
+                }
+            );
+        }
+        loadUploader = function() {
+            var ulContainer = $('.QuickUploadPortlet .uploaderContainer');
+            ulContainer.each(function(){
+                var uploadUrl =  $('.uploadUrl', this).val();
+                var uploadData =  $('.uploadData', this).val();
+                var UlDiv = $(this);
+            $.ajax({
+                type: 'GET',
+                url: uploadUrl,
+                data: uploadData,
+                dataType: 'html',
+                contentType: 'text/html; charset=utf-8',
+                success: function(html) {
+                    if (html.indexOf('quick-uploader') != -1) {
+                        UlDiv.html(html);
+                    }
+                } });
+            });
+        }
+    $(document).ready(loadUploader);
+
+    })
+})(jQuery);
+      </script>
+    </metal:block>
+
+    <metal:block fill-slot="main">
+
+        <a class="toogle button radius small right" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a>
+        <h1 class="documentFirstHeading" tal:content="view/label | nothing" />
+        <div id="rules" class="blog_info reveal-modal xlarge" data-reveal aria-labelledby="" aria-hidden="true" role="dialog" style="top: -8em;">
+            <tal:rules tal:define="parent context/getParentNode;
+                                   output parent/text/output"
+                tal:content="structure output">
+                Content Body
+            </tal:rules>
+            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
+        <div id="content-core">
+            <metal:block use-macro="context/@@ploneform-macros/titlelessform">
+                <metal:block fill-slot="fields">
+                    <metal:block use-macro="context/@@ploneform-macros/fields" />
+
+                    <a href="#" tal:attributes="href string:${context/absolute_url}/@@croppingeditor">Bild zuschneiden</a>
+
+                    <div tal:replace="structure view/content_view" >Content View</div>
+
+                </metal:block>
+            </metal:block>
+
+    </metal:block>
+
+</html>

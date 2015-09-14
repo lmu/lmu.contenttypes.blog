@@ -105,27 +105,9 @@
 
     <metal:block fill-slot="main">
 
-        <a class="toogle button radius small right" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a>
-        <h1 class="documentFirstHeading" tal:content="view/label | nothing" />
-        <div id="rules" class="blog_info reveal-modal xlarge" data-reveal aria-labelledby="" aria-hidden="true" role="dialog" style="top: -8em;">
-            <tal:rules tal:define="parent context/getParentNode;
-                                   output parent/text/output"
-                tal:content="structure output">
-                Content Body
-            </tal:rules>
-            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-        </div>
         <div id="content-core">
-            <metal:block use-macro="context/@@ploneform-macros/titlelessform">
-                <metal:block fill-slot="fields">
-                    <metal:block use-macro="context/@@ploneform-macros/fields" />
 
-                    <a href="#" tal:attributes="href string:${context/absolute_url}/@@croppingeditor">Bild zuschneiden</a>
-
-                </metal:block>
-            </metal:block>
-
-            <div id="contents" class="row field">
+            <div id="contents" class="field">
                 <div id="form-widgets-quickupload-help"
                     class="formHelp reveal-modal xlarge"
                     data-reveal
@@ -151,11 +133,18 @@
                             <i class="fi-info"></i>
                             <span class="show-for-sr" i18n:translate="">Help</span>
                         </a>
-                        <div class="column small-12">
-                            <div tal:replace="structure view/render_quickupload"></div>
-                        </div>
-                        <div id="files" class="column small-12 content-items">
-                            <ul class="image previews column small-6 large-8 small-block-grid-1 large-block-grid-3">
+                        <div tal:replace="structure view/render_quickupload"></div>
+                        
+                        <h2>Files</h2>
+                        <div id="files" class="content-items">
+
+
+
+
+
+
+
+                            <ul class="image previews">
                                 <li class="content-item" tal:repeat="item view/images">
                                     <form class="itemorder" action="fc-itemOrder" method="post" tal:attributes="id string:functions-${item/id}">
                                         <input type="hidden" name="id" value="test.png" tal:attributes="value item/id" />

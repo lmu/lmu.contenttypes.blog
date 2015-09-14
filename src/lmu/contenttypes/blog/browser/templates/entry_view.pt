@@ -71,8 +71,9 @@
 
         <div class="row">
         
-            <div class="columns small-12 medium-8 end"
-                 tal:attributes="class python: True and 'columns small-12 medium-8 end' or 'columns small-12 medium-8'" >
+            <div class="columns small-12 medium-8 clearing-thumbs" data-clearing 
+                 tal:define="files view/files;"
+                 tal:attributes="class python: files and 'columns small-12 medium-8 end' or 'columns small-12 medium-8'" >
               <tal:image_check tal:condition="context/image">
                 <figure  class="blog-lead-image helper-margin-bottom-m text-center centered"
                          tal:define="scales context/@@images;
@@ -90,13 +91,8 @@
                   <figcaption tal:content="context/image_caption" tal:condition="context/image_caption">Caption</figcaption>
                 </figure>
               </tal:image_check>
-
-              <div tal:replace="structure context/text/output">Content</div>
-            
-            </div>
-            <div class="columns small-12 medium-4" >
-              <ul tal:condition="view/images" class="clearing-thumbs small-block-grid-3" data-clearing >
-                <li tal:repeat="image view/images">
+              <ul tal:condition="view/images" class="clearing-thumbs small-block-grid-3 medium-block-grid-4 large-block-grid-6 helper-border-bottom helper-margin-bottom-l" data-clearing >
+                <li tal:repeat="image view/images" class="helper-no-padding-left">
                   <a class="th" role="button" aria-label="Thumbnails" 
                      tal:define="scales image/@@images;"
                      tal:attributes="href image/absolute_url;">
@@ -104,6 +100,21 @@
                   </a>
                 </li>
               </ul>
+              <div tal:replace="structure context/text/output">Content</div>
+            
+            </div>
+            <div class="columns small-12 medium-4" >
+              <div class="panel" tal:condition="view/files" >
+                <h3 i18n:translate="">Files</h3>
+                <ul class="list-link" >
+                  <li tal:repeat="file view/files">
+                    <a tal:attributes="href file/absolute_url; title file/description">
+                      <span tal:replace="file/title" /> 
+                      <small>(<span tal:replace="python: view.getFileType(file)" />, <span tal:replace="python: view.getFileSize(file)" />)</small>
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
 
           </div>
@@ -153,10 +164,11 @@
                i18n:translate=""
                i18n:attributes="title" >Sperren</a> 
           </div>
-
-          <section>
-            <div tal:replace="structure provider:plone.belowcontent" >Viewlets Below</div>
-          </section>
+          <div class="row">
+              <section class="columns small-12 medium-8 end">
+                <div tal:replace="structure provider:plone.belowcontent" >Viewlets Below</div>
+              </section>
+          </div>
 
       </article>
 
