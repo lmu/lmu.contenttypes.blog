@@ -14,8 +14,7 @@
     </field>
     <field name="text"
            type="plone.app.textfield.RichText"
-           form:widget="plone.app.textfield.widget.RichTextFieldWidget"
-           form:after="ILeadImage.image_caption">
+           form:widget="plone.app.textfield.widget.RichTextFieldWidget">
       <title i18n:translate="lable_text_title">Text</title>
       <description i18n:translate="lable_text_description">Blog-Text</description>
       <required>True</required>

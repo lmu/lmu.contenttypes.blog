@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-08-31 20:17+0000\n"
+"POT-Creation-Date: 2015-09-14 16:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,10 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: manual\n"
+
+#: ./browser/views.py:229
+msgid ""
+msgstr ""
 
 #: ./profiles/default/types/Blog_Entry.xml
 msgid "Blog Entry"
@@ -29,20 +33,28 @@ msgstr ""
 msgid "Blog Folder"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:128
+#: ./browser/templates/entry_view.pt:139
 msgid "Delete Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:121
+#: ./browser/templates/entry_view.pt:132
 msgid "Edit Blog Entry"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:108
+msgid "Files"
 msgstr ""
 
 #: ./profiles/default/types/Blog_Folder.xml
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr ""
 
+#: ./browser/views.py:273
+msgid "Heading"
+msgstr ""
+
 #: ./browser/templates/frontpage_view.pt:146
-#: ./browser/templates/listing_view.pt:45
+#: ./browser/templates/listing_view.pt:57
 msgid "Jetzt einen Blog-Beitrag verfassen"
 msgstr ""
 
@@ -50,36 +62,32 @@ msgstr ""
 msgid "Meine Blogbeitraege -"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:135
+#: ./browser/templates/entry_view.pt:146
 msgid "Publish"
 msgstr ""
 
-#: ./browser/templates/listing_view.pt:130
+#: ./browser/templates/listing_view.pt:136
 msgid "Read Comments / Write a comment"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:113
+#: ./browser/templates/entry_view.pt:124
 msgid "Report Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:142
+#: ./browser/templates/entry_view.pt:153
 msgid "Set Private"
 msgstr ""
 
-#: ./browser/templates/listing_view.pt:31
+#: ./browser/templates/listing_view.pt:43
 msgid "Show Blog Rules"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:149
+#: ./browser/templates/entry_view.pt:160
 msgid "Sperren"
 msgstr ""
 
-#: ./browser/views.py:198
-msgid "Upload Files"
-msgstr ""
-
-#: ./browser/views.py:189
-msgid "Upload Images"
+#: ./browser/views.py:274
+msgid "Subheading"
 msgstr ""
 
 #: ./browser/templates/frontpage_view.pt:65
@@ -89,7 +97,7 @@ msgstr ""
 #. Default: "Jump to Comments"
 #: ./browser/templates/entry_view.pt:48
 #: ./browser/templates/frontpage_view.pt:91
-#: ./browser/templates/listing_view.pt:79
+#: ./browser/templates/listing_view.pt:91
 msgid "lable_jump_to_comments"
 msgstr ""
 

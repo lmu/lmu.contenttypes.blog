@@ -1,13 +1,14 @@
+<tal:doctype xmlns:tal="http://xml.zope.org/namespaces/tal"
+             tal:define="omit view/omit"
+             tal:omit-tag="omit" >
 <html xmlns="http://www.w3.org/1999/xhtml"
-     xmln:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmln:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      metal:use-macro="context/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="plone"
+      tal:omit-tag="omit" >
 
-    <metal:block fill-slot="javascript_head_slot">
-      <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
-      <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/cropping.js"></script>
+      <script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
+      <script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/cropping.js"></script>
       <script type="text/javascript">
 (function($) {
     var ajaxify_overlay_form = function() {
@@ -101,123 +102,101 @@
     })
 })(jQuery);
       </script>
-    </metal:block>
-
-    <metal:block fill-slot="main">
-
-        <div id="content-core">
-
-            <div id="contents" class="field">
-                <div id="form-widgets-quickupload-help"
-                    class="formHelp reveal-modal xlarge"
-                    data-reveal
-                    aria-labelledby=""
-                    aria-hidden="true"
-                    role="dialog">
-                    <div i18n:translate="">
-                        Please upload additional images or files.
-                    </div>
-                    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-                </div>
-                <div class="row field">
-                    <div class="column small-12 medium-2">
-                        <label for="" class="horizontal inline">
-                            Upload additional Images and Files
-                        </label>
-                    </div>
-                    <div class="column small-12 medium-10">
-                        <a class="toogle formHelpToggle inline right helper-margin-left-s"
-                        href="#"
-                        style="font-size: 2em;"
-                        data-reveal-id="form-widgets-quickupload-help" >
-                            <i class="fi-info"></i>
-                            <span class="show-for-sr" i18n:translate="">Help</span>
-                        </a>
-                        <div tal:replace="structure view/render_quickupload"></div>
-                        
-                        <h2>Files</h2>
-                        <div id="files" class="content-items">
 
 
+      <div class="field">
+          <div class="row field">
+              <div class="column small-12 medium-2">
+                  <label for="" class="horizontal inline">
+                      Upload additional Images and Files
+                  </label>
+              </div>
+              <div class="column small-12 medium-10">
+                  <div tal:replace="structure view/render_quickupload"></div>
+                
+                  <h2 i18n:translate="" class="helper-margin-top-l">Images</h2>
+                  <div id="images" class="image_listing helper-margin-bottom-l " tal:condition="view/images" >
+                      <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/images">
+                        <div class="column small-2" >
 
+                          <a class="th" role="button" aria-label="Thumbnails" 
+                             tal:attributes="href item/absolute_url;" 
+                             tal:on-error=" item">
 
+                            <img tal:define="scales item/@@images;"
+                                 tal:replace="structure python: scales.tag('image', width=80, height=80, direction='down')" tal:on-error="string: Kein Bild Scale"/>
+                          </a>
 
-
-
-                            <ul class="image previews">
-                                <li class="content-item" tal:repeat="item view/images">
-                                    <form class="itemorder" action="fc-itemOrder" method="post" tal:attributes="id string:functions-${item/id}">
-                                        <input type="hidden" name="id" value="test.png" tal:attributes="value item/id" />
-                                        <input type="hidden" name="subset_ids" value="['test.png']" tal:attributes="value view/subset_ids" />
-                                        <span tal:replace="structure context/@@authenticator/authenticator"/>
-
-                                        <ul class="functions column small-12">
-                                            <metal:macro define-macro="common-functions">
-                                            <li tal:condition="item/delta_up|nothing">
-                                                    <button type="submit" name="delta" value="1" tal:attributes="value item/delta_up">
-                                                        <img src="arrowUp.png" alt="Up" title="Up" />
-                                                    </button>
-                                            </li>
-                                            <li tal:condition="item/delta_down|nothing">
-                                                    <button type="submit" name="delta" value="-1" tal:attributes="value item/delta_down">
-                                                        <img src="arrowDown.png" alt="Down" title="Down" />
-                                                    </button>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="popup" tal:attributes="href string:${item/url}/@@edit">
-                                                    <img src="edit.png" alt="Edit" title="Edit" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="popup" tal:attributes="href string:${item/url}/delete_confirmation">
-                                                    <img src="delete_icon.png" alt="Delete" title="Delete" />
-                                                </a>
-                                            </li>
-                                            </metal:macro>
-                                            <li>
-                                                <a href="#" class="popup image" tal:attributes="href string:${item/url}">
-                                                    <img src="image_icon.png" alt="View" title="View" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" tal:attributes="href string:${item/url}/@@croppingeditor">
-                                                    <img src="cut_icon.png" alt="Crop" title="Crop" />
-                                                </a>
-                                            </li>
-                                            <!--
-                                            <li>
-                                                <a href="#" class="popup">Rotate</a>
-                                            </li>
-                                            -->
-                                        </ul>
-                                    </form>
-                                    <img class="column small-12" src="${item/url}/@@images/image/teaser?_=${view/timestamp}" tal:attributes="src string:${item/url}/@@images/image/teaser?_=${view/timestamp}" />
-                                    <span class="column small-12" tal:content="item/title">Bildtitel</span>
+                        </div>
+                        <div class="column small-8" >
+                            <h3 tal:content="item/title" >Titel</h3>
+                            <p tal:content="item/title" tal:condition="item/title">Description</p>
+                        </div>
+                        <div class="column small-2">
+                            <ul class="inline-list right">
+                                <li>
+                                    <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@blog_image_edit">
+                                        <i class="fi-pencil helper-big" ></i><span class="show-for-sr" i18n:translate="">Edit</span>
+                                    </a>
                                 </li>
-                            </ul>
-                            <ul class="file previews column small-6 large-4">
-                                <li class="row content-item" tal:repeat="item view/files">
-                                    <form class="itemorder" action="fc-itemOrder" method="post" tal:attributes="id string:functions-${item/id}">
-                                        <input type="hidden" name="id" value="test.png" tal:attributes="value item/id" />
-                                        <input type="hidden" name="subset_ids" value="['test.png']" tal:attributes="value view/subset_ids" />
-                                        <span tal:replace="structure context/@@authenticator/authenticator"/>
-                                        <ul class="functions column small-12">
-                                            <metal:macro use-macro="template/macros/common-functions" />
-                                            <li>
-                                                <a href="#" tal:attributes="href string:${item/url}/@@download">
-                                                    <img src="file_icon.png" alt="Download" title="Download" />
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </form>
-                                    <div class="column small-12"><img src="file_icon.png" /><span tal:content="item/title">Title</span></div>
+                                <li>
+                                    <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/delete_confirmation">
+                                      <i class="fi-x helper-big" ></i><span class="show-for-sr" i18n:translate="">Delete</span>
+                                    </a>
+                                </li>
+                                <li tal:condition="nothing">
+                                    <a href="#" tal:attributes="href string:${item/absolute_url}/@@croppingeditor">
+                                      <i class="fi-crop helper-big" ></i><span class="show-for-sr" i18n:translate="">Crop</span>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
+
                     </div>
+
+                  </div>
+                <div id="images" class="image_listing" tal:condition="not: view/images">
+                  <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/files">
+                    <div class="column small-10" >
+                      <p i18n:translate="">No Files Uploaded</p>
+                    </div>
+                  </div>
                 </div>
+
+                <h2 i18n:translate="" >Files</h2>
+                <div id="files" class="file_listing" tal:condition="view/files">
+                  <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/files">
+                    <div class="column small-10" >
+                      <h3 ><span tal:replace="item/title" >Titel</span> <small>(<span tal:replace="python: view.getFileType(item)" />, <span tal:replace="python: view.getFileSize(item)" />)</small></h3>
+                      <p tal:content="item/title" tal:condition="item/title">Description</p>
+                    </div>
+                    <div class="column small-2">
+                      <ul class="inline-list right">
+                        <li>
+                          <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@edit">
+                              <i class="fi-pencil helper-big" ></i><span class="show-for-sr" i18n:translate="">Edit</span>
+                          </a>
+                        </li>
+                        <li>
+                            <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/delete_confirmation">
+                              <i class="fi-x helper-big" ></i><span class="show-for-sr" i18n:translate="">Edit</span>
+                            </a>
+                        </li>
+                      </ul>
+                    </div>
+
+                  </div>
+                </div>
+                <div id="files" class="file_listing" tal:condition="not: view/files">
+                  <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/files">
+                    <div class="column small-10" >
+                      <p i18n:translate="">No Files Uploaded</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
         </div>
 
-    </metal:block>
-
 </html>
+</tal:doctype>

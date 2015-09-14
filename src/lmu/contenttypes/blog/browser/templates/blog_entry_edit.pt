@@ -122,7 +122,7 @@
 
                     <a href="#" tal:attributes="href string:${context/absolute_url}/@@croppingeditor">Bild zuschneiden</a>
 
-                    <div tal:replace="structure view/content_view" >Content View</div>
+                    <div tal:replace="structure context/@@content_view" >Content View</div>
 
                 </metal:block>
             </metal:block>

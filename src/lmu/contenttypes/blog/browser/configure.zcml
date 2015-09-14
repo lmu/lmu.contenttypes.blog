@@ -76,12 +76,12 @@
         class=".views.BlogCommentAddForm"
         />
 
-    <z3c:widgetTemplate
+    <!--z3c:widgetTemplate
         mode="input"
         widget="plone.formwidget.namedfile.interfaces.INamedImageWidget"
         layer="lmu.contenttypes.blog.interfaces.IBlogLayer"
         template="templates/image_input.pt"
-        />
+        /-->
 
 <!--
     <browser:page

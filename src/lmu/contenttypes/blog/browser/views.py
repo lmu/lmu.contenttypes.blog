@@ -45,6 +45,37 @@ class _AbstractBlogView(BrowserView):
             transformedValue = transformedValue[:striped_length] + '...'
         return transformedValue
 
+    def images(self):
+        #image_brains = api.content.find(context=self.context, depth=1, portal_type='Image')
+        #images = [item.getObject() for item in image_brains]
+        #import ipdb; ipdb.set_trace()
+        images = [item for item in self.context.values()if item.portal_type == 'Image']
+        if None in images:
+            images.remove(None)
+        return images
+
+    def files(self):
+        files = [item for item in self.context.values() if item.portal_type == 'File']
+        if None in files:
+            files.remove(None)
+        #import ipdb; ipdb.set_trace()
+        return files
+
+    def getFileSize(self, fileobj):
+        size = fileobj.file.getSize()
+        if size < 1000:
+            size = str(size) + ' Byte'
+        elif size > 1024 and size/1024 < 1000:
+            size = str(fileobj.file.getSize() / 1024) + ' KB'
+        else:
+            size = str(fileobj.file.getSize() / 1024 / 1024) + ' MB'
+        return size
+
+    def getFileType(self, fileobj):
+        ctype = fileobj.file.contentType
+        ctype = ctype.split('/')
+        return str.upper(ctype[1])
+
     def _check_permission(self, permission, item):
         pmt = api.portal.get_tool(name='portal_membership')
         return pmt.checkPermission(permission, item)
@@ -122,37 +153,6 @@ class EntryView(_AbstractBlogView):
         #import ipdb; ipdb.set_trace()
         return self.template()
 
-    def images(self):
-        #image_brains = api.content.find(context=self.context, depth=1, portal_type='Image')
-        #images = [item.getObject() for item in image_brains]
-        #import ipdb; ipdb.set_trace()
-        images = [item for item in self.context.values()if item.portal_type == 'Image']
-        if None in images:
-            images.remove(None)
-        return images
-
-    def files(self):
-        files = [item for item in self.context.values() if item.portal_type == 'File']
-        if None in files:
-            files.remove(None)
-        #import ipdb; ipdb.set_trace()
-        return files
-
-    def getFileSize(self, fileobj):
-        size = fileobj.file.getSize()
-        if size < 1000:
-            size = str(size) + ' Byte'
-        elif size > 1024 and size/1024 < 1000:
-            size = str(fileobj.file.getSize() / 1024) + ' KB'
-        else:
-            size = str(fileobj.file.getSize() / 1024 / 1024) + ' MB'
-        return size
-
-    def getFileType(self, fileobj):
-        ctype = fileobj.file.contentType
-        ctype = ctype.split('/')
-        return str.upper(ctype[1])
-
     def can_see_history(self):
         return True
 
@@ -191,6 +191,8 @@ class EntryContentView(_AbstractBlogView):
     template = ViewPageTemplateFile('templates/entry_content_view.pt')
 
     def __call__(self):
+        omit = self.request.get('full')
+        self.omit = not str2bool(omit)
         return self.template()
 
     def content(self, mode='files'):
@@ -223,14 +225,8 @@ class EntryContentView(_AbstractBlogView):
                 previous = current
         return [i for i in items if i]
 
-    def images(self):
-        return self.content(mode='images')
-
-    def files(self):
-        return self.content(mode='files')
-
     def render_quickupload(self):
-        ass = Assignment(header=_('Upload Files'))
+        ass = Assignment(header=_(''))
         renderer = CustomUploadRenderer(
             self.context, self.request, self, None, ass)
         renderer.update()
@@ -286,11 +282,18 @@ class BlogEntryEditForm(edit.DefaultEditForm):
         self.portal_type = self.context.portal_type
         text = self.schema.get('text')
         text.widget = RichTextWidgetConfig()
+        #import ipdb; ipdb.set_trace()
+        aschemata = [schema for schema in self.additionalSchemata]
+        for schema in aschemata:
+            if schema.getName() == 'IVersionable':
+                cn = schema.get('changeNote')
+                cn.mode = 'hidden'
+                #import ipdb; ipdb.set_trace()
+
+        #changeNote = self.schema.get('changeNote')
+        #changeNote.mode = 'hidden'
         self.updateWidgets()
         return super(BlogEntryEditForm, self).__call__()
-
-    def content_view(self):
-        return EntryContentView(self.context, self.request)
 
 
 class BlogFileEditForm(edit.DefaultEditForm):
@@ -298,7 +301,7 @@ class BlogFileEditForm(edit.DefaultEditForm):
     def __call__(self):
         self.portal_type = self.context.portal_type
         text = self.schema.get('text')
-        import ipdb; ipdb.set_trace()
+        #import ipdb; ipdb.set_trace()
         text.widget = RichTextWidgetConfig()
         self.updateWidgets()
         return super(BlogFileEditForm, self).__call__()
@@ -308,8 +311,10 @@ class BlogImageEditForm(edit.DefaultEditForm):
 
     def __call__(self):
         self.portal_type = self.context.portal_type
-        text = self.schema.get('text')
-        text.widget = RichTextWidgetConfig()
+        image = self.schema.get('image')
+        image.mode = 'hidden'
+        image.omitted = True
+        #import ipdb; ipdb.set_trace()
         self.updateWidgets()
         return super(BlogImageEditForm, self).__call__()
 
