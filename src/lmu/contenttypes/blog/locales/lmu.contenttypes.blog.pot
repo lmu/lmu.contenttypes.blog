@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-09-14 16:59+0000\n"
+"POT-Creation-Date: 2015-09-15 22:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: manual\n"
 
-#: ./browser/views.py:229
+#: ./browser/views.py:236
 msgid ""
 msgstr ""
 
@@ -33,15 +33,28 @@ msgstr ""
 msgid "Blog Folder"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:139
+#: ./browser/templates/entry_content_view.pt:158
+msgid "Crop Image"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:153
+msgid "Delete"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:140
 msgid "Delete Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:132
+#: ./browser/templates/entry_content_view.pt:148
+msgid "Edit"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:133
 msgid "Edit Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:108
+#: ./browser/templates/entry_content_view.pt:175
+#: ./browser/templates/entry_view.pt:109
 msgid "Files"
 msgstr ""
 
@@ -49,8 +62,12 @@ msgstr ""
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr ""
 
-#: ./browser/views.py:273
+#: ./browser/views.py:280
 msgid "Heading"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:126
+msgid "Images"
 msgstr ""
 
 #: ./browser/templates/frontpage_view.pt:146
@@ -62,7 +79,15 @@ msgstr ""
 msgid "Meine Blogbeitraege -"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:146
+#: ./browser/templates/entry_content_view.pt:202
+msgid "No Files Uploaded"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:170
+msgid "No Images Uploaded"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:147
 msgid "Publish"
 msgstr ""
 
@@ -70,24 +95,29 @@ msgstr ""
 msgid "Read Comments / Write a comment"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:124
+#: ./browser/templates/entry_view.pt:125
 msgid "Report Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:153
+#: ./browser/templates/entry_view.pt:154
 msgid "Set Private"
 msgstr ""
 
+#: ./browser/templates/blog_entry_edit.pt:108
 #: ./browser/templates/listing_view.pt:43
 msgid "Show Blog Rules"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:160
+#: ./browser/templates/entry_view.pt:161
 msgid "Sperren"
 msgstr ""
 
-#: ./browser/views.py:274
+#: ./browser/views.py:281
 msgid "Subheading"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:119
+msgid "Upload additional Images and Files"
 msgstr ""
 
 #: ./browser/templates/frontpage_view.pt:65

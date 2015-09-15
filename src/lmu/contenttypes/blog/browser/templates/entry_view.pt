@@ -75,24 +75,25 @@
                  tal:define="files view/files;"
                  tal:attributes="class python: files and 'columns small-12 medium-8 end' or 'columns small-12 medium-8'" >
               <tal:image_check tal:condition="context/image">
-                <figure  class="blog-lead-image helper-margin-bottom-m text-center centered"
+                <figure  class="blog-lead-image helper-margin-bottom-m text-left"
                          tal:define="scales context/@@images;
                                      scaled_fallback_image  python: scales.scale('image', scale='large');
                                      style string:max-width: ${scaled_fallback_image/width}px;;"
                          tal:attributes="style style" >
-                  <picture>
-                    <source media="(min-width: 64em)" tal:define="scaled_image python: scales.scale('image', scale='xlarge');" tal:attributes="srcset scaled_image/url;"/>
-                    <source media="(min-width: 52em)" tal:define="scaled_image python: scales.scale('image', scale='large');" tal:attributes="srcset scaled_image/url;"/>
-                    <source media="(min-width: 42em)" tal:define="scaled_image python: scales.scale('image', scale='preview');" tal:attributes="srcset scaled_image/url;" />
-                    <source media="(min-width: 36em)" tal:define="scaled_image python: scales.scale('image', scale='mini');" tal:attributes="srcset scaled_image/url;" />
-                    <source media="(min-width: 24em)" tal:define="scaled_image python: scales.scale('image', scale='thumb');" tal:attributes="srcset scaled_image/url;" />
-                    <img tal:replace="structure python: scales.tag('image', scale='large', alt=context.image_caption, title=context.image_caption)" />
-                  </picture>
+                  <img tal:replace="structure python: scales.tag('image', scale='large', alt=context.image_caption, title=context.image_caption)" />
                   <figcaption tal:content="context/image_caption" tal:condition="context/image_caption">Caption</figcaption>
                 </figure>
               </tal:image_check>
-              <ul tal:condition="view/images" class="clearing-thumbs small-block-grid-3 medium-block-grid-4 large-block-grid-6 helper-border-bottom helper-margin-bottom-l" data-clearing >
-                <li tal:repeat="image view/images" class="helper-no-padding-left">
+              <ul tal:condition="view/images" class="clearing-thumbs clearing-feature small-block-grid-3 medium-block-grid-4 large-block-grid-6 helper-border-bottom helper-margin-bottom-l" data-clearing >
+                <li tal:condition="context/image">
+                  <a tal:attributes="href string:${context/absolute_url}/@@images/image/large"
+                     tal:define="scales context/@@images;
+                                 caption python:context.image_caption;"
+                     class="th" role="button" aria-label="Thumbnails" >
+                    <img tal:replace="structure python: scales.tag('image', width=80, height=80, direction='down', title=context.image_caption, alt=context.image_caption)" />
+                  </a>
+                </li>
+                <li tal:repeat="image view/images" class="helper-no-padding-left clearing-featured-img">
                   <a class="th" role="button" aria-label="Thumbnails" 
                      tal:define="scales image/@@images;"
                      tal:attributes="href image/absolute_url;">

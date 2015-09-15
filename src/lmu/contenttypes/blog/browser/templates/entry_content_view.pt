@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmln:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="plone"
+      i18n:domain="lmu.contenttypes.blog"
       tal:omit-tag="omit" >
 
       <script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
@@ -116,7 +116,7 @@
       <div class="field">
           <div class="row field">
               <div class="column small-12 medium-2">
-                  <label for="" class="horizontal inline">
+                  <label for="" class="horizontal inline" i18n:translate="">
                       Upload additional Images and Files
                   </label>
               </div>
@@ -155,7 +155,7 @@
                                 </li>
                                 <li tal:condition="nothing">
                                     <a href="#" tal:attributes="href string:${item/absolute_url}/@@croppingeditor">
-                                      <i class="fi-crop helper-big" ></i><span class="show-for-sr" i18n:translate="">Crop</span>
+                                      <i class="fi-crop helper-big" ></i><span class="show-for-sr" i18n:translate="">Crop Image</span>
                                     </a>
                                 </li>
                             </ul>
@@ -165,9 +165,9 @@
 
                   </div>
                 <div id="images" class="image_listing" tal:condition="not: view/images">
-                  <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/files">
+                  <div class="row helper-border-top helper-margin-bottom-s" >
                     <div class="column small-10" >
-                      <p i18n:translate="">No Files Uploaded</p>
+                      <p i18n:translate="">No Images Uploaded</p>
                     </div>
                   </div>
                 </div>
@@ -188,7 +188,7 @@
                         </li>
                         <li>
                             <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/delete_confirmation">
-                              <i class="fi-x helper-big" ></i><span class="show-for-sr" i18n:translate="">Edit</span>
+                              <i class="fi-x helper-big" ></i><span class="show-for-sr" i18n:translate="">Delete</span>
                             </a>
                         </li>
                       </ul>
@@ -197,7 +197,7 @@
                   </div>
                 </div>
                 <div id="files" class="file_listing" tal:condition="not: view/files">
-                  <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/files">
+                  <div class="row helper-border-top helper-margin-bottom-s" >
                     <div class="column small-10" >
                       <p i18n:translate="">No Files Uploaded</p>
                     </div>

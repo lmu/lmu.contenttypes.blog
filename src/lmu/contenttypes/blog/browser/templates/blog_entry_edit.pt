@@ -3,7 +3,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="lmu.contenttypes.blog">
 
     <metal:block fill-slot="javascript_head_slot">
       <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
@@ -120,7 +120,7 @@
                 <metal:block fill-slot="fields">
                     <metal:block use-macro="context/@@ploneform-macros/fields" />
 
-                    <a href="#" tal:attributes="href string:${context/absolute_url}/@@croppingeditor">Bild zuschneiden</a>
+                    <a href="#" tal:attributes="href string:${context/absolute_url}/@@croppingeditor" tal:condition="nothing">Bild zuschneiden</a>
 
                     <div tal:replace="structure context/@@content_view" >Content View</div>
 

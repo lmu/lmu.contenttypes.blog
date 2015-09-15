@@ -10,18 +10,21 @@ from collective.quickupload.portlet.quickuploadportlet import Renderer
 from datetime import datetime
 from plone import api
 from plone.app.textfield.interfaces import ITransformer
+from plone.behavior.interfaces import IBehaviorAssignable
 from plone.dexterity.browser import edit
 from plone.dexterity.browser import add
 from z3c.form.interfaces import HIDDEN_MODE
-from z3c.form.interfaces import DISPLAY_MODE
-from z3c.form.interfaces import INPUT_MODE
+#from z3c.form.interfaces import DISPLAY_MODE
+#from z3c.form.interfaces import INPUT_MODE
 from zope.component import getMultiAdapter
+from zope.schema import getFieldsInOrder
 
 
 #from lmu.contenttypes.blog.interfaces import IBlogEntry
 from lmu.contenttypes.blog.interfaces import IBlogFolder
 
 from lmu.contenttypes.blog import MESSAGE_FACTORY as _
+from lmu.contenttypes.blog import logger
 
 
 def str2bool(v):
@@ -286,50 +289,76 @@ class BlogEntryEditForm(edit.DefaultEditForm):
         self.portal_type = self.context.portal_type
         text = self.schema.get('text')
         text.widget = RichTextWidgetConfig()
-        #import ipdb; ipdb.set_trace()
-        aschemata = [schema for schema in self.additionalSchemata]
-        for schema in aschemata:
-            if schema.getName() == 'IVersionable':
-                cn = schema.get('changeNote')
-                cn.mode = HIDDEN_MODE
-                #import ipdb; ipdb.set_trace()
 
-        #changeNote = self.schema.get('changeNote')
-        #changeNote.mode = 'hidden'
+        self.updateFields()
+        fields = self.fields
+
+        cn = fields.get('IVersionable.changeNote')
+        cn.omitted = True
+        cn.mode = HIDDEN_MODE
+
         self.updateWidgets()
         return super(BlogEntryEditForm, self).__call__()
 
 
 class BlogFileEditForm(edit.DefaultEditForm):
 
+    description = None
+
     def __call__(self):
+        fields_to_show = ['title', 'description']
+
         self.portal_type = self.context.portal_type
-        text = self.schema.get('text')
-        #import ipdb; ipdb.set_trace()
-        text.widget = RichTextWidgetConfig()
+
+        self.updateFields()
+        fields = self.fields
+
+        for field in fields.values():
+            if field.__name__ not in fields_to_show:
+                field.omitted = True
+                field.mode = HIDDEN_MODE
+
+        for group in self.groups:
+            for field in group.fields.values():
+                if field.__name__ not in fields_to_show:
+                    field.omitted = True
+                    field.mode = HIDDEN_MODE
+
         self.updateWidgets()
         return super(BlogFileEditForm, self).__call__()
+
+    def label(self):
+        return None
 
 
 class BlogImageEditForm(edit.DefaultEditForm):
 
+    description = None
+
     def __call__(self):
+        fields_to_show = ['title', 'description']
+
         self.portal_type = self.context.portal_type
+
         self.updateFields()
-        image = self.fields.get('image')
-        #image = self.schema.get('image')
-        self.schema.description = None
-        image.mode = HIDDEN_MODE
-        image.omitted = True
-        aschemata = self.additionalSchemata
-        #import ipdb; ipdb.set_trace()
-        for schema in aschemata:
-            for field_name in schema.names():
-                field = schema.get(field_name)
-                if field_name not in ['title', 'description']:
+        fields = self.fields
+
+        for field in fields.values():
+            if field.__name__ not in fields_to_show:
+                field.omitted = True
+                field.mode = HIDDEN_MODE
+
+        for group in self.groups:
+            for field in group.fields.values():
+                if field.__name__ not in fields_to_show:
+                    field.omitted = True
                     field.mode = HIDDEN_MODE
+
         self.updateWidgets()
         return super(BlogImageEditForm, self).__call__()
+
+    def label(self):
+        return None
 
 
 class BlogCommentAddForm(add.DefaultAddForm):
@@ -342,4 +371,4 @@ class BlogCommentAddForm(add.DefaultAddForm):
         #import ipdb; ipdb.set_trace()
         text.widget = RichTextWidgetConfig()
         self.updateWidgets()
-        return super(BlogFileEditForm, self).__call__()
+        return super(BlogCommentAddForm, self).__call__()
