@@ -12,7 +12,11 @@ from plone import api
 from plone.app.textfield.interfaces import ITransformer
 from plone.dexterity.browser import edit
 from plone.dexterity.browser import add
+from z3c.form.interfaces import HIDDEN_MODE
+from z3c.form.interfaces import DISPLAY_MODE
+from z3c.form.interfaces import INPUT_MODE
 from zope.component import getMultiAdapter
+
 
 #from lmu.contenttypes.blog.interfaces import IBlogEntry
 from lmu.contenttypes.blog.interfaces import IBlogFolder
@@ -287,7 +291,7 @@ class BlogEntryEditForm(edit.DefaultEditForm):
         for schema in aschemata:
             if schema.getName() == 'IVersionable':
                 cn = schema.get('changeNote')
-                cn.mode = 'hidden'
+                cn.mode = HIDDEN_MODE
                 #import ipdb; ipdb.set_trace()
 
         #changeNote = self.schema.get('changeNote')
@@ -311,10 +315,19 @@ class BlogImageEditForm(edit.DefaultEditForm):
 
     def __call__(self):
         self.portal_type = self.context.portal_type
-        image = self.schema.get('image')
-        image.mode = 'hidden'
+        self.updateFields()
+        image = self.fields.get('image')
+        #image = self.schema.get('image')
+        self.schema.description = None
+        image.mode = HIDDEN_MODE
         image.omitted = True
+        aschemata = self.additionalSchemata
         #import ipdb; ipdb.set_trace()
+        for schema in aschemata:
+            for field_name in schema.names():
+                field = schema.get(field_name)
+                if field_name not in ['title', 'description']:
+                    field.mode = HIDDEN_MODE
         self.updateWidgets()
         return super(BlogImageEditForm, self).__call__()
 
@@ -326,7 +339,7 @@ class BlogCommentAddForm(add.DefaultAddForm):
     def __call__(self):
         self.portal_type = self.context.portal_type
         text = self.schema.get('text')
-        import ipdb; ipdb.set_trace()
+        #import ipdb; ipdb.set_trace()
         text.widget = RichTextWidgetConfig()
         self.updateWidgets()
         return super(BlogFileEditForm, self).__call__()

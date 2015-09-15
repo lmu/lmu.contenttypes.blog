@@ -34,7 +34,16 @@
                 onLoad: ajaxify_overlay_form
             }
         });
-        $("a[href$='@@edit'].popup").prepOverlay({
+        $("a[href$='@@blog_image_edit'].popup").prepOverlay({
+            subtype:'ajax',
+            selector:'#content-core',
+            closeselector:"input[name='form.buttons.cancel']",
+            config: {
+                onLoad: ajaxify_overlay_form
+            }
+        });
+
+        $("a[href$='@@blog_file_edit'].popup").prepOverlay({
             subtype:'ajax',
             selector:'#content-core',
             closeselector:"input[name='form.buttons.cancel']",
@@ -173,7 +182,7 @@
                     <div class="column small-2">
                       <ul class="inline-list right">
                         <li>
-                          <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@edit">
+                          <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@blog_file_edit">
                               <i class="fi-pencil helper-big" ></i><span class="show-for-sr" i18n:translate="">Edit</span>
                           </a>
                         </li>
