@@ -289,6 +289,8 @@ class BlogEntryAddForm(add.DefaultAddForm):
 
     def __call__(self):
         #import ipdb; ipdb.set_trace()
+        self.updateWidgets()
+
         text = self.schema.get('text')
         text.widget = RichTextWidgetConfig()
 
@@ -299,15 +301,21 @@ class BlogEntryAddForm(add.DefaultAddForm):
         cn.omitted = True
         cn.mode = HIDDEN_MODE
 
-        self.updateWidgets()
         return super(BlogEntryAddForm, self).__call__()
 
 
 class BlogEntryEditForm(edit.DefaultEditForm):
     template = ViewPageTemplateFile('templates/blog_entry_edit.pt')
 
+    description = None
+
+    portal_type = 'Blog Entry'
+
     def __call__(self):
-        self.portal_type = self.context.portal_type
+
+        self.updateWidgets()
+        #import ipdb; ipdb.set_trace()
+        #self.portal_type = self.context.portal_type
         text = self.schema.get('text')
         text.widget = RichTextWidgetConfig()
 
@@ -318,7 +326,12 @@ class BlogEntryEditForm(edit.DefaultEditForm):
         cn.omitted = True
         cn.mode = HIDDEN_MODE
 
-        self.updateWidgets()
+        self.updateActions()
+        actions = self.actions
+
+        for action in actions.values():
+            action.klass = action.klass + u' button large round'
+
         return super(BlogEntryEditForm, self).__call__()
 
 

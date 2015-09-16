@@ -104,9 +104,10 @@
     </metal:block>
 
     <metal:block fill-slot="main">
-
-        <a class="toogle button radius small right" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a>
-        <h1 class="documentFirstHeading" tal:content="view/label | nothing" />
+        <div class="clearfix">
+            <a class="toogle button radius small right" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a>
+            <h1 class="documentFirstHeading" tal:content="view/label | nothing" />
+        </div>
         <div id="rules" class="blog_info reveal-modal xlarge" data-reveal aria-labelledby="" aria-hidden="true" role="dialog" style="top: -8em;">
             <tal:rules tal:define="parent context/getParentNode;
                                    output parent/text/output"
