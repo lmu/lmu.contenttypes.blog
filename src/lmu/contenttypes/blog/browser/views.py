@@ -306,6 +306,10 @@ class BlogEntryAddForm(add.DefaultAddForm):
         return super(BlogEntryAddForm, self).__call__()
 
 
+class BlogEntryAddView(add.DefaultAddView):
+    form = BlogEntryAddForm
+
+
 class BlogEntryEditForm(edit.DefaultEditForm):
     template = ViewPageTemplateFile('templates/blog_entry_edit.pt')
 

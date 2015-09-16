@@ -53,10 +53,10 @@
              zope.publisher.interfaces.browser.IDefaultBrowserLayer
              plone.dexterity.interfaces.IDexterityFTI"
         provides="zope.publisher.interfaces.browser.IBrowserPage"
-        factory="lmu.contenttypes.blog.browser.views.BlogEntryAddForm"
+        factory=".views.BlogEntryAddView"
         name="Blog Entry"
         />
-    <class class=".views.BlogEntryAddForm">
+    <class class=".views.BlogEntryAddView">
         <require
             permission="cmf.AddPortalContent"
             interface="zope.publisher.interfaces.browser.IBrowserPage"
