@@ -26,12 +26,12 @@
   <property name="klass">lmu.contenttypes.blog.content.BlogEntry</property>
 
   <property name="behaviors">
-     <element value="plone.app.content.interfaces.INameFromTitle" />
-     <element value="plone.app.versioningbehavior.behaviors.IVersionable" />
-     <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage" />
-     <element value="plone.app.dexterity.behaviors.nextprevious.INextPreviousEnabled" />
-     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
-     <element value="plone.app.imagecropping.behaviors.IImageCroppingBehavior" />
+    <element value="plone.app.content.interfaces.INameFromTitle" />
+    <element value="plone.app.versioningbehavior.behaviors.IVersionable" />
+    <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage" />
+    <element value="plone.app.dexterity.behaviors.nextprevious.INextPreviousEnabled" />
+    <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
+    <element value="plone.app.imagecropping.behaviors.IImageCroppingBehavior" />
    </property>
 
   <!-- View information -->
@@ -39,7 +39,7 @@
   <property name="immediate_view">entry_view</property>
   <property name="default_view">entry_view</property>
   <property name="view_methods">
-   <element value="entry_view"/>
+    <element value="entry_view"/>
   </property>
   <property name="default_view_fallback">False</property>
   <property name="add_permission">cmf.AddPortalContent</property>
@@ -53,11 +53,11 @@
 
   <!-- Actions -->
   <action title="View"
-         action_id="view"
-         category="object"
-         condition_expr=""
-         url_expr="string:${object_url}/"
-         visible="False">
+          action_id="view"
+          category="object"
+          condition_expr=""
+          url_expr="string:${object_url}/"
+          visible="False">
     <permission value="View" />
   </action>
   <action title="Edit"

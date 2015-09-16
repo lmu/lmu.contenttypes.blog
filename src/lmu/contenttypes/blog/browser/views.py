@@ -285,7 +285,7 @@ class RichTextWidgetConfig(object):
 
 
 class BlogEntryAddForm(add.DefaultAddForm):
-    template = ViewPageTemplateFile('templates/blog_entry_edit.pt')
+    template = ViewPageTemplateFile('templates/blog_entry_add.pt')
 
     portal_type = 'Blog Entry'
 
