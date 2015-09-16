@@ -23,6 +23,10 @@ msgstr "Bild (Teaser)"
 msgid "Lead Image Caption"
 msgstr "Bildunterschrift"
 
+#: CMFPlone/skins/plone_forms/delete_confirmation_page.cpt:35
+msgid "alert_really_delete"
+msgstr "Wirklich löschen?"
+
 msgid "lable_text_description"
 msgstr ""
 

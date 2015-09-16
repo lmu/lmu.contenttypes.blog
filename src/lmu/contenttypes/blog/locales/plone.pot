@@ -23,6 +23,10 @@ msgstr ""
 msgid "Lead Image Caption"
 msgstr ""
 
+#: CMFPlone/skins/plone_forms/delete_confirmation_page.cpt:35
+msgid "alert_really_delete"
+msgstr ""
+
 msgid "lable_title_title"
 msgstr ""
 
@@ -34,3 +38,4 @@ msgstr ""
 
 msgid "lable_text_description"
 msgstr ""
+
