@@ -7,9 +7,9 @@
       i18n:domain="lmu.contenttypes.blog"
       tal:omit-tag="omit" >
 
-      <script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
-      <script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/cropping.js"></script>
-      <script type="text/javascript">
+<script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
+<script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/cropping.js"></script>
+<tal:script tal:replace='structure string:<script type="text/javascript">' />
 (function($) {
     var ajaxify_overlay_form = function() {
         $('.overlay form').ajaxForm({
@@ -24,6 +24,10 @@
             }
         });
     };
+    function reloadFolderContents() {
+      $("#folder_contents").load("<tal:url tal:replace="context/absolute_url" />/content_view #folder_contents");
+    }
+
     function set_up_functions() {
         $("a[href$='@@croppingeditor']").prepOverlay({
             subtype:'ajax',
@@ -38,6 +42,7 @@
             subtype:'ajax',
             selector:'#content-core',
             closeselector:"input[name='form.buttons.cancel']",
+            afterpost:reloadFolderContents,
             config: {
                 onLoad: ajaxify_overlay_form
             }
@@ -110,66 +115,69 @@
 
     })
 })(jQuery);
-      </script>
+<tal:script tal:replace='structure string:</script>' />
 
 
-      <div class="field">
-          <div class="row field">
-              <div class="column small-12 medium-2">
-                  <label for="" class="horizontal inline" i18n:translate="">
-                      Upload additional Images and Files
-                  </label>
-              </div>
-              <div class="column small-12 medium-10">
-                  <div tal:replace="structure view/render_quickupload"></div>
-                
-                  <h2 i18n:translate="" class="helper-margin-top-l">Images</h2>
-                  <div id="images" class="image_listing helper-margin-bottom-l " tal:condition="view/images" >
-                      <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/images">
-                        <div class="column small-2" >
+<div class="field">
+    <div class="row field">
+        <div class="column small-12 medium-2">
+            <label for="" class="horizontal inline" i18n:translate="">
+                Upload additional Images and Files
+            </label>
+        </div>
+        <div class="column small-12 medium-10" >
+            <div class="has-tip tip-top" data-tooltip="true" aria-haspopup="true" title="Laden Sie Bilder oder Dokumente zu Ihrem Blog-Beitrag hoch (Maximal 10 MB pro Datei).">
+              <div tal:replace="structure view/render_quickupload"></div>
+            </div>
 
-                          <a class="th" role="button" aria-label="Thumbnails" 
-                             tal:attributes="href item/absolute_url;" 
-                             tal:on-error=" item">
+            <div id="folder_contents">
+                <h2 i18n:translate="" class="helper-margin-top-l">Images</h2>
+                <div id="images" class="image_listing helper-margin-bottom-l " tal:condition="view/images" >
+                    <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/images">
+                      <div class="column small-2" >
 
-                            <img tal:define="scales item/@@images;"
-                                 tal:replace="structure python: scales.tag('image', width=80, height=80, direction='down')" tal:on-error="string: Kein Bild Scale"/>
-                          </a>
+                        <a class="th" role="button" aria-label="Thumbnails" 
+                           tal:attributes="href item/absolute_url;" 
+                           tal:on-error=" item">
 
-                        </div>
-                        <div class="column small-8" >
-                            <h3 tal:content="item/title" >Titel</h3>
-                            <p tal:content="item/title" tal:condition="item/title">Description</p>
-                        </div>
-                        <div class="column small-2">
-                            <ul class="inline-list right">
-                                <li>
-                                    <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@blog_image_edit">
-                                        <i class="fi-pencil helper-big" ></i><span class="show-for-sr" i18n:translate="">Edit</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/delete_confirmation">
-                                      <i class="fi-x helper-big" ></i><span class="show-for-sr" i18n:translate="">Delete</span>
-                                    </a>
-                                </li>
-                                <li tal:condition="nothing">
-                                    <a href="#" tal:attributes="href string:${item/absolute_url}/@@croppingeditor">
-                                      <i class="fi-crop helper-big" ></i><span class="show-for-sr" i18n:translate="">Crop Image</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                          <img tal:define="scales item/@@images;"
+                               tal:replace="structure python: scales.tag('image', width=80, height=80, direction='down')" tal:on-error="string: Kein Bild Scale"/>
+                        </a>
 
-                    </div>
+                      </div>
+                      <div class="column small-8" >
+                          <h3 tal:content="item/title" >Titel</h3>
+                          <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
+                      </div>
+                      <div class="column small-2">
+                          <ul class="inline-list right">
+                              <li>
+                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@blog_image_edit">
+                                      <i class="fi-pencil helper-big" ></i><span class="show-for-sr" i18n:translate="">Edit</span>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/delete_confirmation">
+                                    <i class="fi-x helper-big" ></i><span class="show-for-sr" i18n:translate="">Delete</span>
+                                  </a>
+                              </li>
+                              <li tal:condition="nothing">
+                                  <a href="#" tal:attributes="href string:${item/absolute_url}/@@croppingeditor">
+                                    <i class="fi-crop helper-big" ></i><span class="show-for-sr" i18n:translate="">Crop Image</span>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
 
                   </div>
+
+                </div>
                 <div id="images" class="image_listing" tal:condition="not: view/images">
-                  <div class="row helper-border-top helper-margin-bottom-s" >
-                    <div class="column small-10" >
-                      <p i18n:translate="">No Images Uploaded</p>
+                    <div class="row helper-border-top helper-margin-bottom-s" >
+                        <div class="column small-10" >
+                            <p i18n:translate="">No Images Uploaded</p>
+                        </div>
                     </div>
-                  </div>
                 </div>
 
                 <h2 i18n:translate="" >Files</h2>
@@ -177,7 +185,7 @@
                   <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/files">
                     <div class="column small-10" >
                       <h3 ><span tal:replace="item/title" >Titel</span> <small>(<span tal:replace="python: view.getFileType(item)" />, <span tal:replace="python: view.getFileSize(item)" />)</small></h3>
-                      <p tal:content="item/title" tal:condition="item/title">Description</p>
+                      <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
                     </div>
                     <div class="column small-2">
                       <ul class="inline-list right">
@@ -197,15 +205,16 @@
                   </div>
                 </div>
                 <div id="files" class="file_listing" tal:condition="not: view/files">
-                  <div class="row helper-border-top helper-margin-bottom-s" >
-                    <div class="column small-10" >
-                      <p i18n:translate="">No Files Uploaded</p>
+                    <div class="row helper-border-top helper-margin-bottom-s" >
+                        <div class="column small-10" >
+                            <p i18n:translate="">No Files Uploaded</p>
+                        </div>
                     </div>
-                  </div>
                 </div>
             </div>
-          </div>
         </div>
+    </div>
+</div>
 
 </html>
 </tal:doctype>

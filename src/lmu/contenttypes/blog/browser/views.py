@@ -14,8 +14,8 @@ from plone.app.textfield.interfaces import ITransformer
 from plone.dexterity.browser import edit
 from plone.dexterity.browser import add
 from z3c.form.interfaces import HIDDEN_MODE
-#from z3c.form.interfaces import DISPLAY_MODE
-#from z3c.form.interfaces import INPUT_MODE
+from z3c.form.interfaces import DISPLAY_MODE
+from z3c.form.interfaces import INPUT_MODE
 from zope.component import getMultiAdapter
 #from zope.schema import getFieldsInOrder
 
@@ -116,7 +116,7 @@ class _AbstractBlogListingView(_AbstractBlogView):
         #import ipdb; ipdb.set_trace()
         #return api.user.has_permission(permissions.AddPortalContent, user=current_user, obj=self.context)
         return api.user.has_permission('lmu.contenttypes.blog: Add Blog Entry',
-                                       #     permissions.AddPortalContent, 
+                                       #     permissions.AddPortalContent,
                                        obj=self.context)
 
 
@@ -320,8 +320,7 @@ class BlogEntryEditForm(edit.DefaultEditForm):
     def __call__(self):
 
         self.updateWidgets()
-        #import ipdb; ipdb.set_trace()
-        #self.portal_type = self.context.portal_type
+
         text = self.schema.get('text')
         text.widget = RichTextWidgetConfig()
 
@@ -345,26 +344,46 @@ class BlogFileEditForm(edit.DefaultEditForm):
 
     description = None
 
-    def __call__(self):
-        fields_to_show = ['title', 'description']
+    portal_type = 'File'
 
-        self.portal_type = self.context.portal_type
+    def __call__(self):
+        fields_to_show = ['file']
+        fields_to_input = ['title', 'description']
+        fields_to_hide = []
+        fields_to_omit = []
+
+        self.updateWidgets()
 
         self.updateFields()
         fields = self.fields
 
         for field in fields.values():
-            if field.__name__ not in fields_to_show:
+            if field.__name__ in fields_to_omit:
                 field.omitted = True
+            if field.__name__ in fields_to_hide:
+                field.omitted = False
                 field.mode = HIDDEN_MODE
+            if field.__name__ in fields_to_show:
+                field.omitted = False
+                field.mode = DISPLAY_MODE
+            if field.__name__ in fields_to_input:
+                field.omitted = False
+                field.mode = INPUT_MODE
 
         for group in self.groups:
             for field in group.fields.values():
-                if field.__name__ not in fields_to_show:
+                if field.__name__ in fields_to_omit:
                     field.omitted = True
+                if field.__name__ in fields_to_hide:
+                    field.omitted = False
                     field.mode = HIDDEN_MODE
+                if field.__name__ in fields_to_show:
+                    field.omitted = False
+                    field.mode = DISPLAY_MODE
+                if field.__name__ in fields_to_input:
+                    field.omitted = False
+                    field.mode = INPUT_MODE
 
-        self.updateWidgets()
         return super(BlogFileEditForm, self).__call__()
 
     def label(self):
@@ -374,27 +393,46 @@ class BlogFileEditForm(edit.DefaultEditForm):
 class BlogImageEditForm(edit.DefaultEditForm):
 
     description = None
+    portal_type = 'Image'
 
     def __call__(self):
-        fields_to_show = ['title', 'description']
+        fields_to_show = ['image']
+        fields_to_input = ['title', 'description']
+        fields_to_hide = []
+        fields_to_omit = []
 
-        self.portal_type = self.context.portal_type
+        self.updateWidgets()
 
         self.updateFields()
         fields = self.fields
 
         for field in fields.values():
-            if field.__name__ not in fields_to_show:
+            if field.__name__ in fields_to_omit:
                 field.omitted = True
+            if field.__name__ in fields_to_hide:
+                field.omitted = False
                 field.mode = HIDDEN_MODE
+            if field.__name__ in fields_to_show:
+                field.omitted = False
+                field.mode = DISPLAY_MODE
+            if field.__name__ in fields_to_input:
+                field.omitted = False
+                field.mode = INPUT_MODE
 
         for group in self.groups:
             for field in group.fields.values():
-                if field.__name__ not in fields_to_show:
+                if field.__name__ in fields_to_omit:
                     field.omitted = True
+                if field.__name__ in fields_to_hide:
+                    field.omitted = False
                     field.mode = HIDDEN_MODE
+                if field.__name__ in fields_to_show:
+                    field.omitted = False
+                    field.mode = DISPLAY_MODE
+                if field.__name__ in fields_to_input:
+                    field.omitted = False
+                    field.mode = INPUT_MODE
 
-        self.updateWidgets()
         return super(BlogImageEditForm, self).__call__()
 
     def label(self):

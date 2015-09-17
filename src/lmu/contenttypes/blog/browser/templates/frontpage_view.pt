@@ -71,6 +71,18 @@
 </header>
 <div id="blog-main" class="row overview-light" >
   <div class="columns small-12 large-10 large-centered overview-column" >
+       <div id="rules" class="blog_info reveal-modal xlarge" data-reveal aria-labelledby="" aria-hidden="true" role="dialog" style="top: -8em;">
+          <tal:rules tal:content="structure context/text/output">
+            Content Body
+          </tal:rules>
+          <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
+
+    <div class="row" >
+      <div class="columns small-12 helper-margin-top-m" >
+        <a class="toogle right" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a>
+      </div>
+    </div>
     <div class="row helper-margin-bottom-l" >
       <div class="columns large-12 helper-margin-top-l blog" >
         <tal:block tal:repeat="entry view/entries">
