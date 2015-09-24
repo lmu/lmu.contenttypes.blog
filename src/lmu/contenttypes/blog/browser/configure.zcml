@@ -47,7 +47,7 @@
         permission="cmf.ModifyPortalContent"
         class=".views.EntrySortImagesView"
         />
-<!--
+
     <adapter
         for="Products.CMFCore.interfaces.IFolderish
              zope.publisher.interfaces.browser.IDefaultBrowserLayer
@@ -62,7 +62,7 @@
             interface="zope.publisher.interfaces.browser.IBrowserPage"
             />
     </class>
--->
+
     <browser:page
         for="lmu.contenttypes.blog.interfaces.IBlogEntry"
         name="edit"

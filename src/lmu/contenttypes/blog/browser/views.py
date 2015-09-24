@@ -90,26 +90,40 @@ class _AbstractBlogView(BrowserView):
 
 class _AbstractBlogListingView(_AbstractBlogView):
 
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+        self.b_size = self.request.get('b_size', '20')
+        self.b_start = self.request.get('b_start', '0')
+
+        self.content_filter = {
+            'portal_type': 'Blog Entry',
+            #'review_state': ['published', 'internal-published', 'internally_published'],
+        }
+
+        self.pcatalog = self.context.portal_catalog
+
+        if IBlogFolder.providedBy(self.context):
+
+            if self.request.get('author'):
+                self.content_filter['Creator'] = self.request.get('author')
+
     def entries(self):
         entries = []
         if IBlogFolder.providedBy(self.context):
-            content_filter = {
-                'portal_type': 'Blog Entry',
-                #'review_state': ['published', 'internal-published', 'internally_published'],
-            }
-            if self.request.get('author'):
-                content_filter['Creator'] = self.request.get('author')
 
-            pcatalog = self.context.portal_catalog
-
-            entries = pcatalog.searchResults(
-                content_filter,
+            entries = self.pcatalog.searchResults(
+                self.content_filter,
                 sort_on='modified', sort_order='reverse',
-                b_size=int(self.request.get('b_size', '20')),
-                b_start=int(self.request.get('b_start', '0'))
+                b_size=int(self.b_size),
+                b_start=int(self.b_start)
             )
 
         return entries
+
+    def absolute_length(self):
+        self.absolute_length = len(self.pcatalog.searchResults(self.content_filter))
 
     def can_add(self):
         #current_user = api.user.get_current()

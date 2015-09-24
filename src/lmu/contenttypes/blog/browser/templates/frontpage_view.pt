@@ -153,14 +153,36 @@
   </div>
 </div>
 
-<footer id="blog-footer" class="row overview-light" tal:condition="not: view/author | view/can_add">
-  <div class="columns  small-12 large-10 large-centered">
-    <a class="button link-overlay small-12"
-       tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
-       tal:attributes="href add_url;"
-       i18n:translate="">
-      Jetzt einen Blog-Beitrag verfassen
-    </a>
+<footer id="blog-footer">
+  <div class="row overview-light"
+       tal:condition="not: view/author | view/can_add">
+    <div class="columns  small-12 large-10 large-centered">
+      <div class="pagination-centered">
+        <ul class="pagination">
+          <li class="arrow unavailable"><a href="">&laquo;</a></li>
+          <li class="current"><a href="">1</a></li>
+          <li><a href="">2</a></li>
+          <li><a href="">3</a></li>
+          <li><a href="">4</a></li>
+          <li class="unavailable"><a href="">&hellip;</a></li>
+          <li><a href="">12</a></li>
+          <li><a href="">13</a></li>
+          <li class="arrow"><a href="">&raquo;</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row overview-light"
+       tal:condition="not: view/author | view/can_add">
+    <div class="columns  small-12 large-10 large-centered">
+      <a class="button link-overlay small-12"
+         tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
+         tal:attributes="href add_url;"
+         i18n:translate="">
+        Jetzt einen Blog-Beitrag verfassen
+      </a>
+    </div>
   </div>
 </footer>
 
