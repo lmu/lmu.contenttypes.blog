@@ -98,6 +98,14 @@
         template="templates/image_input.pt"
         /-->
 
+    <browser:page
+        name="ploneform-render-widget"
+        for="z3c.form.interfaces.IWidget"
+        layer="..interfaces.IBlogFormLayer"
+        class=".views.BlogRenderWidget"
+        permission="zope.Public"
+        />
+
 <!--
     <browser:page
         name="report_blog_entry"

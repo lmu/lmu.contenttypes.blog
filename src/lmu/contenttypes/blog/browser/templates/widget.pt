@@ -1,0 +1,89 @@
+<div
+   metal:define-macro="widget-wrapper"
+   i18n:domain="plone"
+   tal:define="widget nocall:context;
+               hidden python:widget.mode == 'hidden';
+               marginb python: '' if hidden else 'helper-margin-bottom-m';
+               error widget/error;
+               error_class python:error and ' error' or '';
+               empty_values python: (None, '', [], ('', '', '', '00', '00', ''), ('', '', ''));
+               empty_class python: (widget.value in empty_values) and ' empty' or '';
+               fieldname_class string:kssattr-fieldname-${widget/name};
+               description widget/field/description"
+   tal:attributes="class string:row field z3cformInlineValidation ${marginb} ${fieldname_class}${error_class}${empty_class};
+                   data-fieldname widget/name;
+                   id string:formfield-${widget/id};">
+  <div class="column small-12 medium-2"
+       tal:condition="not:hidden">
+    <label for="" class="horizontal inline"
+        tal:attributes="for widget/id; class string:horizontal${error_class} inline"
+        tal:condition="not:hidden">
+        <span i18n:translate="" tal:replace="widget/label">label</span>
+
+        <span class="required horizontal" title="Required"
+              tal:condition="python:widget.required and widget.mode == 'input'"
+              i18n:attributes="title title_required;"></span>
+
+    </label>
+  </div>
+
+  <div class="column small-12 medium-7"
+       tal:attributes="class python: hidden and 'column widget-column small-12' or 'column widget-column small-12 medium-10 large-10 end'">
+<tal:comment tal:condition="nothing">
+    <a class="toogle formHelpToggle inline right helper-margin-left-s"
+       href="#"
+       style="font-size: 2em;"
+       data-reveal-id="widget-id-help"
+       tal:condition="python:description and not hidden"
+       tal:attributes="data-reveal-id string:${widget/id}-help;" >
+        <i class="fi-info"></i>
+        <span class="show-for-sr" i18n:translate="">Help</span>
+    </a>
+    <span data-tooltip
+          data-options="hover_delay: 50;"
+          aria-haspopup="true" 
+          class="has-tip inline right helper-margin-left-s"
+          style="font-size: 2em;"
+          tal:attributes="title description"
+          tal:condition="python:description and not hidden" >
+        <i class="fi-info"></i>
+        <span class="show-for-sr" i18n:translate="">Help</span>
+    </span>
+</tal:comment>
+    <div class="widget-field-wrapper"
+         data-tooltip
+         class="has-tip inline"
+         tal:define="show_tooltip python: description and not hidden;"
+         tal:attributes="title description; 
+                         class python: 'has-tip tip-top inline' if show_tooltip else 'inline';
+                         aria-haspopup python: 'true' if show_tooltip else None;
+                         data-tooltip python: '' if show_tooltip else None;
+                         data-options python: 'hover_delay: 50' if show_tooltip else None;
+                         "
+         >
+      <input type="text"
+             class="inline"
+             tal:replace="structure widget/render"
+             metal:define-slot="widget" />
+      <small class="fieldErrorBox error"
+             tal:content="structure error/render|nothing"
+             tal:condition="python: error">
+        Error
+      </small>
+    </div>
+  </div>
+
+  <div id="widget-id-help"
+       class="formHelp reveal-modal xlarge"
+       data-reveal
+       aria-labelledby=""
+       aria-hidden="true"
+       role="dialog"
+       tal:attributes="id string:${widget/id}-help;"
+       tal:condition="nothing" >
+    <div i18n:translate="" tal:content="structure description" >
+    field description
+    </div>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+</div>

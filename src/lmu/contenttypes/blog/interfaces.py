@@ -2,6 +2,7 @@
 
 from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.theme.interfaces import IDefaultPloneLayer
+from z3c.form.interfaces import IFormLayer
 from zope.interface import Interface
 
 #from lmu.contenttypes.blog import MESSAGE_FACTORY as _
@@ -24,6 +25,11 @@ class IBlogEntry(Interface, IImageScaleTraversable):
 class IBlogLayer(IDefaultPloneLayer):
     """ A layer specific to this product.
         Is registered using browserlayer.xml
+    """
+
+
+class IBlogFormLayer(IFormLayer):
+    """ A form layer that helps us overrride ploneform-render-widget
     """
 
 

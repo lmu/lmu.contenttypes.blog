@@ -10,6 +10,7 @@ from collective.quickupload.portlet.quickuploadportlet import Renderer
 from datetime import datetime
 from plone import api
 from plone.app.textfield.interfaces import ITransformer
+from plone.app.z3cform.templates import RenderWidget
 #from plone.behavior.interfaces import IBehaviorAssignable
 from plone.dexterity.browser import edit
 from plone.dexterity.browser import add
@@ -17,11 +18,13 @@ from z3c.form.interfaces import HIDDEN_MODE
 from z3c.form.interfaces import DISPLAY_MODE
 from z3c.form.interfaces import INPUT_MODE
 from zope.component import getMultiAdapter
+from zope.interface import alsoProvides
 #from zope.schema import getFieldsInOrder
 
 
 #from lmu.contenttypes.blog.interfaces import IBlogEntry
 from lmu.contenttypes.blog.interfaces import IBlogFolder
+from lmu.contenttypes.blog.interfaces import IBlogFormLayer
 
 from lmu.contenttypes.blog import MESSAGE_FACTORY as _
 #from lmu.contenttypes.blog import logger
@@ -331,6 +334,10 @@ class BlogEntryEditForm(edit.DefaultEditForm):
 
     portal_type = 'Blog Entry'
 
+    def update(self):
+        alsoProvides(self.request, IBlogFormLayer)
+        super(BlogEntryEditForm, self).update()
+
     def __call__(self):
 
         self.updateWidgets()
@@ -464,3 +471,7 @@ class BlogCommentAddForm(add.DefaultAddForm):
         text.widget = RichTextWidgetConfig()
         self.updateWidgets()
         return super(BlogCommentAddForm, self).__call__()
+
+
+class BlogRenderWidget(RenderWidget):
+    index = ViewPageTemplateFile('templates/widget.pt')
