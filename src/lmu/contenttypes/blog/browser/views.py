@@ -307,7 +307,6 @@ class BlogEntryAddForm(add.DefaultAddForm):
     portal_type = 'Blog Entry'
 
     def __call__(self):
-        #import ipdb; ipdb.set_trace()
         self.updateWidgets()
 
         text = self.schema.get('text')
