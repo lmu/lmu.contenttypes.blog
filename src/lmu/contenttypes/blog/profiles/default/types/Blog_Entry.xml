@@ -28,15 +28,13 @@
   <property name="behaviors">
     <element value="plone.app.content.interfaces.INameFromTitle" />
     <element value="plone.app.versioningbehavior.behaviors.IVersionable" />
-    <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage" />
     <element value="plone.app.dexterity.behaviors.nextprevious.INextPreviousEnabled" />
     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
-    <element value="plone.app.imagecropping.behaviors.IImageCroppingBehavior" />
    </property>
 
   <!-- View information -->
   <property name="link_target"></property>
-  <property name="immediate_view">entry_view</property>
+  <property name="immediate_view">edit</property>
   <property name="default_view">entry_view</property>
   <property name="view_methods">
     <element value="entry_view"/>

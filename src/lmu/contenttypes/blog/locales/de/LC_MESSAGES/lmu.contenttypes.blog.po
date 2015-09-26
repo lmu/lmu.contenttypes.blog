@@ -16,11 +16,11 @@ msgstr ""
 
 #: ./profiles/default/types/Blog_Entry.xml
 msgid "Blog Entry"
-msgstr "Blog-Eintrag"
+msgstr "Blog-Beitrag"
 
 #: ./profiles/default/types/Blog_Entry.xml
 msgid "Blog Entry with folder support for files and images"
-msgstr "Blog-Eintrag mit der Option Bilder und Dateien anzufügen."
+msgstr "Blog-Beitrag mit der Option Bilder und Dateien anzufügen."
 
 #: ./profiles/default/types/Blog_Folder.xml
 msgid "Blog Folder"
@@ -36,7 +36,7 @@ msgstr "Löschen"
 
 #: ./browser/templates/entry_view.pt:140
 msgid "Delete Blog Entry"
-msgstr "Lösche Blog-Eintrag"
+msgstr "Lösche Blog-Beitrag"
 
 #: ./browser/templates/entry_content_view.pt:148
 msgid "Edit"
@@ -44,7 +44,7 @@ msgstr "Bearbeiten"
 
 #: ./browser/templates/entry_view.pt:133
 msgid "Edit Blog Entry"
-msgstr "Bearbeite Blog-Eintrag"
+msgstr "Bearbeite Blog-Beitrag"
 
 #: ./browser/templates/entry_content_view.pt:175
 #: ./browser/templates/entry_view.pt:109
@@ -90,7 +90,7 @@ msgstr "Kommentare lesen / Kommentar verfassen"
 
 #: ./browser/templates/entry_view.pt:125
 msgid "Report Blog Entry"
-msgstr "Blog-Eintrag melden"
+msgstr "Blog-Beitrag melden"
 
 #: ./browser/templates/entry_view.pt:154
 msgid "Set Private"
