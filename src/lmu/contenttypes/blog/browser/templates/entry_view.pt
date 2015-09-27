@@ -7,7 +7,7 @@
 <body>
 
 <metal:main fill-slot="content">
-  <metal:content define-macro="content" 
+  <metal:content define-macro="content"
                  tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
                              real_object python:context.aq_explicit;
                              isAnon context/@@plone_portal_state/anonymous;
@@ -42,8 +42,8 @@
 
     <div class="row">
       <article class="blog columns small-12 large-10 large-centered helper-margin-top-m">
-        
-        
+
+
         <div class="blog-preview-counter" >
           <a class="comment-sign"
              title="Jump to Comments"
@@ -54,7 +54,7 @@
         </div>
         <hgroup class="helper-margin-top-m helper-margin-bottom-l">
           <h1 tal:content="context/title">Blog Entry Title</h1>
-          <div class="tileDocumentByLine documentByLine helper-font-serif helper-margin-top-m" 
+          <div class="tileDocumentByLine documentByLine helper-font-serif helper-margin-top-m"
                tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon"
                tal:define="author python:pas_member.info(item_creator);">
             <a href="#"
@@ -64,14 +64,14 @@
                tal:attributes="href href_url;"
                tal:content="author/name_or_id">
                   Bob Dobalina
-            </a> 
+            </a>
             <date tal:content="python: toLocalizedTime(item_modified,long_format=1)">Date</date>
           </div>
         </hgroup>
 
         <div class="row">
-        
-            <div class="columns small-12 medium-8 clearing-thumbs" data-clearing 
+
+            <div class="columns small-12 medium-8 clearing-thumbs" data-clearing
                  tal:define="files view/files;"
                  tal:attributes="class python: files and 'columns small-12 medium-8 end' or 'columns small-12 medium-8'" >
               <tal:image_check tal:condition="context/image">
@@ -94,7 +94,7 @@
                   </a>
                 </li>
                 <li tal:repeat="image view/images" class="helper-no-padding-left clearing-featured-img">
-                  <a class="th" role="button" aria-label="Thumbnails" 
+                  <a class="th" role="button" aria-label="Thumbnails"
                      tal:define="scales image/@@images;"
                      tal:attributes="href image/absolute_url;">
                     <img tal:replace="structure python: scales.tag('image', width=80, height=80, direction='down')" />
@@ -102,7 +102,7 @@
                 </li>
               </ul>
               <div tal:replace="structure context/text/output">Content</div>
-            
+
             </div>
             <div class="columns small-12 medium-4" >
               <div class="panel" tal:condition="view/files" >
@@ -110,7 +110,7 @@
                 <ul class="list-link" >
                   <li tal:repeat="file view/files">
                     <a tal:attributes="href file/absolute_url; title file/description">
-                      <span tal:replace="file/title" /> 
+                      <span tal:replace="file/title" />
                       <small>(<span tal:replace="python: view.getFileType(file)" />, <span tal:replace="python: view.getFileSize(file)" />)</small>
                     </a>
                   </li>
@@ -122,48 +122,49 @@
           <div class="document-actions"
                tal:condition="python: True and (view.isOwner() or view.isReviewer() or view.isManager())">
 
-            <a tal:attributes="href string:${context/absolute_url}/report_blog_entry" 
+            <a tal:attributes="href string:${context/absolute_url}/report_blog_entry"
                tal:condition="nothing"
-               class="button link-overlay small" 
+               class="button link-overlay small"
                id="report-button"
                title="Report Blog Entry"
                i18n:attributes="title"
-               i18n:translate="" >Report Blog Entry</a> 
+               i18n:translate="" >Report Blog Entry</a>
 
-            <a tal:attributes="href string:${context/absolute_url}/edit" 
+            <a tal:attributes="href string:${context/absolute_url}/edit"
                tal:condition="view/can_edit"
                class="button link-overlay small"
                title="Edit Blog Entry"
                i18n:attributes="title"
-               i18n:translate="" >Edit Blog Entry</a> 
+               i18n:translate="" >Edit Blog Entry</a>
 
-            <a tal:attributes="href string:${context/absolute_url}/delete_confirmation" 
+            <a tal:attributes="href string:${context/absolute_url}/delete_blog_entry"
                tal:condition="view/can_remove"
                class="button link-overlay small"
                title="Delete Blog Entry"
                i18n:attributes="title"
-               i18n:translate="" >Delete Blog Entry</a> 
+               i18n:translate="" >Delete Blog Entry</a>
+
 <div tal:condition="nothing">
-            <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=publish_internally" 
+            <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=publish_internally"
                tal:condition="view/can_publish"
                class="button link-overlay small"
                title="Publish"
                i18n:attributes="title"
-               i18n:translate="" >Publish</a> 
+               i18n:translate="" >Publish</a>
 
-            <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=reject" 
+            <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=reject"
                tal:condition="view/can_set_private"
                class="button link-overlay small"
                title="Set Private"
                i18n:attributes="title"
-               i18n:translate="" >Set Private</a> 
+               i18n:translate="" >Set Private</a>
 
-            <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=banned" 
+            <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=banned"
                tal:condition="view/can_lock"
                class="button link-overlay small"
-               title="Report Blog Entry" 
+               title="Report Blog Entry"
                i18n:translate=""
-               i18n:attributes="title" >Sperren</a> 
+               i18n:attributes="title" >Sperren</a>
 </div>
           </div>
           <div class="row">
