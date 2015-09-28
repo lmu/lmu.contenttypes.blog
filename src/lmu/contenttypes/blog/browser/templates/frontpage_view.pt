@@ -62,9 +62,10 @@
         </h2>
       </div>
       <div class="columns small-4">
-        <a class="more"
-           tal:attributes="href context/absolute_url;" 
-           i18n:translate="">Zum Blog</a>
+        <div class="more" >
+          <a class="toogle helper-font-light" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a> / <a tal:attributes="href context/absolute_url;" >
+             <tal:lang i18n:translate="">Alle Blog-Beiträge</tal:lang> (<span tal:replace="view/absolute_length">Anzahl</span>)</a>
+        </div>
       </div>
     </div>
   </div>
@@ -78,11 +79,6 @@
           <a class="close-reveal-modal" aria-label="Close">&#215;</a>
         </div>
 
-    <div class="row" >
-      <div class="columns small-12 helper-margin-top-m" >
-        <a class="toogle right" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a>
-      </div>
-    </div>
     <div class="row helper-margin-bottom-l" >
       <div class="columns large-12 helper-margin-top-l blog" >
         <tal:block tal:repeat="entry view/entries">
@@ -93,7 +89,7 @@
                                item_url item/getURL|item/absolute_url;">
         <article class="blog-entry blog-preview clearfix" 
                  tal:define="text python:view.strip_text(item);
-                             imageTile python: 'imageTileItem' if item.image else '';
+                             imageTile python: 'imageTileItem' if item.images else '';
                              sklass string:columns small-12 large-10 large-centered ${imageTile} blog-entry;
                              islast repeat/entry/end;
                              last python: 'lastTileItem' if islast else '';
@@ -107,22 +103,20 @@
                i18n:translate="">Anzahl</a>
           </div>
 
-          <figure tal:define="scales item/@@images;"
-                  tal:condition="item/image" 
-                  class="blog-lead-image left helper-margin-right-m helper-margin-bottom-m small-3" >
-            <a href="#"
-               tal:attributes="href python: item_type in use_view_action and item_url+'/view' or item_url">
-               <picture>
-                <source media="(min-width: 64em)" tal:define="scaled_image python: scales.scale('image', scale='xlarge');" tal:attributes="srcset scaled_image/url;"/>
-                <source media="(min-width: 52em)" tal:define="scaled_image python: scales.scale('image', scale='large');" tal:attributes="srcset scaled_image/url;"/>
-                <source media="(min-width: 42em)" tal:define="scaled_image python: scales.scale('image', scale='preview');" tal:attributes="src scaled_image/url;" />
-                <source media="(min-width: 36em)" tal:define="scaled_image python: scales.scale('image', scale='mini');" tal:attributes="src scaled_image/url;" />
-                <source media="(min-width: 24em)" tal:define="scaled_image python: scales.scale('image', scale='thumb');" tal:attributes="src scaled_image/url;" />
-                <img tal:replace="structure python: scales.tag('image', scale='preview', alt=item.image_caption)" />
-              </picture>
-              <figcaption tal:content="item/image_caption" tal:condition="item/image_caption">Caption</figcaption>
-            </a>
-          </figure>
+          
+          <tal:block  tal:condition="item/images" >
+            <figure tal:define="images item/images;
+                                first_image python: images[0];
+                                scales first_image/@@images;"
+                    class="blog-lead-image tileImage left helper-margin-right-m helper-margin-bottom-m ">
+              <a href="#"
+                 tal:attributes="href string:${item_url}/@@images/image/large">
+                <!--img tal:replace="structure python: scales.tag('image', scale='teaser', alt=item.image_caption)" /-->
+                <img tal:replace="structure python: scales.tag('image', scale='listing_teaser', direction='down')" />
+                <figcaption tal:content="first_image/title" tal:condition="first_image">Caption</figcaption>
+              </a>
+            </figure>
+          </tal:block>
           <hgroup class="helper-margin-bottom-m">
             <h3>
               <a tal:attributes="href item/absolute_url; 

@@ -15,6 +15,7 @@ from plone.app.z3cform.templates import RenderWidget
 #from plone.behavior.interfaces import IBehaviorAssignable
 from plone.dexterity.browser import edit
 from plone.dexterity.browser import add
+from plone.z3cform.fieldsets.utils import move
 from z3c.form.interfaces import HIDDEN_MODE
 from z3c.form.interfaces import DISPLAY_MODE
 from z3c.form.interfaces import INPUT_MODE
@@ -120,21 +121,21 @@ class _AbstractBlogListingView(_AbstractBlogView):
             if self.request.get('author'):
                 self.content_filter['Creator'] = self.request.get('author')
 
+    def absolute_length(self):
+        return len(self.pcatalog.searchResults(self.content_filter))
+
     def entries(self):
         entries = []
         if IBlogFolder.providedBy(self.context):
 
             entries = self.pcatalog.searchResults(
                 self.content_filter,
-                sort_on='modified', sort_order='reverse',
+                sort_on='effective', sort_order='reverse',
                 b_size=int(self.b_size),
                 b_start=int(self.b_start)
             )
 
         return entries
-
-    def absolute_length(self):
-        self.absolute_length = len(self.pcatalog.searchResults(self.content_filter))
 
     def can_add(self):
         #current_user = api.user.get_current()
@@ -360,6 +361,10 @@ class BlogEntryEditForm(edit.DefaultEditForm):
     portal_type = 'Blog Entry'
 
     def __call__(self):
+        fields_to_show = ['file']
+        fields_to_input = ['title', 'description']
+        fields_to_hide = []
+        fields_to_omit = ['IPublication.effective', 'IPublication.expires', 'IVersionable.changeNote']
 
         self.updateWidgets()
 
@@ -369,15 +374,44 @@ class BlogEntryEditForm(edit.DefaultEditForm):
         self.updateFields()
         fields = self.fields
 
-        cn = fields.get('IVersionable.changeNote')
-        cn.omitted = True
-        cn.mode = HIDDEN_MODE
+        for field in fields.values():
+            if field.__name__ in fields_to_omit:
+                field.omitted = True
+            if field.__name__ in fields_to_hide:
+                field.omitted = False
+                field.mode = HIDDEN_MODE
+            if field.__name__ in fields_to_show:
+                field.omitted = False
+                field.mode = DISPLAY_MODE
+            if field.__name__ in fields_to_input:
+                field.omitted = False
+                field.mode = INPUT_MODE
 
-        self.updateActions()
-        actions = self.actions
+        for group in self.groups:
+            for field in group.fields.values():
+                if field.__name__ in fields_to_omit:
+                    field.field.omitted = True
+                    field.omitted = True
+                if field.__name__ in fields_to_hide:
+                    field.omitted = False
+                    field.mode = HIDDEN_MODE
+                if field.__name__ in fields_to_show:
+                    field.omitted = False
+                    field.mode = DISPLAY_MODE
+                if field.__name__ in fields_to_input:
+                    field.omitted = False
+                    field.mode = INPUT_MODE
+            if group.__name__ in ['dates']:
+                group.omitted = True
 
-        for action in actions.values():
-            action.klass = action.klass + u' button large round'
+        #self.updateActions()
+        #actions = self.actions
+
+        buttons = self.buttons
+
+        #import ipdb; ipdb.set_trace()
+        for button in buttons.values():
+            button.klass = u' button large round'
 
         return super(BlogEntryEditForm, self).__call__()
 
@@ -392,7 +426,6 @@ class BlogFileEditForm(edit.DefaultEditForm):
         fields_to_show = ['file']
         fields_to_input = ['title', 'description']
         fields_to_hide = []
-        fields_to_omit = []
 
         self.updateWidgets()
 

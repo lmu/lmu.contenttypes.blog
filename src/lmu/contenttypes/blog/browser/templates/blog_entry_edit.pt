@@ -121,8 +121,6 @@
                 <metal:block fill-slot="fields">
                     <metal:block use-macro="context/@@ploneform-macros/fields" />
 
-                    <a href="#" tal:attributes="href string:${context/absolute_url}/@@croppingeditor" tal:condition="nothing">Bild zuschneiden</a>
-
                     <div tal:replace="structure context/@@content_view" >Content View</div>
 
                 </metal:block>
