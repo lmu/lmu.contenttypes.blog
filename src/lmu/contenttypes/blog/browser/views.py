@@ -507,3 +507,10 @@ class BlogCommentsViewlet(CommentsViewlet):
     def update(self):
         alsoProvides(self.request, IBlogCommentFormLayer)
         super(BlogCommentsViewlet, self).update()
+
+    def can_reply(self):
+        is_blog_entry = (self.context.portal_type == 'Blog Entry')
+        is_private = (api.content.get_state(self.context) == 'private')
+        if is_blog_entry and is_private:
+            return False
+        return super(BlogCommentsViewlet, self).can_reply()
