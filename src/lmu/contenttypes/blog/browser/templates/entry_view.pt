@@ -18,8 +18,10 @@
                              navigation_root_url context/@@plone_portal_state/navigation_root_url;
                              pas_member context/@@pas_member;
                              item_creator context/Creator;
+                             item_created context/CreationDate;
                              item_type context/portal_type;
                              item_effective context/EffectiveDate;
+                             item_display_date python: item_effective != 'None' and item_effective or item_created;
                              item_url context/getURL|context/absolute_url;
                              show_border context/@@plone/showEditableBorder;
                              show_border python:show_border and not ajax_load">
@@ -65,7 +67,7 @@
                tal:content="author/name_or_id">
                   Bob Dobalina
             </a>
-            <date tal:content="python: toLocalizedTime(item_effective,long_format=1)">Date</date>
+            <date tal:content="python: toLocalizedTime(item_display_date,long_format=1)">Date</date>
           </div>
         </hgroup>
 
