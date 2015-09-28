@@ -9,6 +9,7 @@ from collective.quickupload.portlet.quickuploadportlet import Assignment
 from collective.quickupload.portlet.quickuploadportlet import Renderer
 from datetime import datetime
 from plone import api
+from plone.app.discussion.browser.comments import CommentsViewlet
 from plone.app.textfield.interfaces import ITransformer
 from plone.app.z3cform.templates import RenderWidget
 #from plone.behavior.interfaces import IBehaviorAssignable
@@ -24,7 +25,7 @@ from zope.interface import alsoProvides
 
 #from lmu.contenttypes.blog.interfaces import IBlogEntry
 from lmu.contenttypes.blog.interfaces import IBlogFolder
-from lmu.contenttypes.blog.interfaces import IBlogFormLayer
+from lmu.contenttypes.blog.interfaces import IBlogCommentFormLayer
 
 from lmu.contenttypes.blog import MESSAGE_FACTORY as _
 #from lmu.contenttypes.blog import logger
@@ -358,10 +359,6 @@ class BlogEntryEditForm(edit.DefaultEditForm):
 
     portal_type = 'Blog Entry'
 
-    def update(self):
-        alsoProvides(self.request, IBlogFormLayer)
-        super(BlogEntryEditForm, self).update()
-
     def __call__(self):
 
         self.updateWidgets()
@@ -488,6 +485,10 @@ class BlogCommentAddForm(add.DefaultAddForm):
 
     template = ViewPageTemplateFile('templates/blog_entry_edit.pt')
 
+    def __init__(self, context, request, ti=None):
+        alsoProvides(self.request, IBlogCommentFormLayer)
+        super(BlogCommentAddForm, self).__init__(context, request, ti=ti)
+
     def __call__(self):
         self.portal_type = self.context.portal_type
         text = self.schema.get('text')
@@ -499,3 +500,10 @@ class BlogCommentAddForm(add.DefaultAddForm):
 
 class BlogRenderWidget(RenderWidget):
     index = ViewPageTemplateFile('templates/widget.pt')
+
+
+class BlogCommentsViewlet(CommentsViewlet):
+
+    def update(self):
+        alsoProvides(self.request, IBlogCommentFormLayer)
+        super(BlogCommentsViewlet, self).update()

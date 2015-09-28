@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from plone.app.discussion.interfaces import IDiscussionLayer
 from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.theme.interfaces import IDefaultPloneLayer
 from z3c.form.interfaces import IFormLayer
@@ -22,13 +23,13 @@ class IBlogEntry(Interface, IImageScaleTraversable):
     #form.model("models/blog_entry.xml")
 
 
-class IBlogLayer(IDefaultPloneLayer):
+class IBlogLayer(IDefaultPloneLayer, IDiscussionLayer):
     """ A layer specific to this product.
         Is registered using browserlayer.xml
     """
 
 
-class IBlogFormLayer(IFormLayer):
+class IBlogCommentFormLayer(IFormLayer):
     """ A form layer that helps us overrride ploneform-render-widget
     """
 
