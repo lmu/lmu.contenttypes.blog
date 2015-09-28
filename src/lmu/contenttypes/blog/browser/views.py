@@ -126,7 +126,7 @@ class _AbstractBlogListingView(_AbstractBlogView):
 
             entries = self.pcatalog.searchResults(
                 self.content_filter,
-                sort_on='modified', sort_order='reverse',
+                sort_on='effective', sort_order='reverse',
                 b_size=int(self.b_size),
                 b_start=int(self.b_start)
             )

@@ -79,7 +79,7 @@
                    tal:define="item entry/getObject;
                                item_creator entry/Creator;
                                item_type entry/portal_type;
-                               item_modified entry/ModificationDate;
+                               item_effective entry/EffectiveDate;
                                item_url item/getURL|item/absolute_url;
                                member python:view.get_memberdata(item);
                                text python:view.strip_text(item);
@@ -124,7 +124,7 @@
                    tal:omit-tag="not:author">
                   Bob Dobalina
                 </a> 
-                <date tal:content="python: toLocalizedTime(item_modified,long_format=1)">Date</date>
+                <date tal:content="python: toLocalizedTime(item_effective,long_format=1)">Date</date>
               </div>
             </hgroup>
 
