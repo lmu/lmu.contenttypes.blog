@@ -23,6 +23,7 @@
                              item_effective context/EffectiveDate;
                              item_display_date python: item_effective != 'None' and item_effective or item_created;
                              item_url context/getURL|context/absolute_url;
+                             item_state context/@@plone_context_state/workflow_state;
                              show_border context/@@plone/showEditableBorder;
                              show_border python:show_border and not ajax_load">
   <main id="content" class="blog"
@@ -116,6 +117,7 @@
                   Bob Dobalina
             </a>
             <date tal:content="python: toLocalizedTime(item_display_date,long_format=1)">Date</date>
+            <em tal:condition="python: item_state != 'internally_published'" i18n:translate="">Dieser Blog-Beitrag ist noch nicht veröffentlicht</em>
           </div>
         </hgroup>
 
