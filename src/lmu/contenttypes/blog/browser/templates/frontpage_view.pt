@@ -90,7 +90,8 @@
                                item_type entry/portal_type;
                                item_effective entry/EffectiveDate;
                                item_display_date python: item_effective != 'None' and item_effective or item_created;
-                               item_url item/getURL|item/absolute_url;">
+                               item_url item/getURL|item/absolute_url;
+                               item_state entry/review_state;">
         <article class="blog-entry blog-preview clearfix"
                  tal:define="text python:view.strip_text(item);
                              imageTile python: 'imageTileItem' if item.images else '';
@@ -140,6 +141,7 @@
                 Bob Dobalina
               </a>
               <date tal:content="python: toLocalizedTime(item_display_date,long_format=1)">Date</date>
+              <em tal:condition="python: item_state != 'internally_published'" i18n:translate="">Dieser Blog-Beitrag ist noch nicht veröffentlicht</em>
             </div>
           </hgroup>
           <p tal:content="text">Blog Entry Text</p>
