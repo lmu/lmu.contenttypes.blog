@@ -109,21 +109,20 @@ class _AbstractBlogView(BrowserView):
 
 class _AbstractBlogListingView(_AbstractBlogView):
 
+    DEFAULT_LIMIT = 10
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
-
         limit_display = getattr(self.request, 'limit_display', None)
-        limit_display = int(limit_display) if limit_display is not None else 20
+        limit_display = int(limit_display) if limit_display is not None else \
+            self.DEFAULT_LIMIT
         b_size = getattr(self.request, 'b_size', None)
         self.b_size = int(b_size) if b_size is not None else limit_display
         b_start = getattr(self.request, 'b_start', None)
         self.b_start = int(b_start) if b_start is not None else 0
 
-        self.content_filter = {
-            'portal_type': 'Blog Entry',
-        }
-
+        self.content_filter = {'portal_type': 'Blog Entry'}
         self.pcatalog = self.context.portal_catalog
 
         if IBlogFolder.providedBy(self.context):
@@ -171,6 +170,7 @@ class ListingView(_AbstractBlogListingView):
 class FrontPageIncludeView(_AbstractBlogListingView):
 
     template = ViewPageTemplateFile('templates/frontpage_view.pt')
+    DEFAULT_LIMIT = 3
 
     def update(self):
         """
@@ -184,8 +184,6 @@ class FrontPageIncludeView(_AbstractBlogListingView):
         self.omit = not str2bool(omit)
         author = self.request.get('author')
         self.author = bool(author)
-        if 'b_size' not in self.request:
-            self.request.set('b_size', '3')
         if self.omit:
             REQUEST = self.context.REQUEST
             RESPONSE = REQUEST.RESPONSE
