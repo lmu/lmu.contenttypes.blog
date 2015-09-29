@@ -182,7 +182,7 @@ class FrontPageIncludeView(_AbstractBlogListingView):
             REQUEST = self.context.REQUEST
             RESPONSE = REQUEST.RESPONSE
             RESPONSE.setHeader('Content-Type', 'text/xml;charset=utf-8')
-        #import ipdb; ipdb.set_trace()
+        # import ipdb; ipdb.set_trace()
         return self.template()
 
 
@@ -191,18 +191,23 @@ class EntryView(_AbstractBlogView):
     template = ViewPageTemplateFile('templates/entry_view.pt')
 
     def __call__(self):
-        #import ipdb; ipdb.set_trace()
         return self.template()
 
     def can_see_history(self):
         return True
 
     def can_edit(self):
-        #import ipdb; ipdb.set_trace()
         return api.user.has_permission(permissions.ModifyPortalContent, obj=self.context)
 
     def can_remove(self):
-        return api.user.has_permission(permissions.DeleteObjects, obj=self.context)
+        """Only show the delete-button if the user has the permission to delete
+        items and the workflow_state fulfills a condition.
+        """
+        state = api.content.get_state(obj=self.context)
+        can_delete = api.user.has_permission(
+            permissions.DeleteObjects, obj=self.context)
+        if can_delete and state not in ['banned']:
+            return True
 
     def can_publish(self):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
