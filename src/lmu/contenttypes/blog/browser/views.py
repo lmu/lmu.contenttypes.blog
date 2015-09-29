@@ -2,6 +2,7 @@
 
 from Products.CMFCore import permissions
 from Products.CMFPlone.browser.ploneview import Plone
+from Products.CMFPlone.PloneBatch import Batch
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -74,7 +75,7 @@ class _AbstractBlogView(BrowserView):
         #image_brains = api.content.find(context=self.context, depth=1, portal_type='Image')
         #images = [item.getObject() for item in image_brains]
         #import ipdb; ipdb.set_trace()
-        images = [item for item in self.context.values()if item.portal_type == 'Image']
+        images = [item for item in self.context.values() if item.portal_type == 'Image']
         if None in images:
             images.remove(None)
         return images
@@ -112,12 +113,15 @@ class _AbstractBlogListingView(_AbstractBlogView):
         self.context = context
         self.request = request
 
-        self.b_size = self.request.get('b_size', '20')
-        self.b_start = self.request.get('b_start', '0')
+        limit_display = getattr(self.request, 'limit_display', None)
+        limit_display = int(limit_display) if limit_display is not None else 20
+        b_size = getattr(self.request, 'b_size', None)
+        self.b_size = int(b_size) if b_size is not None else limit_display
+        b_start = getattr(self.request, 'b_start', None)
+        self.b_start = int(b_start) if b_start is not None else 0
 
         self.content_filter = {
             'portal_type': 'Blog Entry',
-            #'review_state': ['published', 'internal-published', 'internally_published'],
         }
 
         self.pcatalog = self.context.portal_catalog
@@ -137,16 +141,20 @@ class _AbstractBlogListingView(_AbstractBlogView):
             entries = self.pcatalog.searchResults(
                 self.content_filter,
                 sort_on='effective', sort_order='reverse',
-                b_size=int(self.b_size),
-                b_start=int(self.b_start)
             )
 
         return entries
 
+    def batch(self):
+        batch = Batch(
+            self.entries(),
+            size=self.b_size,
+            start=self.b_start,
+            orphan=1
+        )
+        return batch
+
     def can_add(self):
-        #current_user = api.user.get_current()
-        #import ipdb; ipdb.set_trace()
-        #return api.user.has_permission(permissions.AddPortalContent, user=current_user, obj=self.context)
         return api.user.has_permission('lmu.contenttypes.blog: Add Blog Entry',
                                        #     permissions.AddPortalContent,
                                        obj=self.context)
