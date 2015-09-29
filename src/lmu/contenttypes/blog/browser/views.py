@@ -262,6 +262,15 @@ class EntryContentView(_AbstractBlogView):
                         'title': obj.Title()}
                 if mode == 'files':
                     item['tag'] = plone_layout.getIcon(obj).html_tag()
+                    item['type'] = self.getFileType(obj)
+                    item['size'] = self.getFileSize(obj)
+                elif mode == 'images':
+                    scales = api.content.get_view(
+                        context=obj,
+                        request=self.request,
+                        name='images')
+                    item['tag'] = scales.tag('image', width=80, height=80,
+                                             direction='down')
                 if previous > -1:
                     item['delta_up'] = current - previous
                 items.append(item)
@@ -290,17 +299,23 @@ class EntryContentView(_AbstractBlogView):
         return json.dumps(self.context.objectIds())
 
 
-class EntrySortFilesView(_AbstractBlogView):
+class EntrySortFilesView(EntryContentView):
 
-    template = ViewPageTemplateFile('templates/entry_content_view.pt')
+    template = ViewPageTemplateFile('templates/entry_sort_files_view.pt')
+
+    def files(self):
+        return self.content(mode='files')
 
     def __call__(self):
         return self.template()
 
 
-class EntrySortImagesView(_AbstractBlogView):
+class EntrySortImagesView(EntryContentView):
 
-    template = ViewPageTemplateFile('templates/entry_content_view.pt')
+    template = ViewPageTemplateFile('templates/entry_sort_images_view.pt')
+
+    def images(self):
+        return self.content(mode='images')
 
     def __call__(self):
         return self.template()

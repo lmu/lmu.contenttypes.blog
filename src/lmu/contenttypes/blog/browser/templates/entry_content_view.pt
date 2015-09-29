@@ -1,5 +1,5 @@
 <tal:doctype xmlns:tal="http://xml.zope.org/namespaces/tal"
-             tal:define="omit view/omit"
+             tal:define="omit view/omit|nothing"
              tal:omit-tag="omit" >
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmln:metal="http://xml.zope.org/namespaces/metal"
@@ -132,6 +132,7 @@
             </div>
 
             <div id="folder_contents">
+                <a class="toogle button radius small right" href="@@content_sort_images_view" data-reveal-ajax="true" i18n:translate="" >Sort</a>
                 <h2 i18n:translate="" class="helper-margin-top-l">Images</h2>
                 <div id="images" class="image_listing helper-margin-bottom-l " tal:condition="view/images" >
                     <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/images">
@@ -181,6 +182,7 @@
                     </div>
                 </div>
 
+                <a class="toogle button radius small right" href="@@content_sort_files_view" data-reveal-ajax="true" i18n:translate="" >Sort</a>
                 <h2 i18n:translate="" >Files</h2>
                 <div id="files" class="file_listing" tal:condition="view/files">
                   <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/files">
