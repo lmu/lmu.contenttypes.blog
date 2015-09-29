@@ -426,6 +426,7 @@ class BlogFileEditForm(edit.DefaultEditForm):
         fields_to_show = ['file']
         fields_to_input = ['title', 'description']
         fields_to_hide = []
+        fields_to_omit = []
 
         self.updateWidgets()
 
