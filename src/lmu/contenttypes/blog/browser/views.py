@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from Products.CMFCore import permissions
-from Products.CMFPlone.browser.PloneView import cropText
+from Products.CMFPlone.browser.ploneview.Plone import cropText
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -337,7 +337,7 @@ class BlogEntryAddForm(add.DefaultAddForm):
 
     portal_type = 'Blog Entry'
     label = None
-    description = None
+    description = _(u'Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf "Weiter". Danach können Sie Bilder und / oder Dateien hinzufügen.')
 
     def __call__(self):
         self.updateWidgets()
