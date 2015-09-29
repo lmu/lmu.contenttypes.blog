@@ -151,13 +151,12 @@
         </div>
       </div>
 
-      <footer id="blog-footer">
-        <div class="row overview-light">
-          <div class="columns small-12 large-10 large-centered">
-
-            <div metal:use-macro="context/batch_macros/macros/navigation" />
-
-          </div>
+      <footer id="blog-footer" class="row helper-margin-top-l"
+              tal:define="b_size view/b_size;
+                          abs_len view/absolute_length;"
+              tal:condition="python: b_size < abs_len">
+        <div class="columns small-12 large-10 large-centered">
+          <div metal:use-macro="context/batch_macros/macros/navigation" />
         </div>
       </footer>
 
