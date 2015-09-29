@@ -217,24 +217,7 @@ class EntryView(_AbstractBlogView):
 
     def isManager(self):
         user = api.user.get_current()
-        #import ipdb; ipdb.set_trace()
         return any(role in user.getRolesInContext(self.context) for role in ['Manager', 'SiteAdmin'])
-
-
-class DeleteItem(BrowserView):
-
-    def __call__(self):
-        context = self.context
-        parent = aq_parent(context)
-        if not api.user.has_permission(
-                permission=permissions.DeleteObjects, obj=self.context):
-            raise Unauthorized(_('You do not have the required permission'))
-        title = context.title
-        parent.manage_delObjects(context.id)
-        transaction_note('Deleted %s' % context.absolute_url())
-        msg = _(u'${title} has been deleted.', mapping={u'title': title})
-        api.portal.show_message(msg, self.request)
-        return self.request.response.redirect(parent.absolute_url())
 
 
 class EntryContentView(_AbstractBlogView):
