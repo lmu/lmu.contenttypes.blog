@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from Products.CMFCore import permissions
-from Products.CMFPlone.browser.ploneview.Plone import cropText
+from Products.CMFPlone.browser.ploneview import Plone
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -68,7 +68,7 @@ class _AbstractBlogView(BrowserView):
     def _strip_text(self, item, length=500, ellipsis='...'):
         transformer = ITransformer(item)
         transformedValue = transformer(item.text, 'text/plain')
-        return cropText(transformedValue, length=length, ellipsis=ellipsis)
+        return Plone.cropText(transformedValue, length=length, ellipsis=ellipsis)
 
     def images(self):
         #image_brains = api.content.find(context=self.context, depth=1, portal_type='Image')
