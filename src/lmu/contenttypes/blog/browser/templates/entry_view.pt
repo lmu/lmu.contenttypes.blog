@@ -63,7 +63,7 @@
                i18n:attributes="title"
                i18n:translate="" >Edit Blog Entry</a>
 
-            <a tal:attributes="href string:${context/absolute_url}/delete_blog_entry"
+            <a tal:attributes="href string:${context/absolute_url}/delete_confirmation"
                tal:condition="view/can_remove"
                class="button link-overlay small"
                title="Delete Blog Entry"
@@ -130,7 +130,7 @@
                   <a tal:attributes="href string:${first_image/absolute_url}/@@images/image.jpeg;" >
                     <figure  class="blog-lead-image helper-margin-bottom-m text-left"
                              tal:define="scales first_image/@@images;" >
-                      <img tal:replace="structure python: scales.tag('image', scale='entry_teaser', direction='down', alt=first_image.description, title=first_image.description)" /> 
+                      <img tal:replace="structure python: scales.tag('image', scale='entry_teaser', direction='down', alt=first_image.description, title=first_image.description)" />
                       <figcaption tal:content="first_image/title" tal:condition="first_image/title">Caption</figcaption>
                     </figure>
                   </a>

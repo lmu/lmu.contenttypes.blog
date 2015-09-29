@@ -26,7 +26,7 @@
         <div class="columns small-12 large-10 large-centered helper-margin-top-l">
 
           <div id="plone-extras" class="visualClear clearfix"
-               tal:define="show_border context/@@plone/showEditableBorder; 
+               tal:define="show_border context/@@plone/showEditableBorder;
                            show_border python:show_border and not ajax_load"
                tal:attributes="class python:show_border and 'documentEditable visualClear clearfix helper-margin-bottom-m' or ''">
 
@@ -42,7 +42,7 @@
 
           <a class="toogle button small right" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a>
           <h1>
-            <span tal:replace="context/title">Blog Titel</span> 
+            <span tal:replace="context/title">Blog Titel</span>
             <small tal:content="context/description"
                    tal:condition="context/description">
                 Blog Sub-Title
@@ -63,9 +63,11 @@
           </a>
         </div>
       </header>
+      <tal:results tal:define="batch view/batch">
+      <tal:listing condition="batch">
       <div id="blog-main" class="row">
         <div class="columns small-12 large-10 large-centered " >
-        <tal:block tal:repeat="entry view/entries"
+        <tal:block tal:repeat="entry batch"
                    tal:define="isAnon context/@@plone_portal_state/anonymous;
                                normalizeString nocall: context/plone_utils/normalizeString;
                                toLocalizedTime nocall: context/@@plone/toLocalizedTime;
@@ -75,7 +77,7 @@
                                navigation_root_url context/@@plone_portal_state/navigation_root_url;
                                pas_member context/@@pas_member;
                               ">
-          <article class="blog-entry blog-preview tileItem visualIEFloatFix clearfix" 
+          <article class="blog-entry blog-preview tileItem visualIEFloatFix clearfix"
                    tal:define="item entry/getObject;
                                item_creator entry/Creator;
                                item_created entry/CreationDate;
@@ -116,7 +118,7 @@
                 <a tal:attributes="href item/absolute_url;"
                    tal:content="item/title">Blog Entry Title</a>
               </h2>
-              <div class="tileDocumentByLine documentByLine helper-font-serif helper-margin-bottom-m" 
+              <div class="tileDocumentByLine documentByLine helper-font-serif helper-margin-bottom-m"
                    tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon"
                    tal:define="author python:pas_member.info(item_creator);">
                 <a href="#"
@@ -127,7 +129,7 @@
                    tal:content="author/name_or_id"
                    tal:omit-tag="not:author">
                   Bob Dobalina
-                </a> 
+                </a>
                 <date tal:content="python: toLocalizedTime(item_display_date,long_format=1)">Date</date>
               </div>
             </hgroup>
@@ -145,19 +147,23 @@
             </div>
           </article>
         </tal:block>
+
         </div>
       </div>
-      <footer id="blog-footer" class="row"
-              tal:condition="python: False" test="view/can_add">
-        <div class="columns small-12 large-10 large-centered">
-          <a class="button small-12 helper-margin-top-l"
-             tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
-             tal:attributes="href add_url;"
-             i18n:translate="">
-            Jetzt einen Blog-Beitrag verfassen
-          </a>
+
+      <footer id="blog-footer">
+        <div class="row overview-light">
+          <div class="columns small-12 large-10 large-centered">
+
+            <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+          </div>
         </div>
       </footer>
+
+      </tal:listing>
+      </tal:results>
+
     </main>
   </metal:content>
 
