@@ -376,51 +376,16 @@ class BlogEntryEditForm(edit.DefaultEditForm):
     portal_type = 'Blog Entry'
 
     def __call__(self):
-        fields_to_show = ['file']
-        fields_to_input = ['title', 'description']
-        fields_to_hide = []
-        fields_to_omit = ['IPublication.effective', 'IPublication.expires', 'IVersionable.changeNote']
-
         self.updateWidgets()
 
         text = self.schema.get('text')
         text.widget = RichTextWidgetConfig()
 
-        self.updateFields()
-        fields = self.fields
-
-        for field in fields.values():
-            if field.__name__ in fields_to_omit:
-                field.omitted = True
-            if field.__name__ in fields_to_hide:
-                field.omitted = False
-                field.mode = HIDDEN_MODE
-            if field.__name__ in fields_to_show:
-                field.omitted = False
-                field.mode = DISPLAY_MODE
-            if field.__name__ in fields_to_input:
-                field.omitted = False
-                field.mode = INPUT_MODE
-
-        for group in self.groups:
-            for field in group.fields.values():
-                if field.__name__ in fields_to_omit:
-                    field.field.omitted = True
-                    field.omitted = True
-                if field.__name__ in fields_to_hide:
-                    field.omitted = False
-                    field.mode = HIDDEN_MODE
-                if field.__name__ in fields_to_show:
-                    field.omitted = False
-                    field.mode = DISPLAY_MODE
-                if field.__name__ in fields_to_input:
-                    field.omitted = False
-                    field.mode = INPUT_MODE
-            if group.__name__ in ['dates']:
-                group.omitted = True
-
-        #self.updateActions()
-        #actions = self.actions
+        formHelper(self,
+                   fields_to_show=[],
+                   fields_to_input=['title', 'description'],
+                   fields_to_hide=[],
+                   fields_to_omit=['IPublication.effective', 'IPublication.expires', 'IVersionable.changeNote'])
 
         buttons = self.buttons
 
@@ -438,42 +403,11 @@ class BlogFileEditForm(edit.DefaultEditForm):
     portal_type = 'File'
 
     def __call__(self):
-        fields_to_show = ['file']
-        fields_to_input = ['title', 'description']
-        fields_to_hide = []
-        fields_to_omit = []
-
-        self.updateWidgets()
-
-        self.updateFields()
-        fields = self.fields
-
-        for field in fields.values():
-            if field.__name__ in fields_to_omit:
-                field.omitted = True
-            if field.__name__ in fields_to_hide:
-                field.omitted = False
-                field.mode = HIDDEN_MODE
-            if field.__name__ in fields_to_show:
-                field.omitted = False
-                field.mode = DISPLAY_MODE
-            if field.__name__ in fields_to_input:
-                field.omitted = False
-                field.mode = INPUT_MODE
-
-        for group in self.groups:
-            for field in group.fields.values():
-                if field.__name__ in fields_to_omit:
-                    field.omitted = True
-                if field.__name__ in fields_to_hide:
-                    field.omitted = False
-                    field.mode = HIDDEN_MODE
-                if field.__name__ in fields_to_show:
-                    field.omitted = False
-                    field.mode = DISPLAY_MODE
-                if field.__name__ in fields_to_input:
-                    field.omitted = False
-                    field.mode = INPUT_MODE
+        formHelper(self,
+                   fields_to_show=['file'],
+                   fields_to_input=['title', 'description'],
+                   fields_to_hide=[],
+                   fields_to_omit=['IPublication.effective', 'IPublication.expires', 'IVersionable.changeNote'])
 
         return super(BlogFileEditForm, self).__call__()
 
@@ -487,42 +421,11 @@ class BlogImageEditForm(edit.DefaultEditForm):
     portal_type = 'Image'
 
     def __call__(self):
-        fields_to_show = ['image']
-        fields_to_input = ['title', 'description']
-        fields_to_hide = []
-        fields_to_omit = []
-
-        self.updateWidgets()
-
-        self.updateFields()
-        fields = self.fields
-
-        for field in fields.values():
-            if field.__name__ in fields_to_omit:
-                field.omitted = True
-            if field.__name__ in fields_to_hide:
-                field.omitted = False
-                field.mode = HIDDEN_MODE
-            if field.__name__ in fields_to_show:
-                field.omitted = False
-                field.mode = DISPLAY_MODE
-            if field.__name__ in fields_to_input:
-                field.omitted = False
-                field.mode = INPUT_MODE
-
-        for group in self.groups:
-            for field in group.fields.values():
-                if field.__name__ in fields_to_omit:
-                    field.omitted = True
-                if field.__name__ in fields_to_hide:
-                    field.omitted = False
-                    field.mode = HIDDEN_MODE
-                if field.__name__ in fields_to_show:
-                    field.omitted = False
-                    field.mode = DISPLAY_MODE
-                if field.__name__ in fields_to_input:
-                    field.omitted = False
-                    field.mode = INPUT_MODE
+        formHelper(self,
+                   fields_to_show=['image'],
+                   fields_to_input=['title', 'description'],
+                   fields_to_hide=[],
+                   fields_to_omit=['IPublication.effective', 'IPublication.expires', 'IVersionable.changeNote'])
 
         return super(BlogImageEditForm, self).__call__()
 
@@ -565,7 +468,7 @@ class BlogCommentsViewlet(CommentsViewlet):
         return super(BlogCommentsViewlet, self).can_reply()
 
 
-def fromHelper(self, form, fields_to_show=[], fields_to_input=[], fields_to_hide=[], fields_to_omit=[]):
+def formHelper(form, fields_to_show=[], fields_to_input=[], fields_to_hide=[], fields_to_omit=[]):
 
     form.updateWidgets()
 
