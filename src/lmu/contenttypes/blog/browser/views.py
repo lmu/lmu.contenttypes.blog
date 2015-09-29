@@ -415,7 +415,7 @@ class BlogEntryEditForm(edit.DefaultEditForm):
 
         buttons = self.buttons
 
-        import ipdb; ipdb.set_trace()
+        #import ipdb; ipdb.set_trace()
         for button in buttons.values():
             button.klass = u' button large round'
 
@@ -553,3 +553,39 @@ class BlogCommentsViewlet(CommentsViewlet):
         if is_blog_entry and is_private:
             return False
         return super(BlogCommentsViewlet, self).can_reply()
+
+
+def fromHelper(self, form, fields_to_show=[], fields_to_input=[], fields_to_hide=[], fields_to_omit=[]):
+
+    form.updateWidgets()
+
+    form.updateFields()
+    fields = form.fields
+    groups = form.groups
+
+    for field in fields.values():
+        if field.__name__ in fields_to_omit:
+            field.omitted = True
+        if field.__name__ in fields_to_hide:
+            field.omitted = False
+            field.mode = HIDDEN_MODE
+        if field.__name__ in fields_to_show:
+            field.omitted = False
+            field.mode = DISPLAY_MODE
+        if field.__name__ in fields_to_input:
+            field.omitted = False
+            field.mode = INPUT_MODE
+
+    for group in groups:
+        for field in group.fields.values():
+            if field.__name__ in fields_to_omit:
+                field.omitted = True
+            if field.__name__ in fields_to_hide:
+                field.omitted = False
+                field.mode = HIDDEN_MODE
+            if field.__name__ in fields_to_show:
+                field.omitted = False
+                field.mode = DISPLAY_MODE
+            if field.__name__ in fields_to_input:
+                field.omitted = False
+                field.mode = INPUT_MODE
