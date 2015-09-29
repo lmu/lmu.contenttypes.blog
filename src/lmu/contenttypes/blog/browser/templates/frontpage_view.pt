@@ -64,7 +64,7 @@
       <div class="columns small-4">
         <div class="more" >
           <a class="toogle helper-font-light" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a> / <a tal:attributes="href context/absolute_url;" >
-             <tal:lang i18n:translate="">Alle Blog-Beiträge</tal:lang> (<span tal:replace="view/absolute_length">Anzahl</span>)</a>
+             <tal:lang i18n:translate="">Alle Blog-Beitraege</tal:lang> (<span tal:replace="view/absolute_length">Anzahl</span>)</a>
         </div>
       </div>
     </div>

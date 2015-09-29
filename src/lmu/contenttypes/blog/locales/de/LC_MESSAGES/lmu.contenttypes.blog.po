@@ -14,6 +14,18 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+#: ./browser/views.py:241
+msgid "${title} has been deleted."
+msgstr "${title} wurde gelöscht."
+
+#: ./browser/templates/blog_entry_add.pt:9
+msgid "Add Blog Entry"
+msgstr "Blog-Beitrag verfassen"
+
+#: ./browser/templates/frontpage_view.pt:67
+msgid "Alle Blog-Beitraege"
+msgstr "Alle Blog-Beiträe"
+
 #: ./profiles/default/types/Blog_Entry.xml
 msgid "Blog Entry"
 msgstr "Blog-Beitrag"
@@ -26,28 +38,28 @@ msgstr "Blog-Beitrag mit der Option Bilder und Dateien anzufügen."
 msgid "Blog Folder"
 msgstr "Blog"
 
-#: ./browser/templates/entry_content_view.pt:158
+#: ./browser/templates/entry_content_view.pt:166
 msgid "Crop Image"
 msgstr "Bild Beschneiden"
 
-#: ./browser/templates/entry_content_view.pt:153
+#: ./browser/templates/entry_content_view.pt:161
 msgid "Delete"
 msgstr "Löschen"
 
-#: ./browser/templates/entry_view.pt:140
+#: ./browser/templates/entry_view.pt:66
 msgid "Delete Blog Entry"
 msgstr "Lösche Blog-Beitrag"
 
-#: ./browser/templates/entry_content_view.pt:148
+#: ./browser/templates/entry_content_view.pt:156
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ./browser/templates/entry_view.pt:133
+#: ./browser/templates/entry_view.pt:59
 msgid "Edit Blog Entry"
 msgstr "Bearbeite Blog-Beitrag"
 
-#: ./browser/templates/entry_content_view.pt:175
-#: ./browser/templates/entry_view.pt:109
+#: ./browser/templates/entry_content_view.pt:183
+#: ./browser/templates/entry_view.pt:159
 msgid "Files"
 msgstr "Dateien"
 
@@ -55,15 +67,15 @@ msgstr "Dateien"
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr "Blog Ordner für Blog-Einträge mit einer speziellen Ansicht und Einschränkungen"
 
-#: ./browser/views.py:280
+#: ./browser/views.py:330
 msgid "Heading"
 msgstr "Überschrift"
 
-#: ./browser/templates/entry_content_view.pt:126
+#: ./browser/templates/entry_content_view.pt:134
 msgid "Images"
 msgstr "Bilder"
 
-#: ./browser/templates/frontpage_view.pt:146
+#: ./browser/templates/frontpage_view.pt:175
 #: ./browser/templates/listing_view.pt:57
 msgid "Jetzt einen Blog-Beitrag verfassen"
 msgstr "Jetzt einen Blog-Beitrag verfassen"
@@ -72,55 +84,56 @@ msgstr "Jetzt einen Blog-Beitrag verfassen"
 msgid "Meine Blogbeitraege -"
 msgstr "Meine Blogbeiträge - "
 
-#: ./browser/templates/entry_content_view.pt:202
+#: ./browser/templates/entry_content_view.pt:210
 msgid "No Files Uploaded"
 msgstr "Keine Dateien hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:170
+#: ./browser/templates/entry_content_view.pt:178
 msgid "No Images Uploaded"
 msgstr "Keine Bilder hochgeladen"
 
-#: ./browser/templates/entry_view.pt:147
+#: ./browser/templates/entry_view.pt:73
 msgid "Publish"
 msgstr "Veröffentlichen"
 
-#: ./browser/templates/listing_view.pt:136
+#: ./browser/templates/listing_view.pt:140
 msgid "Read Comments / Write a comment"
 msgstr "Kommentare lesen / Kommentar verfassen"
 
-#: ./browser/templates/entry_view.pt:125
+#: ./browser/templates/entry_view.pt:51
 msgid "Report Blog Entry"
 msgstr "Blog-Beitrag melden"
 
-#: ./browser/templates/entry_view.pt:154
+#: ./browser/templates/entry_view.pt:80
 msgid "Set Private"
 msgstr "Zurückweisen / Zurückziehen"
 
+#: ./browser/templates/blog_entry_add.pt:8
 #: ./browser/templates/blog_entry_edit.pt:108
-#: ./browser/templates/listing_view.pt:43
+#: ./browser/templates/frontpage_view.pt:66
 msgid "Show Blog Rules"
 msgstr "Zu den Blog-Regeln"
 
-#: ./browser/templates/entry_view.pt:161
+#: ./browser/templates/entry_view.pt:88
 msgid "Sperren"
 msgstr "Sperren"
 
-#: ./browser/views.py:281
+#: ./browser/views.py:331
 msgid "Subheading"
 msgstr "Überschrift"
 
-#: ./browser/templates/entry_content_view.pt:119
-msgid "Upload additional Images and Files"
-msgstr "Weitere Bilder & Dateien"
+#: ./browser/templates/entry_content_view.pt:124
+msgid "Upload Images and Files"
+msgstr "Bilder und Dateien hochladen"
 
-#: ./browser/templates/frontpage_view.pt:65
-msgid "Zum Blog"
-msgstr "Zum Blog"
+#: ./browser/views.py:237
+msgid "You do not have the required permission"
+msgstr "Sie haben nicht die notwendigen Rechte"
 
 #. Default: "Jump to Comments"
-#: ./browser/templates/entry_view.pt:48
-#: ./browser/templates/frontpage_view.pt:91
-#: ./browser/templates/listing_view.pt:91
+#: ./browser/templates/entry_view.pt:98
+#: ./browser/templates/frontpage_view.pt:101
+#: ./browser/templates/listing_view.pt:93
 msgid "lable_jump_to_comments"
 msgstr "Zu den Kommentaren springen"
 

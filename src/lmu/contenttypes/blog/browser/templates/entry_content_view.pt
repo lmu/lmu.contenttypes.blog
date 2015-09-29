@@ -122,7 +122,7 @@
     <div class="row field">
         <div class="column small-12 medium-2">
             <label for="" class="horizontal inline" i18n:translate="">
-                Upload additional Images and Files
+                Upload Images and Files
             </label>
         </div>
         <div class="column small-12 medium-10" >

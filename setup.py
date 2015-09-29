@@ -36,6 +36,7 @@ setup(name='lmu.contenttypes.blog',
           'plone.app.dexterity',
           'plone.namedfile [blobs]',
           'plone.app.discussion',
+          'collective.deletepermission',
           'plone.app.imagecropping',
       ],
       entry_points="""

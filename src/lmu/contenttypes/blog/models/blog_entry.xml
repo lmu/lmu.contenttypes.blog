@@ -15,7 +15,8 @@
     <field name="text"
            type="plone.app.textfield.RichText"
            form:widget="plone.app.textfield.widget.RichTextFieldWidget"
-           form:mode="z3c.form.interfaces.IEditForm:hidden">
+           form:mode="z3c.form.interfaces.IEditForm:input z3c.form.interfaces.IAddForm:input"
+           >
       <title i18n:translate="">Text</title>
       <!--description i18n:translate="">Content Text of the Blog Entry</description-->
       <required>True</required>

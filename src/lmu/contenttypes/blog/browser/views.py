@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from Products.CMFCore import permissions
+from Products.CMFPlone.browser.PloneView import cropText
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -15,7 +16,7 @@ from plone.app.z3cform.templates import RenderWidget
 #from plone.behavior.interfaces import IBehaviorAssignable
 from plone.dexterity.browser import edit
 from plone.dexterity.browser import add
-from plone.z3cform.fieldsets.utils import move
+#from plone.z3cform.fieldsets.utils import move
 from z3c.form.interfaces import HIDDEN_MODE
 from z3c.form.interfaces import DISPLAY_MODE
 from z3c.form.interfaces import INPUT_MODE
@@ -63,6 +64,11 @@ class _AbstractBlogView(BrowserView):
             striped_length = transformedValue.rfind(' ', 0, length)
             transformedValue = transformedValue[:striped_length] + '...'
         return transformedValue
+
+    def _strip_text(self, item, length=500, ellipsis='...'):
+        transformer = ITransformer(item)
+        transformedValue = transformer(item.text, 'text/plain')
+        return cropText(transformedValue, length=length, ellipsis=ellipsis)
 
     def images(self):
         #image_brains = api.content.find(context=self.context, depth=1, portal_type='Image')
@@ -409,7 +415,7 @@ class BlogEntryEditForm(edit.DefaultEditForm):
 
         buttons = self.buttons
 
-        #import ipdb; ipdb.set_trace()
+        import ipdb; ipdb.set_trace()
         for button in buttons.values():
             button.klass = u' button large round'
 
