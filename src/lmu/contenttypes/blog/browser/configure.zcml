@@ -26,14 +26,7 @@
         permission="zope2.View"
         class=".views.EntryView"
         />
-<!--
-    <browser:page
-        name="delete_blog_entry"
-        for="lmu.contenttypes.blog.interfaces.IBlogEntry"
-        permission="Delete.objects"
-        class=".views.DeleteItem"
-        />
--->
+
     <browser:page
         name="content_view"
         for="lmu.contenttypes.blog.interfaces.IBlogEntry"
