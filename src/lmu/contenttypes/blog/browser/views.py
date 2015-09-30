@@ -12,6 +12,7 @@ from collective.quickupload.portlet.quickuploadportlet import Renderer
 from datetime import datetime
 from plone import api
 from plone.app.discussion.browser.comments import CommentsViewlet
+from plone.app.imagecropping.browser.editor import CroppingEditor
 from plone.app.textfield.interfaces import ITransformer
 from plone.app.z3cform.templates import RenderWidget
 #from plone.behavior.interfaces import IBehaviorAssignable
@@ -598,3 +599,24 @@ def fromHelper(self, form, fields_to_show=[], fields_to_input=[], fields_to_hide
             if field.__name__ in fields_to_input:
                 field.omitted = False
                 field.mode = INPUT_MODE
+
+
+class LMUCroppingEditor(CroppingEditor):
+
+    template = ViewPageTemplateFile('templates/cropping-editor.pt')
+
+    def __call__(self):
+        return super(LMUCroppingEditor, self).__call__()
+
+    def _crop(self):
+        def coordinate(x):
+            return int(round(float(self.request.form.get(x))))
+        x1 = coordinate('x1')
+        y1 = coordinate('y1')
+        x2 = coordinate('x2')
+        y2 = coordinate('y2')
+        for scale_name in [scale['id'] for scale in self.scales()]:
+            cropping_util = self.context.restrictedTraverse('@@crop-image')
+            cropping_util._crop(fieldname=self.fieldname,
+                                scale=scale_name,
+                                box=(x1, y1, x2, y2))

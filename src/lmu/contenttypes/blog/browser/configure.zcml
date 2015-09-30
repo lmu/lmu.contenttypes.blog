@@ -126,4 +126,12 @@
         />
 -->
 
+    <browser:page
+        class=".views.LMUCroppingEditor"
+        for="plone.app.imagecropping.interfaces.IImageCroppingMarker"
+        name="croppingeditor"
+        layer="lmu.contenttypes.blog.interfaces.IBlogLayer"
+        permission="cmf.ModifyPortalContent"
+        />
+
 </configure>
