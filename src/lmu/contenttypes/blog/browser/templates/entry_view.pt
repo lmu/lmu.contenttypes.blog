@@ -132,7 +132,9 @@
                   <a tal:attributes="href string:${first_image/absolute_url}/@@images/image.jpeg;" >
                     <figure  class="blog-lead-image helper-margin-bottom-m text-left"
                              tal:define="scales first_image/@@images;" >
-                      <img tal:replace="structure python: scales.tag('image', scale='entry_teaser', direction='down', alt=first_image.description, title=first_image.description)" />
+                      <img tal:attributes="src string:${first_image/absolute_url}/@@images/image/entry_teaser;
+                                           alt first_image/description;
+                                           title first_image/description;" />
                       <figcaption tal:content="first_image/title" tal:condition="first_image/title">Caption</figcaption>
                     </figure>
                   </a>

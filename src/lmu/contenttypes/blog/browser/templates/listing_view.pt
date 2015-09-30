@@ -108,7 +108,9 @@
                 <a href="#"
                    tal:attributes="href string:${item_url}/@@images/image/large">
                   <!--img tal:replace="structure python: scales.tag('image', scale='teaser', alt=item.image_caption)" /-->
-                  <img tal:replace="structure python: scales.tag('image', scale='listing_teaser', direction='down')" />
+                  <img tal:attributes="src string:${first_image/absolute_url}/@@images/image/listing_teaser;
+                                       alt first_image/description;
+                                       title first_image/description;" />
                   <figcaption tal:content="first_image/title" tal:condition="first_image">Caption</figcaption>
                 </a>
               </figure>
