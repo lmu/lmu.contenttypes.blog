@@ -152,20 +152,15 @@
     </div>
 
     <footer id="blog-footer">
-      <div class="row overview-light"
-           tal:condition="not: view/author | view/can_add">
-        <div class="columns  small-12 large-10 large-centered">
-          <div class="pagination-centered">
-
+      <div class="row">
+        <div class="columns small-12 pagination-centered">
           <div metal:use-macro="context/batch_macros/macros/navigation" />
-
-          </div>
         </div>
       </div>
 
-      <div class="row overview-light"
+      <div class="row helper-margin-top-m"
            tal:condition="not: view/author | view/can_add">
-        <div class="columns  small-12 large-10 large-centered">
+        <div class="columns small-12">
           <a class="button link-overlay small-12"
              tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
              tal:attributes="href add_url;"
