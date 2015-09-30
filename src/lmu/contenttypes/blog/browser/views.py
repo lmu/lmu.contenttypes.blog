@@ -153,8 +153,8 @@ class _AbstractBlogListingView(_AbstractBlogView):
         return batch
 
     def can_add(self):
-        return api.user.has_permission('lmu.contenttypes.blog: Add Blog Entry',
-                                       #     permissions.AddPortalContent,
+        return api.user.has_permission(permissions.AddPortalContent,
+                                       #'lmu.contenttypes.blog: Add Blog Entry',
                                        obj=self.context)
 
 
@@ -347,7 +347,7 @@ class BlogEntryAddForm(add.DefaultAddForm):
     label = None
     description = _(u'Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf "Weiter". Danach können Sie Bilder und andere Dateien hinzufügen.')
 
-    def __render(self):
+    def update(self):
         self.updateWidgets()
 
         text = self.schema.get('text')
@@ -373,7 +373,7 @@ class BlogEntryAddView(add.DefaultAddView):
 class BlogEntryEditForm(edit.DefaultEditForm):
     template = ViewPageTemplateFile('templates/blog_entry_edit.pt')
 
-    description = None
+    description = _(u'Bearbeiten Sie Ihren Blog-Beitrag. Klicken Sie anschließend auf "Vorschau", um die Eingaben zu überprüfen und den Blog-Eintrag zu veröffentlichen.')
 
     portal_type = 'Blog Entry'
 
@@ -393,7 +393,9 @@ class BlogEntryEditForm(edit.DefaultEditForm):
 
         #import ipdb; ipdb.set_trace()
         for button in buttons.values():
-            button.klass = u' button large round'
+            #button.klass = u' button large round'
+            if button.title == u'Save':
+                button.title = _(u'Preview')
 
         return super(BlogEntryEditForm, self).__call__()
 
@@ -426,8 +428,24 @@ class BlogImageEditForm(edit.DefaultEditForm):
         formHelper(self,
                    fields_to_show=['image'],
                    fields_to_input=['title', 'description'],
-                   fields_to_hide=[],
-                   fields_to_omit=['IPublication.effective', 'IPublication.expires', 'IVersionable.changeNote'])
+                   fields_to_hide=['IPublication.effective',
+                                   'IPublication.expires',
+                                   'ICategorization.subjects',
+                                   'ICategorization.language',
+                                   'IRelatedItems.relatedItems',
+                                   'IOwnership.creators',
+                                   'IOwnership.contributors',
+                                   'IOwnership.rights',
+                                   'IAllowDiscussion.allow_discussion',
+                                   'IExcludeFromNavigation.exclude_from_nav',
+                                   ],
+                   fields_to_omit=['IVersionable.changeNote'])
+
+        buttons = self.buttons
+        for button in buttons.values():
+            #button.klass = u' button large round'
+            if button.title == _(u'Preview'):
+                button.title = _(u'Save')
 
         return super(BlogImageEditForm, self).__call__()
 

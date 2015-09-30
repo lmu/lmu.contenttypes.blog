@@ -30,12 +30,9 @@
     </metal:block>
 
     <metal:block fill-slot="main">
-        <div class="clearfix">
-            <h1 class="documentFirstHeading" tal:content="view/label | nothing" />
-        </div>
         <div id="content-core">
             <div id="folder_contents_sort">
-                <h2 i18n:translate="" class="helper-margin-top-l">Images</h2>
+                <h2 i18n:translate="" class="helper-no-margin-top">Images</h2>
                 <div id="images" class="image_listing helper-margin-bottom-l " tal:condition="view/images" >
                     <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/images">
                       <div class="column small-2" >
@@ -54,21 +51,20 @@
 
                               <ul class="inline-list right">
                                   <li tal:condition="item/delta_up|nothing">
-                                          <button type="submit" name="delta" value="1" class="small" tal:attributes="value item/delta_up">
-                                              <img src="arrowUp.png" alt="Up" title="Up" />
-                                          </button>
+                                    <button type="submit" name="delta" value="1" class="small" tal:attributes="value item/delta_up">
+                                      <i class="fi-arrow-up"></i><span class="show-for-sr" i18n:translate="">up</span>
+                                    </button>
                                   </li>
                                   <li tal:condition="item/delta_down|nothing">
-                                          <button type="submit" name="delta" value="-1" class="small" tal:attributes="value item/delta_down">
-                                              <img src="arrowDown.png" alt="Down" title="Down" />
-                                          </button>
+                                    <button type="submit" name="delta" value="-1" class="small" tal:attributes="value item/delta_down">
+                                      <i class="fi-arrow-down"></i><span class="show-for-sr" i18n:translate="">down</span>
+                                    </button>
                                   </li>
                               </ul>
                           </form>
                       </div>
 
                   </div>
-
                 </div>
                 <div id="images" class="image_listing" tal:condition="not: view/images">
                     <div class="row helper-border-top helper-margin-bottom-s" >
