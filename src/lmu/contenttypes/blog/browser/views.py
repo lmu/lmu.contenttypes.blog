@@ -25,7 +25,6 @@ from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 #from zope.schema import getFieldsInOrder
 
-
 #from lmu.contenttypes.blog.interfaces import IBlogEntry
 from lmu.contenttypes.blog.interfaces import IBlogFolder
 from lmu.contenttypes.blog.interfaces import IBlogCommentFormLayer
@@ -33,9 +32,9 @@ from lmu.contenttypes.blog.interfaces import IBlogCommentFormLayer
 from lmu.contenttypes.blog import MESSAGE_FACTORY as _
 #from lmu.contenttypes.blog import logger
 
-from Products.CMFPlone.utils import transaction_note
-from AccessControl import Unauthorized
-from Acquisition import aq_parent
+#from Products.CMFPlone.utils import transaction_note
+#from AccessControl import Unauthorized
+#from Acquisition import aq_parent
 from logging import getLogger
 
 logging = getLogger(__name__)
