@@ -67,6 +67,22 @@
         $("a.popup.image").prepOverlay({
             subtype:'image'
         });
+        $("a#image_sort_button").prepOverlay({
+            subtype:'ajax',
+            selector:'#content',
+            closeselector:"a.close-reveal-modal",
+            config: {
+                onLoad: ajaxify_overlay_form
+            }
+        });
+        $("a#file_sort_button").prepOverlay({
+            subtype:'ajax',
+            selector:'#content',
+            closeselector:"a.close-reveal-modal",
+            config: {
+                onLoad: ajaxify_overlay_form
+            }
+        });
         $('.itemorder').ajaxForm({
             success: function () {
                 $.ajax().done(
@@ -132,7 +148,7 @@
             </div>
 
             <div id="folder_contents">
-                <a class="toogle button radius small right" href="@@content_sort_images_view" data-reveal-ajax="true" i18n:translate="" >Sort</a>
+                <a class="toogle button radius small right" id="image_sort_button" href="@@content_sort_images_view" i18n:translate="" >Sort</a>
                 <h2 i18n:translate="" class="helper-margin-top-l">Images</h2>
                 <div id="images" class="image_listing helper-margin-bottom-l " tal:condition="view/images" >
                     <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/images">
@@ -182,7 +198,13 @@
                     </div>
                 </div>
 
-                <a class="toogle button radius small right" href="@@content_sort_files_view" data-reveal-ajax="true" i18n:translate="" >Sort</a>
+                <a class="toogle button radius small right"
+                   id="file_sort_button"
+                   href="@@content_sort_files_view"
+                   i18n:translate="" 
+                   tal:define="files view/files;
+                               nfiles python: len(files);"
+                   tal:condition="python: nfiles > 1">Sort Files</a>
                 <h2 i18n:translate="" >Files</h2>
                 <div id="files" class="file_listing" tal:condition="view/files">
                   <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/files">

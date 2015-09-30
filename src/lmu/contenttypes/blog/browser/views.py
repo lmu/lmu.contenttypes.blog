@@ -346,26 +346,29 @@ class BlogEntryAddForm(add.DefaultAddForm):
 
     portal_type = 'Blog Entry'
     label = None
-    description = _(u'Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf "Weiter". Danach können Sie Bilder und / oder Dateien hinzufügen.')
+    description = _(u'Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf "Weiter". Danach können Sie Bilder und andere Dateien hinzufügen.')
 
-    def __call__(self):
+    def __render(self):
         self.updateWidgets()
 
         text = self.schema.get('text')
         text.widget = RichTextWidgetConfig()
 
-        self.updateFields()
-        fields = self.fields
+        formHelper(self,
+                   fields_to_show=[],
+                   fields_to_input=['title', 'description'],
+                   fields_to_hide=['IPublication.effective', 'IPublication.expires', ],
+                   fields_to_omit=['IPublication.effective', 'IPublication.expires', 'IVersionable.changeNote'])
 
-        cn = fields.get('IVersionable.changeNote')
-        cn.omitted = True
-        cn.mode = HIDDEN_MODE
+        #import ipdb; ipdb.set_trace()
 
-        return super(BlogEntryAddForm, self).__call__()
+        return super(BlogEntryAddForm, self).render()
 
 
 class BlogEntryAddView(add.DefaultAddView):
     form = BlogEntryAddForm
+    widgets = form.widgets
+    groups = form.groups
 
 
 class BlogEntryEditForm(edit.DefaultEditForm):
@@ -384,7 +387,7 @@ class BlogEntryEditForm(edit.DefaultEditForm):
         formHelper(self,
                    fields_to_show=[],
                    fields_to_input=['title', 'description'],
-                   fields_to_hide=[],
+                   fields_to_hide=['IPublication.effective', 'IPublication.expires', ],
                    fields_to_omit=['IPublication.effective', 'IPublication.expires', 'IVersionable.changeNote'])
 
         buttons = self.buttons

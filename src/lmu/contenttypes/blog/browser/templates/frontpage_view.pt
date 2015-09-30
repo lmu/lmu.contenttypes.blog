@@ -141,7 +141,7 @@
                 Bob Dobalina
               </a>
               <date tal:content="python: toLocalizedTime(item_display_date,long_format=1)">Date</date>
-              <em tal:condition="python: item_state != 'internally_published'" i18n:translate="">Dieser Blog-Beitrag ist noch nicht veröffentlicht</em>
+              <em tal:condition="python: item_state != 'internally_published'" i18n:translate="">Dieser Blog-Beitrag ist noch nicht veroeffentlicht</em>
             </div>
           </hgroup>
           <p tal:content="text">Blog Entry Text</p>
