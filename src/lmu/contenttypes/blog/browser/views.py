@@ -360,8 +360,13 @@ class BlogEntryAddForm(add.DefaultAddForm):
                    fields_to_omit=['IPublication.effective', 'IPublication.expires', 'IVersionable.changeNote'])
 
         #import ipdb; ipdb.set_trace()
+        buttons = self.buttons
+        for button in buttons.values():
+            #button.klass = u' button large round'
+            if button.title == u'Save':
+                button.title = _(u'Preview')
 
-        return super(BlogEntryAddForm, self).render()
+        return super(BlogEntryAddForm, self).update()
 
 
 class BlogEntryAddView(add.DefaultAddView):
