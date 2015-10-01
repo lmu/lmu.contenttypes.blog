@@ -11,38 +11,47 @@
 <script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/cropping.js"></script>
 <tal:script tal:replace='structure string:<script type="text/javascript">' />
 (function($) {
-    var ajaxify_overlay_form = function() {
+    function reload_folder_contents() {
+        var url = "<tal:url tal:replace="context/absolute_url" />/content_view";
+        $("#folder_contents").load(url + " #folder_contents", set_up_functions);
+    };
+    function close_and_reload_folder_contents() {
+        $('.close a').click();
+        reload_folder_contents();
+    };
+    function reload_sort_previews(mode) {
+        var url;
+        if (mode == 'images') {
+            url = "@@content_sort_images_view";
+        } else {
+            url = "@@content_sort_files_view";
+        }
+        return function() {
+            $('#folder_contents_sort #listing').load(
+                url + " #folder_contents_sort #listing",
+                ajaxify_sort_form(mode)
+            );
+        }
+    }
+    function ajaxify_overlay_form() {
         $('.overlay form').ajaxForm({
-            success: function () {
-                $('.close a').click();
-                $.ajax().done(
-                    function(html) {
-                        $(".previews").replaceWith($(html).find(".previews"));
-                        set_up_functions();
-                    }
-                );
-            }
+            success: close_and_reload_folder_contents
         });
     };
-    function reloadFolderContents() {
-      $("#folder_contents").load("<tal:url tal:replace="context/absolute_url" />/content_view #folder_contents");
-    }
+    function ajaxify_sort_form(mode) {
+        return function() {
+            $('.overlay form').ajaxForm({
+                success: reload_sort_previews(mode)
+            });
+        }
+    };
 
     function set_up_functions() {
-        $("a[href$='@@croppingeditor']").prepOverlay({
-            subtype:'ajax',
-            selector:'#content',
-            closeselector:"input[name='form.button.Cancel']",
-            width:'80%',
-            config: {
-                onLoad: ajaxify_overlay_form
-            }
-        });
         $("a[href$='@@blog_image_edit'].popup").prepOverlay({
             subtype:'ajax',
             selector:'#content-core',
             closeselector:"input[name='form.buttons.cancel']",
-            afterpost:reloadFolderContents,
+            afterpost:reload_folder_contents,
             config: {
                 onLoad: ajaxify_overlay_form
             }
@@ -64,15 +73,13 @@
                 onLoad: ajaxify_overlay_form
             }
         });
-        $("a.popup.image").prepOverlay({
-            subtype:'image'
-        });
         $("a#image_sort_button").prepOverlay({
             subtype:'ajax',
             selector:'#content',
             closeselector:"a.close-reveal-modal",
             config: {
-                onLoad: ajaxify_overlay_form
+                onLoad: ajaxify_sort_form("images"),
+                onClose: reload_folder_contents
             }
         });
         $("a#file_sort_button").prepOverlay({
@@ -80,17 +87,8 @@
             selector:'#content',
             closeselector:"a.close-reveal-modal",
             config: {
-                onLoad: ajaxify_overlay_form
-            }
-        });
-        $('.itemorder').ajaxForm({
-            success: function () {
-                $.ajax().done(
-                    function(html) {
-                        $(".previews").replaceWith($(html).find(".previews"));
-                        set_up_functions();
-                    }
-                );
+                onLoad: ajaxify_sort_form("files"),
+                onClose: reload_folder_contents
             }
         });
     }
@@ -99,15 +97,7 @@
         // workaround this MSIE bug :
         // https://dev.plone.org/plone/ticket/10894
         if ($.browser.msie) $("#settings").remove();
-        var Browser = {};
-        Browser.onUploadComplete = function() {
-            $.ajax().done(
-                function(html) {
-                    $(".previews").replaceWith($(html).find(".previews"));
-                    set_up_functions();
-                }
-            );
-        }
+        Browser.onUploadComplete = reload_folder_contents;
         loadUploader = function() {
             var ulContainer = $('.QuickUploadPortlet .uploaderContainer');
             ulContainer.each(function(){
@@ -144,7 +134,7 @@
         <div class="column small-12 medium-10" >
             <div class="has-tip tip-top" data-tooltip="true" aria-haspopup="true" title="Laden Sie Bilder oder Dokumente zu Ihrem Blog-Beitrag hoch (Maximal 10 MB pro Datei).">
               <div tal:replace="structure view/render_quickupload"></div>
-              <p> Das erste Bild wird auf den Übersichtsseiten und groß im Blob-Beitrag dargestellt.</p>
+              <p> Das erste Bild wird auf den Übersichtsseiten und groß im Blog-Beitrag dargestellt.</p>
             </div>
 
             <div id="folder_contents">
