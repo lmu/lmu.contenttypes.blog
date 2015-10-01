@@ -80,6 +80,8 @@
                     </div>
                 </div>
 
+                <a class="button small close-reveal-modal" href="#" tal:attributes="href string:${context/absolute_url}/edit" i18n:translate="">Done</a>
+
             </div>
         </div>
 
