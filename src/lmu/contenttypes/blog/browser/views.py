@@ -297,13 +297,17 @@ class EntryContentView(_AbstractBlogView):
     def subset_ids(self):
         return json.dumps(self.context.objectIds())
 
+    def mode_label(self):
+        return self.mode[0].upper() + self.mode[1:]
+
+    def content_sortinfo(self):
+        return self.content(mode=self.mode)
+
 
 class EntrySortFilesView(EntryContentView):
 
-    template = ViewPageTemplateFile('templates/entry_sort_files_view.pt')
-
-    def files(self):
-        return self.content(mode='files')
+    template = ViewPageTemplateFile('templates/entry_sort_images_view.pt')
+    mode = 'files'
 
     def __call__(self):
         return self.template()
@@ -312,9 +316,7 @@ class EntrySortFilesView(EntryContentView):
 class EntrySortImagesView(EntryContentView):
 
     template = ViewPageTemplateFile('templates/entry_sort_images_view.pt')
-
-    def images(self):
-        return self.content(mode='images')
+    mode = 'images'
 
     def __call__(self):
         return self.template()

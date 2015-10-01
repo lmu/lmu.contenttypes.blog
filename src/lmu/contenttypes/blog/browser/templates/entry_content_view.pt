@@ -14,27 +14,44 @@
     var reload_previews = function () {
         $.ajax().done(
             function(html) {
-                $("#folder_contents #images").replaceWith($(html).find("#folder_contents #images"));
+                $("#folder_contents").replaceWith($(html).find("#folder_contents"));
                 set_up_functions();
             }
         );
     };
-    var reload_sort_previews = function () {
+    var close_and_reload_previews = function () {
+        $('.close a').click();
+        reload_previews();
+    };
+    var reload_image_sort_previews = function () {
         $.ajax('@@content_sort_images_view').done(
             function(html) {
-                $("#folder_contents_sort #images").replaceWith($(html).find("#folder_contents_sort #images"));
-                ajaxify_sort_form();
+                $("#folder_contents_sort #listing").replaceWith($(html).find("#folder_contents_sort #listing"));
+                ajaxify_image_sort_form();
+            }
+        );
+    };
+    var reload_file_sort_previews = function () {
+        $.ajax('@@content_sort_files_view').done(
+            function(html) {
+                $("#folder_contents_sort #listing").replaceWith($(html).find("#folder_contents_sort #listing"));
+                ajaxify_file_sort_form();
             }
         );
     };
     var ajaxify_overlay_form = function() {
         $('.overlay form').ajaxForm({
-            success: reload_previews
+            success: close_and_reload_previews
         });
     };
-    var ajaxify_sort_form = function() {
+    var ajaxify_image_sort_form = function() {
         $('.overlay form').ajaxForm({
-            success: reload_sort_previews
+            success: reload_image_sort_previews
+        });
+    };
+    var ajaxify_file_sort_form = function() {
+        $('.overlay form').ajaxForm({
+            success: reload_file_sort_previews
         });
     };
     function reloadFolderContents() {
@@ -85,7 +102,7 @@
             selector:'#content',
             closeselector:"a.close-reveal-modal",
             config: {
-                onLoad: ajaxify_sort_form,
+                onLoad: ajaxify_image_sort_form,
                 onClose: reload_previews
             }
         });
@@ -94,7 +111,7 @@
             selector:'#content',
             closeselector:"a.close-reveal-modal",
             config: {
-                onLoad: ajaxify_sort_form,
+                onLoad: ajaxify_file_sort_form,
                 onClose: reload_previews
             }
         });

@@ -15,7 +15,7 @@
                     success: function () {
                         $.ajax().done(
                             function(html) {
-                                $("#images").replaceWith($(html).find("#images"));
+                                $("#listing").replaceWith($(html).find("#listing"));
                                 set_up_functions();
                             }
                         );
@@ -32,14 +32,20 @@
     <metal:block fill-slot="main">
         <div id="content-core">
             <div id="folder_contents_sort">
-                <h2 i18n:translate="" class="helper-no-margin-top">Images</h2>
-                <div id="images" class="image_listing helper-margin-bottom-l " tal:condition="view/images" >
-                    <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/images">
-                      <div class="column small-2" >
+                <h2 i18n:translate="" class="helper-no-margin-top" tal:content="view/mode_label">Images</h2>
+                <div id="listing" class="helper-margin-bottom-l " tal:condition="view/content_sortinfo" >
+
+                    <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/content_sortinfo">
+                      <div class="column small-2" tal:condition="python: view.mode == 'images'">
                           <img tal:replace="structure item/tag" tal:on-error="string: Kein Bild Scale"/>
                       </div>
-                      <div class="column small-8" >
+                      <div class="column small-8" tal:condition="python: view.mode == 'images'">
                           <h3 tal:content="item/title" >Titel</h3>
+                          <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
+                      </div>
+
+                      <div class="column small-10" tal:condition="python: view.mode == 'files'">
+                          <h3 ><span tal:replace="item/title" >Titel</span> <small>(<span tal:replace="item/type" />, <span tal:replace="item/size" />)</small></h3>
                           <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
                       </div>
 
@@ -66,10 +72,10 @@
 
                   </div>
                 </div>
-                <div id="images" class="image_listing" tal:condition="not: view/images">
+                <div id="listing" tal:condition="not: view/content_sortinfo" >
                     <div class="row helper-border-top helper-margin-bottom-s" >
                         <div class="column small-10" >
-                            <p i18n:translate="">No Images Uploaded</p>
+                            <p i18n:translate="">No <tal:label replace="view/mode_label">Images</tal:label> Uploaded</p>
                         </div>
                     </div>
                 </div>
