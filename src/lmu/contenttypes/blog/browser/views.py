@@ -17,13 +17,11 @@ from plone.app.z3cform.templates import RenderWidget
 #from plone.behavior.interfaces import IBehaviorAssignable
 from plone.dexterity.browser import edit
 from plone.dexterity.browser import add
-#from plone.z3cform.fieldsets.utils import move
 from z3c.form.interfaces import HIDDEN_MODE
 from z3c.form.interfaces import DISPLAY_MODE
 from z3c.form.interfaces import INPUT_MODE
 from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
-#from zope.schema import getFieldsInOrder
 
 #from lmu.contenttypes.blog.interfaces import IBlogEntry
 from lmu.contenttypes.blog.interfaces import IBlogFolder
@@ -32,9 +30,6 @@ from lmu.contenttypes.blog.interfaces import IBlogCommentFormLayer
 from lmu.contenttypes.blog import MESSAGE_FACTORY as _
 #from lmu.contenttypes.blog import logger
 
-#from Products.CMFPlone.utils import transaction_note
-#from AccessControl import Unauthorized
-#from Acquisition import aq_parent
 from logging import getLogger
 
 logging = getLogger(__name__)
@@ -73,7 +68,6 @@ class _AbstractBlogView(BrowserView):
     def images(self):
         #image_brains = api.content.find(context=self.context, depth=1, portal_type='Image')
         #images = [item.getObject() for item in image_brains]
-        #import ipdb; ipdb.set_trace()
         images = [item for item in self.context.values() if item.portal_type == 'Image']
         if None in images:
             images.remove(None)
@@ -83,7 +77,6 @@ class _AbstractBlogView(BrowserView):
         files = [item for item in self.context.values() if item.portal_type == 'File']
         if None in files:
             files.remove(None)
-        #import ipdb; ipdb.set_trace()
         return files
 
     def getFileSize(self, fileobj):
@@ -187,7 +180,6 @@ class FrontPageIncludeView(_AbstractBlogListingView):
             REQUEST = self.context.REQUEST
             RESPONSE = REQUEST.RESPONSE
             RESPONSE.setHeader('Content-Type', 'text/xml;charset=utf-8')
-        # import ipdb; ipdb.set_trace()
         return self.template()
 
 
@@ -359,12 +351,11 @@ class BlogEntryAddForm(add.DefaultAddForm):
                    fields_to_hide=['IPublication.effective', 'IPublication.expires', ],
                    fields_to_omit=['IPublication.effective', 'IPublication.expires', 'IVersionable.changeNote'])
 
-        #import ipdb; ipdb.set_trace()
         buttons = self.buttons
         for button in buttons.values():
             #button.klass = u' button large round'
-            if button.title == u'Save':
-                button.title = _(u'Preview')
+            if button.__name__ == 'save':
+                button.title = _(u'Next')
 
         return super(BlogEntryAddForm, self).update()
 
@@ -396,10 +387,8 @@ class BlogEntryEditForm(edit.DefaultEditForm):
 
         buttons = self.buttons
 
-        #import ipdb; ipdb.set_trace()
         for button in buttons.values():
-            #button.klass = u' button large round'
-            if button.title == u'Save':
+            if button.__name__ == 'save':
                 button.title = _(u'Preview')
 
         return super(BlogEntryEditForm, self).__call__()
@@ -413,11 +402,26 @@ class BlogFileEditForm(edit.DefaultEditForm):
 
     def __call__(self):
         formHelper(self,
-                   fields_to_show=['file'],
+                   fields_to_show=['image'],
                    fields_to_input=['title', 'description'],
-                   fields_to_hide=[],
-                   fields_to_omit=['IPublication.effective', 'IPublication.expires', 'IVersionable.changeNote'])
+                   fields_to_hide=['IPublication.effective',
+                                   'IPublication.expires',
+                                   'ICategorization.subjects',
+                                   'ICategorization.language',
+                                   'IRelatedItems.relatedItems',
+                                   'IOwnership.creators',
+                                   'IOwnership.contributors',
+                                   'IOwnership.rights',
+                                   'IAllowDiscussion.allow_discussion',
+                                   'IExcludeFromNavigation.exclude_from_nav',
+                                   ],
+                   fields_to_omit=['IVersionable.changeNote'])
 
+        buttons = self.buttons
+        for button in buttons.values():
+            #button.klass = u' button large round'
+            if button.__name__ == 'save':
+                button.title = _(u'Save')
         return super(BlogFileEditForm, self).__call__()
 
     def label(self):
@@ -449,7 +453,7 @@ class BlogImageEditForm(edit.DefaultEditForm):
         buttons = self.buttons
         for button in buttons.values():
             #button.klass = u' button large round'
-            if button.title == _(u'Preview'):
+            if button.__name__ == 'save':
                 button.title = _(u'Save')
 
         return super(BlogImageEditForm, self).__call__()
@@ -469,7 +473,6 @@ class BlogCommentAddForm(add.DefaultAddForm):
     def __call__(self):
         self.portal_type = self.context.portal_type
         text = self.schema.get('text')
-        #import ipdb; ipdb.set_trace()
         text.widget = RichTextWidgetConfig()
         self.updateWidgets()
         return super(BlogCommentAddForm, self).__call__()
