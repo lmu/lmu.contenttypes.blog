@@ -254,7 +254,7 @@ class EntryContentView(_AbstractBlogView):
             type_test = lambda typ: typ != 'Image'
         items = []
         previous = -1
-        for current, obj in enumerate(reversed(self.context.objectValues())):
+        for current, obj in enumerate(self.context.objectValues()):
             if type_test(obj.portal_type):
                 item = {'url': obj.absolute_url(),
                         'id': obj.getId(),
@@ -271,16 +271,16 @@ class EntryContentView(_AbstractBlogView):
                     item['tag'] = scales.tag('image', width=80, height=80,
                                              direction='down')
                 if previous > -1:
-                    item['delta_up'] = current - previous
+                    item['delta_up'] = previous - current
                 items.append(item)
                 previous = current
             else:
                 items.append({})
         previous = -1
-        for current, obj in enumerate(self.context.objectValues()):
+        for current, obj in enumerate(reversed(self.context.objectValues())):
             if type_test(obj.portal_type):
                 if previous > -1:
-                    items[-1 - current]['delta_down'] = previous - current
+                    items[-1 - current]['delta_down'] = current - previous
                 previous = current
         return [i for i in items if i]
 
