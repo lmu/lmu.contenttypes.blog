@@ -97,7 +97,6 @@
         // workaround this MSIE bug :
         // https://dev.plone.org/plone/ticket/10894
         if ($.browser.msie) $("#settings").remove();
-        var Browser = {};
         Browser.onUploadComplete = reload_folder_contents;
         loadUploader = function() {
             var ulContainer = $('.QuickUploadPortlet .uploaderContainer');
