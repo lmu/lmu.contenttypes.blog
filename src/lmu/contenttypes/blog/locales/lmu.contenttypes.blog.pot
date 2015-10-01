@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-10-01 17:43+0000\n"
+"POT-Creation-Date: 2015-10-01 17:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: manual\n"
 
-#: ./browser/views.py:292
+#: ./browser/views.py:298
 msgid ""
 msgstr ""
 
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Alle Blog-Beitraege"
 msgstr ""
 
-#: ./browser/views.py:386
+#: ./browser/views.py:392
 msgid "Bearbeiten Sie Ihren Blog-Beitrag. Klicken Sie anschließend auf \"Vorschau\", um die Eingaben zu überprüfen und den Blog-Eintrag zu veröffentlichen."
 msgstr ""
 
@@ -57,10 +57,14 @@ msgstr ""
 msgid "Delete Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:126
+#: ./browser/templates/entry_view.pt:137
 #: ./browser/templates/frontpage_view.pt:144
 #: ./browser/templates/listing_view.pt:135
 msgid "Dieser Blog-Beitrag ist noch nicht veroeffentlicht"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:108
+msgid "Document Status is:"
 msgstr ""
 
 #: ./browser/templates/entry_sort_images_view.pt:83
@@ -76,7 +80,7 @@ msgid "Edit Blog Entry"
 msgstr ""
 
 #: ./browser/templates/entry_content_view.pt:207
-#: ./browser/templates/entry_view.pt:167
+#: ./browser/templates/entry_view.pt:178
 msgid "Files"
 msgstr ""
 
@@ -84,11 +88,11 @@ msgstr ""
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr ""
 
-#: ./browser/views.py:354
+#: ./browser/views.py:360
 msgid "Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf \"Weiter\". Danach können Sie Bilder und andere Dateien hinzufügen."
 msgstr ""
 
-#: ./browser/views.py:344
+#: ./browser/views.py:350
 msgid "Heading"
 msgstr ""
 
@@ -109,7 +113,7 @@ msgstr ""
 msgid "Meine Blogbeitraege -"
 msgstr ""
 
-#: ./browser/views.py:372
+#: ./browser/views.py:378
 msgid "Next"
 msgstr ""
 
@@ -125,7 +129,7 @@ msgstr ""
 msgid "No Images Uploaded"
 msgstr ""
 
-#: ./browser/views.py:406
+#: ./browser/views.py:412
 msgid "Preview"
 msgstr ""
 
@@ -145,7 +149,7 @@ msgstr ""
 msgid "Report Blog Entry"
 msgstr ""
 
-#: ./browser/views.py:438
+#: ./browser/views.py:444
 msgid "Save"
 msgstr ""
 
@@ -167,7 +171,7 @@ msgstr ""
 msgid "Sperren"
 msgstr ""
 
-#: ./browser/views.py:345
+#: ./browser/views.py:351
 msgid "Subheading"
 msgstr ""
 
@@ -175,12 +179,28 @@ msgstr ""
 msgid "Upload Images and Files"
 msgstr ""
 
+#: ./browser/templates/entry_view.pt:109
+msgid "Workflow State Private"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:110
+msgid "Workflow State Published"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:105
+msgid "You are Owner of this Blog Entry"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:106
+msgid "You are a Manager"
+msgstr ""
+
 #: ./browser/templates/entry_sort_images_view.pt:66
 msgid "down"
 msgstr ""
 
 #. Default: "Jump to Comments"
-#: ./browser/templates/entry_view.pt:105
+#: ./browser/templates/entry_view.pt:116
 #: ./browser/templates/frontpage_view.pt:104
 #: ./browser/templates/listing_view.pt:96
 msgid "lable_jump_to_comments"

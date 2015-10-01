@@ -239,6 +239,12 @@ class EntryView(_AbstractBlogView):
         user = api.user.get_current()
         return any(role in user.getRolesInContext(self.context) for role in ['Manager', 'SiteAdmin'])
 
+    def isPrivate(self):
+        return api.content.get_state(obj=self.context) in ['private']
+
+    def isInternallyPublished(self):
+        return api.content.get_state(obj=self.context) in ['internally_published']
+
 
 class EntryContentView(_AbstractBlogView):
 
