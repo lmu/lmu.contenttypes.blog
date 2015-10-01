@@ -11,17 +11,30 @@
 <script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/cropping.js"></script>
 <tal:script tal:replace='structure string:<script type="text/javascript">' />
 (function($) {
+    var reload_previews = function () {
+        $.ajax().done(
+            function(html) {
+                $("#folder_contents #images").replaceWith($(html).find("#folder_contents #images"));
+                set_up_functions();
+            }
+        );
+    };
+    var reload_sort_previews = function () {
+        $.ajax('@@content_sort_images_view').done(
+            function(html) {
+                $("#folder_contents_sort #images").replaceWith($(html).find("#folder_contents_sort #images"));
+                ajaxify_sort_form();
+            }
+        );
+    };
     var ajaxify_overlay_form = function() {
         $('.overlay form').ajaxForm({
-            success: function () {
-                $('.close a').click();
-                $.ajax().done(
-                    function(html) {
-                        $(".previews").replaceWith($(html).find(".previews"));
-                        set_up_functions();
-                    }
-                );
-            }
+            success: reload_previews
+        });
+    };
+    var ajaxify_sort_form = function() {
+        $('.overlay form').ajaxForm({
+            success: reload_sort_previews
         });
     };
     function reloadFolderContents() {
@@ -72,7 +85,8 @@
             selector:'#content',
             closeselector:"a.close-reveal-modal",
             config: {
-                onLoad: ajaxify_overlay_form
+                onLoad: ajaxify_sort_form,
+                onClose: reload_previews
             }
         });
         $("a#file_sort_button").prepOverlay({
@@ -80,7 +94,8 @@
             selector:'#content',
             closeselector:"a.close-reveal-modal",
             config: {
-                onLoad: ajaxify_overlay_form
+                onLoad: ajaxify_sort_form,
+                onClose: reload_previews
             }
         });
         $('.itemorder').ajaxForm({
