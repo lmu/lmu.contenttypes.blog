@@ -22,7 +22,7 @@ msgstr "Blog-Beitrag verfassen"
 msgid "Alle Blog-Beitraege"
 msgstr "Alle Blog-Beiträge"
 
-#: ./browser/views.py:374
+#: ./browser/views.py:386
 msgid "Bearbeiten Sie Ihren Blog-Beitrag. Klicken Sie anschließend auf \"Vorschau\", um die Eingaben zu überprüfen und den Blog-Eintrag zu veröffentlichen."
 msgstr "Bearbeiten Sie Ihren Blog-Beitrag. Klicken Sie anschließend auf \"Vorschau\", um die Eingaben zu überprüfen und den Blog-Eintrag zu veröffentlichen."
 
@@ -50,7 +50,7 @@ msgstr "Löschen"
 msgid "Delete Blog Entry"
 msgstr "Lösche Blog-Beitrag"
 
-#: ./browser/templates/entry_view.pt:120
+#: ./browser/templates/entry_view.pt:126
 #: ./browser/templates/frontpage_view.pt:144
 #: ./browser/templates/listing_view.pt:135
 msgid "Dieser Blog-Beitrag ist noch nicht veroeffentlicht"
@@ -69,7 +69,7 @@ msgid "Edit Blog Entry"
 msgstr "Bearbeite Blog-Beitrag"
 
 #: ./browser/templates/entry_content_view.pt:207
-#: ./browser/templates/entry_view.pt:161
+#: ./browser/templates/entry_view.pt:167
 msgid "Files"
 msgstr "Dateien"
 
@@ -77,13 +77,17 @@ msgstr "Dateien"
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr "Blog Ordner für Blog-Einträge mit einer speziellen Ansicht und Einschränkungen"
 
-#: ./browser/views.py:342
+#: ./browser/views.py:354
 msgid "Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf \"Weiter\". Danach können Sie Bilder und andere Dateien hinzufügen."
 msgstr "Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf \"Weiter\". Danach können Sie Bilder und andere Dateien hinzufügen."
 
-#: ./browser/views.py:332
+#: ./browser/views.py:344
 msgid "Heading"
 msgstr "Überschrift"
+
+#: ./browser/templates/entry_view.pt:81
+msgid "Hide"
+msgstr "Zurückziehen"
 
 #: ./browser/templates/entry_content_view.pt:149
 msgid "Images"
@@ -98,7 +102,7 @@ msgstr "Jetzt einen Blog-Beitrag verfassen"
 msgid "Meine Blogbeitraege -"
 msgstr "Meine Blogbeiträge - "
 
-#: ./browser/views.py:360
+#: ./browser/views.py:372
 msgid "Next"
 msgstr "Weiter"
 
@@ -114,7 +118,7 @@ msgstr "Keine Dateien hochgeladen"
 msgid "No Images Uploaded"
 msgstr "Keine Bilder hochgeladen"
 
-#: ./browser/views.py:394
+#: ./browser/views.py:406
 msgid "Preview"
 msgstr "Vorschau"
 
@@ -126,17 +130,17 @@ msgstr "Veröffentlichen"
 msgid "Read Comments / Write a comment"
 msgstr "Kommentare lesen / Kommentare schreiben"
 
+#: ./browser/templates/entry_view.pt:88
+msgid "Reject"
+msgstr "Zurückweisen"
+
 #: ./browser/templates/entry_view.pt:52
 msgid "Report Blog Entry"
 msgstr "Blog-Beitrag melden"
 
-#: ./browser/views.py:426
+#: ./browser/views.py:438
 msgid "Save"
 msgstr "Speichern"
-
-#: ./browser/templates/entry_view.pt:81
-msgid "Set Private"
-msgstr "Zurückweisen / Zurückziehen"
 
 #: ./browser/templates/blog_entry_add.pt:8
 #: ./browser/templates/blog_entry_edit.pt:10
@@ -152,11 +156,11 @@ msgstr "Dateien Sortieren"
 msgid "Sort Images"
 msgstr "Bilder Sortieren"
 
-#: ./browser/templates/entry_view.pt:89
+#: ./browser/templates/entry_view.pt:95
 msgid "Sperren"
 msgstr "Sperren"
 
-#: ./browser/views.py:333
+#: ./browser/views.py:345
 msgid "Subheading"
 msgstr "Überschrift"
 
@@ -169,7 +173,7 @@ msgid "down"
 msgstr "runter"
 
 #. Default: "Jump to Comments"
-#: ./browser/templates/entry_view.pt:99
+#: ./browser/templates/entry_view.pt:105
 #: ./browser/templates/frontpage_view.pt:104
 #: ./browser/templates/listing_view.pt:96
 msgid "lable_jump_to_comments"

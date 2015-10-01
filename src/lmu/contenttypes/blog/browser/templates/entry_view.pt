@@ -78,21 +78,27 @@
                i18n:attributes="title"
                i18n:translate="" >Publish</a>
 
-            <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=reject"
-               tal:condition="view/can_set_private"
+            <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=hide"
+               tal:condition="view/can_hide"
                class="button link-overlay small"
-               title="Set Private"
+               title="Hide"
                i18n:attributes="title"
-               i18n:translate="" >Set Private</a>
+               i18n:translate="" >Hide</a>
 
-<div tal:condition="nothing">
+            <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=reject"
+               tal:condition="view/can_reject"
+               class="button link-overlay small"
+               title="Reject"
+               i18n:attributes="title"
+               i18n:translate="" >Reject</a>
+
             <a tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=banned"
                tal:condition="view/can_lock"
                class="button link-overlay small"
                title="Report Blog Entry"
                i18n:translate=""
                i18n:attributes="title" >Sperren</a>
-</div>
+
           </div>
 
         <div class="blog-preview-counter" >
