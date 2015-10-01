@@ -195,7 +195,7 @@ class EntryView(_AbstractBlogView):
 
     def can_edit(self):
         return api.user.has_permission(permissions.ModifyPortalContent, obj=self.context) and \
-            any(role in ['Owner', 'Site Manager', 'Manager'] for role in api.user.get_roles())
+            any(role in ['Owner', 'Site Manager', 'Manager'] for role in api.user.get_roles(obj=self.context))
 
     def can_remove(self):
         """Only show the delete-button if the user has the permission to delete
@@ -209,22 +209,22 @@ class EntryView(_AbstractBlogView):
 
     def can_publish(self):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context) and \
-            any(role in ['Owner', 'Site Manager', 'Manager'] for role in api.user.get_roles()) and \
+            any(role in ['Owner', 'Site Manager', 'Manager'] for role in api.user.get_roles(obj=self.context)) and \
             api.content.get_state(obj=self.context) in ['private']
 
     def can_hide(self):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context) and \
-            any(role in ['Owner', 'Site Manager', 'Manager'] for role in api.user.get_roles()) and \
+            any(role in ['Owner', 'Site Manager', 'Manager'] for role in api.user.get_roles(obj=self.context)) and \
             api.content.get_state(obj=self.context) in ['internally_published']
 
     def can_reject(self):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context) and \
-            any(role in ['Site Manager', 'Manager'] for role in api.user.get_roles()) and \
+            any(role in ['Site Manager', 'Manager'] for role in api.user.get_roles(obj=self.context)) and \
             api.content.get_state(obj=self.context) in ['internally_published']
 
     def can_lock(self):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context) and \
-            any(role in ['Site Manager', 'Manager'] for role in api.user.get_roles()) and \
+            any(role in ['Site Manager', 'Manager'] for role in api.user.get_roles(obj=self.context)) and \
             api.content.get_state(obj=self.context) in ['internally_published']
 
     def isOwner(self):
@@ -236,8 +236,7 @@ class EntryView(_AbstractBlogView):
         return 'Reviewer' in user.getRolesInContext(self.context)
 
     def isManager(self):
-        user = api.user.get_current()
-        return any(role in user.getRolesInContext(self.context) for role in ['Manager', 'SiteAdmin'])
+        return any(role in ['Manager', 'SiteAdmin'] for role in api.user.get_roles(obj=self.context))
 
     def isPrivate(self):
         return api.content.get_state(obj=self.context) in ['private']
