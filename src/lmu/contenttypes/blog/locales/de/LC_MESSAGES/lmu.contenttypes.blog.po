@@ -22,7 +22,7 @@ msgstr "Blog-Beitrag verfassen"
 msgid "Alle Blog-Beitraege"
 msgstr "Alle Blog-Beiträge"
 
-#: ./browser/views.py:372
+#: ./browser/views.py:374
 msgid "Bearbeiten Sie Ihren Blog-Beitrag. Klicken Sie anschließend auf \"Vorschau\", um die Eingaben zu überprüfen und den Blog-Eintrag zu veröffentlichen."
 msgstr "Bearbeiten Sie Ihren Blog-Beitrag. Klicken Sie anschließend auf \"Vorschau\", um die Eingaben zu überprüfen und den Blog-Eintrag zu veröffentlichen."
 
@@ -38,11 +38,11 @@ msgstr "Blog-Beitrag mit der Option Bilder und Dateien anzufügen."
 msgid "Blog Folder"
 msgstr "Blog"
 
-#: ./browser/templates/entry_content_view.pt:192
+#: ./browser/templates/entry_content_view.pt:182
 msgid "Crop Image"
 msgstr "Bild Beschneiden"
 
-#: ./browser/templates/entry_content_view.pt:187
+#: ./browser/templates/entry_content_view.pt:177
 msgid "Delete"
 msgstr "Löschen"
 
@@ -56,7 +56,11 @@ msgstr "Lösche Blog-Beitrag"
 msgid "Dieser Blog-Beitrag ist noch nicht veroeffentlicht"
 msgstr "Dieser Blog-Beitrag ist noch nicht veröffentlicht"
 
-#: ./browser/templates/entry_content_view.pt:182
+#: ./browser/templates/entry_sort_images_view.pt:83
+msgid "Done"
+msgstr "Fertig"
+
+#: ./browser/templates/entry_content_view.pt:172
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -64,8 +68,7 @@ msgstr "Bearbeiten"
 msgid "Edit Blog Entry"
 msgstr "Bearbeite Blog-Beitrag"
 
-#: ./browser/templates/entry_content_view.pt:217
-#: ./browser/templates/entry_sort_files_view.pt:38
+#: ./browser/templates/entry_content_view.pt:207
 #: ./browser/templates/entry_view.pt:161
 msgid "Files"
 msgstr "Dateien"
@@ -74,16 +77,15 @@ msgstr "Dateien"
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr "Blog Ordner für Blog-Einträge mit einer speziellen Ansicht und Einschränkungen"
 
-#: ./browser/views.py:340
+#: ./browser/views.py:342
 msgid "Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf \"Weiter\". Danach können Sie Bilder und andere Dateien hinzufügen."
 msgstr "Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf \"Weiter\". Danach können Sie Bilder und andere Dateien hinzufügen."
 
-#: ./browser/views.py:330
+#: ./browser/views.py:332
 msgid "Heading"
 msgstr "Überschrift"
 
-#: ./browser/templates/entry_content_view.pt:159
-#: ./browser/templates/entry_sort_images_view.pt:35
+#: ./browser/templates/entry_content_view.pt:149
 msgid "Images"
 msgstr "Bilder"
 
@@ -96,21 +98,23 @@ msgstr "Jetzt einen Blog-Beitrag verfassen"
 msgid "Meine Blogbeitraege -"
 msgstr "Meine Blogbeiträge - "
 
-#: ./browser/views.py:358
+#: ./browser/views.py:360
 msgid "Next"
 msgstr "Weiter"
 
-#: ./browser/templates/entry_content_view.pt:245
-#: ./browser/templates/entry_sort_files_view.pt:71
+#: ./browser/templates/entry_sort_images_view.pt:78
+msgid "No ${DYNAMIC_CONTENT} Uploaded"
+msgstr "Keine ${DYNAMIC_CONTENT hochgeladen}"
+
+#: ./browser/templates/entry_content_view.pt:235
 msgid "No Files Uploaded"
 msgstr "Keine Dateien hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:204
-#: ./browser/templates/entry_sort_images_view.pt:72
+#: ./browser/templates/entry_content_view.pt:194
 msgid "No Images Uploaded"
 msgstr "Keine Bilder hochgeladen"
 
-#: ./browser/views.py:392
+#: ./browser/views.py:394
 msgid "Preview"
 msgstr "Vorschau"
 
@@ -126,7 +130,7 @@ msgstr "Kommentare lesen / Kommentare schreiben"
 msgid "Report Blog Entry"
 msgstr "Blog-Beitrag melden"
 
-#: ./browser/views.py:424
+#: ./browser/views.py:426
 msgid "Save"
 msgstr "Speichern"
 
@@ -135,16 +139,16 @@ msgid "Set Private"
 msgstr "Zurückweisen / Zurückziehen"
 
 #: ./browser/templates/blog_entry_add.pt:8
-#: ./browser/templates/blog_entry_edit.pt:108
+#: ./browser/templates/blog_entry_edit.pt:10
 #: ./browser/templates/frontpage_view.pt:66
 msgid "Show Blog Rules"
 msgstr "Zu den Blog-Regeln"
 
-#: ./browser/templates/entry_content_view.pt:210
+#: ./browser/templates/entry_content_view.pt:200
 msgid "Sort Files"
 msgstr "Dateien Sortieren"
 
-#: ./browser/templates/entry_content_view.pt:152
+#: ./browser/templates/entry_content_view.pt:142
 msgid "Sort Images"
 msgstr "Bilder Sortieren"
 
@@ -152,15 +156,15 @@ msgstr "Bilder Sortieren"
 msgid "Sperren"
 msgstr "Sperren"
 
-#: ./browser/views.py:331
+#: ./browser/views.py:333
 msgid "Subheading"
 msgstr "Überschrift"
 
-#: ./browser/templates/entry_content_view.pt:140
+#: ./browser/templates/entry_content_view.pt:130
 msgid "Upload Images and Files"
 msgstr "Bilder und Dateien hochladen"
 
-#: ./browser/templates/entry_sort_images_view.pt:60
+#: ./browser/templates/entry_sort_images_view.pt:66
 msgid "down"
 msgstr "runter"
 
@@ -183,7 +187,7 @@ msgstr "Die Blog-Überschrift"
 msgid "lable_title_title"
 msgstr "Überschrift"
 
-#: ./browser/templates/entry_sort_images_view.pt:55
+#: ./browser/templates/entry_sort_images_view.pt:61
 msgid "up"
 msgstr "hoch"
 
