@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-09-30 19:51+0000\n"
+"POT-Creation-Date: 2015-10-01 14:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: manual\n"
 
-#: ./browser/views.py:288
+#: ./browser/views.py:280
 msgid ""
 msgstr ""
 
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Alle Blog-Beitraege"
 msgstr ""
 
-#: ./browser/views.py:376
+#: ./browser/views.py:372
 msgid "Bearbeiten Sie Ihren Blog-Beitrag. Klicken Sie anschließend auf \"Vorschau\", um die Eingaben zu überprüfen und den Blog-Eintrag zu veröffentlichen."
 msgstr ""
 
@@ -81,11 +81,11 @@ msgstr ""
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr ""
 
-#: ./browser/views.py:348
+#: ./browser/views.py:340
 msgid "Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf \"Weiter\". Danach können Sie Bilder und andere Dateien hinzufügen."
 msgstr ""
 
-#: ./browser/views.py:338
+#: ./browser/views.py:330
 msgid "Heading"
 msgstr ""
 
@@ -103,6 +103,10 @@ msgstr ""
 msgid "Meine Blogbeitraege -"
 msgstr ""
 
+#: ./browser/views.py:358
+msgid "Next"
+msgstr ""
+
 #: ./browser/templates/entry_content_view.pt:245
 #: ./browser/templates/entry_sort_files_view.pt:71
 msgid "No Files Uploaded"
@@ -113,7 +117,7 @@ msgstr ""
 msgid "No Images Uploaded"
 msgstr ""
 
-#: ./browser/views.py:398
+#: ./browser/views.py:392
 msgid "Preview"
 msgstr ""
 
@@ -129,7 +133,7 @@ msgstr ""
 msgid "Report Blog Entry"
 msgstr ""
 
-#: ./browser/views.py:448
+#: ./browser/views.py:424
 msgid "Save"
 msgstr ""
 
@@ -155,7 +159,7 @@ msgstr ""
 msgid "Sperren"
 msgstr ""
 
-#: ./browser/views.py:339
+#: ./browser/views.py:331
 msgid "Subheading"
 msgstr ""
 
