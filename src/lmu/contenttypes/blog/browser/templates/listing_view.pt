@@ -123,9 +123,10 @@
                    tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon"
                    tal:define="author python:pas_member.info(item_creator);">
                 <a href="#"
-                  tal:define="external_url author/home_page;
-                              default_url string:${navigation_root_url}/author/${item_creator};
-                              href_url python: external_url if external_url else default_url;"
+                   tal:define="explicite_url author/home_page;
+                               external_url string:${navigation_root_url}/servlets/redirect/?goto=person&id=${item_creator};
+                               default_url string:${navigation_root_url}/author/${item_creator};
+                               href_url python: explicite_url if explicite_url else external_url;"
                    tal:attributes="href href_url;"
                    tal:content="author/name_or_id"
                    tal:omit-tag="not:author">
