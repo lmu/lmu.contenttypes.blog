@@ -10,13 +10,13 @@ from lmu.contenttypes.blog.interfaces import IBlogFolder
 
 from lmu.contenttypes.blog import MESSAGE_FACTORY as _
 #from lmu.contenttypes.blog import logger
-from lmu.policy.base.browser import _AbstractLMUBaseContentEditForm
-from lmu.policy.base.browser import _AbstractLMUBaseContentView
-from lmu.policy.base.browser import _AbstractLMUBaseListingView
-from lmu.policy.base.browser import _FrontPageIncludeMixin
-from lmu.policy.base.browser import _EntryViewMixin
-from lmu.policy.base.browser import RichTextWidgetConfig
-from lmu.policy.base.browser import formHelper
+from lmu.policy.base.browser.content import _AbstractLMUBaseContentEditForm
+from lmu.policy.base.browser.content import _AbstractLMUBaseContentView
+from lmu.policy.base.browser.content import _EntryViewMixin
+from lmu.policy.base.browser.content import RichTextWidgetConfig
+from lmu.policy.base.browser.content import formHelper
+from lmu.policy.base.browser.content_listing import _AbstractLMUBaseListingView
+from lmu.policy.base.browser.content_listing import _FrontPageIncludeMixin
 
 from logging import getLogger
 
