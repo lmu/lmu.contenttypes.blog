@@ -27,27 +27,6 @@
         class=".views.EntryView"
         />
 
-    <browser:page
-        name="content_view"
-        for="lmu.contenttypes.blog.interfaces.IBlogEntry"
-        permission="cmf.ModifyPortalContent"
-        class=".views.EntryContentView"
-        />
-
-    <browser:page
-        name="content_sort_files_view"
-        for="lmu.contenttypes.blog.interfaces.IBlogEntry"
-        permission="cmf.ModifyPortalContent"
-        class=".views.EntrySortFilesView"
-        />
-
-    <browser:page
-        name="content_sort_images_view"
-        for="lmu.contenttypes.blog.interfaces.IBlogEntry"
-        permission="cmf.ModifyPortalContent"
-        class=".views.EntrySortImagesView"
-        />
-
     <adapter
         for="Products.CMFCore.interfaces.IFolderish
              zope.publisher.interfaces.browser.IDefaultBrowserLayer
@@ -70,51 +49,12 @@
         class=".views.BlogEntryEditForm"
         />
 
-    <browser:page
-        for="plone.app.contenttypes.interfaces.IFile"
-        name="blog_file_edit"
-        permission="cmf.ModifyPortalContent"
-        class=".views.BlogFileEditForm"
-        />
-
-    <browser:page
-        for="plone.app.contenttypes.interfaces.IImage"
-        name="blog_image_edit"
-        permission="cmf.ModifyPortalContent"
-        class=".views.BlogImageEditForm"
-        />
-
-    <browser:page
-        for="plone.app.discussion.interfaces.IComment"
-        name="add"
-        permission="cmf.ModifyPortalContent"
-        class=".views.BlogCommentAddForm"
-        />
-
     <!--z3c:widgetTemplate
         mode="input"
         widget="plone.formwidget.namedfile.interfaces.INamedImageWidget"
         layer="lmu.contenttypes.blog.interfaces.IBlogLayer"
         template="templates/image_input.pt"
         /-->
-
-    <browser:page
-        name="ploneform-render-widget"
-        for="z3c.form.interfaces.IWidget"
-        layer="..interfaces.IBlogCommentFormLayer"
-        class=".views.BlogRenderWidget"
-        permission="zope.Public"
-        />
-
-    <browser:viewlet
-        name="plone.comments"
-        for="Products.CMFCore.interfaces.IContentish"
-        layer="lmu.contenttypes.blog.interfaces.IBlogLayer"
-        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
-        view="plone.app.layout.globals.interfaces.IViewView"
-        class=".views.BlogCommentsViewlet"
-        permission="zope2.View"
-        />
 
 <!--
     <browser:page

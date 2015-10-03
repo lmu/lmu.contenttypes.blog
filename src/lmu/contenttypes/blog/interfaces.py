@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from lmu.policy.base.interfaces import ILMUContent
 from plone.app.discussion.interfaces import IDiscussionLayer
 from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.theme.interfaces import IDefaultPloneLayer
-from z3c.form.interfaces import IFormLayer
 from zope.interface import Interface
 
 #from lmu.contenttypes.blog import MESSAGE_FACTORY as _
@@ -16,7 +16,7 @@ class IBlogFolder(Interface, IImageScaleTraversable):
     #form.model("models/blog_folder.xml")
 
 
-class IBlogEntry(Interface, IImageScaleTraversable):
+class IBlogEntry(ILMUContent, IImageScaleTraversable):
     """
     Blog Entry with folder support for files and images
     """
@@ -26,11 +26,6 @@ class IBlogEntry(Interface, IImageScaleTraversable):
 class IBlogLayer(IDefaultPloneLayer, IDiscussionLayer):
     """ A layer specific to this product.
         Is registered using browserlayer.xml
-    """
-
-
-class IBlogCommentFormLayer(IFormLayer):
-    """ A form layer that helps us overrride ploneform-render-widget
     """
 
 
