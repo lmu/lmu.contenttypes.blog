@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from Products.CMFCore import permissions
-from Products.CMFPlone.PloneBatch import Batch
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
-from plone import api
 #from plone.behavior.interfaces import IBehaviorAssignable
 from plone.dexterity.browser import add
 
@@ -15,6 +12,7 @@ from lmu.contenttypes.blog import MESSAGE_FACTORY as _
 #from lmu.contenttypes.blog import logger
 from lmu.policy.base.browser import _AbstractLMUBaseContentEditForm
 from lmu.policy.base.browser import _AbstractLMUBaseContentView
+from lmu.policy.base.browser import _AbstractLMUBaseListingView
 from lmu.policy.base.browser import _FrontPageIncludeMixin
 from lmu.policy.base.browser import _EntryViewMixin
 from lmu.policy.base.browser import RichTextWidgetConfig
@@ -25,70 +23,32 @@ from logging import getLogger
 logging = getLogger(__name__)
 
 
-class _AbstractBlogListingView(_AbstractLMUBaseContentView):
-
-    DEFAULT_LIMIT = 10
-
-    def __init__(self, context, request):
-        self.context = context
-        self.request = request
-        limit_display = getattr(self.request, 'limit_display', None)
-        limit_display = int(limit_display) if limit_display is not None else \
-            self.DEFAULT_LIMIT
-        b_size = getattr(self.request, 'b_size', None)
-        self.b_size = int(b_size) if b_size is not None else limit_display
-        b_start = getattr(self.request, 'b_start', None)
-        self.b_start = int(b_start) if b_start is not None else 0
-
-        self.content_filter = {'portal_type': 'Blog Entry'}
-        self.pcatalog = self.context.portal_catalog
-
-        if IBlogFolder.providedBy(self.context):
-
-            if self.request.get('author'):
-                self.content_filter['Creator'] = self.request.get('author')
-
-    def absolute_length(self):
-        return len(self.pcatalog.searchResults(self.content_filter))
-
-    def entries(self):
-        entries = []
-        if IBlogFolder.providedBy(self.context):
-
-            entries = self.pcatalog.searchResults(
-                self.content_filter,
-                sort_on='effective', sort_order='reverse',
-            )
-
-        return entries
-
-    def batch(self):
-        batch = Batch(
-            self.entries(),
-            size=self.b_size,
-            start=self.b_start,
-            orphan=1
-        )
-        return batch
-
-    def can_add(self):
-        return api.user.has_permission(permissions.AddPortalContent,
-                                       #'lmu.contenttypes.blog: Add Blog Entry',
-                                       obj=self.context)
-
-
-class ListingView(_AbstractBlogListingView):
+class ListingView(_AbstractLMUBaseListingView):
 
     template = ViewPageTemplateFile('templates/listing_view.pt')
+
+    portal_type = 'Blog Entry'
+    container_interface = IBlogFolder
+    sort_on = 'effective'
+
+    def __init__(self, context, request):
+        super(ListingView, self).__init__(context, request)
+
+        if self.request.get('author'):
+            self.content_filter['Creator'] = self.request.get('author')
 
     def __call__(self):
         return self.template()
 
 
-class FrontPageIncludeView(_AbstractBlogListingView, _FrontPageIncludeMixin):
+class FrontPageIncludeView(_AbstractLMUBaseListingView, _FrontPageIncludeMixin):
 
     template = ViewPageTemplateFile('templates/frontpage_view.pt')
+
     DEFAULT_LIMIT = 3
+    portal_type = 'Blog Entry'
+    container_interface = IBlogFolder
+    sort_on = 'effective'
 
 
 class EntryView(_AbstractLMUBaseContentView, _EntryViewMixin):
