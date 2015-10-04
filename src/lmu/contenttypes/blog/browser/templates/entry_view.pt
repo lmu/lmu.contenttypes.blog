@@ -127,7 +127,7 @@
                tal:define="author python:pas_member.info(item_creator);">
             <a href="#"
                tal:define="explicite_url author/home_page;
-                           external_url string:${navigation_root_url}/servlets/redirect/?goto=person&id=${item_creator};
+                           external_url string:${navigation_root_url}/resources/iuk/redirect/goto/person/${item_creator};
                            default_url string:${navigation_root_url}/author/${item_creator};
                            href_url python: explicite_url if explicite_url else external_url;"
                tal:attributes="href href_url;"
