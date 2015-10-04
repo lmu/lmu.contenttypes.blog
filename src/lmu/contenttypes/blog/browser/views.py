@@ -4,19 +4,20 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 #from plone.behavior.interfaces import IBehaviorAssignable
 from plone.dexterity.browser import add
+from plone.dexterity.browser import edit
 
-#from lmu.contenttypes.blog.interfaces import IBlogEntry
-from lmu.contenttypes.blog.interfaces import IBlogFolder
-
-from lmu.contenttypes.blog import MESSAGE_FACTORY as _
-#from lmu.contenttypes.blog import logger
-from lmu.policy.base.browser.content import _AbstractLMUBaseContentEditForm
 from lmu.policy.base.browser.content import _AbstractLMUBaseContentView
 from lmu.policy.base.browser.content import _EntryViewMixin
 from lmu.policy.base.browser.content import RichTextWidgetConfig
 from lmu.policy.base.browser.content import formHelper
 from lmu.policy.base.browser.content_listing import _AbstractLMUBaseListingView
 from lmu.policy.base.browser.content_listing import _FrontPageIncludeMixin
+
+#from lmu.contenttypes.blog.interfaces import IBlogEntry
+from lmu.contenttypes.blog.interfaces import IBlogFolder
+
+from lmu.contenttypes.blog import MESSAGE_FACTORY as _
+#from lmu.contenttypes.blog import logger
 
 from logging import getLogger
 
@@ -93,7 +94,7 @@ class BlogEntryAddView(add.DefaultAddView):
     groups = form.groups
 
 
-class BlogEntryEditForm(_AbstractLMUBaseContentEditForm):
+class BlogEntryEditForm(edit.DefaultEditForm):
 
     template = ViewPageTemplateFile('templates/blog_entry_edit.pt')
 
