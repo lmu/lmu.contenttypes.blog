@@ -94,8 +94,29 @@ class BlogEntryAddView(add.DefaultAddView):
 
 
 class BlogEntryEditForm(_AbstractLMUBaseContentEditForm):
+
     template = ViewPageTemplateFile('templates/blog_entry_edit.pt')
 
     description = _(u'Bearbeiten Sie Ihren Blog-Beitrag. Klicken Sie anschließend auf "Vorschau", um die Eingaben zu überprüfen und den Blog-Eintrag zu veröffentlichen.')
 
     portal_type = 'Blog Entry'
+
+    def __call__(self):
+        self.updateWidgets()
+
+        text = self.schema.get('text')
+        text.widget = RichTextWidgetConfig()
+
+        formHelper(self,
+                   fields_to_show=[],
+                   fields_to_input=['title', 'description'],
+                   fields_to_hide=['IPublication.effective', 'IPublication.expires', ],
+                   fields_to_omit=['IPublication.effective', 'IPublication.expires', 'IVersionable.changeNote'])
+
+        buttons = self.buttons
+
+        for button in buttons.values():
+            if button.__name__ == 'save':
+                button.title = _(u'Preview')
+
+        return super(BlogEntryEditForm, self).__call__()
