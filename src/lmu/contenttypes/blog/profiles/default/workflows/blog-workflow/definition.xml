@@ -29,6 +29,7 @@
     <state state_id="internally_published" title="Internally published">
         <description>Published and visible to intranet users, not editable by the owner.</description>
         <exit-transition transition_id="reject"/>
+        <exit-transition transition_id="hide"/>
         <exit-transition transition_id="ban"/>
         <permission-map name="Access contents information" acquired="False">
             <permission-role>Manager</permission-role>
@@ -102,6 +103,22 @@
             category="workflow" 
             icon="">Intern veröffentlichen</action>
         <guard>
+        </guard>
+    </transition>
+    <transition 
+        transition_id="hide" 
+        title="Fetch back" 
+        new_state="private" 
+        trigger="USER" 
+        before_script="" 
+        after_script="">
+        <description>Sending the item back will return the item to the original author instead of publishing it. You should preferably include a reason for why it was not published.</description>
+        <action 
+          url="%(content_url)s/content_status_modify?workflow_action=hide"
+          category="workflow"
+          icon="">Send back</action>
+        <guard>
+            <guard-permission>Request review</guard-permission>
         </guard>
     </transition>
     <transition 
