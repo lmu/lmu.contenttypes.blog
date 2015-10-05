@@ -101,15 +101,6 @@
 
           </div>
 
-          <div class="document-infos">
-            <span tal:condition="view/isOwner" tal:omit-tag="" i18n:translate="" >You are Owner of this Blog Entry</span>
-            <span tal:condition="view/isManager" tal:omit-tag="" i18n:translate="" >You are a Manager</span> 
-            &mdash;
-            <span i18n:translate="" tal:omit-tag="" >Document Status is:</span>
-            <span tal:condition="view/isPrivate" i18n:translate="" class="private" >Workflow State Private</span>
-            <span tal:condition="view/isInternallyPublished" i18n:translate="" class="published" >Workflow State Published</span>
-          </div>
-
         </div>
 
         <div class="blog-preview-counter" >
