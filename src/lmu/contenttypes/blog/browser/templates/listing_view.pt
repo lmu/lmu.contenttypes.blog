@@ -104,12 +104,13 @@
               <figure tal:define="images item/images;
                                   first_image python: images[0];
                                   scales first_image/@@images;"
+                      tal:condition="first_image"
                       class="blog-lead-image tileImage left helper-margin-right-m helper-margin-bottom-m ">
                 <a href="#"
-                   tal:attributes="href string:${item_url}/@@images/image/large">
+                   tal:attributes="href item/absolute_url">
                   <!--img tal:replace="structure python: scales.tag('image', scale='teaser', alt=item.image_caption)" /-->
                   <img tal:replace="structure python: scales.tag('image', scale='listing_teaser', direction='down')" />
-                  <figcaption tal:content="first_image/title" tal:condition="first_image">Caption</figcaption>
+                  <figcaption tal:content="first_image/description" tal:condition="first_image/description">Caption</figcaption>
                 </a>
               </figure>
             </tal:block>

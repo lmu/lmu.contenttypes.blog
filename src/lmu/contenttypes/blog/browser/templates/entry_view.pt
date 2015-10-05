@@ -137,12 +137,13 @@
                  tal:attributes="class python: files and 'columns small-12 medium-8 end' or 'columns small-12 medium-8'" >
               <tal:image_check tal:condition="view/images">
                 <tal:first_image tal:define="images view/images;
-                                     first_image python: images[0];" >
+                                             first_image python: images[0];"
+                                 tal:condition="first_image" >
                   <a tal:attributes="href string:${first_image/absolute_url}/@@images/image.jpeg;" >
                     <figure  class="blog-lead-image helper-margin-bottom-m text-left"
                              tal:define="scales first_image/@@images;" >
                       <img tal:replace="structure python: scales.tag('image', scale='entry_teaser', direction='down', alt=first_image.description, title=first_image.description)" />
-                      <figcaption tal:content="first_image/title" tal:condition="first_image/title">Caption</figcaption>
+                      <figcaption tal:content="first_image/description" tal:condition="first_image/description">Caption</figcaption>
                     </figure>
                   </a>
                 </tal:first_image>
