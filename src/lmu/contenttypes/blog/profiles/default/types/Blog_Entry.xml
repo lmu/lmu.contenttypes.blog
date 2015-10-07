@@ -9,7 +9,7 @@
   <property name="description"
             i18n:translate="">Blog Entry with folder support for files and images</property>
   <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
-  <property name="factory">lmu.contenttypes.blog.content.blogentry</property>
+  <property name="factory">Blog Entry</property>
   <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types" >
@@ -26,19 +26,19 @@
   <property name="klass">lmu.contenttypes.blog.content.BlogEntry</property>
 
   <property name="behaviors">
-     <element value="plone.app.content.interfaces.INameFromTitle" />
-     <element value="plone.app.versioningbehavior.behaviors.IVersionable" />
-     <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage" />
-     <element value="plone.app.dexterity.behaviors.nextprevious.INextPreviousEnabled" />
-     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
+    <element value="plone.app.content.interfaces.INameFromTitle" />
+    <element value="plone.app.versioningbehavior.behaviors.IVersionable" />
+    <element value="plone.app.dexterity.behaviors.metadata.IPublication" />
+    <element value="plone.app.dexterity.behaviors.nextprevious.INextPreviousEnabled" />
+    <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
    </property>
 
   <!-- View information -->
   <property name="link_target"></property>
-  <property name="immediate_view">entry_view</property>
+  <property name="immediate_view">edit</property>
   <property name="default_view">entry_view</property>
   <property name="view_methods">
-   <element value="entry_view"/>
+    <element value="entry_view"/>
   </property>
   <property name="default_view_fallback">False</property>
   <property name="add_permission">cmf.AddPortalContent</property>
@@ -52,11 +52,11 @@
 
   <!-- Actions -->
   <action title="View"
-         action_id="view"
-         category="object"
-         condition_expr=""
-         url_expr="string:${object_url}/"
-         visible="True">
+          action_id="view"
+          category="object"
+          condition_expr=""
+          url_expr="string:${object_url}/"
+          visible="False">
     <permission value="View" />
   </action>
   <action title="Edit"

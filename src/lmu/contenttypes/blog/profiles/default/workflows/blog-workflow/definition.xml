@@ -9,10 +9,12 @@
     <permission>Access contents information</permission>
     <permission>Change portal events</permission>
     <permission>Modify portal content</permission>
+    <permission>Review portal content</permission>
+    <permission>Request review</permission>
     <permission>View</permission>
     <state state_id="banned" title="Banned">
         <description>Bei Verstoß gegen die Blog-Regeln, kann der Intranet-Redakteur einen Blog Eintrag sperren. Dieser ist dann für niemanden außer den Redakteuren und Admins sichtbar, nichtmal für den Besitzer. Dieser Status wird genutzt um einen Blog-Eintrag, inklusive Historie ggf. für arbeitsrechtliche Schritte zu speichern.</description>
-        <exit-transition transition_id="wieder-freigeben"/>
+        <exit-transition transition_id="republish"/>
         <permission-map name="Access contents information" acquired="False">
             <permission-role>Site Administrator</permission-role>
         </permission-map>
@@ -29,6 +31,7 @@
     <state state_id="internally_published" title="Internally published">
         <description>Published and visible to intranet users, not editable by the owner.</description>
         <exit-transition transition_id="reject"/>
+        <exit-transition transition_id="hide"/>
         <exit-transition transition_id="ban"/>
         <permission-map name="Access contents information" acquired="False">
             <permission-role>Manager</permission-role>
@@ -61,7 +64,7 @@
         <description>Kann nur vom Besitzer gesehen und bearbeitet werden.</description>
         <exit-transition transition_id="publish_internally"/>
         <permission-map name="Access contents information" acquired="False">
-            <permission-role>Contributor</permission-role>
+            <!--permission-role>Contributor</permission-role-->
             <permission-role>Editor</permission-role>
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
@@ -81,11 +84,22 @@
             <permission-role>Site Administrator</permission-role>
         </permission-map>
         <permission-map name="View" acquired="False">
-            <permission-role>Contributor</permission-role>
-            <permission-role>Editor</permission-role>
+            <!--permission-role>Contributor</permission-role-->
+            <permission-role>Reviewer</permission-role>
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
             <permission-role>Reader</permission-role>
+            <permission-role>Site Administrator</permission-role>
+        </permission-map>
+        <permission-map name="Review portal content" acquired="False">
+            <permission-role>Reviewer</permission-role>
+            <permission-role>Manager</permission-role>
+            <permission-role>Owner</permission-role>
+            <permission-role>Site Administrator</permission-role>
+        </permission-map>
+        <permission-map name="Request review" acquired="False">
+            <permission-role>Manager</permission-role>
+            <permission-role>Owner</permission-role>
             <permission-role>Site Administrator</permission-role>
         </permission-map>
     </state>
@@ -102,6 +116,22 @@
             category="workflow" 
             icon="">Intern veröffentlichen</action>
         <guard>
+        </guard>
+    </transition>
+    <transition 
+        transition_id="hide" 
+        title="Fetch back" 
+        new_state="private" 
+        trigger="USER" 
+        before_script="" 
+        after_script="">
+        <description>Sending the item back will return the item to the original author instead of publishing it. You should preferably include a reason for why it was not published.</description>
+        <action 
+          url="%(content_url)s/content_status_modify?workflow_action=hide"
+          category="workflow"
+          icon="">Send back</action>
+        <guard>
+            <guard-permission>Request review</guard-permission>
         </guard>
     </transition>
     <transition 

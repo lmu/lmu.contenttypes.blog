@@ -1,7 +1,8 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
-    i18n_domain="lmu.blog">
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="lmu.contenttypes.blog">
 
     <include package="Products.CMFCore" file="permissions.zcml" />
 
@@ -26,10 +27,40 @@
         class=".views.EntryView"
         />
 
+    <adapter
+        for="Products.CMFCore.interfaces.IFolderish
+             zope.publisher.interfaces.browser.IDefaultBrowserLayer
+             plone.dexterity.interfaces.IDexterityFTI"
+        provides="zope.publisher.interfaces.browser.IBrowserPage"
+        factory=".views.BlogEntryAddView"
+        name="Blog Entry"
+        />
+    <class class=".views.BlogEntryAddView">
+        <require
+            permission="cmf.AddPortalContent"
+            interface="zope.publisher.interfaces.browser.IBrowserPage"
+            />
+    </class>
+
+    <browser:page
+        for="lmu.contenttypes.blog.interfaces.IBlogEntry"
+        name="edit"
+        permission="cmf.ModifyPortalContent"
+        class=".views.BlogEntryEditForm"
+        />
+
+    <!--z3c:widgetTemplate
+        mode="input"
+        widget="plone.formwidget.namedfile.interfaces.INamedImageWidget"
+        layer="lmu.contenttypes.blog.interfaces.IBlogLayer"
+        template="templates/image_input.pt"
+        /-->
+
 <!--
     <browser:page
         name="report_blog_entry"
         for="lmu.contenttypes.blog.interfaces.IBlogEntry"
+        layer="lmu.contenttypes.blog.interfaces.IBlogLayer"
         permission="zope2.View"
         class="..content.BlogReportForm"
         />

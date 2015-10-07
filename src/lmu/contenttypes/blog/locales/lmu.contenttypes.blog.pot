@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-06-03 15:02+0000\n"
+"POT-Creation-Date: 2015-10-01 17:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,22 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: manual\n"
+
+#: ./browser/views.py:298
+msgid ""
+msgstr ""
+
+#: ./browser/templates/blog_entry_add.pt:9
+msgid "Add Blog Entry"
+msgstr ""
+
+#: ./browser/templates/frontpage_view.pt:67
+msgid "Alle Blog-Beitraege"
+msgstr ""
+
+#: ./browser/views.py:392
+msgid "Bearbeiten Sie Ihren Blog-Beitrag. Klicken Sie anschließend auf \"Vorschau\", um die Eingaben zu überprüfen und den Blog-Eintrag zu veröffentlichen."
+msgstr ""
 
 #: ./profiles/default/types/Blog_Entry.xml
 msgid "Blog Entry"
@@ -29,20 +45,67 @@ msgstr ""
 msgid "Blog Folder"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:100
+#: ./browser/templates/entry_content_view.pt:182
+msgid "Crop Image"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:177
+msgid "Delete"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:67
 msgid "Delete Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:93
+#: ./browser/templates/entry_view.pt:137
+#: ./browser/templates/frontpage_view.pt:144
+#: ./browser/templates/listing_view.pt:135
+msgid "Dieser Blog-Beitrag ist noch nicht veroeffentlicht"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:108
+msgid "Document Status is:"
+msgstr ""
+
+#: ./browser/templates/entry_sort_images_view.pt:83
+msgid "Done"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:172
+msgid "Edit"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:60
 msgid "Edit Blog Entry"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:207
+#: ./browser/templates/entry_view.pt:178
+msgid "Files"
 msgstr ""
 
 #: ./profiles/default/types/Blog_Folder.xml
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr ""
 
-#: ./browser/templates/frontpage_view.pt:146
-#: ./browser/templates/listing_view.pt:29
+#: ./browser/views.py:360
+msgid "Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf \"Weiter\". Danach können Sie Bilder und andere Dateien hinzufügen."
+msgstr ""
+
+#: ./browser/views.py:350
+msgid "Heading"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:81
+msgid "Hide"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:149
+msgid "Images"
+msgstr ""
+
+#: ./browser/templates/frontpage_view.pt:164
+#: ./browser/templates/listing_view.pt:57
 msgid "Jetzt einen Blog-Beitrag verfassen"
 msgstr ""
 
@@ -50,38 +113,96 @@ msgstr ""
 msgid "Meine Blogbeitraege -"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:107
+#: ./browser/views.py:378
+msgid "Next"
+msgstr ""
+
+#: ./browser/templates/entry_sort_images_view.pt:78
+msgid "No ${DYNAMIC_CONTENT} Uploaded"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:235
+msgid "No Files Uploaded"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:194
+msgid "No Images Uploaded"
+msgstr ""
+
+#: ./browser/views.py:412
+msgid "Preview"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:74
 msgid "Publish"
 msgstr ""
 
-#: ./browser/templates/listing_view.pt:113
+#: ./browser/templates/listing_view.pt:144
 msgid "Read Comments / Write a comment"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:85
+#: ./browser/templates/entry_view.pt:88
+msgid "Reject"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:52
 msgid "Report Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:114
-msgid "Set Private"
+#: ./browser/views.py:444
+msgid "Save"
 msgstr ""
 
-#: ./browser/templates/listing_view.pt:15
+#: ./browser/templates/blog_entry_add.pt:8
+#: ./browser/templates/blog_entry_edit.pt:10
+#: ./browser/templates/frontpage_view.pt:66
 msgid "Show Blog Rules"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:121
+#: ./browser/templates/entry_content_view.pt:200
+msgid "Sort Files"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:142
+msgid "Sort Images"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:95
 msgid "Sperren"
 msgstr ""
 
-#: ./browser/templates/frontpage_view.pt:65
-msgid "Zum Blog"
+#: ./browser/views.py:351
+msgid "Subheading"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:130
+msgid "Upload Images and Files"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:109
+msgid "Workflow State Private"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:110
+msgid "Workflow State Published"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:105
+msgid "You are Owner of this Blog Entry"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:106
+msgid "You are a Manager"
+msgstr ""
+
+#: ./browser/templates/entry_sort_images_view.pt:66
+msgid "down"
 msgstr ""
 
 #. Default: "Jump to Comments"
-#: ./browser/templates/entry_view.pt:38
-#: ./browser/templates/frontpage_view.pt:91
-#: ./browser/templates/listing_view.pt:63
+#: ./browser/templates/entry_view.pt:116
+#: ./browser/templates/frontpage_view.pt:104
+#: ./browser/templates/listing_view.pt:96
 msgid "lable_jump_to_comments"
 msgstr ""
 
@@ -95,5 +216,9 @@ msgid "lable_title_description"
 msgstr ""
 
 msgid "lable_title_title"
+msgstr ""
+
+#: ./browser/templates/entry_sort_images_view.pt:61
+msgid "up"
 msgstr ""
 
