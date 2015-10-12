@@ -7,5 +7,10 @@
     <type type_id="Blog Entry">
       <bound-workflow workflow_id="blog-workflow"/>
     </type>
+<!--
+    <type type_id="Blog Folder">
+      <bound-workflow workflow_id="intranet-workflow"/>
+    </type>
+-->
   </bindings>
 </object>
