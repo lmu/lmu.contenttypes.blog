@@ -39,3 +39,7 @@ msgstr ""
 msgid "lable_text_description"
 msgstr ""
 
+#: CMFPlone/skins/plone_form_scripts/content_status_modify.cpy:85
+#: CMFPlone/skins/plone_scripts/folder_publish.cpy:34
+msgid "Item state changed."
+msgstr ""
