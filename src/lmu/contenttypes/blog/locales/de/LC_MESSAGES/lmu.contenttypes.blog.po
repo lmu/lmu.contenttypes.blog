@@ -83,7 +83,7 @@ msgstr "Blog Ordner für Blog-Einträge mit einer speziellen Ansicht und Einschr
 
 #: ./browser/views.py:360
 msgid "Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf \"Weiter\". Danach können Sie Bilder und andere Dateien hinzufügen."
-msgstr "Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf \"Weiter\". Danach können Sie Bilder und andere Dateien hinzufügen."
+msgstr "Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an und klicken Sie auf \"Weiter\". Danach können Sie Bilder und andere Dateien hinzufügen."
 
 #: ./browser/views.py:350
 msgid "Heading"

@@ -1,6 +1,6 @@
 <tal:doctype xmlns:tal="http://xml.zope.org/namespaces/tal"
              tal:define="omit view/omit"
-             tal:omit-tag="omit" >
+             tal:condition="not:omit" >
 <!DOCTYPE html >
 </tal:doctype>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
@@ -53,7 +53,7 @@
 <header id="blog-header" class="row overview-header helper-margin-top-xl">
   <div class="columns small-12 large-10 large-centered">
     <div class="row">
-      <div class="columns small-8">
+      <div class="columns small-7">
         <h2 class="header-category">
           <a tal:attributes="href context/absolute_url;">
           <tal:title tal:condition="view/author" i18n:translate="" >Meine Blogbeitraege - </tal:title>
@@ -62,9 +62,9 @@
           </a>
         </h2>
       </div>
-      <div class="columns small-4">
+      <div class="columns small-5">
         <div class="more" >
-          <a class="toogle helper-font-light" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a> / <a tal:attributes="href context/absolute_url;" >
+          <a class="toogle" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a> / <a tal:attributes="href context/absolute_url;" >
              <tal:lang i18n:translate="">Alle Blog-Beitraege</tal:lang> (<span tal:replace="view/absolute_length">Anzahl</span>)</a>
         </div>
       </div>
