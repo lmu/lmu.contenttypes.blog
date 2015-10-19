@@ -74,7 +74,7 @@ msgstr "Zurückziehen"
 
 #: ./browser/templates/blog_entry_edit.pt:28
 msgid "Hinweis"
-msgstr "Hinweis"
+msgstr "Mit dem Veröffentlichen eines Blog-Beitrags erkläre ich mich mit den"
 
 #: ./browser/templates/frontpage_view.pt:166
 #: ./browser/templates/listing_view.pt:57
