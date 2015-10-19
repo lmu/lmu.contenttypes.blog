@@ -99,6 +99,11 @@
                i18n:translate=""
                i18n:attributes="title" >Sperren</a>
 
+            <p>
+              <span i18n:translate="">Hinweis</span>
+              <a class="toogle" href="#" data-reveal-id="rules" i18n:translate="" >Blog-Regeln</a>
+              <span i18n:translate="">einverstanden.</span>
+            </p>
           </div>
 
         </div>
