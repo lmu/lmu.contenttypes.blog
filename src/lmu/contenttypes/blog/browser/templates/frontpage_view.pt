@@ -15,24 +15,24 @@
 <head tal:condition="not:omit">
   <title tal:content="context/Title"></title>
 
-    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_regular/stylesheet.css" type="text/css" >
-    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_italic/stylesheet.css" type="text/css" >
-    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_bold/stylesheet.css" type="text/css" >
-    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_bolditalic/stylesheet.css" type="text/css" >
-    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_semibold/stylesheet.css" type="text/css" >
-    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_semibolditalic/stylesheet.css" type="text/css" >
-    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/foundation-icons/foundation-icons.css" type="text/css" >
-    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/noto-serif/noto-serif.css" type="text/css" >
-    <!-- If you are using the gem version, you need this only -->
-    <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/css/foundation/app.css">
+  <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_regular/stylesheet.css" type="text/css" />
+  <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_italic/stylesheet.css" type="text/css" />
+  <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_bold/stylesheet.css" type="text/css" />
+  <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_bolditalic/stylesheet.css" type="text/css" />
+  <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_semibold/stylesheet.css" type="text/css" />
+  <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/opensans_semibolditalic/stylesheet.css" type="text/css" />
+  <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/foundation-icons/foundation-icons.css" type="text/css" />
+  <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/fonts/noto-serif/noto-serif.css" type="text/css" />
+  <!-- If you are using the gem version, you need this only -->
+  <link rel="stylesheet" href="https://cms-static.uni-muenchen.de/default/foundation-zuv/css/foundation/app.css" />
 
-    <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/modernizr.js"></script>
-    <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/jquery_min.js"></script>
-    <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/foundation_min.js"></script>
-    <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/foundation_equalizer.js"></script>
-    <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/foundation_reveal.js"></script>
-    <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/foundation_orbit.js"></script>
-    <script id="lmujs" src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/app.js"></script>
+  <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/modernizr.js"></script>
+  <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/jquery_min.js"></script>
+  <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/foundation_min.js"></script>
+  <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/foundation_equalizer.js"></script>
+  <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/foundation_reveal.js"></script>
+  <script src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/foundation_orbit.js"></script>
+  <script id="lmujs" src="https://cms-static.uni-muenchen.de/default/foundation-zuv/js/app.js"></script>
 
 </head>
 
@@ -73,15 +73,15 @@
 </header>
 <div id="blog-main" class="row overview-light" >
   <div class="columns small-12 large-10 large-centered overview-column" >
-       <div id="rules" class="blog_info reveal-modal xlarge" data-reveal aria-labelledby="" aria-hidden="true" role="dialog" style="top: -8em;">
-          <tal:rules tal:content="structure context/text/output">
-            Content Body
-          </tal:rules>
-          <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-        </div>
+    <div id="rules" class="blog_info reveal-modal xlarge" aria-labelledby="" aria-hidden="true" role="dialog" style="top: -8em;" data-reveal="data-reveal" >
+      <tal:rules tal:content="structure context/text/output">
+        Content Body
+      </tal:rules>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
 
-   <tal:results tal:define="batch view/batch">
-   <tal:listing condition="batch">
+    <tal:results tal:define="batch view/batch">
+    <tal:listing condition="batch">
     <div class="row helper-margin-bottom-l" >
       <div class="columns large-12 helper-margin-top-l blog" >
         <tal:block tal:repeat="entry batch">
@@ -108,7 +108,6 @@
                i18n:attributes="title lable_jump_to_comments"
                i18n:translate="">Anzahl</a>
           </div>
-
 
           <tal:block  tal:condition="item/images" >
             <figure tal:define="images item/images;

@@ -51,6 +51,12 @@ class FrontPageIncludeView(_AbstractLMUBaseListingView, _FrontPageIncludeMixin):
     container_interface = IBlogFolder
     sort_on = 'effective'
 
+    def __call__(self):
+        REQUEST = self.context.REQUEST
+        RESPONSE = REQUEST.RESPONSE
+        RESPONSE.setHeader('content-type', 'application/xml;charset=utf-8')
+        return super(FrontPageIncludeView, self).__call__()
+
 
 class EntryView(_AbstractLMUBaseContentView, _EntryViewMixin):
 
