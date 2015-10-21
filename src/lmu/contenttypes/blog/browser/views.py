@@ -5,6 +5,9 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 #from plone.behavior.interfaces import IBehaviorAssignable
 from plone.dexterity.browser import add
 from plone.dexterity.browser import edit
+from plone.dexterity.events import EditFinishedEvent
+from z3c.form import button
+from zope.event import notify
 
 from lmu.policy.base.browser.content import _AbstractLMUBaseContentView
 from lmu.policy.base.browser.content import _EntryViewMixin
@@ -93,6 +96,20 @@ class BlogEntryAddForm(add.DefaultAddForm):
 
         return super(BlogEntryAddForm, self).update()
 
+    @button.buttonAndHandler(_('Save'), name='save')
+    def handleAdd(self, action):
+        data, errors = self.extractData()
+        if errors:
+            self.status = self.formErrorsMessage
+            return
+        obj = self.createAndAdd(data)
+        if obj is not None:
+            # mark only as finished if we get the new object
+            self._finishedAdd = True
+            #IStatusMessage(self.request).addStatusMessage(
+            #    _(u"Item created"), "info success"
+            #)
+
 
 class BlogEntryAddView(add.DefaultAddView):
     form = BlogEntryAddForm
@@ -127,3 +144,16 @@ class BlogEntryEditForm(edit.DefaultEditForm):
                 button.title = _(u'Preview')
 
         return super(BlogEntryEditForm, self).__call__()
+
+    @button.buttonAndHandler(_(u'Save'), name='save')
+    def handleApply(self, action):
+        data, errors = self.extractData()
+        if errors:
+            self.status = self.formErrorsMessage
+            return
+        self.applyChanges(data)
+        #IStatusMessage(self.request).addStatusMessage(
+        #    _(u"Changes saved"), "info success"
+        #)
+        self.request.response.redirect(self.nextURL())
+        notify(EditFinishedEvent(self.context))
