@@ -22,7 +22,7 @@
                 <metal:block fill-slot="fields">
 
                     <metal:block use-macro="context/@@ploneform-macros/fields" />
-                    <p>
+                    <p tal:condition="nothing">
                       <span i18n:translate="">Hinweis</span>
                       <a class="toogle" href="#" data-reveal-id="rules" i18n:translate="" >Blog-Regeln</a>
                       <span i18n:translate="">einverstanden.</span>
