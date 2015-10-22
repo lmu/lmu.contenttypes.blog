@@ -154,7 +154,7 @@
     </div>
 
     <footer id="blog-footer">
-      <div class="row">
+      <div class="row" tal:condition="view/author" >
         <div class="columns small-12 pagination-centered">
           <div metal:use-macro="context/batch_macros/macros/navigation" />
         </div>
