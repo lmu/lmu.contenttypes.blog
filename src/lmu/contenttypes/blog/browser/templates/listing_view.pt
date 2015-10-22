@@ -7,18 +7,6 @@
 
 <body>
 
-  <metal:block fill-slot="javascript_head_slot">
-      <script type="text/javascript">
-(function($) {
-    $(function() {
-        $("a[href$='image/xlarge']").prepOverlay({
-            subtype:'image'
-        }).css('cursor', 'zoom-in');
-    });
-})(jQuery);
-      </script>
-    </metal:block>
-
   <metal:content fill-slot="content">
 
     <main id="content" class="blog">
