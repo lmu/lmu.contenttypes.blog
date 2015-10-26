@@ -161,7 +161,7 @@
       </div>
 
       <div class="row helper-margin-top-m"
-           tal:condition="not: view/author | view/can_add">
+           tal:condition="python: not view.author() and view.can_add()">
         <div class="columns small-12">
           <a class="button link-overlay small-12"
              tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
