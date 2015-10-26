@@ -64,8 +64,12 @@
       </div>
       <div class="columns small-5">
         <div class="more" >
-          <a class="toogle" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a> / <a tal:attributes="href context/absolute_url;" >
-             <tal:lang i18n:translate="">Alle Blog-Beitraege</tal:lang> (<span tal:replace="view/absolute_length">Anzahl</span>)</a>
+          <a class="toogle" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a> /
+          <a tal:define="url context/absolute_url;
+                         url python: url if not view.author else url + '?author=' + view.author;"
+             tal:attributes="href url;" >
+             <tal:lang i18n:translate="">Alle Blog-Beitraege</tal:lang> (<span tal:replace="view/absolute_length">Anzahl</span>)
+          </a>
         </div>
       </div>
     </div>
@@ -143,7 +147,7 @@
                 Bob Dobalina
               </a>
               <date tal:content="python: toLocalizedTime(item_display_date,long_format=1)">Date</date>
-              <em tal:condition="python: item_state != 'internally_published'" i18n:translate="">Dieser Blog-Beitrag ist noch nicht veroeffentlicht</em>
+              <em tal:condition="python: item_state != 'internally_published'" i18n:translate="" class="private">Dieser Blog-Beitrag ist noch nicht veroeffentlicht</em>
             </div>
           </hgroup>
           <p tal:content="text">Blog Entry Text</p>
@@ -154,14 +158,24 @@
     </div>
 
     <footer id="blog-footer">
-      <div class="row" tal:condition="view/author" >
+      <div class="row" >
         <div class="columns small-12 pagination-centered">
-          <div metal:use-macro="context/batch_macros/macros/navigation" />
+          <a class="button secondary helper-border large-4 small-12"
+             tal:define="url context/absolute_url;
+                         url python: url if not view.author else url + '?author=' + view.author;
+                         show_more python: view.b_size > 0 and view.b_size < view.absolute_length;"
+             tal:attributes="href url;"
+             tal:condition="show_more" >
+            <tal:lang i18n:translate="">weitere Blog-Beitraege</tal:lang> (<tal:lang i18n:translate="">insgesamt</tal:lang> <span tal:replace="view/absolute_length">Anzahl</span>)
+          </a>
+          <tal:pagination tal:condition="nothing">
+            <div metal:use-macro="context/batch_macros/macros/navigation" />
+          </tal:pagination>
         </div>
       </div>
 
       <div class="row helper-margin-top-m"
-           tal:condition="python: not view.author() and view.can_add()">
+           tal:condition="python: not view.author and view.can_add()">
         <div class="columns small-12">
           <a class="button link-overlay small-12"
              tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"

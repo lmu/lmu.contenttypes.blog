@@ -17,6 +17,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone\n"
 
+#: CMFPlone/skins/plone_form_scripts/content_status_modify.cpy:85
+#: CMFPlone/skins/plone_scripts/folder_publish.cpy:34
+msgid "Item state changed."
+msgstr "Artikelstatus des Blogs geändert."
+
 msgid "Lead Image"
 msgstr "Bild (Teaser)"
 
@@ -38,9 +43,4 @@ msgstr "Die Blog Überschrift"
 
 msgid "lable_title_title"
 msgstr "Überschrift"
-
-#: CMFPlone/skins/plone_form_scripts/content_status_modify.cpy:85
-#: CMFPlone/skins/plone_scripts/folder_publish.cpy:34
-msgid "Item state changed."
-msgstr "Artikelstatus des Blogs geändert."
 

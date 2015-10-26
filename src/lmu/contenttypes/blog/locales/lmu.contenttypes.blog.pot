@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-10-19 15:11+0000\n"
+"POT-Creation-Date: 2015-10-26 15:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,11 +21,11 @@ msgstr ""
 msgid "Add Blog Entry"
 msgstr ""
 
-#: ./browser/templates/frontpage_view.pt:68
+#: ./browser/templates/frontpage_view.pt:71
 msgid "Alle Blog-Beitraege"
 msgstr ""
 
-#: ./browser/views.py:107
+#: ./browser/views.py:124
 msgid "Bearbeiten Sie Ihren Blog-Beitrag. Klicken Sie anschließend auf \"Vorschau\", um die Eingaben zu überprüfen und den Blog-Eintrag zu veröffentlichen."
 msgstr ""
 
@@ -41,7 +41,9 @@ msgstr ""
 msgid "Blog Folder"
 msgstr ""
 
+#: ./browser/templates/blog_entry_add.pt:27
 #: ./browser/templates/blog_entry_edit.pt:29
+#: ./browser/templates/entry_view.pt:104
 msgid "Blog-Regeln"
 msgstr ""
 
@@ -49,9 +51,9 @@ msgstr ""
 msgid "Delete Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:129
-#: ./browser/templates/frontpage_view.pt:146
-#: ./browser/templates/listing_view.pt:137
+#: ./browser/templates/entry_view.pt:134
+#: ./browser/templates/frontpage_view.pt:150
+#: ./browser/templates/listing_view.pt:125
 msgid "Dieser Blog-Beitrag ist noch nicht veroeffentlicht"
 msgstr ""
 
@@ -59,7 +61,7 @@ msgstr ""
 msgid "Edit Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:171
+#: ./browser/templates/entry_view.pt:176
 msgid "Files"
 msgstr ""
 
@@ -67,7 +69,7 @@ msgstr ""
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr ""
 
-#: ./browser/views.py:74
+#: ./browser/views.py:77
 msgid "Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf \"Weiter\". Danach können Sie Bilder und andere Dateien hinzufügen."
 msgstr ""
 
@@ -75,12 +77,14 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
+#: ./browser/templates/blog_entry_add.pt:26
 #: ./browser/templates/blog_entry_edit.pt:28
+#: ./browser/templates/entry_view.pt:103
 msgid "Hinweis"
 msgstr ""
 
-#: ./browser/templates/frontpage_view.pt:166
-#: ./browser/templates/listing_view.pt:57
+#: ./browser/templates/frontpage_view.pt:177
+#: ./browser/templates/listing_view.pt:45
 msgid "Jetzt einen Blog-Beitrag verfassen"
 msgstr ""
 
@@ -88,11 +92,11 @@ msgstr ""
 msgid "Meine Blogbeitraege -"
 msgstr ""
 
-#: ./browser/views.py:92
+#: ./browser/views.py:95
 msgid "Next"
 msgstr ""
 
-#: ./browser/views.py:127
+#: ./browser/views.py:144
 msgid "Preview"
 msgstr ""
 
@@ -100,7 +104,7 @@ msgstr ""
 msgid "Publish"
 msgstr ""
 
-#: ./browser/templates/listing_view.pt:146
+#: ./browser/templates/listing_view.pt:134
 msgid "Read Comments / Write a comment"
 msgstr ""
 
@@ -110,6 +114,10 @@ msgstr ""
 
 #: ./browser/templates/entry_view.pt:52
 msgid "Report Blog Entry"
+msgstr ""
+
+#: ./browser/views.py:99
+msgid "Save"
 msgstr ""
 
 #: ./browser/templates/blog_entry_add.pt:8
@@ -122,14 +130,20 @@ msgstr ""
 msgid "Sperren"
 msgstr ""
 
+#: ./browser/templates/blog_entry_add.pt:28
 #: ./browser/templates/blog_entry_edit.pt:30
+#: ./browser/templates/entry_view.pt:105
 msgid "einverstanden."
 msgstr ""
 
+#: ./browser/templates/frontpage_view.pt:168
+msgid "insgesamt"
+msgstr ""
+
 #. Default: "Jump to Comments"
-#: ./browser/templates/entry_view.pt:107
-#: ./browser/templates/frontpage_view.pt:105
-#: ./browser/templates/listing_view.pt:96
+#: ./browser/templates/entry_view.pt:112
+#: ./browser/templates/frontpage_view.pt:109
+#: ./browser/templates/listing_view.pt:84
 msgid "lable_jump_to_comments"
 msgstr ""
 
@@ -143,5 +157,9 @@ msgid "lable_title_description"
 msgstr ""
 
 msgid "lable_title_title"
+msgstr ""
+
+#: ./browser/templates/frontpage_view.pt:168
+msgid "weitere Blog-Beitraege"
 msgstr ""
 
