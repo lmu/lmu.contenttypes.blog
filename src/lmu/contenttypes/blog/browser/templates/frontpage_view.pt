@@ -53,7 +53,7 @@
 <header id="blog-header" class="row overview-header helper-margin-top-xl">
   <div class="columns small-12 large-10 large-centered">
     <div class="row">
-      <div class="columns small-7">
+      <div class="columns small-12 medium-6 large-5">
         <h2 class="header-category">
           <a tal:attributes="href context/absolute_url;">
           <tal:title tal:condition="view/author" i18n:translate="" >Meine Blogbeitraege - </tal:title>
@@ -62,15 +62,13 @@
           </a>
         </h2>
       </div>
-      <div class="columns small-5">
-        <div class="more" >
-          <a class="toogle" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a> /
-          <a tal:define="url context/absolute_url;
-                         url python: url if not view.author else url + '?author=' + view.author;"
-             tal:attributes="href url;" >
-             <tal:lang i18n:translate="">Alle Blog-Beitraege</tal:lang> (<span tal:replace="view/absolute_length">Anzahl</span>)
-          </a>
-        </div>
+      <div class="columns small-12 medium-6 large-7 more">
+        <a class="toogle" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a> /
+        <a tal:define="url context/absolute_url;
+                       url python: url if not view.author else url + '?author=' + view.author;"
+           tal:attributes="href url;" >
+           <tal:lang i18n:translate="">Alle Blog-Beitraege</tal:lang> (<span tal:replace="view/absolute_length">Anzahl</span>)
+        </a>
       </div>
     </div>
   </div>
@@ -121,7 +119,6 @@
                     class="blog-lead-image tileImage left helper-margin-right-m helper-margin-bottom-m ">
               <a href="#"
                  tal:attributes="href item/absolute_url">
-                <!--img tal:replace="structure python: scales.tag('image', scale='teaser', alt=item.image_caption)" /-->
                 <img tal:replace="structure python: scales.tag('image', scale='listing_teaser', direction='down')" />
                 <figcaption tal:content="first_image/description" tal:condition="first_image/description">Caption</figcaption>
               </a>
@@ -156,42 +153,37 @@
         </tal:block>
       </div>
     </div>
-
-    <footer id="blog-footer">
-      <div class="row" >
-        <div class="columns small-12 pagination-centered">
-          <a class="button secondary helper-border large-4 small-12"
-             tal:define="url context/absolute_url;
-                         url python: url if not view.author else url + '?author=' + view.author;
-                         show_more python: view.b_size > 0 and view.b_size < view.absolute_length;"
-             tal:attributes="href url;"
-             tal:condition="show_more" >
-            <tal:lang i18n:translate="">weitere Blog-Beitraege</tal:lang> (<tal:lang i18n:translate="">insgesamt</tal:lang> <span tal:replace="view/absolute_length">Anzahl</span>)
-          </a>
-          <tal:pagination tal:condition="nothing">
-            <div metal:use-macro="context/batch_macros/macros/navigation" />
-          </tal:pagination>
-        </div>
-      </div>
-
-      <div class="row helper-margin-top-m"
-           tal:condition="python: not view.author and view.can_add()">
-        <div class="columns small-12">
-          <a class="button link-overlay small-12"
-             tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
-             tal:attributes="href add_url;"
-             i18n:translate="">
-            Jetzt einen Blog-Beitrag verfassen
-          </a>
-        </div>
-      </div>
-    </footer>
-
     </tal:listing>
     </tal:results>
   </div>
 </div>
+<footer id="blog-footer"
+        tal:define="url context/absolute_url;
+                    url python: url if not view.author else url + '?author=' + view.author;
+                    show_more python: 0 < int(view.b_size) < int(view.absolute_length());">
+  <div class="row overview-light" tal:condition="show_more" >
+    <div class="columns small-12 large-10 large-centered pagination-centered">
+      <a class="button secondary helper-border large-4 small-12"
+         tal:attributes="href url;">
+        <tal:lang i18n:translate="">weitere Blog-Beitraege</tal:lang> (<tal:lang i18n:translate="">insgesamt</tal:lang> <span tal:replace="view/absolute_length">Anzahl</span>)
+      </a>
+      <tal:pagination tal:condition="nothing">
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
+      </tal:pagination>
+    </div>
+  </div>
 
+  <div class="row overview-light" tal:condition="python: not view.author and view.can_add()">
+    <div class="columns small-12 large-10 large-centered">
+      <a class="button link-overlay small-12"
+         tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
+         tal:attributes="href add_url;"
+         i18n:translate="">
+        Jetzt einen Blog-Beitrag verfassen
+      </a>
+    </div>
+  </div>
+</footer>
 </section>
 </body>
 </html>
