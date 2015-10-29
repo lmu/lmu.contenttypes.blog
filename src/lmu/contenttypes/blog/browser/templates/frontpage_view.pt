@@ -132,7 +132,7 @@
                  tal:content="item/title">Blog Entry Title</a>
             </h3>
             <div class="tileDocumentByLine documentByLine helper-font-serif helper-font-light"
-                 tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon"
+                 tal:condition="python: True or site_properties.allowAnonymousViewAbout or not isAnon"
                  tal:define="author python:pas_member.info(item_creator);">
               <a href="#"
                  tal:define="explicite_url author/home_page;

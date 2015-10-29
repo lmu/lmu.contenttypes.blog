@@ -127,7 +127,7 @@
         <hgroup class="helper-margin-top-m helper-margin-bottom-l">
           <h1 tal:content="context/title">Blog Entry Title</h1>
           <div class="tileDocumentByLine documentByLine helper-font-serif helper-margin-top-m"
-               tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon"
+               tal:condition="python: True or site_properties.allowAnonymousViewAbout or not isAnon"
                tal:define="author python:pas_member.info(item_creator);">
             <a href="#"
                tal:define="explicite_url author/home_page;
