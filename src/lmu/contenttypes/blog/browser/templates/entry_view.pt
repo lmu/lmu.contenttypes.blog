@@ -40,11 +40,6 @@
             Status message
         </div>
 
-      </div>
-    </div>
-
-    <div class="row">
-      <article class="blog columns small-12 large-10 large-centered helper-margin-top-m">
         <div id="iuk-documemt-infos"
              tal:condition="python: (view.isOwner() or view.isManager())" >
           <div class="document-actions">
@@ -100,14 +95,27 @@
                i18n:attributes="title" >Sperren</a>
 
             <p>
-              <span i18n:translate="">Hinweis</span>
+              <span i18n:translate="" tal:omit-tag="default" >Hinweis</span>
               <a class="toogle" href="#" data-reveal-id="rules" i18n:translate="" >Blog-Regeln</a>
-              <span i18n:translate="">einverstanden.</span>
+              <span i18n:translate="" tal:omit-tag="default" >einverstanden.</span>
             </p>
+            <div id="rules" class="blog_info reveal-modal xlarge"
+                 aria-labelledby="" aria-hidden="true" role="dialog"
+                 style="top: -8em;" data-reveal >
+              <tal:rules tal:define="parent context/getParentNode;
+                                     output parent/text/output"
+                         tal:content="structure output">
+                Content Body
+              </tal:rules>
+              <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            </div>
           </div>
-
         </div>
+      </div>
+    </div>
 
+    <div class="row">
+      <article class="blog columns small-12 large-10 large-centered helper-margin-top-m">
         <div class="blog-preview-counter" >
           <a class="comment-sign"
              title="Jump to Comments"
@@ -136,61 +144,60 @@
         </hgroup>
 
         <div class="row">
-
-            <div class="columns small-12 medium-8 clearing-thumbs" data-clearing
-                 tal:define="files view/files;"
-                 tal:attributes="class python: files and 'columns small-12 medium-8 end' or 'columns small-12 medium-8'" >
-              <tal:image_check tal:condition="view/images">
-                <tal:first_image tal:define="images view/images;
-                                             first_image python: images[0];"
-                                 tal:condition="first_image" >
-                  <a tal:attributes="href string:${first_image/absolute_url}/@@images/image.jpeg;" >
-                    <figure  class="blog-lead-image helper-margin-bottom-m text-left"
-                             tal:define="scales first_image/@@images;" >
-                      <img tal:replace="structure python: scales.tag('image', scale='entry_teaser', direction='down', alt=first_image.description, title=first_image.description)" />
-                      <figcaption tal:content="first_image/description" tal:condition="first_image/description">Caption</figcaption>
-                    </figure>
+          <div class="columns small-12 medium-8 clearing-thumbs" data-clearing
+               tal:define="files view/files;"
+               tal:attributes="class python: files and 'columns small-12 medium-8 end' or 'columns small-12 medium-8'" >
+            <tal:image_check tal:condition="view/images">
+              <tal:first_image tal:define="images view/images;
+                                           first_image python: images[0];"
+                               tal:condition="first_image" >
+                <a tal:attributes="href string:${first_image/absolute_url}/@@images/image.jpeg;" >
+                  <figure  class="blog-lead-image helper-margin-bottom-m text-left"
+                           tal:define="scales first_image/@@images;" >
+                    <img tal:replace="structure python: scales.tag('image', scale='entry_teaser', direction='down', alt=first_image.description, title=first_image.description)" />
+                    <figcaption tal:content="first_image/description" tal:condition="first_image/description">Caption</figcaption>
+                  </figure>
+                </a>
+              </tal:first_image>
+            </tal:image_check>
+            <ul class="clearing-thumbs clearing-feature small-block-grid-3 medium-block-grid-4 large-block-grid-6 helper-border-bottom helper-margin-bottom-l"
+                tal:condition="view/images"
+                data-clearing >
+              <tal:block tal:repeat="image view/images" >
+                <li class="helper-no-padding-left clearing-featured-img"
+                    tal:define="first repeat/image/start;"
+                    tal:attributes="class python: 'helper-no-padding-left clearing-featured-img' if not first else 'helper-no-padding-left';">
+                  <a class="th" role="button" aria-label="Thumbnails"
+                     tal:define="scales image/@@images;"
+                     tal:attributes="href string:${image/absolute_url}/@@images/image.jpeg;">
+                    <img tal:replace="structure python: scales.tag('image', scale='listing_thumb', direction='down')" />
                   </a>
-                </tal:first_image>
-              </tal:image_check>
-              <ul class="clearing-thumbs clearing-feature small-block-grid-3 medium-block-grid-4 large-block-grid-6 helper-border-bottom helper-margin-bottom-l"
-                  tal:condition="view/images"
-                  data-clearing >
-                <tal:block tal:repeat="image view/images" >
-                  <li class="helper-no-padding-left clearing-featured-img"
-                      tal:define="first repeat/image/start;"
-                      tal:attributes="class python: 'helper-no-padding-left clearing-featured-img' if not first else 'helper-no-padding-left';">
-                    <a class="th" role="button" aria-label="Thumbnails"
-                       tal:define="scales image/@@images;"
-                       tal:attributes="href string:${image/absolute_url}/@@images/image.jpeg;">
-                      <img tal:replace="structure python: scales.tag('image', scale='listing_thumb', direction='down')" />
-                    </a>
-                  </li>
-                </tal:block>
+                </li>
+              </tal:block>
+            </ul>
+            <div tal:replace="structure context/text/output">Content</div>
+          </div>
+
+          <div class="columns small-12 medium-4" >
+            <div class="panel" tal:condition="view/files" >
+              <h3 i18n:translate="">Files</h3>
+              <ul class="list-link" >
+                <li tal:repeat="file view/files">
+                  <a tal:attributes="href file/absolute_url; title file/description">
+                    <span tal:replace="file/title" />
+                    <small>(<span tal:replace="python: view.getFileType(file)" />, <span tal:replace="python: view.getFileSize(file)" />)</small>
+                  </a>
+                </li>
               </ul>
-              <div tal:replace="structure context/text/output">Content</div>
-
             </div>
-            <div class="columns small-12 medium-4" >
-              <div class="panel" tal:condition="view/files" >
-                <h3 i18n:translate="">Files</h3>
-                <ul class="list-link" >
-                  <li tal:repeat="file view/files">
-                    <a tal:attributes="href file/absolute_url; title file/description">
-                      <span tal:replace="file/title" />
-                      <small>(<span tal:replace="python: view.getFileType(file)" />, <span tal:replace="python: view.getFileSize(file)" />)</small>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+          </div>
 
-          </div>
-          <div class="row">
-              <section class="columns small-12 medium-8 end">
-                <div tal:replace="structure provider:plone.belowcontent" >Viewlets Below</div>
-              </section>
-          </div>
+        </div>
+        <div class="row">
+            <section class="columns small-12 medium-8 end">
+              <div tal:replace="structure provider:plone.belowcontent" >Viewlets Below</div>
+            </section>
+        </div>
 
       </article>
 
