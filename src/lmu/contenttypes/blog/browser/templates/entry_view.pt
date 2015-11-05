@@ -144,10 +144,10 @@
         </hgroup>
 
         <div class="row">
-          <div class="columns small-12 medium-8 clearing-thumbs" data-clearing
+          <div class="columns small-12 medium-8"
                tal:define="files view/files;"
                tal:attributes="class python: files and 'columns small-12 medium-8 end' or 'columns small-12 medium-8'" >
-            <tal:image_check tal:condition="view/images">
+            <div tal:condition="view/images" class="blog-images">
               <tal:first_image tal:define="images view/images;
                                            first_image python: images[0];"
                                tal:condition="first_image" >
@@ -159,23 +159,28 @@
                   </figure>
                 </a>
               </tal:first_image>
-            </tal:image_check>
-            <ul class="clearing-thumbs clearing-feature small-block-grid-3 medium-block-grid-4 large-block-grid-6 helper-border-bottom helper-margin-bottom-l"
-                tal:condition="view/images"
-                data-clearing >
-              <tal:block tal:repeat="image view/images" >
-                <li class="helper-no-padding-left clearing-featured-img"
-                    tal:define="first repeat/image/start;"
-                    tal:attributes="class python: 'helper-no-padding-left clearing-featured-img' if not first else 'helper-no-padding-left';">
-                  <a class="th" role="button" aria-label="Thumbnails"
-                     tal:define="scales image/@@images;"
-                     tal:attributes="href string:${image/absolute_url}/@@images/image.jpeg;">
-                    <img tal:replace="structure python: scales.tag('image', scale='listing_thumb', direction='down')" />
-                  </a>
-                </li>
-              </tal:block>
-            </ul>
-            <div tal:replace="structure context/text/output">Content</div>
+              <ul class="clearing-thumbs clearing-feature small-block-grid-3 medium-block-grid-4 large-block-grid-6 helper-border-bottom helper-margin-bottom-l"
+                  tal:condition="view/images" data-clearing >
+                <tal:block tal:repeat="image view/images" >
+                  <li class="helper-no-padding-left clearing-featured-img"
+                      tal:define="first repeat/image/start;"
+                      tal:attributes="class python: 'helper-no-padding-left clearing-featured-img' if not first else 'helper-no-padding-left';">
+                    <a class="th" role="button" aria-label="Thumbnails"
+                       tal:define="scales image/@@images;"
+                       tal:attributes="href string:${image/absolute_url}/@@images/image.jpeg;">
+                      <img tal:define="thumb python: scales.scale('image', scale='listing_thumb', direction='down');"
+                           tal:attributes="data-caption image/description;
+                                           title image/description;
+                                           alt image/description;
+                                           src thumb/url;
+                                           width thumb/width;
+                                           height thumb/height;" />
+                    </a>
+                  </li>
+                </tal:block>
+              </ul>
+            </div>
+            <div id="blog-text" tal:content="structure context/text/output">Content</div>
           </div>
 
           <div class="columns small-12 medium-4" >
