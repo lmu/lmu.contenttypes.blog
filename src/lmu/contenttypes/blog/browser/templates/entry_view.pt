@@ -153,8 +153,16 @@
                                tal:condition="first_image" >
                 <a tal:attributes="href string:${first_image/absolute_url}/@@images/image.jpeg;" >
                   <figure  class="blog-lead-image helper-margin-bottom-m text-left"
-                           tal:define="scales first_image/@@images;" >
-                    <img tal:replace="structure python: scales.tag('image', scale='entry_teaser', direction='down', alt=first_image.description, title=first_image.description)" />
+                           tal:define="scales first_image/@@images;
+                                       thumb python: scales.scale('image', scale='entry_teaser', direction='down');
+                                       style python: 'width: ' + str(thumb.width) + 'px;;' if thumb.width < 680 else None;"
+                           tal:attributes="style style" >
+                    <img tal:attributes="data-caption first_image/description;
+                                         title first_image/description;
+                                         alt first_image/description;
+                                         src thumb/url;
+                                         width thumb/width;
+                                         height thumb/height;" />
                     <figcaption tal:content="first_image/description" tal:condition="first_image/description">Caption</figcaption>
                   </figure>
                 </a>
