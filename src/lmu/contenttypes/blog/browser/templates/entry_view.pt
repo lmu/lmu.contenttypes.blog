@@ -124,7 +124,7 @@
             <span tal:content="context/get_discussion_count" >Anzahl</span>
           </a>
         </div>
-        <hgroup class="helper-margin-top-m helper-margin-bottom-l">
+        <header class="helper-margin-top-m helper-margin-bottom-l">
           <h1 tal:content="context/title">Blog Entry Title</h1>
           <div class="tileDocumentByLine documentByLine helper-font-serif helper-margin-top-m"
                tal:condition="python: True or site_properties.allowAnonymousViewAbout or not isAnon"
@@ -138,10 +138,11 @@
                tal:content="author/name_or_id">
                   Bob Dobalina
             </a>
-            <date tal:content="python: toLocalizedTime(item_display_date,long_format=1)">Date</date>
+            <time tal:content="python: toLocalizedTime(item_display_date,long_format=1)"
+                  tal:attributes="datetime item_display_date;">Date</time>
             <em tal:condition="python: item_state != 'internally_published'" i18n:translate="" class="private">Dieser Blog-Beitrag ist noch nicht veroeffentlicht</em>
           </div>
-        </hgroup>
+        </header>
 
         <div class="row">
           <div class="columns small-12 medium-8"

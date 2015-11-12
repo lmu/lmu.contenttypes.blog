@@ -104,7 +104,7 @@
               </figure>
             </tal:block>
 
-            <hgroup >
+            <header >
               <h2 class="tileHeadline helper-margin-bottom-m">
                 <a tal:attributes="href item/absolute_url;"
                    tal:content="item/title">Blog Entry Title</a>
@@ -122,10 +122,11 @@
                    tal:omit-tag="not:author">
                   Bob Dobalina
                 </a>
-                <date tal:content="python: toLocalizedTime(item_display_date,long_format=1)">Date</date>
+                <time tal:content="python: toLocalizedTime(item_display_date,long_format=1)"
+                      tal:attributes="datetime item_display_date;">Date</time>
                 <em tal:condition="python: item_state != 'internally_published'" i18n:translate="" class="private">Dieser Blog-Beitrag ist noch nicht veroeffentlicht</em>
               </div>
-            </hgroup>
+            </header>
 
             <div class="tileBody" >
               <tal:tileBody tal:content="structure item/text/output">
