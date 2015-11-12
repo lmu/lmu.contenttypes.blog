@@ -53,17 +53,17 @@
   <div class="columns small-12 large-10 large-centered">
 
     <div class="row">
-      <div class="columns small-12 medium-6 large-5">
+      <div class="columns small-12 medium-6 large-8">
         <h2 class="header-category">
           <a tal:attributes="href context/absolute_url;">
           <tal:title tal:condition="view/author" i18n:translate="" >Meine Blogbeitraege - </tal:title>
-          <span tal:replace="context/Title">Title</span>
+          <span tal:replace="context/Title">Title</span><br class="hide-for-large-up" />
           <small tal:content="context/description" tal:condition="context/description">Subtitle</small>
           </a>
         </h2>
       </div>
-      <div class="columns small-12 medium-6 large-7 more">
-        <a class="toogle" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a> /
+      <div class="columns small-12 medium-6 large-4 more">
+        <a class="toogle" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a> /<br class="hide-for-large-up" />
         <a tal:define="url context/absolute_url;
                        url python: url if not view.author else url + '?author=' + str(view.author);"
            tal:attributes="href url;" >
