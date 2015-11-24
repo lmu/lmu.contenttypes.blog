@@ -42,5 +42,5 @@
 
     <adapter name="SearchableText" factory="lmu.contenttypes.blog.utils.SearchableText_blogfolder" />
     <adapter name="SearchableText" factory="lmu.contenttypes.blog.utils.SearchableText_blogentry" />
-    
+
 </configure>
