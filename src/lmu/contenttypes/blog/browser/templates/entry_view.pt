@@ -111,7 +111,8 @@
             </div>
           </div>
           <div class="document-actions-readonly alert-box alert"
-               tal:condition="view/isDBReadOnly">
+               tal:condition="view/isDBReadOnly"
+               i18n:translate="" >
             Die Bearbeitung eines Blog-Beitrages ist derzeit aus technischen Gründen nicht möglich.
           </div>
         </div>
