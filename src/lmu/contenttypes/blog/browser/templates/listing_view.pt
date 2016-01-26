@@ -54,7 +54,7 @@
           <p class="alert-box secondary helper-border helper-padding-m helper-margin-top-m helper-margin-bottom-m helper-font-light text-center helper-clear"
              tal:condition="view/isDBReadOnly"
              i18n:translate="">
-            Das Hinzufügen eines Blog-Beitrages ist derzeit aus technischen Gründen nicht möglich.
+            Das Hinzufuegen eines Blog-Beitrages ist derzeit aus technischen Gruenden nicht moeglich.
           </p>
           </tal:add_button>
         </div>

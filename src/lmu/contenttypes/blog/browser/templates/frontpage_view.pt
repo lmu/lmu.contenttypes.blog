@@ -190,7 +190,7 @@
     <div class="columns small-12 large-10 large-centered">
       <p class="alert-box secondary helper-border helper-padding-m helper-margin-bottom-l helper-font-light text-center"
          i18n:translate="">
-        Das Hinzufügen eines Blog-Beitrages ist derzeit aus technischen Gründen nicht möglich.
+        Das Hinzufuegen eines Blog-Beitrages ist derzeit aus technischen Gruenden nicht moeglich.
       </p>
     </div>
   </div>

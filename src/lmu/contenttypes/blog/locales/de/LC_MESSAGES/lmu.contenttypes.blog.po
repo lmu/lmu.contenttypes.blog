@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-10-26 15:38+0000\n"
+"POT-Creation-Date: 2016-01-26 15:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 msgid "Add Blog Entry"
 msgstr "Blog-Beitrag verfassen"
 
-#: ./browser/templates/frontpage_view.pt:71
+#: ./browser/templates/frontpage_view.pt:70
 msgid "Alle Blog-Beitraege"
 msgstr "Alle Blog-Beiträge"
 
-#: ./browser/views.py:124
+#: ./browser/views.py:128
 msgid "Bearbeiten Sie Ihren Blog-Beitrag. Klicken Sie anschließend auf \"Vorschau\", um die Eingaben zu überprüfen und den Blog-Eintrag zu veröffentlichen."
 msgstr "Bearbeiten Sie Ihren Blog-Beitrag. Klicken Sie anschließend auf \"Vorschau\", um die Eingaben zu überprüfen und den Blog-Eintrag zu veröffentlichen."
 
@@ -38,27 +38,34 @@ msgstr "Blog-Beitrag mit der Option Bilder und Dateien anzufügen."
 msgid "Blog Folder"
 msgstr "Blog"
 
-#: ./browser/templates/blog_entry_add.pt:27
-#: ./browser/templates/blog_entry_edit.pt:29
-#: ./browser/templates/entry_view.pt:104
+#: ./browser/templates/entry_view.pt:99
 msgid "Blog-Regeln"
 msgstr "Blog-Regeln"
 
-#: ./browser/templates/entry_view.pt:67
+#: ./browser/templates/frontpage_view.pt:191
+#: ./browser/templates/listing_view.pt:54
+msgid "Das Hinzufuegen eines Blog-Beitrages ist derzeit aus technischen Gruenden nicht moeglich."
+msgstr "Das Hinzufügen eines Blog-Beitrages ist derzeit aus technischen Gründen nicht möglich."
+
+#: ./browser/templates/entry_view.pt:62
 msgid "Delete Blog Entry"
 msgstr "Lösche Blog-Beitrag"
 
-#: ./browser/templates/entry_view.pt:134
-#: ./browser/templates/frontpage_view.pt:150
-#: ./browser/templates/listing_view.pt:125
+#: ./browser/templates/entry_view.pt:113
+msgid "Die Bearbeitung eines Blog-Beitrages ist derzeit aus technischen Gruenden nicht moeglich."
+msgstr "Die Bearbeitung eines Blog-Beitrages ist derzeit aus technischen Gründen nicht möglich."
+
+#: ./browser/templates/entry_view.pt:148
+#: ./browser/templates/frontpage_view.pt:149
+#: ./browser/templates/listing_view.pt:134
 msgid "Dieser Blog-Beitrag ist noch nicht veroeffentlicht"
 msgstr "Dieser Blog-Beitrag ist noch nicht veröffentlicht"
 
-#: ./browser/templates/entry_view.pt:60
+#: ./browser/templates/entry_view.pt:55
 msgid "Edit Blog Entry"
 msgstr "Bearbeite Blog-Beitrag"
 
-#: ./browser/templates/entry_view.pt:176
+#: ./browser/templates/entry_view.pt:202
 msgid "Files"
 msgstr "Dateien"
 
@@ -66,22 +73,20 @@ msgstr "Dateien"
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr "Blog Ordner für Blog-Einträge mit einer speziellen Ansicht und Einschränkungen"
 
-#: ./browser/views.py:77
+#: ./browser/views.py:78
 msgid "Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf \"Weiter\". Danach können Sie Bilder und andere Dateien hinzufügen."
 msgstr "Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an und klicken Sie auf \"Weiter\". Danach können Sie Bilder und andere Dateien hinzufügen."
 
-#: ./browser/templates/entry_view.pt:81
+#: ./browser/templates/entry_view.pt:76
 msgid "Hide"
 msgstr "Zurückziehen"
 
-#: ./browser/templates/blog_entry_add.pt:26
-#: ./browser/templates/blog_entry_edit.pt:28
-#: ./browser/templates/entry_view.pt:103
+#: ./browser/templates/entry_view.pt:98
 msgid "Hinweis"
 msgstr "Mit dem Veröffentlichen eines Blog-Beitrags erkläre ich mich mit den"
 
-#: ./browser/templates/frontpage_view.pt:177
-#: ./browser/templates/listing_view.pt:45
+#: ./browser/templates/frontpage_view.pt:181
+#: ./browser/templates/listing_view.pt:47
 msgid "Jetzt einen Blog-Beitrag verfassen"
 msgstr "Jetzt einen Blog-Beitrag verfassen"
 
@@ -89,58 +94,56 @@ msgstr "Jetzt einen Blog-Beitrag verfassen"
 msgid "Meine Blogbeitraege -"
 msgstr "Meine Blogbeiträge - "
 
-#: ./browser/views.py:95
+#: ./browser/views.py:96
 msgid "Next"
 msgstr "Weiter"
 
-#: ./browser/views.py:144
+#: ./browser/views.py:148
 msgid "Preview"
 msgstr "Vorschau"
 
-#: ./browser/templates/entry_view.pt:74
+#: ./browser/templates/entry_view.pt:69
 msgid "Publish"
 msgstr "Veröffentlichen"
 
-#: ./browser/templates/listing_view.pt:134
+#: ./browser/templates/listing_view.pt:143
 msgid "Read Comments / Write a comment"
 msgstr "Kommentare lesen / Kommentare schreiben"
 
-#: ./browser/templates/entry_view.pt:88
+#: ./browser/templates/entry_view.pt:83
 msgid "Reject"
 msgstr "Zurückweisen"
 
-#: ./browser/templates/entry_view.pt:52
+#: ./browser/templates/entry_view.pt:47
 msgid "Report Blog Entry"
 msgstr "Blog-Beitrag melden"
 
-#: ./browser/views.py:99
+#: ./browser/views.py:100
 msgid "Save"
 msgstr "Speichern"
 
 #: ./browser/templates/blog_entry_add.pt:8
-#: ./browser/templates/blog_entry_edit.pt:10
-#: ./browser/templates/frontpage_view.pt:67
+#: ./browser/templates/blog_entry_edit.pt:11
+#: ./browser/templates/frontpage_view.pt:66
 msgid "Show Blog Rules"
 msgstr "Zu den Blog-Regeln"
 
-#: ./browser/templates/entry_view.pt:95
+#: ./browser/templates/entry_view.pt:90
 msgid "Sperren"
 msgstr "Sperren"
 
-#: ./browser/templates/blog_entry_add.pt:28
-#: ./browser/templates/blog_entry_edit.pt:30
-#: ./browser/templates/entry_view.pt:105
+#: ./browser/templates/entry_view.pt:100
 msgid "einverstanden."
 msgstr "einverstanden."
 
-#: ./browser/templates/frontpage_view.pt:168
+#: ./browser/templates/frontpage_view.pt:170
 msgid "insgesamt"
 msgstr "insgesamt"
 
 #. Default: "Jump to Comments"
-#: ./browser/templates/entry_view.pt:112
-#: ./browser/templates/frontpage_view.pt:109
-#: ./browser/templates/listing_view.pt:84
+#: ./browser/templates/entry_view.pt:125
+#: ./browser/templates/frontpage_view.pt:108
+#: ./browser/templates/listing_view.pt:92
 msgid "lable_jump_to_comments"
 msgstr "Zu den Kommentaren springen"
 
@@ -156,7 +159,7 @@ msgstr "Die Blog-Überschrift"
 msgid "lable_title_title"
 msgstr "Überschrift"
 
-#: ./browser/templates/frontpage_view.pt:168
+#: ./browser/templates/frontpage_view.pt:170
 msgid "weitere Blog-Beitraege"
 msgstr "weitere Blog-Beiträge"
 
