@@ -17,7 +17,11 @@
             <a class="close-reveal-modal" aria-label="Close">&#215;</a>
         </div>
 
-        <div id="content-core">
+        <div class="alert-box alert"
+             tal:condition="view/isDBReadOnly">
+          Das Hinzufügen eines Blog-Beitrages ist derzeit aus technischen Gründen nicht möglich.
+        </div>
+        <div id="content-core" tal:condition="not: view/isDBReadOnly">
             <metal:block use-macro="context/@@ploneform-macros/titlelessform">
                 <metal:block fill-slot="fields">
 

@@ -15,6 +15,7 @@ from lmu.policy.base.browser.content import RichTextWidgetConfig
 from lmu.policy.base.browser.content import formHelper
 from lmu.policy.base.browser.content_listing import _AbstractLMUBaseListingView
 from lmu.policy.base.browser.content_listing import _FrontPageIncludeMixin
+from lmu.policy.base.browser.utils import isDBReadOnly as uIsDBReadOnly
 
 #from lmu.contenttypes.blog.interfaces import IBlogEntry
 from lmu.contenttypes.blog.interfaces import IBlogFolder
@@ -110,6 +111,9 @@ class BlogEntryAddForm(add.DefaultAddForm):
             #    _(u"Item created"), "info success"
             #)
 
+    def isDBReadOnly(self):
+        return uIsDBReadOnly()
+
 
 class BlogEntryAddView(add.DefaultAddView):
     form = BlogEntryAddForm
@@ -144,6 +148,9 @@ class BlogEntryEditForm(edit.DefaultEditForm):
                 button.title = _(u'Preview')
 
         return super(BlogEntryEditForm, self).__call__()
+
+    def isDBReadOnly(self):
+        return uIsDBReadOnly()
 
     @button.buttonAndHandler(_(u'Save'), name='save')
     def handleApply(self, action):
