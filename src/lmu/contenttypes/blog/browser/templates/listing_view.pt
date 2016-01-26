@@ -11,7 +11,7 @@
 
     <main id="content" class="blog">
       <header id="blog-header" class="row">
-        <div class="columns small-12 large-10 large-centered helper-margin-top-l">
+        <div class="columns small-12 large-10 large-centered helper-margin-top-l clearfix">
 
           <div id="plone-extras" class="visualClear clearfix"
                tal:define="show_border context/@@plone/showEditableBorder;
@@ -43,13 +43,20 @@
                 Blog Sub-Title
             </small>
           </h1>
+          <tal:add_button tal:condition="view/can_add" >
           <a class="button small-12 helper-margin-top-m helper-margin-bottom-m"
              tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
              tal:attributes="href add_url;"
-             tal:condition="python: not view.isDBReadOnly() and view.can_add()"
+             tal:condition="not: view/isDBReadOnly"
              i18n:translate="">
             Jetzt einen Blog-Beitrag verfassen
           </a>
+          <p class="alert-box secondary helper-border helper-padding-m helper-margin-top-m helper-margin-bottom-m helper-font-light text-center helper-clear"
+             tal:condition="view/isDBReadOnly"
+             i18n:translate="">
+            Das Hinzufügen eines Blog-Beitrages ist derzeit aus technischen Gründen nicht möglich.
+          </p>
+          </tal:add_button>
         </div>
       </header>
       <tal:results tal:define="batch view/batch">

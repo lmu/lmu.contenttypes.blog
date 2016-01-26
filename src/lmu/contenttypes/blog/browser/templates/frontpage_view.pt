@@ -164,8 +164,8 @@
                     url python: url if not view.author else url + '?author=' + str(view.author);
                     show_more python: 0 < int(view.b_size) < int(view.absolute_length());">
   <div class="row overview-light" tal:condition="show_more" >
-    <div class="columns small-12 large-10 large-centered pagination-centered">
-      <a class="button secondary helper-border large-4 small-12"
+    <div class="columns small-12 large-10 large-centered pagination-centered helper-margin-bottom-m">
+      <a class="large-4 small-12 helper-font-italic"
          tal:attributes="href url;">
         <tal:lang i18n:translate="">weitere Blog-Beitraege</tal:lang> (<tal:lang i18n:translate="">insgesamt</tal:lang> <span tal:replace="view/absolute_length">Anzahl</span>)
       </a>
@@ -175,7 +175,8 @@
     </div>
   </div>
 
-  <div class="row overview-light" tal:condition="python: not view.isDBReadOnly() and not view.author and view.can_add()">
+  <tal:add_button tal:condition="python: not view.author and view.can_add()" >
+  <div class="row overview-light" tal:condition="not: view/isDBReadOnly">
     <div class="columns small-12 large-10 large-centered">
       <a class="button link-overlay small-12"
          tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
@@ -185,6 +186,16 @@
       </a>
     </div>
   </div>
+  <div class="row overview-light" tal:condition="view/isDBReadOnly">
+    <div class="columns small-12 large-10 large-centered">
+      <p class="alert-box secondary helper-border helper-padding-m helper-margin-bottom-l helper-font-light text-center"
+         i18n:translate="">
+        Das Hinzufügen eines Blog-Beitrages ist derzeit aus technischen Gründen nicht möglich.
+      </p>
+    </div>
+  </div>
+  </tal:add_button>
+
 </footer>
 </section>
 </body>
