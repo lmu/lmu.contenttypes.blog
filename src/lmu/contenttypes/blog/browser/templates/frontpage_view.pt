@@ -121,6 +121,11 @@
               <a href="#"
                  tal:attributes="href item/absolute_url">
                 <img tal:replace="structure python: scales.tag('image', scale='listing_teaser', direction='down')" />
+                <img tal:define="img_elem python: scales.scale('image', scale='listing_teaser', direction='down');"
+                     tal:attributes="data-caption image/description;
+                                           title image/description;
+                                           alt image/description;
+                                           src img_elem/url;" />
                 <figcaption tal:content="first_image/description" tal:condition="first_image/description">Caption</figcaption>
               </a>
             </figure>

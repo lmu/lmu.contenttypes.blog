@@ -166,9 +166,7 @@
                     <img tal:attributes="data-caption first_image/description;
                                          title first_image/description;
                                          alt first_image/description;
-                                         src thumb/url;
-                                         width thumb/width;
-                                         height thumb/height;" />
+                                         src thumb/url;" />
                     <figcaption tal:content="first_image/description" tal:condition="first_image/description">Caption</figcaption>
                   </figure>
                 </a>
@@ -186,9 +184,7 @@
                            tal:attributes="data-caption image/description;
                                            title image/description;
                                            alt image/description;
-                                           src thumb/url;
-                                           width thumb/width;
-                                           height thumb/height;" />
+                                           src thumb/url;" />
                     </a>
                   </li>
                 </tal:block>
