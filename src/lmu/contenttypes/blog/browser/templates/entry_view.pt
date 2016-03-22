@@ -153,43 +153,28 @@
           <div class="columns small-12 medium-8"
                tal:define="files view/files;"
                tal:attributes="class python: files and 'columns small-12 medium-8 end' or 'columns small-12 medium-8'" >
-            <div tal:condition="view/images" class="blog-images">
-              <tal:first_image tal:define="images view/images;
-                                           first_image python: images[0];"
-                               tal:condition="first_image" >
-                <a tal:attributes="href string:${first_image/absolute_url}/@@images/image.jpeg;" >
-                  <figure  class="blog-lead-image helper-margin-bottom-m text-left"
-                           tal:define="scales first_image/@@images;
-                                       thumb python: scales.scale('image', scale='entry_teaser', direction='down');
-                                       style python: 'width: ' + str(thumb.width) + 'px;;' if thumb.width < 680 else None;"
-                           tal:attributes="style style" >
-                    <img tal:attributes="data-caption first_image/description;
-                                         title first_image/description;
-                                         alt first_image/description;
-                                         src thumb/url;" />
-                    <figcaption tal:content="first_image/description" tal:condition="first_image/description">Caption</figcaption>
-                  </figure>
-                </a>
-              </tal:first_image>
-              <ul class="clearing-thumbs clearing-feature small-block-grid-3 medium-block-grid-4 large-block-grid-6 helper-border-bottom helper-margin-bottom-l"
-                  tal:condition="view/images" data-clearing >
-                <tal:block tal:repeat="image view/images" >
-                  <li class="helper-no-padding-left clearing-featured-img"
-                      tal:define="first repeat/image/start;"
-                      tal:attributes="class python: 'helper-no-padding-left clearing-featured-img' if not first else 'helper-no-padding-left';">
+            <ul tal:condition="view/images" class="clearing-thumbs blog-images" data-clearing>
+              <tal:block tal:repeat="image view/images" >
+                <li class="helper-no-padding-left"
+                    tal:define="first repeat/image/start;">
+                  <figure class="blog-lead-image helper-margin-bottom-m text-left"
+                          tal:define="scales image/@@images;
+                                      scale_name python:first and 'entry_teaser' or 'listing_thumb';
+                                      thumb python: scales.scale('image', scale=scale_name, direction='down');
+                                      style python: 'width: ' + str(thumb.width) + 'px;;' if thumb.width < 680 else None;"
+                          tal:attributes="style style" tal:omit-tag="not:first">
                     <a class="th" role="button" aria-label="Thumbnails"
-                       tal:define="scales image/@@images;"
-                       tal:attributes="href string:${image/absolute_url}/@@images/image.jpeg;">
-                      <img tal:define="thumb python: scales.scale('image', scale='listing_thumb', direction='down');"
-                           tal:attributes="data-caption image/description;
-                                           title image/description;
-                                           alt image/description;
-                                           src thumb/url;" />
+                       tal:attributes="href string:${image/absolute_url}/@@images/image.jpeg;" >
+                        <img tal:attributes="data-caption image/description;
+                                             title image/description;
+                                             alt image/description;
+                                             src thumb/url;" />
+                        <figcaption tal:content="image/description" tal:condition="image/description">Caption</figcaption>
                     </a>
-                  </li>
-                </tal:block>
-              </ul>
-            </div>
+                  </figure>
+                </li>
+              </tal:block>
+            </ul>
             <div id="blog-text" tal:content="structure context/text/output">Content</div>
           </div>
 
