@@ -35,7 +35,7 @@
 
           </div>
 
-          <a class="toogle button small right" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a>
+          <a class="right helper-border helper-font-light" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a>
           <h1>
             <span tal:replace="context/title">Blog Titel</span>
             <small tal:content="context/description"
@@ -44,7 +44,7 @@
             </small>
           </h1>
           <tal:add_button tal:condition="view/can_add" >
-          <a class="button small-12 helper-margin-top-m helper-margin-bottom-m"
+          <a class="button small-12 helper-margin-top-l helper-margin-bottom-m radius"
              tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
              tal:attributes="href add_url;"
              tal:condition="not: view/isDBReadOnly"
@@ -73,7 +73,7 @@
                                navigation_root_url context/@@plone_portal_state/navigation_root_url;
                                pas_member context/@@pas_member;
                               ">
-          <article class="blog-entry blog-preview tileItem visualIEFloatFix clearfix"
+          <article class="blog-entry blog-preview tileItem visualIEFloatFix helper-margin-bottom-m clearfix"
                    tal:define="item entry/getObject;
                                item_creator entry/Creator;
                                item_created entry/CreationDate;
@@ -115,7 +115,7 @@
             </tal:block>
 
             <header >
-              <h2 class="tileHeadline helper-margin-bottom-m">
+              <h2 class="tileHeadline helper-margin-bottom-m helper-no-margin-top">
                 <a tal:attributes="href item/absolute_url;"
                    tal:content="item/title">Blog Entry Title</a>
               </h2>

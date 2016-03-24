@@ -63,7 +63,7 @@
         </h2>
       </div>
       <div class="columns small-12 medium-6 large-4 more">
-        <a class="toogle" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a> /<br class="hide-for-large-up" />
+        <a class="toogle" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a> <span class="hide-for-medium-only">/</span><br class="hide-for-large-up hide-for-small-down" />
         <a tal:define="url context/absolute_url;
                        url python: url if not view.author else url + '?author=' + str(view.author);"
            tal:attributes="href url;" >
@@ -85,7 +85,7 @@
   <div class="columns small-12 large-10 large-centered overview-column" >
     <tal:results tal:define="batch view/batch">
     <tal:listing condition="batch">
-    <div class="row helper-margin-bottom-l" >
+    <div class="row helper-margin-top-m" >
       <div class="columns large-12 helper-margin-top-l blog" >
         <tal:block tal:repeat="entry batch">
         <tal:entry tal:define="item entry/getObject;
@@ -96,7 +96,7 @@
                                item_display_date python: item_effective != 'None' and item_effective or item_created;
                                item_url item/getURL|item/absolute_url;
                                item_state entry/review_state;">
-        <article class="blog-entry blog-preview clearfix"
+        <article class="blog-entry blog-preview clearfix helper-margin-bottom-m"
                  tal:define="text python:view.strip_text(item);
                              imageTile python: 'imageTileItem' if item.images else '';
                              sklass string:columns small-12 large-10 large-centered ${imageTile} blog-entry;
@@ -130,10 +130,10 @@
             </figure>
           </tal:block>
           <header class="helper-margin-bottom-m">
-            <h3>
+            <h3 class="helper-no-margin-top">
               <a tal:attributes="href item/absolute_url;
                                  title item/title;"
-                 tal:content="item/title">Blog Entry Title</a>
+                 tal:content="item/title" >Blog Entry Title</a>
             </h3>
             <div class="tileDocumentByLine documentByLine helper-font-serif helper-font-light"
                  tal:condition="python: True or site_properties.allowAnonymousViewAbout or not isAnon"
@@ -181,8 +181,8 @@
 
   <tal:add_button tal:condition="python: not view.author and view.can_add()" >
   <div class="row overview-light" tal:condition="not: view/isDBReadOnly">
-    <div class="columns small-12 large-10 large-centered">
-      <a class="button link-overlay small-12"
+    <div class="columns small-12 large-10 large-centered helper-margin-bottom-l">
+      <a class="button link-overlay radius small-12"
          tal:define="add_url string:${context/absolute_url}/++add++Blog Entry;"
          tal:attributes="href add_url;"
          i18n:translate="">
@@ -191,7 +191,7 @@
     </div>
   </div>
   <div class="row overview-light" tal:condition="view/isDBReadOnly">
-    <div class="columns small-12 large-10 large-centered">
+    <div class="columns small-12 large-10 large-centered helper-margin-bottom-l">
       <p class="alert-box secondary helper-border helper-padding-m helper-margin-bottom-l helper-font-light text-center"
          i18n:translate="">
         Das Hinzufuegen eines Blog-Beitrages ist derzeit aus technischen Gruenden nicht moeglich.
