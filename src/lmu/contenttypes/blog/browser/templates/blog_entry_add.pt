@@ -5,7 +5,7 @@
       i18n:domain="lmu.contenttypes.blog">
 
         <div class="clearfix">
-            <a class="toogle button radius small right" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a>
+            <a class="helper-border helper-font-light right" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a>
             <h1 class="documentFirstHeading" i18n:translate="" >Add Blog Entry</h1>
         </div>
 
