@@ -2,6 +2,7 @@
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+from plone.app.discussion.browser.comments import CommentsViewlet
 #from plone.behavior.interfaces import IBehaviorAssignable
 from plone.dexterity.browser import add
 from plone.dexterity.browser import edit
@@ -158,3 +159,7 @@ class BlogEntryEditForm(edit.DefaultEditForm):
         #)
         self.request.response.redirect(self.nextURL())
         notify(EditFinishedEvent(self.context))
+
+
+class BlogCommentsViewlet(CommentsViewlet):
+    index = ViewPageTemplateFile('templates/comments.pt')
