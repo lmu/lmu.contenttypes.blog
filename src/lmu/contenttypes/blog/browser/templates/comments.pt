@@ -121,6 +121,28 @@
                                    />
                         </form>
 
+                        <tal:edit tal:condition="python:isEditCommentAllowed and canEdit">
+                          <!-- plone 5 will have auth_token available
+                               so we'll use modal pattern -->
+                          <a class="commentactionsform pat-plone-modal context"
+                             tal:condition="auth_token"
+                             tal:attributes="href string:${reply/absolute_url}/@@edit-comment?_authenticator=${auth_token}">Edit</a>
+                          <form name="edit"
+                                action=""
+                                method="get"
+                                class="commentactionsform"
+                                tal:condition="not: auth_token"
+                                tal:attributes="action string:${reply/absolute_url}/@@edit-comment">
+                              <input name="form.button.EditComment"
+                                     class="context"
+                                     type="submit"
+                                     value="Edit"
+                                     i18n:attributes="value label_edit;"
+                                     />
+                          </form>
+                        </tal:edit>
+
+
                         <!-- Workflow actions (e.g. 'publish') -->
                         <form name=""
                               action=""
