@@ -63,7 +63,7 @@
         </h2>
       </div>
       <div class="columns small-12 medium-6 large-4 more">
-        <a class="toogle" href="#" data-reveal-id="rules" i18n:translate="" >Show Blog Rules</a>
+        <a class="toogle" href="#" data-reveal-id="blog-rules" i18n:translate="" >Show Blog Rules</a>
         <span style="display: inline-block !important" >
           <span class="hide-for-medium-only">/</span>
         </span>
@@ -76,7 +76,7 @@
       </div>
     </div>
 
-    <div id="rules" class="blog_info reveal-modal xlarge" aria-labelledby="" aria-hidden="true" role="dialog" style="top: -8em;" data-reveal="data-reveal" >
+    <div id="blog-rules" class="blog_info reveal-modal xlarge" aria-labelledby="" aria-hidden="true" role="dialog" style="top: -8em;" data-reveal="data-reveal" >
       <tal:rules tal:content="structure context/text/output">
         Content Body
       </tal:rules>
