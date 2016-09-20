@@ -4,6 +4,8 @@
 *.mo
 *.egg
 *.EGG
+*.eggs
+*.EGGS
 *.egg-info
 *.EGG-INFO
 .*.cfg
