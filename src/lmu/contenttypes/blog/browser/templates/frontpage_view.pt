@@ -7,10 +7,10 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      tal:define="omit view/omit"
+      tal:define="omit view/omit;"
       tal:omit-tag="omit"
       i18n:domain="lmu.contenttypes.blog"
-      tal:condition="view/batch">
+      tal:condition="view/batch" >
 
 <head tal:condition="not:omit">
   <title tal:content="context/Title"></title>
@@ -215,5 +215,14 @@
 
 </footer>
 </section>
+</body>
+</html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      tal:condition="not:view/batch" >
+<body>
 </body>
 </html>
