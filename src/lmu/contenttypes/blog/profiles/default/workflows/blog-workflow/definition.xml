@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<dc-workflow 
-    workflow_id="blog-workflow" 
-    title="Blog Workflow" 
-    description=" - An intranet workflow where content is only accessible if you are logged in. - Basic states are: Internal Draft, Pending Review, Internally Published and Private. - Also has an Externally Published state, so you can make selected content available to people outside the intranet." 
-    state_variable="review_state" 
-    initial_state="private" 
+<dc-workflow
+    workflow_id="blog-workflow"
+    title="Blog Workflow"
+    description=" - An intranet workflow where content is only accessible if you are logged in. - Basic states are: Internal Draft, Pending Review, Internally Published and Private. - Also has an Externally Published state, so you can make selected content available to people outside the intranet."
+    state_variable="review_state"
+    initial_state="private"
     manager_bypass="False">
     <permission>Access contents information</permission>
     <permission>Change portal events</permission>
@@ -51,6 +51,11 @@
         <permission-map name="Modify portal content" acquired="False">
             <permission-role>Manager</permission-role>
             <permission-role>Site Administrator</permission-role>
+        </permission-map>
+        <permission-map name="Request review" acquired="False">
+            <permission-role>Owner</permission-role>
+            <permission-role>Site Administrator</permission-role>
+            <permission-role>Manager</permission-role>
         </permission-map>
         <permission-map name="View" acquired="False">
             <permission-role>Member</permission-role>
@@ -102,30 +107,30 @@
             <permission-role>Manager</permission-role>
         </permission-map>
     </state>
-    <transition 
-        transition_id="publish_internally" 
-        title="Der Besitzer macht den Inhalt intern zugänglich." 
-        new_state="internally_published" 
-        trigger="USER" 
-        before_script="" 
+    <transition
+        transition_id="publish_internally"
+        title="Der Besitzer macht den Inhalt intern zugänglich."
+        new_state="internally_published"
+        trigger="USER"
+        before_script=""
         after_script="">
         <description>Durch die Veröffentlichung eines Artikels wird dieser für andere Benutzer sichtbar.</description>
-        <action 
-            url="%(content_url)s/content_status_modify?workflow_action=publish_internally" 
-            category="workflow" 
+        <action
+            url="%(content_url)s/content_status_modify?workflow_action=publish_internally"
+            category="workflow"
             icon="">Intern veröffentlichen</action>
         <guard>
         </guard>
     </transition>
-    <transition 
-        transition_id="hide" 
-        title="Fetch back" 
-        new_state="private" 
-        trigger="USER" 
-        before_script="" 
+    <transition
+        transition_id="hide"
+        title="Fetch back"
+        new_state="private"
+        trigger="USER"
+        before_script=""
         after_script="">
         <description>Sending the item back will return the item to the original author instead of publishing it. You should preferably include a reason for why it was not published.</description>
-        <action 
+        <action
           url="%(content_url)s/content_status_modify?workflow_action=hide"
           category="workflow"
           icon="">Send back</action>
@@ -133,15 +138,15 @@
             <guard-permission>Request review</guard-permission>
         </guard>
     </transition>
-    <transition 
-        transition_id="reject" 
-        title="Send back" 
-        new_state="private" 
-        trigger="USER" 
-        before_script="" 
+    <transition
+        transition_id="reject"
+        title="Send back"
+        new_state="private"
+        trigger="USER"
+        before_script=""
         after_script="">
         <description>Sending the item back will return the item to the original author instead of publishing it. You should preferably include a reason for why it was not published.</description>
-        <action 
+        <action
           url="%(content_url)s/content_status_modify?workflow_action=reject"
           category="workflow"
           icon="">Send back</action>
@@ -149,41 +154,41 @@
             <guard-permission>Review portal content</guard-permission>
         </guard>
     </transition>
-    <transition 
-        transition_id="ban" 
-        title="Sperren" 
-        new_state="banned" 
-        trigger="USER" 
-        before_script="" 
+    <transition
+        transition_id="ban"
+        title="Sperren"
+        new_state="banned"
+        trigger="USER"
+        before_script=""
         after_script="">
         <description>A Reviewer could ban a Blog Entry if this violates the Bloging Rules. In state Banned the Blog Entry is not visible to any user in the Portal. A Reviewer should comment why he ban a Blog Entry.</description>
-        <action 
-          url="%(content_url)s/content_status_modify?workflow_action=ban" 
-          category="workflow" 
+        <action
+          url="%(content_url)s/content_status_modify?workflow_action=ban"
+          category="workflow"
           icon="">Sperren</action>
     <guard>
     </guard>
     </transition>
-    <transition 
-        transition_id="republish" 
-        title="Republish" 
-        new_state="internally_published" 
-        trigger="USER" 
+    <transition
+        transition_id="republish"
+        title="Republish"
+        new_state="internally_published"
+        trigger="USER"
         before_script=""
         after_script="">
         <description>As a Reviewer could republish a banned Blog Entry to make them visible again.</description>
-        <action 
-          url="%(content_url)s/content_status_modify?workflow_action=republish" 
-          category="workflow" 
+        <action
+          url="%(content_url)s/content_status_modify?workflow_action=republish"
+          category="workflow"
           icon="">Republish</action>
         <guard>
         </guard>
     </transition>
     <worklist worklist_id="reviewer_queue" title="">
         <description>Reviewer tasks</description>
-        <action 
-          url="%(portal_url)s/search?review_state=pending" 
-          category="global" 
+        <action
+          url="%(portal_url)s/search?review_state=pending"
+          category="global"
           icon="">Pending (%(count)d)</action>
         <guard>
             <guard-permission>Review portal content</guard-permission>
@@ -192,19 +197,19 @@
     </worklist>
     <worklist worklist_id="banned_queue" title="">
         <description>Banned Blog Entries</description>
-        <action 
-          url="%(portal_url)s/search?review_state=banned" 
-          category="global" 
+        <action
+          url="%(portal_url)s/search?review_state=banned"
+          category="global"
           icon="">Banned (%(count)d)</action>
         <guard>
             <guard-permission>Review portal content</guard-permission>
         </guard>
         <match name="review_state" values="pending"/>
     </worklist>
-    <variable 
-      variable_id="action" 
-      for_catalog="False" 
-      for_status="True" 
+    <variable
+      variable_id="action"
+      for_catalog="False"
+      for_status="True"
       update_always="True">
         <description>Previous transition</description>
         <default>
@@ -213,10 +218,10 @@
         <guard>
         </guard>
     </variable>
-    <variable 
-      variable_id="actor" 
-      for_catalog="False" 
-      for_status="True" 
+    <variable
+      variable_id="actor"
+      for_catalog="False"
+      for_status="True"
       update_always="True">
         <description>The ID of the user who performed the last transition</description>
         <default>
@@ -225,10 +230,10 @@
         <guard>
         </guard>
     </variable>
-    <variable 
-      variable_id="comments" 
-      for_catalog="False" 
-      for_status="True" 
+    <variable
+      variable_id="comments"
+      for_catalog="False"
+      for_status="True"
       update_always="True">
         <description>Comment about the last transition</description>
         <default>
@@ -238,10 +243,10 @@
         <guard>
         </guard>
     </variable>
-    <variable 
-      variable_id="review_history" 
-      for_catalog="False" 
-      for_status="False" 
+    <variable
+      variable_id="review_history"
+      for_catalog="False"
+      for_status="False"
       update_always="False">
         <description>Provides access to workflow history</description>
         <default>
@@ -252,10 +257,10 @@
             <guard-permission>Review portal content</guard-permission>
         </guard>
     </variable>
-    <variable 
-      variable_id="time" 
-      for_catalog="False" 
-      for_status="True" 
+    <variable
+      variable_id="time"
+      for_catalog="False"
+      for_status="True"
       update_always="True">
         <description>When the previous transition was performed</description>
         <default>
