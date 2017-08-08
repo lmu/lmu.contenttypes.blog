@@ -153,10 +153,18 @@
           <div class="columns small-12 medium-8"
                tal:define="files view/files;"
                tal:attributes="class python: files and 'columns small-12 medium-8 end' or 'columns small-12 medium-8'" >
-            <div tal:condition="view/images" class="blog-images">
-              <tal:first_image tal:define="images view/images;
-                                           first_image python: images[0];"
-                               tal:condition="first_image" >
+            <div class="blog-video helper-margin-bottom-m" tal:condition="view/videos"  >
+              <video width="100%" height="auto" controls="controls" tal:repeat="video view/videos" >
+                <source tal:attributes="src python:video.id;
+                                        type: python:video.file.contentType" />
+              </video>
+            </div>
+            <div tal:condition="view/images" class="blog-images"
+                 tal:define="images view/images;
+                             videos view/videos;
+                             show_first_image python: images and not videos;">
+              <tal:first_image tal:define="first_image python: images[0];"
+                               tal:condition="show_first_image" >
                 <a tal:attributes="href string:${first_image/absolute_url}/@@images/image.jpeg;" >
                   <figure  class="blog-lead-image helper-margin-bottom-m text-left"
                            tal:define="scales first_image/@@images;
@@ -173,11 +181,16 @@
               </tal:first_image>
               <ul class="clearing-thumbs clearing-feature small-block-grid-3 medium-block-grid-4 large-block-grid-6 helper-border-bottom helper-margin-bottom-l helper-no-margin-right"
                   tal:condition="show"
-                  tal:define="images view/images; length python: len(images); show python: length > 1" data-clearing >
+                  tal:define="images view/images;
+                              videos view/videos;
+                              length python: len(images);
+                              show python: length > 1 or (length > 0 and videos);"
+                  data-clearing >
                 <tal:block tal:repeat="image view/images" >
                   <li class="helper-no-padding-left clearing-featured-img"
-                      tal:define="first repeat/image/start;"
-                      tal:attributes="class python: 'helper-no-padding-left clearing-featured-img' if not first else 'helper-no-padding-left';">
+                      tal:define="first repeat/image/start;
+                                  show_first python:bool(videos) or not first;"
+                      tal:attributes="class python: 'helper-no-padding-left clearing-featured-img' if show_first else 'helper-no-padding-left';">
                     <a class="th" role="button" aria-label="Thumbnails"
                        tal:define="scales image/@@images;"
                        tal:attributes="href string:${image/absolute_url}/@@images/image.jpeg;">
