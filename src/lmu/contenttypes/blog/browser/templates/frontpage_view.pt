@@ -117,10 +117,11 @@
           </div>
 
           <tal:block tal:condition="item/videos" >
-            <figure class="blog-lead-image tileImage left helper-margin-right-m helper-margin-bottom-m ">
+            <figure class="blog-lead-videoimage tileImage left helper-margin-right-m helper-margin-bottom-m ">
               <a href="#"
                  tal:attributes="href item/absolute_url">
-                <img tal:attributes="src string:${navigation_root_url}/++resource++lmu.base/player.png" alt="Video" />
+                <img tal:attributes="src string:${navigation_root_url}/++resource++lmu.base/teaser_video-bg.png" alt="Video" />
+                <img tal:attributes="src string:${navigation_root_url}/++resource++lmu.base/teaser_video-button.png" class="overlay" alt="Video Player" />
               </a>
             </figure>
           </tal:block>
