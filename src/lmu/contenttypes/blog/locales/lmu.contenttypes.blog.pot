@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-01-26 15:07+0000\n"
+"POT-Creation-Date: 2017-09-01 12:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,11 +21,11 @@ msgstr ""
 msgid "Add Blog Entry"
 msgstr ""
 
-#: ./browser/templates/frontpage_view.pt:70
+#: ./browser/templates/frontpage_view.pt:74
 msgid "Alle Blog-Beitraege"
 msgstr ""
 
-#: ./browser/views.py:128
+#: ./browser/views.py:122
 msgid "Bearbeiten Sie Ihren Blog-Beitrag. Klicken Sie anschließend auf \"Vorschau\", um die Eingaben zu überprüfen und den Blog-Eintrag zu veröffentlichen."
 msgstr ""
 
@@ -41,11 +41,14 @@ msgstr ""
 msgid "Blog Folder"
 msgstr ""
 
+#: ./browser/templates/blog_entry_add.pt:32
+#: ./browser/templates/blog_entry_edit.pt:35
 #: ./browser/templates/entry_view.pt:99
 msgid "Blog-Regeln"
 msgstr ""
 
-#: ./browser/templates/frontpage_view.pt:191
+#: ./browser/templates/blog_entry_add.pt:20
+#: ./browser/templates/frontpage_view.pt:209
 #: ./browser/templates/listing_view.pt:54
 msgid "Das Hinzufuegen eines Blog-Beitrages ist derzeit aus technischen Gruenden nicht moeglich."
 msgstr ""
@@ -54,13 +57,14 @@ msgstr ""
 msgid "Delete Blog Entry"
 msgstr ""
 
+#: ./browser/templates/blog_entry_edit.pt:22
 #: ./browser/templates/entry_view.pt:113
 msgid "Die Bearbeitung eines Blog-Beitrages ist derzeit aus technischen Gruenden nicht moeglich."
 msgstr ""
 
 #: ./browser/templates/entry_view.pt:148
-#: ./browser/templates/frontpage_view.pt:149
-#: ./browser/templates/listing_view.pt:134
+#: ./browser/templates/frontpage_view.pt:167
+#: ./browser/templates/listing_view.pt:147
 msgid "Dieser Blog-Beitrag ist noch nicht veroeffentlicht"
 msgstr ""
 
@@ -68,7 +72,11 @@ msgstr ""
 msgid "Edit Blog Entry"
 msgstr ""
 
-#: ./browser/templates/entry_view.pt:202
+#: ./configure.zcml:27
+msgid "Extension profile for LMU Content Types for Blogs"
+msgstr ""
+
+#: ./browser/templates/entry_view.pt:212
 msgid "Files"
 msgstr ""
 
@@ -76,7 +84,7 @@ msgstr ""
 msgid "Folder for Blog Entries with special views and restrictions"
 msgstr ""
 
-#: ./browser/views.py:78
+#: ./browser/views.py:72
 msgid "Geben Sie zunächst den Titel und Text Ihres Blog-Beitrags an, und klicken Sie auf \"Weiter\". Danach können Sie Bilder und andere Dateien hinzufügen."
 msgstr ""
 
@@ -84,24 +92,30 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
+#: ./browser/templates/blog_entry_add.pt:31
+#: ./browser/templates/blog_entry_edit.pt:34
 #: ./browser/templates/entry_view.pt:98
 msgid "Hinweis"
 msgstr ""
 
-#: ./browser/templates/frontpage_view.pt:181
+#: ./browser/templates/frontpage_view.pt:199
 #: ./browser/templates/listing_view.pt:47
 msgid "Jetzt einen Blog-Beitrag verfassen"
+msgstr ""
+
+#: ./configure.zcml:27
+msgid "LMU Content Types for Blogs"
 msgstr ""
 
 #: ./browser/templates/frontpage_view.pt:59
 msgid "Meine Blogbeitraege -"
 msgstr ""
 
-#: ./browser/views.py:96
+#: ./browser/views.py:90
 msgid "Next"
 msgstr ""
 
-#: ./browser/views.py:148
+#: ./browser/views.py:142
 msgid "Preview"
 msgstr ""
 
@@ -109,7 +123,7 @@ msgstr ""
 msgid "Publish"
 msgstr ""
 
-#: ./browser/templates/listing_view.pt:143
+#: ./browser/templates/listing_view.pt:156
 msgid "Read Comments / Write a comment"
 msgstr ""
 
@@ -121,7 +135,7 @@ msgstr ""
 msgid "Report Blog Entry"
 msgstr ""
 
-#: ./browser/views.py:100
+#: ./browser/views.py:94
 msgid "Save"
 msgstr ""
 
@@ -135,17 +149,19 @@ msgstr ""
 msgid "Sperren"
 msgstr ""
 
+#: ./browser/templates/blog_entry_add.pt:33
+#: ./browser/templates/blog_entry_edit.pt:36
 #: ./browser/templates/entry_view.pt:100
 msgid "einverstanden."
 msgstr ""
 
-#: ./browser/templates/frontpage_view.pt:170
+#: ./browser/templates/frontpage_view.pt:188
 msgid "insgesamt"
 msgstr ""
 
 #. Default: "Jump to Comments"
 #: ./browser/templates/entry_view.pt:125
-#: ./browser/templates/frontpage_view.pt:108
+#: ./browser/templates/frontpage_view.pt:112
 #: ./browser/templates/listing_view.pt:92
 msgid "lable_jump_to_comments"
 msgstr ""
@@ -162,7 +178,6 @@ msgstr ""
 msgid "lable_title_title"
 msgstr ""
 
-#: ./browser/templates/frontpage_view.pt:170
+#: ./browser/templates/frontpage_view.pt:188
 msgid "weitere Blog-Beitraege"
 msgstr ""
-

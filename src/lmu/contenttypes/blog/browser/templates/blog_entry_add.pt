@@ -20,7 +20,7 @@
         <div class="alert-box alert"
              tal:condition="view/isDBReadOnly"
              i18n:translate="" >
-          Das Hinzufügen eines Blog-Beitrages ist derzeit aus technischen Gründen nicht möglich.
+          Das Hinzufuegen eines Blog-Beitrages ist derzeit aus technischen Gruenden nicht moeglich.
         </div>
         <div id="content-core" tal:condition="not: view/isDBReadOnly">
             <metal:block use-macro="context/@@ploneform-macros/titlelessform">

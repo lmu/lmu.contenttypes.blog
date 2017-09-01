@@ -43,4 +43,3 @@ msgstr "Die Blog Überschrift"
 
 msgid "lable_title_title"
 msgstr "Überschrift"
-
