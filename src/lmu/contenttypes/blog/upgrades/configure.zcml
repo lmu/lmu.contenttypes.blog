@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+>
+
+    <genericsetup:upgradeStep
+        title="Enable the video thumbnail behavior"
+        description=""
+        source="*"
+        destination="2"
+        handler=".to_2.enable_video_thumb"
+        profile="lmu.contenttypes.blog:default"
+        />
+
+</configure>
