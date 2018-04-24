@@ -13,4 +13,8 @@
       marker=".video_thumb.IVideoThumbAware"
       />
 
+  <adapter for=".video_thumb.IVideoThumbAware"
+           factory=".video_thumb.VideoThumbStorage"
+           provides=".video_thumb.IVideoThumb"/>
+
 </configure>

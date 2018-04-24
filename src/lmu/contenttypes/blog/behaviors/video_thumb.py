@@ -9,6 +9,7 @@ from plone.behavior import AnnotationStorage
 from plone.namedfile import field as namedfile
 from plone.namedfile import NamedBlobImage
 from plone.supermodel import model
+from Products.Archetypes.utils import shasattr
 from zope.interface import Interface
 from zope.interface import provider
 
@@ -47,6 +48,9 @@ class VideoThumbStorage(AnnotationStorage):
         For this reason a _video_size parameter on the video_thumb is set
         '''
         mtr = api.portal.get_tool('mimetypes_registry')
+        if not shasattr(self.schema, 'file'):
+            return
+
         video = self.schema.file
 
         try:
@@ -60,7 +64,11 @@ class VideoThumbStorage(AnnotationStorage):
             return
 
         if not force:
-            cached_size = getattr(self.schema.video_thumb, '_video_size', None)
+            try:
+                cached_size = self.schema.video_thumb._video_size
+            except AttributeError:
+                cached_size = None
+
             if cached_size == video.size:
                 # Highly improbable that a new video with the same size
                 # replaced the old one. We have nothing to do here
