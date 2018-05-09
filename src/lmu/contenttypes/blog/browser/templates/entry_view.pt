@@ -154,10 +154,14 @@
                tal:define="files view/files;"
                tal:attributes="class python: files and 'columns small-12 medium-8 end' or 'columns small-12 medium-8'" >
             <div class="blog-video helper-margin-bottom-m" tal:condition="view/videos"  >
-              <video width="100%" height="auto" controls="controls" tal:repeat="video view/videos" >
-                <source tal:attributes="src python:video.id;
-                                        type: python:video.file.contentType" />
+              <tal:rep repeat="video view/videos">
+              <video width="100%" height="auto" controls="controls" tal:define="scales video/@@images; thumb python: scales.scale('video_thumb', scale='listing_teaser', direction='down');" tal:attributes="poster python:thumb.url">
+                <source tal:define="scales video/@@images; thumb python: scales.scale('video_thumb', scale='listing_teaser', direction='down');"
+                        tal:attributes="src python:video.id;
+                                        type python:video.file.contentType; 
+                                        " />
               </video>
+              </tal:rep>
             </div>
             <div tal:condition="view/images" class="blog-images"
                  tal:define="images view/images;
