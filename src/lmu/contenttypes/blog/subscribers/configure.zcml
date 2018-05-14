@@ -1,0 +1,10 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+>
+
+    <subscriber
+        for="lmu.contenttypes.blog.behaviors.video_thumb.IVideoThumbAware
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".video_thumb.generate" />
+
+</configure>

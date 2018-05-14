@@ -28,7 +28,10 @@
 
     <!-- -*- extra stuff goes here -*- -->
 
+    <include package=".behaviors" />
     <include package=".browser" />
+    <include package=".subscribers" />
+    <include package=".upgrades" />
 
     <permission
         id="lmu.contenttypes.blog.AddBlogFolder"

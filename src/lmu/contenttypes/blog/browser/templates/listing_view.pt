@@ -96,11 +96,29 @@
                 <span tal:content="item/get_discussion_count" >Anzahl</span>
               </a>
             </div>
-            <tal:block tal:condition="item/videos" >
+            <tal:block tal:define="videos item/videos"
+                       tal:condition="videos"
+
+            >
               <figure class="blog-lead-videoimage tileImage left helper-margin-right-m helper-margin-bottom-m ">
                 <a href="#"
                    tal:attributes="href item/absolute_url">
-                  <img tal:attributes="src string:${navigation_root_url}/++resource++lmu.base/teaser_video-bg.png" alt="Video" />
+                   <tal:video_thumb tal:define="
+                                      video python:videos[0];
+                                      has_thumbnail video/video_thumb|nothing;
+                                    ">
+                      <tal:has_video_thumb tal:condition="has_thumbnail">
+                        <img tal:define="
+                               scales video/@@images;
+                               thumb python: scales.scale('video_thumb', scale='listing_teaser', direction='down');
+                             "
+                             tal:attributes="src thumb/url;"
+                        />
+                      </tal:has_video_thumb>
+                      <tal:has_no_video_thumb tal:condition="not:has_thumbnail">
+                        <img tal:attributes="src string:${navigation_root_url}/++resource++lmu.base/teaser_video-bg.png" alt="Video" />
+                      </tal:has_no_video_thumb>
+                   </tal:video_thumb>
                   <img tal:attributes="src string:${navigation_root_url}/++resource++lmu.base/teaser_video-button.png" class="overlay" alt="Video Player" />
                 </a>
               </figure>

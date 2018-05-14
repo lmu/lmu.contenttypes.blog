@@ -10,4 +10,5 @@
   <!-- -*- extra stuff goes here -*- -->
   <object meta_type="Dexterity FTI" name="Blog Folder" />
   <object meta_type="Dexterity FTI" name="Blog Entry" />
+  <object meta_type="Dexterity FTI" name="File" />
 </object>
